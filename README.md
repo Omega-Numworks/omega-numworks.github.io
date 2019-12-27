@@ -1,5 +1,11 @@
 # Omega-website
 
+## Contributing
+
+**Edit the css**
+
+Don't edit the CSS directly! Run `npm start` and edit the `sass` files.
+
 ## License
 
 Omega-website is released under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). Omega (and all files under firmware/) is released under a [CC BY-NC-SA License](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
