@@ -1,0 +1,20 @@
+{
+  "name": "omega-website",
+  "version": "1.0.0",
+  "description": "The Omega's Website; a fork of Epsilon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node-sass --watch sass/omega.library.sass -o css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Omega-Numworks/Omega-Website.git"
+  },
+  "author": "The Omega Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Omega-Numworks/Omega-Website/issues"
+  },
+  "homepage": "https://github.com/Omega-Numworks/Omega-Website#readme"
+}

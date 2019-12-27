@@ -9,128 +9,101 @@
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/omega.library.css">
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.html">Omega</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarToggle">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                </ul>
-                <ul class="navbar-nav my-2 my-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="install.html">Install <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/Omega-Numworks/Omega">Github</a>
-                    </li>
-                </ul>
+
+        <!-- Header -->
+        <header class="header">
+            <a class="header__logo" href="index.html">Omega</a>
+            <div class="header__links">
+                <a class="header__links__link" href="install.html">Install</a>
+                <a class="header__links__link" href="https://github.com/Omega-Numworks/Omega" target="_blank">Github</a>
             </div>
-        </nav>
+        </header>
+
+        <!-- Parallax -->
         <div class="parallax"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>Omega : the next evolution of Epsilon!</h1>
-                </div>
+
+        <!-- Project description -->
+        <div class="project-description">
+            <h1 class="project-description__title">Omega.</h1>
+            <h2 class="project-description__subtitle">The next evolution of Epsilon.</h2>
+            <p class="project-description__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra risus quis fermentum lacinia. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla quis felis sed mi fringilla ultricies non quis lacus. Sed auctor laoreet diam eget vestibulum. Nulla facilisi. Donec quis pharetra erat. Proin efficitur sagittis venenatis. Etiam blandit purus sit amet dui fringilla pellentesque. Sed venenatis neque id leo suscipit, non aliquet turpis varius. Nunc sed enim pulvinar, lacinia dui a, lobortis nunc. Aliquam vel malesuada enim, eu rutrum arcu. Etiam vulputate posuere magna a elementum.</p>
+            <!-- <h2 class="mb-3">A whole new set of features</h2> -->
+        </div>
+
+        <!-- Symbolic computation -->
+        <div class="feature feature-brown">
+            <div class="feature__content">
+                <h3 class="feature__content__title">Symbolic computation</h3>
+                <p class="feature__content__description">
+                    Symbolic computation has been removed from Epsilon in version 11.2. It has been reintroduced in Omega.
+                </p>
             </div>
-            <div class="row">
-                <div class="col">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra risus quis fermentum lacinia. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla quis felis sed mi fringilla ultricies non quis lacus. Sed auctor laoreet diam eget vestibulum. Nulla facilisi. Donec quis pharetra erat. Proin efficitur sagittis venenatis. Etiam blandit purus sit amet dui fringilla pellentesque. Sed venenatis neque id leo suscipit, non aliquet turpis varius. Nunc sed enim pulvinar, lacinia dui a, lobortis nunc. Aliquam vel malesuada enim, eu rutrum arcu. Etiam vulputate posuere magna a elementum.</p>
-                    <p>Aliquam tincidunt venenatis dapibus. Proin luctus consequat faucibus. Maecenas scelerisque massa eros, et ullamcorper orci iaculis et. Cras libero leo, convallis sed scelerisque eget, egestas in tortor. Suspendisse semper risus nec cursus venenatis. Phasellus vulputate libero a neque blandit, et iaculis lorem vulputate. Suspendisse mattis bibendum molestie. Vivamus tempus vitae felis nec dictum.</p>
-                    <p>Nam nunc nibh, placerat eu faucibus a, feugiat ac leo. Mauris molestie accumsan metus quis gravida. Proin tristique fringilla sodales. Ut non leo quis sapien mattis sagittis. Curabitur est velit, luctus et gravida rutrum, sodales et arcu. Vestibulum pulvinar dolor et aliquam porta. Cras luctus sem et tellus molestie, viverra volutpat erat vestibulum. Nunc in dictum sapien. Aliquam erat volutpat. Etiam fringilla vulputate metus eu varius. Proin vulputate sollicitudin ex in volutpat.</p>
-                    <p>In quis risus sed leo mattis iaculis. Sed urna elit, sodales in libero sit amet, ornare lacinia libero. Phasellus condimentum, magna quis maximus rutrum, sapien felis rutrum leo, ac luctus turpis erat id massa. Morbi imperdiet faucibus tincidunt. Nunc sed blandit purus. Nullam condimentum vulputate ligula, non egestas ipsum pellentesque efficitur. Nam auctor quam in enim gravida, vitae porttitor nisl interdum. Aliquam sit amet urna lacus. In non velit sem. Suspendisse elit dui, rutrum mollis lacus vitae, sagittis blandit augue.</p>
-                    <p>Donec at tellus dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat ullamcorper convallis. Etiam auctor, mauris sit amet suscipit interdum, justo orci feugiat orci, hendrerit facilisis diam sapien eget mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla sem nunc, elementum eget accumsan ac, tristique vel tortor. Donec vitae tempus velit. Vivamus vestibulum tortor vel blandit tincidunt. Nulla non luctus erat. Praesent scelerisque auctor est, quis varius arcu accumsan eget. Curabitur elit tortor, tincidunt id quam quis, efficitur dignissim odio. Aenean sit amet gravida mi. Maecenas non ipsum vitae elit feugiat egestas non sed nisl. Praesent at placerat urna.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h2 class="mb-3">A whole new set of features</h2>
-                </div>
+            <div class="feature__images">
+                <img class="feature__images__image" src="img/symbolic.png"/>
             </div>
         </div>
-        <div class="container-fluid bg-1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 align-self-center text-center">
-                        <h3 class="mt-2">Symbolic computation</h3>
-                        <p>
-                            Symbolic computation has been removed from Epsilon in version 11.2. It has been reintroduced in Omega.
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <img src="img/symbolic.png" class="img-fluid"/>
-                    </div>
-                </div>
+
+        <!-- Periodic table -->
+        <div class="feature feature-gray">
+            <div class="feature__images">
+                <img class="feature__images__image" src="img/atom.png"/>
+            </div>
+            <div class="feature__content">
+                <h3 class="feature__content__title">Periodic table</h3>
+                <p class="feature__content__description">
+                    Inspired by the periodic table app of the TI83PCE, Omega's periodic table is clean and simple to use.
+                </p>
             </div>
         </div>
-        <div class="container-fluid bg-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 d-none d-md-block">
-                        <img src="img/atom.png" class="img-fluid"/>
-                    </div>
-                    <div class="col-md-8 align-self-center text-center">
-                        <h3 class="mt-2">Periodic table</h3>
-                        <p>
-                            Inspired by the periodic table app of the TI83PCE, Omega's periodic table is clean and simple to use.
-                        </p>
-                    </div>
-                    <div class="col-md-4 d-md-none">
-                        <img src="img/atom.png" class="img-fluid"/>
-                    </div>
-                </div>
+
+        <!-- KhiCAS -->
+        <div class="feature feature-white">
+            <div class="feature__content">
+                <h3 class="feature__content__title">Support of KhiCAS and external apps</h3>
+                <p class="feature__content__description">
+                    Delta, another custom firmware which supports external apps, is fully integrated into Omega. This allows you to run KhiCAS or Nofrendo on your Numworks.
+                </p>
+                <p class="feature__content__small">Due to hardware limitations, this is only possible on n0110.</p>
             </div>
-        </div>
-        <div class="container-fluid bg-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 align-self-center text-center">
-                        <h3 class="mt-2">Support of KhiCAS and external apps</h3>
-                        <p>
-                            Delta, another custom firmware which supports external apps, is fully integrated into Omega. This allows you to run KhiCAS or Nofrendo on your Numworks.<br><small>Due to hardware limitations, this is only possible on N0110.</small>
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <img src="img/giac.png" class="img-fluid"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid bg-2 mb-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 d-none d-md-block">
-                        <img src="img/rpn.png" class="img-fluid"/>
-                    </div>
-                    <div class="col-md-4 align-self-center text-center">
-                        <h3 class="mt-2">RPN</h3>
-                        <p>
-                            Omega supports inputting expression using Reverse Polish Notation.
-                        </p>
-                    </div>
-                    <div class="col-md-8 d-md-none">
-                        <img src="img/rpn.png" class="img-fluid"/>
-                    </div>
-                </div>
+            <div class="feature__images">
+                <img class="feature__images__image" src="img/giac.png"/>
             </div>
         </div>
         
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra risus quis fermentum lacinia. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla quis felis sed mi fringilla ultricies non quis lacus. Sed auctor laoreet diam eget vestibulum. Nulla facilisi. Donec quis pharetra erat. Proin efficitur sagittis venenatis. Etiam blandit purus sit amet dui fringilla pellentesque. Sed venenatis neque id leo suscipit, non aliquet turpis varius. Nunc sed enim pulvinar, lacinia dui a, lobortis nunc. Aliquam vel malesuada enim, eu rutrum arcu. Etiam vulputate posuere magna a elementum.</p>
-                    <p>Aliquam tincidunt venenatis dapibus. Proin luctus consequat faucibus. Maecenas scelerisque massa eros, et ullamcorper orci iaculis et. Cras libero leo, convallis sed scelerisque eget, egestas in tortor. Suspendisse semper risus nec cursus venenatis. Phasellus vulputate libero a neque blandit, et iaculis lorem vulputate. Suspendisse mattis bibendum molestie. Vivamus tempus vitae felis nec dictum.</p>
-                    <p>Nam nunc nibh, placerat eu faucibus a, feugiat ac leo. Mauris molestie accumsan metus quis gravida. Proin tristique fringilla sodales. Ut non leo quis sapien mattis sagittis. Curabitur est velit, luctus et gravida rutrum, sodales et arcu. Vestibulum pulvinar dolor et aliquam porta. Cras luctus sem et tellus molestie, viverra volutpat erat vestibulum. Nunc in dictum sapien. Aliquam erat volutpat. Etiam fringilla vulputate metus eu varius. Proin vulputate sollicitudin ex in volutpat.</p>
-                    <p>In quis risus sed leo mattis iaculis. Sed urna elit, sodales in libero sit amet, ornare lacinia libero. Phasellus condimentum, magna quis maximus rutrum, sapien felis rutrum leo, ac luctus turpis erat id massa. Morbi imperdiet faucibus tincidunt. Nunc sed blandit purus. Nullam condimentum vulputate ligula, non egestas ipsum pellentesque efficitur. Nam auctor quam in enim gravida, vitae porttitor nisl interdum. Aliquam sit amet urna lacus. In non velit sem. Suspendisse elit dui, rutrum mollis lacus vitae, sagittis blandit augue.</p>
-                    <p>Donec at tellus dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat ullamcorper convallis. Etiam auctor, mauris sit amet suscipit interdum, justo orci feugiat orci, hendrerit facilisis diam sapien eget mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla sem nunc, elementum eget accumsan ac, tristique vel tortor. Donec vitae tempus velit. Vivamus vestibulum tortor vel blandit tincidunt. Nulla non luctus erat. Praesent scelerisque auctor est, quis varius arcu accumsan eget. Curabitur elit tortor, tincidunt id quam quis, efficitur dignissim odio. Aenean sit amet gravida mi. Maecenas non ipsum vitae elit feugiat egestas non sed nisl. Praesent at placerat urna.</p>
-                </div>
+        <!-- RPN -->
+        <div class="feature feature-gray">
+            <div class="feature__images">
+                <img class="feature__images__image" src="img/rpn.png"/>
+            </div>
+            <div class="feature__content">
+                <h3 class="feature__content__title">RPN</h3>
+                <p class="feature__content__description">
+                    Omega supports inputting expression using Reverse Polish Notation.
+                </p>
             </div>
         </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <h3 class="footer__title">Projects</h3>
+            <div class="footer__list">
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega">Omega</a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-Themes">Omega Themes</a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-Website">Omega Website</a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-CLI-Installer">Omega CLI Installer</a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-RPN">Omega RPN <span class="footer__list__item__tag">APP</span></a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-Atom">Omega Atom <span class="footer__list__item__tag">APP</span></a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-Design">Omega Design</a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-WEB-Installer">Omega WEB Installer <span class="footer__list__item__tag">DEPRECATED</span></a></li>
+            </div>
+            <div class="footer__separator" />
+            <div class="footer__logo">Omega</div>
+            <div class="footer__about-nw">NumWorks is a registered trademark.</div>
+        </footer>
         
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,600,700&display=swap");
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.header {
+  height: 64px;
+  background-color: #fff;
+  border-bottom: 1px solid #ececec; }
+  .header__logo {
+    font-family: 'Righteous', cursive;
+    font-size: 32px;
+    color: #c53431;
+    text-decoration: none;
+    line-height: 60px;
+    margin-left: 32px; }
+  .header__links {
+    float: right;
+    margin-right: 24px; }
+    .header__links__link {
+      color: #242424;
+      line-height: 64px;
+      font-weight: 500;
+      margin: 0 12px; }
+
+.footer {
+  background-color: #242424;
+  color: #dbdbdb;
+  padding: 32px 15%; }
+  .footer__title {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 24px; }
+  .footer__list__item {
+    line-height: 28px;
+    list-style-type: none; }
+    .footer__list__item__link {
+      text-decoration: none;
+      color: #ffffff;
+      cursor: pointer; }
+    .footer__list__item__tag {
+      background-color: #2e2e2e;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 13px;
+      margin-left: 4px;
+      color: #b5b5b5; }
+  .footer__separator {
+    display: inline-block;
+    height: 1px;
+    width: 100%;
+    background-color: #474747;
+    margin: 24px 0; }
+  .footer__logo {
+    margin-top: 26px;
+    font-family: 'Righteous', cursive;
+    font-size: 24px;
+    color: #858585;
+    float: right;
+    font-weight: 300; }
+  .footer__about-nw {
+    margin-top: 32px;
+    margin-bottom: 32px;
+    color: #858585; }
+
+.project-description {
+  margin: 0 25%;
+  background-color: #fff; }
+  .project-description__title {
+    margin-top: 48px;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center; }
+  .project-description__subtitle {
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 12px; }
+  .project-description__description {
+    font-size: 16px;
+    text-align: justify;
+    margin-top: 24px;
+    margin-bottom: 48px;
+    line-height: 20px; }
+
+.feature {
+  padding: 0 15%; }
+  .feature-white {
+    background-color: #ffffff; }
+  .feature-gray {
+    background-color: #f7f7f7; }
+  .feature-brown {
+    background-color: #f8f3f0; }
+  .feature__content {
+    display: inline-block;
+    width: 64%;
+    vertical-align: top; }
+    .feature__content__title {
+      font-size: 22px;
+      font-weight: 500;
+      text-align: left;
+      padding-top: 48px; }
+    .feature__content__description {
+      font-style: 16px;
+      text-align: left;
+      margin-top: 16px;
+      line-height: 20px;
+      margin-bottom: 12px; }
+    .feature__content__small {
+      margin-top: 12px;
+      margin-bottom: 42px;
+      font-size: 12px;
+      color: #969696; }
+  .feature__images {
+    display: inline-block;
+    width: 35%;
+    vertical-align: top;
+    padding: 0 16px; }
+    .feature__images__image {
+      width: 100%;
+      margin-top: 24px;
+      margin-bottom: -3px; }
+
+body {
+  font-family: 'Fira Sans', sans-serif; }
