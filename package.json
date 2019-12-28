@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Omega-Numworks/Omega-Website/issues"
   },
-  "homepage": "https://github.com/Omega-Numworks/Omega-Website#readme"
+  "homepage": "https://github.com/Omega-Numworks/Omega-Website#readme",
+  "dependencies": {
+    "node-sass": "^4.13.0"
+  }
 }

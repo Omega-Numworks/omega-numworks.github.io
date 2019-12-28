@@ -104,7 +104,8 @@ table {
 
 .project-description {
   margin: 0 25%;
-  background-color: #fff; }
+  background-color: #fff;
+  padding: 64px 0; }
   .project-description__title {
     margin-top: 48px;
     font-size: 22px;
@@ -124,6 +125,10 @@ table {
 
 .feature {
   padding: 0 15%; }
+  .feature-mobile {
+    display: none; }
+  .feature-desktop {
+    display: inline-block; }
   .feature-white {
     background-color: #ffffff; }
   .feature-gray {
@@ -132,8 +137,10 @@ table {
     background-color: #f8f3f0; }
   .feature__content {
     display: inline-block;
-    width: 64%;
+    width: 69%;
     vertical-align: top; }
+    .feature__content-full {
+      width: 100%; }
     .feature__content__title {
       font-size: 22px;
       font-weight: 500;
@@ -152,13 +159,33 @@ table {
       color: #969696; }
   .feature__images {
     display: inline-block;
-    width: 35%;
+    width: 30%;
     vertical-align: top;
     padding: 0 16px; }
     .feature__images__image {
       width: 100%;
       margin-top: 24px;
-      margin-bottom: -3px; }
+      margin-bottom: 24px;
+      border: 1px solid rgba(1, 1, 1, 0.1); }
+
+@media screen and (max-width: 700px) {
+  .project-description {
+    margin: 0 32px;
+    padding: 0 0; }
+  .feature {
+    padding: 0 32px; }
+    .feature-mobile {
+      display: inline-block; }
+    .feature-desktop {
+      display: none; }
+    .feature__content {
+      width: 100%; }
+    .feature__images {
+      width: 100%;
+      text-align: center;
+      display: block; }
+      .feature__images__image {
+        width: 70%; } }
 
 body {
   font-family: 'Fira Sans', sans-serif; }

@@ -1,6 +1,7 @@
 .project-description
     margin: 0 25%
     background-color: #fff
+    padding: 64px 0
 
     &__title
         margin-top: 48px
@@ -24,6 +25,11 @@
 .feature
     padding: 0 15%
 
+    &-mobile
+        display: none
+    &-desktop
+        display: inline-block
+
     &-white
         background-color: #ffffff
 
@@ -35,8 +41,11 @@
 
     &__content
         display: inline-block
-        width: 64%
+        width: 69%
         vertical-align: top
+
+        &-full
+            width: 100%
 
         &__title
             font-size: 22px
@@ -59,12 +68,36 @@
 
     &__images
         display: inline-block
-        width: 35%
+        width: 30%
         vertical-align: top
         padding: 0 16px
-
 
         &__image
             width: 100%
             margin-top: 24px
-            margin-bottom: -3px
+            margin-bottom: 24px
+            border: 1px solid rgba(1, 1, 1, 0.1)
+
+@media screen and ( max-width: 700px )
+    .project-description
+        margin: 0 32px
+        padding: 0 0
+    
+    .feature
+        padding: 0 32px
+
+        &-mobile
+            display: inline-block
+        &-desktop
+            display: none
+        
+        &__content
+            width: 100%
+
+        &__images
+            width: 100%
+            text-align: center
+            display: block
+
+            &__image
+                width: 70%

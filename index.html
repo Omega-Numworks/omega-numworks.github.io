@@ -24,18 +24,20 @@
         </header>
 
         <!-- Parallax -->
-        <div class="parallax"></div>
+        <!--<div class="parallax"></div>-->
 
         <!-- Project description -->
         <div class="project-description">
             <h1 class="project-description__title">Omega.</h1>
             <h2 class="project-description__subtitle">The next evolution of Epsilon.</h2>
-            <p class="project-description__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra risus quis fermentum lacinia. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla quis felis sed mi fringilla ultricies non quis lacus. Sed auctor laoreet diam eget vestibulum. Nulla facilisi. Donec quis pharetra erat. Proin efficitur sagittis venenatis. Etiam blandit purus sit amet dui fringilla pellentesque. Sed venenatis neque id leo suscipit, non aliquet turpis varius. Nunc sed enim pulvinar, lacinia dui a, lobortis nunc. Aliquam vel malesuada enim, eu rutrum arcu. Etiam vulputate posuere magna a elementum.</p>
+            <p class="project-description__description">
+                Omega is an extension to Numworks' Epsilon, the OS that runs on their calculator, which brings many features to it. Omega is for people who want to add features to the calculator, but cannot because they have been rejected by Numworks (and for reasons that are 100% understandable!).
+            </p>
             <!-- <h2 class="mb-3">A whole new set of features</h2> -->
         </div>
 
         <!-- Symbolic computation -->
-        <div class="feature feature-brown">
+        <div class="feature feature-gray">
             <div class="feature__content">
                 <h3 class="feature__content__title">Symbolic computation</h3>
                 <p class="feature__content__description">
@@ -43,12 +45,12 @@
                 </p>
             </div>
             <div class="feature__images">
-                <img class="feature__images__image" src="img/symbolic.png"/>
+                <img class="feature__images__image" src="img/symbolic-calculation.png"/>
             </div>
         </div>
 
         <!-- Periodic table -->
-        <div class="feature feature-gray">
+        <div class="feature feature-white feature-desktop">
             <div class="feature__images">
                 <img class="feature__images__image" src="img/atom.png"/>
             </div>
@@ -60,8 +62,21 @@
             </div>
         </div>
 
+        <!-- Periodic table -->
+        <div class="feature feature-white feature-mobile">
+            <div class="feature__content">
+                <h3 class="feature__content__title">Periodic table</h3>
+                <p class="feature__content__description">
+                    Inspired by the periodic table app of the TI83PCE, Omega's periodic table is clean and simple to use.
+                </p>
+            </div>
+            <div class="feature__images">
+                <img class="feature__images__image" src="img/atom.png"/>
+            </div>
+        </div>
+
         <!-- KhiCAS -->
-        <div class="feature feature-white">
+        <!--<div class="feature feature-white">
             <div class="feature__content">
                 <h3 class="feature__content__title">Support of KhiCAS and external apps</h3>
                 <p class="feature__content__description">
@@ -72,18 +87,29 @@
             <div class="feature__images">
                 <img class="feature__images__image" src="img/giac.png"/>
             </div>
-        </div>
+        </div>-->
         
         <!-- RPN -->
         <div class="feature feature-gray">
-            <div class="feature__images">
-                <img class="feature__images__image" src="img/rpn.png"/>
-            </div>
             <div class="feature__content">
                 <h3 class="feature__content__title">RPN</h3>
                 <p class="feature__content__description">
                     Omega supports inputting expression using Reverse Polish Notation.
                 </p>
+            </div>
+            <div class="feature__images">
+                <img class="feature__images__image" src="img/rpn.png"/>
+            </div>
+        </div>
+        
+        <!-- And more -->
+        <div class="feature feature-white">
+            <div class="feature__content feature__content-full">
+                <h3 class="feature__content__title">And more!</h3>
+                <p class="feature__content__description">
+                    Theme engine, accessibility settings, support of KhiCAS, external app, choose the multiplication sign, more steps for brightness, physics & chemistry constants in the toolbox, your name can be displayed in the settings, 32KB Python heap instead of 16KB,...
+                </p>
+                <div style="height: 24px;"></div>
             </div>
         </div>
         
@@ -102,7 +128,7 @@
             </div>
             <div class="footer__separator" />
             <div class="footer__logo">Omega</div>
-            <div class="footer__about-nw">NumWorks is a registered trademark.</div>
+            <div class="footer__about-nw">NumWorks is a registered trademark. Omega is not affiliated with Numworks.</div>
         </footer>
         
         <script src="js/jquery-3.4.1.min.js"></script>
