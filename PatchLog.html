@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Patchlog - </title>
+        <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/omega.library.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header">
+           <a class="header__logo" href="index.html">Omega</a>
+            <div class="header__links">
+                <a class="header__links__link" href="install.html">Install</a>
+                <a class="header__links__link" href="PatchLog.html">Patchlog</a>
+                <a class="header__links__link" href="https://github.com/Omega-Numworks/Omega" target="_blank">Github</a>
+            </div>
+        </header>
+        <div id="markdown"></div>
+        <script>
+            var converter = new showdown.Converter();
+            $.ajax({
+                url:"PatchLog.md",
+                method: 'GET',
+                success : (data) => {
+                    document.getElementById("markdown").insertAdjacentHTML("afterbegin", converter.makeHtml(data))
+                }
+            });
+        </script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
