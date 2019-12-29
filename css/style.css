@@ -1,18 +1,3 @@
-@font-face {
-    font-family: "TitleFont";
-    src: url("fonts/TitleFont.ttf");
-}
-
-@font-face {
-    font-family: "LargeFont";
-    src: url("fonts/LargeFont.ttf");
-}
-
-@font-face {
-    font-family: "SmallFont";
-    src: url("fonts/SmallFont.ttf");
-}
-
 .navbar-brand {
     font: 2.2em TitleFont, sans-serif;
     color: #c53431 !important;
