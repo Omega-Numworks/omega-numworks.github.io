@@ -21,14 +21,29 @@
                 <a class="header__links__link" href="https://github.com/Omega-Numworks/Omega" target="_blank">Github</a>
             </div>
         </header>
-        <div id="markdown"></div>
+        <div id="PatchLog"><h1>Loading patchlog</h1></div>
+        <div id="PatchLogBar"></div>
+        <a href=""></a>
         <script>
             var converter = new showdown.Converter();
+            var PatchLog = document.getElementById("PatchLog");
+            var PatchLogBar = document.getElementById("PatchLogBar");
+            var ReferencedInBar = "H2";
             $.ajax({
                 url:"PatchLog.md",
                 method: 'GET',
                 success : (data) => {
-                    document.getElementById("markdown").insertAdjacentHTML("afterbegin", converter.makeHtml(data))
+                    html = converter.makeHtml(data);
+                    PatchLog.innerHTML = ""
+                    PatchLog.insertAdjacentHTML("afterbegin", html);
+                    var children = PatchLog.childNodes;
+                    for (var i = 0; i < children.length; i++) {
+                        if(children[i].nodeName == ReferencedInBar){
+                            console.log(children[i].innerText)
+                            children[i].id = children[i].innerText;
+                            PatchLogBar.innerHTML += '<a href="#' + children[i].innerText + '">' + children[i].innerText + "</a><br>";
+                        }
+                    }
                 }
             });
         </script>
