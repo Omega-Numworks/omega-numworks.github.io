@@ -1,635 +1,636 @@
 {
-    "latest": "O1.18.2-E12",
-    "firmwares": {
-        "O1.18.2-E12": {
-            "changelog": [
-                "Fixed a bug where all contributors were not shown"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.18.1-E12": {
-            "changelog": [
-                "External is now disabled in NoSym exam mode, to disable KhiCAS."
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.18.0-E12": {
-            "changelog": [
-                "Theming engine with a Dark Theme of Omega 😱 Usage: ´OMEGA_THEME=name_of_the_theme´",
-                "MicroPython version is now displayed in the settings",
-                "shift + \"+/-\" increase/decrease the brightness",
-                "shift + \"(\" writes \"()\"",
-                "Convert symbol_controller into preferences_controller",
-                "Reorganized storage",
-                "Exam mode: you can now choose between 3 modes: \"standard\", \"no symbolic\" and \"Dutch\"",
-                "Symbolic calculation indicator displayed in the toolbar",
-                "Keep backspace operation in alpha lock mode",
-                "New External app (v2) ; allows you to install GIAC and Nofrendo from https://zardam.github.io/nw-external-apps/",
-                "Various improvements to the build system",
-                "The contributors usernames (@...) are now displayed",
-                "Doxygen added (to document the source code)",
-                "Some labels are fixed in the settings. They were too long",
-                "Colors of the exam mode logo are fixed"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.17.2-E12": {
-            "changelog": [
-                "Fixed colors of the exam mode popup"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.17.1-E12": {
-            "changelog": [
-                "Fixed an issue with the multiplication symbol"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.17.0-E12": {
-            "changelog": [
-                "User-friendly settings for the multiplication sign"
-                "RPN app fixed",
-                "The palette is now larger to allow very customizable themes",
-                "Omega Light theme (installed by default)"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.16.2-E12": {
-            "changelog": [
-                "FIX Math options > Result format crash"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.16.1-E12": {
-            "changelog": [
-                "FIX Hardware test shortcut position in the settings"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.16.0-E12": {
-            "changelog": [
-                "Add the ability to change the multiplication sign"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.15.6-E12": {
-            "changelog": [
-                "Reordered settings"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.15.5-E12": {
-            "changelog": [
-                "Updated Epsilon"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.15.4-E12": {
-            "changelog": [
-                "Upadted Epsilon"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.15.3-E12": {
-            "changelog": [
-                "Updated Atom"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.15.2-E12": {
-            "changelog": [
-                "Make binpack target work, changed logo"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.15.1-E12": {
-            "changelog": [
-                "Updated Atom"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.15.0-E12": {
-            "changelog": [
-                "You can now compile the simulator"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.14.0-E12": {
-            "changelog": [
-                "Massive refactor of settings"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.13.10-E12": {
-            "changelog": [
-                "FIX workshop crash!"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.13.9-E12": {
-            "changelog": [
-                "3 new constants (physics)"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.13.8-E12": {
-            "changelog": [
-                "Atom app updated"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.13.7-E12": {
-            "changelog": [
-                "FIX multiplication symbols in toolbox"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.13.6-E12": {
-            "changelog": [
-                "FIX spaces in username"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.13.5-E12": {
-            "changelog": [
-                "Remove username row if N/A"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.13.4-E12": {
-            "changelog": [
-                "Add username in the settings"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.13.3-E12": {
-            "changelog": [
-                "Add command-line arguments support"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.13.2-E12": {
-            "changelog": [
-                "Module time in toolbox"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.13.1-E12": {
-            "changelog": [
-                "Accessibility translations"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.13.0-E12": {
-            "changelog": [
-                "Accessibility settings"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.12.3-E12": {
-            "changelog": [
-                "Update contributors"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.12.2-E12": {
-            "changelog": [
-                "FIX warnings during compilation"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.12.1-E12": {
-            "changelog": [
-                "get_keys() on Python!"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.12.0-E12": {
-            "changelog": [
-                "A new periodic table app"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.11.0-E12": {
-            "changelog": [
-                "Physics constants"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.10.4-E12": {
-            "changelog": [
-                "Fix child display in settings"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.10.3-E12": {
-            "changelog": [
-                "32 KB Python heap instead of a 16 KB"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.10.2-E12": {
-            "changelog": [
-                "FIX contributors duplication (code side)"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.10.1-E12": {
-            "changelog": [
-                "Update contributors"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.10.0-E12": {
-            "changelog": [
-                "New RPN app!"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.9.1-E12": {
-            "changelog": [
-                "FIX chemical constants duplication (code side)"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": false,
-                "android": true
-            },
-            "available": true
-        },
-        "O1.9.0-E12": {
-            "changelog": [
-                "Epsilon updated to 12.0.0"
-            ],
-            "compatibility": {
-                "N0110": true,
-                "N0100": true,
-                "web": true,
-                "android": true
-            },
-            "available": false
-        },
-        "O1.8.2-E11": {
-            "changelog": [
-                "FIX German translations"
-            ],
-            "compatibility": {
-                "N0110": false,
-                "N0100": true,
-                "web": true,
-                "android": false
-            },
-            "available": true
-        },
-        "O1.8.1-E11": {
-            "changelog": [
-                "Update contributors"
-            ],
-            "compatibility": {
-                "N0110": false,
-                "N0100": true,
-                "web": true,
-                "android": false
-            },
-            "available": true
-        },
-        "O1.8.0-E11": {
-            "changelog": [
-                "Lava OS becomes Omega!"
-            ],
-            "compatibility": {
-                "N0110": false,
-                "N0100": true,
-                "web": true,
-                "android": false
-            },
-            "available": true
-        },
-        "O1.7.0-E11": {
-            "changelog": [
-                "Lava OS Contributors in settings"
-            ],
-            "compatibility": {
-                "N0110": false,
-                "N0100": true,
-                "web": true,
-                "android": false
-            },
-            "available": true
-        },
-        "O1.6.0-E11": {
-            "changelog": [
-                "Lava OS version tag (public/dev) in settings > about"
-            ],
-            "compatibility": {
-                "N0110": false,
-                "N0100": true,
-                "web": true,
-                "android": false
-            },
-            "available": true
-        },
-        "O1.5.0-E11": {
-            "changelog": [
-                "Change Led color in settings (white/green/blue/yellow)"
-            ],
-            "compatibility": {
-                "N0110": false,
-                "N0100": true,
-                "web": true,
-                "android": false
-            },
-            "available": true
-        },
-        "O1.4.0-E11": {
-            "changelog": [
-                "Chemistry constants sorted by atomic number or in alphabetical order (120 molar masses!)"
-            ],
-            "compatibility": {
-                "N0110": false,
-                "N0100": true,
-                "web": true,
-                "android": false
-            },
-            "available": true
-        },
-        "O1.3.0-E11": {
-            "changelog": [
-                "Increase Brightness steps (from 5 to 16)"
-            ],
-            "compatibility": {
-                "N0110": false,
-                "N0100": true,
-                "web": true,
-                "android": false
-            },
-            "available": true
-        },
-        "O1.2.0-E11": {
-            "changelog": [
-                "'Lava OS' instead of 'APPLICATIONS' at the top of the home screen"
-            ],
-            "compatibility": {
-                "N0110": false,
-                "N0100": true,
-                "web": true,
-                "android": false
-            },
-            "available": true
-        },
-        "O1.1.0-E11": {
-            "changelog": [
-                "Blue Led in exam mode. Now, teachers can know when a student uses LavaOS"
-            ],
-            "compatibility": {
-                "N0110": false,
-                "N0100": true,
-                "web": true,
-                "android": false
-            },
-            "available": true
-        },
-        "O1.0.0-E11": {
-            "changelog": [
-                "Symbolic Calculation",
-                "Lava OS version in settings > about"
-            ],
-            "compatibility": {
-                "N0110": false,
-                "N0100": true,
-                "web": true,
-                "android": false
-            },
-            "available": true
-        }
-    }
+	"latest": "O1.18.2-E12",
+	"firmwares": [
+	    {
+	        "name": "O1.18.2-E12",
+		    "changelog": [
+			    "Fixed a bug where all contributors were not shown"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.18.1-E12",
+		    "changelog": [
+			    "External is now disabled in NoSym exam mode, to disable KhiCAS."
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.18.0-E12",
+		    "changelog": [
+			    "Theming engine with a Dark Theme of Omega 😱 Usage: ´OMEGA_THEME=name_of_the_theme´",
+			    "MicroPython version is now displayed in the settings",
+			    "shift + \"+/-\" increase/decrease the brightness",
+			    "shift + \"(\" writes \"()\"",
+			    "Convert symbol_controller into preferences_controller",
+			    "Reorganized storage",
+			    "Exam mode: you can now choose between 3 modes: \"standard\", \"no symbolic\" and \"Dutch\"",
+			    "Symbolic calculation indicator displayed in the toolbar",
+			    "Keep backspace operation in alpha lock mode",
+			    "New External app (v2) ; allows you to install GIAC and Nofrendo from https://zardam.github.io/nw-external-apps/",
+			    "Various improvements to the build system",
+			    "The contributors usernames (@...) are now displayed",
+			    "Doxygen added (to document the source code)",
+			    "Some labels are fixed in the settings. They were too long",
+			    "Colors of the exam mode logo are fixed"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.17.2-E12",
+		    "changelog": [
+			    "Fixed colors of the exam mode popup"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.17.1-E12",
+		    "changelog": [
+			    "Fixed an issue with the multiplication symbol"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.17.0-E12",
+		    "changelog": [
+			    "User-friendly settings for the multiplication sign",
+			    "RPN app fixed",
+			    "The palette is now larger to allow very customizable themes",
+			    "Omega Light theme (installed by default)"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.16.2-E12",
+		    "changelog": [
+			    "FIX Math options > Result format crash"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.16.1-E12",
+		    "changelog": [
+			    "FIX Hardware test shortcut position in the settings"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.16.0-E12",
+		    "changelog": [
+			    "Add the ability to change the multiplication sign"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.15.6-E12",
+		    "changelog": [
+			    "Reordered settings"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.15.5-E12",
+		    "changelog": [
+			    "Updated Epsilon"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.15.4-E12",
+		    "changelog": [
+			    "Upadted Epsilon"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.15.3-E12",
+		    "changelog": [
+			    "Updated Atom"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.15.2-E12",
+		    "changelog": [
+			    "Make binpack target work, changed logo"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.15.1-E12",
+		    "changelog": [
+			    "Updated Atom"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.15.0-E12",
+		    "changelog": [
+			    "You can now compile the simulator"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.14.0-E12",
+		    "changelog": [
+			    "Massive refactor of settings"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.13.10-E12",
+		    "changelog": [
+			    "FIX workshop crash!"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.13.9-E12",
+		    "changelog": [
+			    "3 new constants (physics)"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.13.8-E12",
+		    "changelog": [
+			    "Atom app updated"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.13.7-E12",
+		    "changelog": [
+			    "FIX multiplication symbols in toolbox"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.13.6-E12",
+		    "changelog": [
+			    "FIX spaces in username"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.13.5-E12",
+		    "changelog": [
+			    "Remove username row if N/A"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.13.4-E12",
+		    "changelog": [
+			    "Add username in the settings"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.13.3-E12",
+		    "changelog": [
+			    "Add command-line arguments support"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.13.2-E12",
+		    "changelog": [
+			    "Module time in toolbox"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.13.1-E12",
+		    "changelog": [
+			    "Accessibility translations"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.13.0-E12",
+		    "changelog": [
+			    "Accessibility settings"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.12.3-E12",
+		    "changelog": [
+			    "Update contributors"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.12.2-E12",
+		    "changelog": [
+			    "FIX warnings during compilation"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.12.1-E12",
+		    "changelog": [
+			    "get_keys() on Python!"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.12.0-E12",
+		    "changelog": [
+			    "A new periodic table app"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.11.0-E12",
+		    "changelog": [
+			    "Physics constants"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.10.4-E12",
+		    "changelog": [
+			    "Fix child display in settings"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.10.3-E12",
+		    "changelog": [
+			    "32 KB Python heap instead of a 16 KB"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.10.2-E12",
+		    "changelog": [
+			    "FIX contributors duplication (code side)"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.10.1-E12",
+		    "changelog": [
+			    "Update contributors"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.10.0-E12",
+		    "changelog": [
+			    "New RPN app!"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.9.1-E12",
+		    "changelog": [
+			    "FIX chemical constants duplication (code side)"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": false,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.9.0-E12",
+		    "changelog": [
+			    "Epsilon updated to 12.0.0"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": false
+	    }, {
+	        "name": "O1.8.2-E12",
+		    "changelog": [
+			    "FIX German translations"
+		    ],
+		    "compatibility": {
+			    "N0110": false,
+			    "N0100": true,
+			    "web": true,
+			    "android": false
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.8.1-E12",
+		    "changelog": [
+			    "Update contributors"
+		    ],
+		    "compatibility": {
+			    "N0110": false,
+			    "N0100": true,
+			    "web": true,
+			    "android": false
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.8.0-E12",
+		    "changelog": [
+			    "Lava OS becomes Omega!"
+		    ],
+		    "compatibility": {
+			    "N0110": false,
+			    "N0100": true,
+			    "web": true,
+			    "android": false
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.7.0-E12",
+		    "changelog": [
+			    "Lava OS Contributors in settings"
+		    ],
+		    "compatibility": {
+			    "N0110": false,
+			    "N0100": true,
+			    "web": true,
+			    "android": false
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.6.0-E12",
+		    "changelog": [
+			    "Lava OS version tag (public/dev) in settings > about"
+		    ],
+		    "compatibility": {
+			    "N0110": false,
+			    "N0100": true,
+			    "web": true,
+			    "android": false
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.5.0-E12",
+		    "changelog": [
+			    "Change Led color in settings (white/green/blue/yellow)"
+		    ],
+		    "compatibility": {
+			    "N0110": false,
+			    "N0100": true,
+			    "web": true,
+			    "android": false
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.4.0-E12",
+		    "changelog": [
+			    "Chemistry constants sorted by atomic number or in alphabetical order (120 molar masses!)"
+		    ],
+		    "compatibility": {
+			    "N0110": false,
+			    "N0100": true,
+			    "web": true,
+			    "android": false
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.3.0-E12",
+		    "changelog": [
+			    "Increase Brightness steps (from 5 to 16)"
+		    ],
+		    "compatibility": {
+			    "N0110": false,
+			    "N0100": true,
+			    "web": true,
+			    "android": false
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.2.0-E12",
+		    "changelog": [
+			    "'Lava OS' instead of 'APPLICATIONS' at the top of the home screen"
+		    ],
+		    "compatibility": {
+			    "N0110": false,
+			    "N0100": true,
+			    "web": true,
+			    "android": false
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.1.0-E12",
+		    "changelog": [
+			    "Blue Led in exam mode. Now, teachers can know when a student uses LavaOS"
+		    ],
+		    "compatibility": {
+			    "N0110": false,
+			    "N0100": true,
+			    "web": true,
+			    "android": false
+		    },
+		    "available": true
+	    }, {
+	        "name": "O1.0.0-E12",
+		    "changelog": [
+			    "Symbolic Calculation",
+			    "Lava OS version in settings > about"
+		    ],
+		    "compatibility": {
+			    "N0110": false,
+			    "N0100": true,
+			    "web": true,
+			    "android": false
+		    },
+		    "available": true
+	    }
+	]
 }
