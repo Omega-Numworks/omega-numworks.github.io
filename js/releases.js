@@ -3,7 +3,7 @@ function htmlEntities(str) {
 }
 
 $(function() {
-    console.log("Ready!")
+    console.log("Ready!");
     $.ajax({
         url: "firmware/firmwares.json",
         method: 'GET',
@@ -51,16 +51,11 @@ $(function() {
                 </div>
                 <hr/>
             `);
-            console.log(data["firmwares"][id]);
         }
-        
-        // console.log(data);
     }).fail(function(data, err) {
-        console.log("aaa");
         $("#versions-error").removeClass('d-none');
         $("#versions-error-message").text(err);
     }).always(function() {
         $("#version-spin").addClass('d-none');
     });
-    // console.log(versions_list);
 });

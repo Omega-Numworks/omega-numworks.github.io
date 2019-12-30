@@ -191,4 +191,10 @@ table {
         width: 70%; } }
 
 body {
-  font-family: 'Fira Sans', sans-serif; }
+  font-family: 'Fira Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; }
+
+.content {
+  flex: 1 0 auto; }

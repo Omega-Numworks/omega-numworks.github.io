@@ -25,6 +25,13 @@
                 text-align: center;
                 margin-top: 40px;
             }
+            h2.versions-loading {
+                font-size: 35px;
+                font-weight: 500;
+                margin-bottom: 40px;
+                text-align: center;
+                margin-top: 40px;
+            }
             small.versions-error {
                 margin-bottom: 40px;
                 text-align: center;
@@ -64,59 +71,63 @@
                 <a class="header__links__link" href="https://github.com/Omega-Numworks/Omega" target="_blank">Github</a>
             </div>
         </header>
-        
-        <div style="height: 48px;"></div>
 
-        <!-- Parallax -->
-        <!--<div class="parallax parallax-small"></div>-->
+        <div class="content">
         
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>Omega's version history :</h1>
-                </div>
-            </div>
-        </div>
-        
-        <div class="container" id="version-spin">
-            <div class="row">
-                <div class="col text-center mt-5">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="sr-only">Loading...</span>
+            <div style="height: 48px;"></div>
+
+            <!-- Parallax -->
+            <!--<div class="parallax parallax-small"></div>-->
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Omega's version history :</h1>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="container d-none" id="versions-error">
-            <div class="row">
-                <div class="col">
-                    <h2 class="versions-error">Unable to fetch version history...</h2>
-                    <small class="versions-error" id="versions-error-message">...</small>
-                </div>
-            </div>
-        </div>
-        
-        <div class="container d-none" id="versions-list">
-        <!--
-            <div class="row">
-                <div class="col">
-                    <h3 class="release-title">O1.18.2-E12</h3>
-                    <ul>
-                        <li>- Added ding dongs!</li>
-                        <li>- Added ding dongs!</li>
-                    </ul>
-                    <div class="download">
-                        <span class="badge download-badge badge-pill badge-success">‎<a href="#">Android</a></span>
-                        <span class="badge download-badge badge-pill badge-primary">‎<a href="#">Web</a></span>
-                        <span class="badge download-badge badge-pill badge-danger"><a href="#">‎Flash (N0100 & N0110)</a></span>
+            
+            <div class="container" id="version-spin">
+                <div class="row">
+                    <div class="col text-center mt-5">
+                        <h2 class="versions-loading">Loading versions...</h2>
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        -->
+            
+            <div class="container d-none" id="versions-error">
+                <div class="row">
+                    <div class="col">
+                        <h2 class="versions-error">Unable to fetch version history...</h2>
+                        <small class="versions-error" id="versions-error-message">...</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container d-none" id="versions-list">
+            <!--
+                <div class="row">
+                    <div class="col">
+                        <h3 class="release-title">O1.18.2-E12</h3>
+                        <ul>
+                            <li>- Added ding dongs!</li>
+                            <li>- Added ding dongs!</li>
+                        </ul>
+                        <div class="download">
+                            <span class="badge download-badge badge-pill badge-success">‎<a href="#">Android</a></span>
+                            <span class="badge download-badge badge-pill badge-primary">‎<a href="#">Web</a></span>
+                            <span class="badge download-badge badge-pill badge-danger"><a href="#">‎Flash (N0100 & N0110)</a></span>
+                        </div>
+                    </div>
+                </div>
+            -->
+            </div>
+            
+            <div style="height: 48px;"></div>
         </div>
-        
-        <div style="height: 48px;"></div>
 
         <!-- Footer -->
         <footer class="footer">
