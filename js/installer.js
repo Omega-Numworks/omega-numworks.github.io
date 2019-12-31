@@ -509,7 +509,14 @@ $(function() {
             $("#unavaliable_div").addClass('d-flex');
         }
         
-        var version_info = getVersion(data, data["latest"]);
+        var url = new URL(window.location.href);
+        var version = url.searchParams.get("version");
+        if (version == null) {
+            version = data["latest"]
+            
+        }
+        
+        version_info = getVersion(data, version);
         
         if (version_info == null) {
             $("#unavaliable_div").removeClass('d-none');
@@ -517,7 +524,7 @@ $(function() {
             
             $("#detect_div").removeClass('d-flex');
             $("#detect_div").addClass('d-none');
-            $("#unavaliable_div_error").html("An error has occured: <br/>Version " + data["latest"] + " doesn't exist!");
+            $("#unavaliable_div_error").html("An error has occured: <br/>Version " + version + " doesn't exist!");
             $("#unavaliable_div_button").addClass("d-none");
             return;
         }
