@@ -39,12 +39,14 @@ $(function() {
                 badges = `<span class="badge download-badge badge-pill badge-secondary">‎N/A</span>`;
             }
             
+            
             $("#versions-list").append(`
                 <div class="row">
                     <div class="col">
                         <h3 class="release-title">` + data["firmwares"][id]["name"] + `</h3>
                         <ul>` + list + `</ul>
                         <div class="download">
+                            <span class="badge download-badge badge-pill badge-info"><a target="_blank" href="https://github.com/Omega-Numworks/Omega/releases/tag/` + data["firmwares"][id]["name"] + `">Github</a></span>
                             ` + badges + `
                         </div>
                     </div>
