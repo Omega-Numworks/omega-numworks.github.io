@@ -547,6 +547,15 @@ $(function() {
                     $("#ok_div").animate({"background-position-y": "1900%"}, 1500);
                     $("#detect_div").animate({"background-position-y": "1900%"}, 1500);
                     $("#install_div").animate({"background-position-y": "1900%"}, 1500);
+                    
+                    if ((getType() == "0110" && version_info["compatibility"]["N0110"]) || (getType() == "0100" && version_info["compatibility"]["N0100"])) {
+                        $("#ok_div_info").text("We will install version " + version + ".");
+                    } else {
+                        $("#ok_div_info").text("Sadly, omega version " + version + " ins't compatible with N" + getType() + ".");
+                        $("#install_button").prop('disabled', true);
+                    }
+                    
+                    
                     await display_infos();
                 }
             ).catch(error => {
