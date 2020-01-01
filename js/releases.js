@@ -30,10 +30,10 @@ $(function() {
                     badges += `<span class="badge download-badge badge-pill badge-danger"><a href="install.html?version=` + data["firmwares"][id]["name"] + `">‎Flash (` + compat + `)</a></span>`;
                 }
                 if (data["firmwares"][id]["compatibility"]["android"]) {
-                    badges += `<span class="badge download-badge badge-pill badge-success"><a href="firmware/` + data["firmwares"][id]["name"] + `/simulator.apk">Android</a></span>`
+                    badges += `<span class="badge download-badge badge-pill badge-success"><a href="https://github.com/Omega-Numworks/Omega/releases/download/` + data["firmwares"][id]["name"] + `/simulator.apk">Android</a></span>`
                 }
                 if (data["firmwares"][id]["compatibility"]["web"]) {
-                    badges += `<span class="badge download-badge badge-pill badge-primary"><a href="firmware/` + data["firmwares"][id]["name"] + `/simulator.zip">Web</a></span>`
+                    badges += `<span class="badge download-badge badge-pill badge-primary"><a href="https://github.com/Omega-Numworks/Omega/releases/download/` + data["firmwares"][id]["name"] + `/simulator.zip">Web</a></span>`
                 }
             } else {
                 badges = `<span class="badge download-badge badge-pill badge-secondary">‎N/A</span>`;
