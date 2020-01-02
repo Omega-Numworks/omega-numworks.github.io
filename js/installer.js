@@ -70,6 +70,7 @@ function autoConnect(vid, pid, serial) {
                     $("#info_progress").text("Omega installation finished!");
                     $("#button_finished").removeClass('d-none');
                     $("#button_finished").addClass('d-inline-block');
+                    $("#progress_bar").width("100%");
                     
                     
                     console.log("Reconnected!");
@@ -580,6 +581,7 @@ $(function() {
             $("#unavaliable_div_button").addClass("d-none");
             $("#ok_div").removeClass('d-flex');
             $("#ok_div").addClass('d-none');
+            $('#ok_div').attr('style', 'display: none !important;');
             return;
         }
         
