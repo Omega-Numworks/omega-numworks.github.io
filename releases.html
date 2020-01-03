@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Releases - Omega</title>
+        
+        <meta charset="utf-8">
+        <meta name="author" content="M4x1m3">
+        <link rel="icon" type="image/png" href="img/logo.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/omega.library.css">
+        
+        <style>
+            h1 {
+                font-size: 40px;
+                font-weight: 500;
+                margin-bottom: 24px;
+                text-align: center;
+            }
+            h2.versions-error {
+                font-size: 35px;
+                font-weight: 500;
+                margin-bottom: 24px;
+                text-align: center;
+                margin-top: 40px;
+            }
+            h2.versions-loading {
+                font-size: 35px;
+                font-weight: 500;
+                margin-bottom: 40px;
+                text-align: center;
+                margin-top: 40px;
+            }
+            small.versions-error {
+                margin-bottom: 40px;
+                text-align: center;
+                display: block;
+            }
+            .release-title {
+                font-size: 30px;
+                font-weight: 500;
+                margin-bottom: 12px;
+                margin-top: 12px;
+            }
+            .download {
+                margin-top: 12px;
+            }
+            .download-badge {
+                font-size: 100%;
+                margin-right: 4px;
+            }
+            .download-badge a {
+                color:inherit;
+                text-decoration: none;
+            }
+            li {
+                margin-bottom: 2px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <header class="header">
+            <a class="header__logo" href="index.html">Omega</a>
+            <div class="header__links">
+                <a class="header__links__link" href="install.html">Install</a>
+                <a class="header__links__link" href="releases.html">Releases</a>
+                <a class="header__links__link" href="https://github.com/Omega-Numworks/Omega" target="_blank">Github</a>
+            </div>
+        </header>
+
+        <div class="content">
+        
+            <div style="height: 48px;"></div>
+
+            <!-- Parallax -->
+            <!--<div class="parallax parallax-small"></div>-->
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Omega's version history :</h1>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container" id="version-spin">
+                <div class="row">
+                    <div class="col text-center mt-5">
+                        <h2 class="versions-loading">Loading versions...</h2>
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container d-none" id="versions-error">
+                <div class="row">
+                    <div class="col">
+                        <h2 class="versions-error">Unable to fetch version history...</h2>
+                        <small class="versions-error" id="versions-error-message">...</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container d-none" id="versions-list">
+            <!--
+                <div class="row">
+                    <div class="col">
+                        <h3 class="release-title">O1.18.2-E12</h3>
+                        <ul>
+                            <li>- Added ding dongs!</li>
+                            <li>- Added ding dongs!</li>
+                        </ul>
+                        <div class="download">
+                            <span class="badge download-badge badge-pill badge-success">‎<a href="#">Android</a></span>
+                            <span class="badge download-badge badge-pill badge-primary">‎<a href="#">Web</a></span>
+                            <span class="badge download-badge badge-pill badge-danger"><a href="#">‎Flash (N0100 & N0110)</a></span>
+                        </div>
+                    </div>
+                </div>
+            -->
+            </div>
+            
+            <div style="height: 48px;"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <h3 class="footer__title">Projects</h3>
+            <div class="footer__list">
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega">Omega</a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-Themes">Omega Themes</a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-Website">Omega Website</a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-CLI-Installer">Omega CLI Installer</a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-RPN">Omega RPN <span class="footer__list__item__tag">APP</span></a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-Atom">Omega Atom <span class="footer__list__item__tag">APP</span></a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-Converter">Omega Converter <span class="footer__list__item__tag">APP</span></a></li>
+                <li class="footer__list__item"><a class="footer__list__item__link" target="_blank" href="https://github.com/Omega-Numworks/Omega-Design">Omega Design</a></li>
+            </div>
+            <div class="footer__separator" />
+            <div class="footer__logo">Omega</div>
+            <div class="footer__about-nw">NumWorks is a registered trademark. Omega is not affiliated with Numworks.</div>
+        </footer>
+        
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/releases.js"></script>
+    </body>
+</html>

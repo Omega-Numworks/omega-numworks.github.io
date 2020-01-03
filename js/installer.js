@@ -7,7 +7,16 @@ var should_flash_scripts = false;
 var total_bar_cycles = 0;
 var current_bar_cycle = 0;
 
+var version;
+var version_info;
+var autoConnect_timer_id;
+
+function stopAutoConnect() {
+    clearTimeout(autoConnect_timer_id);
+}
+
 function autoConnect(vid, pid, serial) {
+    autoConnect_timer_id = setTimeout(autoConnect.bind(null, vid, pid), 3000);
     dfu.findAllDfuInterfaces().then(
         async dfu_devices => {
             let matching_devices = [];
@@ -31,6 +40,7 @@ function autoConnect(vid, pid, serial) {
             if (matching_devices.length == 0) {
                 
             } else {
+                stopAutoConnect();
                 device = matching_devices[0];
                 let interfaces = dfu.findDeviceDfuInterfaces(device.device_);
                 await fixInterfaceNames(device.device_, interfaces);
@@ -60,6 +70,7 @@ function autoConnect(vid, pid, serial) {
                     $("#info_progress").text("Omega installation finished!");
                     $("#button_finished").removeClass('d-none');
                     $("#button_finished").addClass('d-inline-block');
+                    $("#progress_bar").width("100%");
                     
                     
                     console.log("Reconnected!");
@@ -69,6 +80,13 @@ function autoConnect(vid, pid, serial) {
             
                     $("#ok_div").removeClass('d-none');
                     $("#ok_div").addClass('d-flex');
+                    
+                    if ((getType() == "0110" && version_info["compatibility"]["N0110"]) || (getType() == "0100" && version_info["compatibility"]["N0100"])) {
+                        $("#ok_div_info").text("We will install version " + version + ".");
+                    } else {
+                        $("#ok_div_info").text("Sadly, omega version " + version + " ins't compatible with N" + getType() + ".");
+                        $("#install_button").prop('disabled', true);
+                    }
                     
                     $("#ok_div").animate({"background-position-y": "1900%"}, 1500);
                     $("#detect_div").animate({"background-position-y": "1900%"}, 1500);
@@ -218,21 +236,53 @@ function getType() {
 
 function parsePlatformInfo(array) {
     var dv = new DataView(array);
+    console.log(hexBuffer(array));
     var data = {};
-    data["magik"] = dv.getUint32(0x00, false) == 0xF00DC0DE && dv.getUint32(0x1C, false) == 0xF00DC0DE;
+    
+    data["magik"] = dv.getUint32(0x00, false) == 0xF00DC0DE;
+    
+    data["magik"] = dv.getUint32(0x00, false) == 0xF00DC0DE;
     
     if (data["magik"]) {
-        data["version"] = readFString(dv, 0x04, 8);
-        data["commit"] = readFString(dv, 0x0C, 8);
-        data["storage"] = {};
-        data["storage"]["address"] = dv.getUint32(0x14, true);
-        data["storage"]["size"] = dv.getUint32(0x18, true);
-        data["omega"] = {};
-        data["omega"]["installed"] = dv.getUint32(0x20, false) == 0xDEADBEEF && dv.getUint32(0x44, false) == 0xDEADBEEF;
+        data["oldplatform"] = !(dv.getUint32(0x1C, false) == 0xF00DC0DE);
         
-        if (data["omega"]["installed"]) {
-            data["omega"]["version"] = readFString(dv, 0x24, 16);
-            data["omega"]["user"] = readFString(dv, 0x34, 16);
+        data["omega"] = {};
+        
+        if (data["oldplatform"]) {
+            data["omega"]["installed"] = dv.getUint32(0x1C + 8, false) == 0xF00DC0DE || dv.getUint32(0x1C + 16, false) == 0xDEADBEEF || dv.getUint32(0x1C + 32, false) == 0xDEADBEEF;
+            if (data["omega"]["installed"]) {
+                data["omega"]["version"] = readFString(dv, 0x0C, 16);
+                
+                data["omega"]["user"] = "";
+                
+            }
+            
+            data["version"] = readFString(dv, 0x04, 8);
+            var offset = 0;
+            if (dv.getUint32(0x1C + 8, false) == 0xF00DC0DE) {
+                offset = 8;
+            } else if (dv.getUint32(0x1C + 16, false) == 0xF00DC0DE) {
+                offset = 16;
+            } else if (dv.getUint32(0x1C + 32, false) == 0xF00DC0DE) {
+                offset = 32;
+            }
+            
+            data["commit"] = readFString(dv, 0x0C + offset, 8);
+            data["storage"] = {};
+            data["storage"]["address"] = dv.getUint32(0x14 + offset, true);
+            data["storage"]["size"] = dv.getUint32(0x18 + offset, true);
+        } else {
+            data["omega"]["installed"] = dv.getUint32(0x20, false) == 0xDEADBEEF && dv.getUint32(0x44, false) == 0xDEADBEEF;
+            if (data["omega"]["installed"]) {
+                data["omega"]["version"] = readFString(dv, 0x24, 16);
+                data["omega"]["user"] = readFString(dv, 0x34, 16);
+            }
+
+            data["version"] = readFString(dv, 0x04, 8);
+            data["commit"] = readFString(dv, 0x0C, 8);
+            data["storage"] = {};
+            data["storage"]["address"] = dv.getUint32(0x14, true);
+            data["storage"]["size"] = dv.getUint32(0x18, true);
         }
     } else {
         data["omega"] = false;
@@ -418,7 +468,7 @@ async function fixInterfaceNames(device_, interfaces) {
     }
 }
 
-function onDisconnect(reason) {
+function onDisconnect(reason, reason_only = false) {
     if (ignore_disconnect) {
         return;
     }
@@ -431,8 +481,12 @@ function onDisconnect(reason) {
     
     $("#detect_div").removeClass('d-none');
     $("#detect_div").addClass('d-flex');
+    if (reason_only) {
+        $("#detect_message").html(reason);
+    } else {
+        $("#detect_message").html("An error has occured: <br/>" + reason + "<br/>please try reconnecting your device!");
+    }
     
-    $("#detect_message").html("An error has occured: <br/>" + reason + "<br/>please try reconnecting your device!");
     $("#detect_div").addClass("nw-plug-err");
     
     $("#ok_div").animate({"background-position-y": "100%"}, 1500);
@@ -476,110 +530,170 @@ async function display_infos() {
     platform_info = pinfo;
 }
 
-$(function() {
-    if (typeof navigator.usb !== 'undefined') {
-        navigator.usb.addEventListener("disconnect", onUnexpectedDisconnect);
-        autoConnect(0x0483, 0xa291);
-        
-        $("#unavaliable_div").removeClass('d-flex');
-        $("#unavaliable_div").addClass('d-none');
-        
-        $("#detect_div").removeClass('d-none');
-        $("#detect_div").addClass('d-flex');
+function getVersion(data, name) {
+    for(i in data["firmwares"]) {
+        if (data["firmwares"][i]["name"] == name) {
+            return data["firmwares"][i];
+        }
     }
-    
-    $("#detect_button").click(function() {
-        console.log("Detecting device...");
-        
-        navigator.usb.requestDevice({ 'filters': [{'vendorId': 0x0483, 'productId': 0xa291}]}).then(
-            async selectedDevice => {
-                let interfaces = dfu.findDeviceDfuInterfaces(selectedDevice);
-                await fixInterfaceNames(selectedDevice, interfaces);
-                device = await connect(new dfu.Device(selectedDevice, interfaces[0]));
-                
-                $("#detect_div").removeClass('d-flex');
-                $("#detect_div").addClass('d-none');
-        
-                $("#ok_div").removeClass('d-none');
-                $("#ok_div").addClass('d-flex');
-                
-                $("#ok_div").animate({"background-position-y": "1900%"}, 1500);
-                $("#detect_div").animate({"background-position-y": "1900%"}, 1500);
-                $("#install_div").animate({"background-position-y": "1900%"}, 1500);
-                await display_infos();
-            }
-        ).catch(error => {
-            onDisconnect(error);
-        });
-    });
-    
-    $("#install_button").click(downloadEventListener(async function() {
-        total_bar_cycles = getType() == "0110" ? 10 : 8;
-    
-        $("#ok_div").removeClass('d-flex');
-        $("#ok_div").addClass('d-none');
-        
-        $("#install_div").removeClass('d-none');
-        $("#install_div").addClass('d-flex');
-        
-        $("#progress_bar").animate({width: "0"}, 0);
-        $("#info_progress").text("Backing-up storage...");
-        device.startAddress = platform_info["storage"]["address"];
-        const blob2 = await device.do_upload(transferSize, platform_info["storage"]["size"]+8);
-        storage = parseStorage(await blob2.arrayBuffer());
-        
-        $("#info_progress").text("Downloading firmware...");
-        
+    return null;
+}
 
-        
-        if (getType() == "0110") {
-            const external_firmware = await $.ajax({
-                url: "firmware/n0110/epsilon.onboarding.external.bin",
-                method: 'GET',
-                dataType: 'binary',
-                processData: 'false',
-                responseType: 'arraybuffer',
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
-            });
-            const internal_firmware = await $.ajax({
-                url: "firmware/n0110/epsilon.onboarding.internal.bin",
-                method: 'GET',
-                dataType: 'binary',
-                processData: 'false',
-                responseType: 'arraybuffer',
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
-            });
+$(function() {
+    $.ajax({
+        url: "firmware/firmwares.json",
+        method: 'GET',
+        dataType: 'json'
+    }).done(function(data) {
+        var url = new URL(window.location.href);
+        version = url.searchParams.get("version");
+        if (version == null) {
+            version = data["latest"]
             
-            $("#progress_bar").width(0);
-            $("#info_progress").text("Flashing external...");
-            device.startAddress = 0x90000000;
-            await device.do_download(transferSize, external_firmware, false);
-            
-            $("#progress_bar").width(0);
-            $("#info_progress").text("Flashing internal...");
-            device.startAddress = 0x08000000;
-            ignore_disconnect = true;
-            should_flash_scripts = true;
-            await device.do_download(transferSize, internal_firmware, true);
-        } else {
-            const internal_firmware = await $.ajax({
-                url: "firmware/n0100/epsilon.onboarding.internal.bin",
-                method: 'GET',
-                dataType: 'binary',
-                processData: 'false',
-                responseType: 'arraybuffer',
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
-            });
-            
-            $("#progress_bar").width(0);
-            $("#info_progress").text("Flashing internal...");
-            device.startAddress = 0x08000000;
-            ignore_disconnect = true;
-            should_flash_scripts = true;
-            await device.do_download(transferSize, internal_firmware, true);
         }
         
-        $("#info_progress").text("Waiting for reconnection...");
-        setTimeout(autoConnect.bind(null, 0x0483, 0xa291), 3000);
-    }));
+        version_info = getVersion(data, version);
+        
+        
+        if (typeof navigator.usb !== 'undefined') {
+            navigator.usb.addEventListener("disconnect", onUnexpectedDisconnect);
+            autoConnect(0x0483, 0xa291);
+            
+            $("#unavaliable_div").removeClass('d-flex');
+            $("#unavaliable_div").addClass('d-none');
+            
+            $("#detect_div").removeClass('d-none');
+            $("#detect_div").addClass('d-flex');
+        } else {
+            $("#unavaliable_div").removeClass('d-none');
+            $("#unavaliable_div").addClass('d-flex');
+        }
+        
+        
+        if (version_info == null) {
+            stopAutoConnect();
+            $("#unavaliable_div").removeClass('d-none');
+            $("#unavaliable_div").addClass('d-flex');
+            
+            $("#detect_div").removeClass('d-flex');
+            $("#detect_div").addClass('d-none');
+            $("#unavaliable_div_error").html("An error has occured: <br/>Version " + version + " doesn't exist!");
+            $("#unavaliable_div_button").addClass("d-none");
+            $("#ok_div").removeClass('d-flex');
+            $("#ok_div").addClass('d-none');
+            $('#ok_div').attr('style', 'display: none !important;');
+            return;
+        }
+        
+        $("#detect_button").click(function() {
+            stopAutoConnect();
+            console.log("Detecting device...");
+            
+            navigator.usb.requestDevice({ 'filters': [{'vendorId': 0x0483, 'productId': 0xa291}]}).then(
+                async selectedDevice => {
+                    let interfaces = dfu.findDeviceDfuInterfaces(selectedDevice);
+                    await fixInterfaceNames(selectedDevice, interfaces);
+                    device = await connect(new dfu.Device(selectedDevice, interfaces[0]));
+                    
+                    $("#detect_div").removeClass('d-flex');
+                    $("#detect_div").addClass('d-none');
+            
+                    $("#ok_div").removeClass('d-none');
+                    $("#ok_div").addClass('d-flex');
+                    
+                    $("#ok_div").animate({"background-position-y": "1900%"}, 1500);
+                    $("#detect_div").animate({"background-position-y": "1900%"}, 1500);
+                    $("#install_div").animate({"background-position-y": "1900%"}, 1500);
+                    
+                    if ((getType() == "0110" && version_info["compatibility"]["N0110"]) || (getType() == "0100" && version_info["compatibility"]["N0100"])) {
+                        $("#ok_div_info").text("We will install version " + version + ".");
+                    } else {
+                        $("#ok_div_info").text("Sadly, omega version " + version + " ins't compatible with N" + getType() + ".");
+                        $("#install_button").prop('disabled', true);
+                    }
+                    
+                    
+                    await display_infos();
+                }
+            ).catch(error => {
+                onDisconnect(error);
+            });
+        });
+        
+        $("#install_button").click(downloadEventListener(async function() {
+            total_bar_cycles = getType() == "0110" ? 10 : 8;
+        
+            $("#ok_div").removeClass('d-flex');
+            $("#ok_div").addClass('d-none');
+            
+            $("#install_div").removeClass('d-none');
+            $("#install_div").addClass('d-flex');
+            
+            $("#progress_bar").animate({width: "0"}, 0);
+            $("#info_progress").text("Backing-up storage...");
+            device.startAddress = platform_info["storage"]["address"];
+            const blob2 = await device.do_upload(transferSize, platform_info["storage"]["size"]+8);
+            storage = parseStorage(await blob2.arrayBuffer());
+            
+            $("#info_progress").text("Downloading firmware...");
+            
+
+            
+            if (getType() == "0110") {
+                const external_firmware = await $.ajax({
+                    url: "firmware/" + version_info["name"] + "/n0110/epsilon.onboarding.external.bin",
+                    method: 'GET',
+                    dataType: 'binary',
+                    processData: 'false',
+                    responseType: 'arraybuffer',
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                });
+                const internal_firmware = await $.ajax({
+                    url: "firmware/" + version_info["name"] + "/n0110/epsilon.onboarding.internal.bin",
+                    method: 'GET',
+                    dataType: 'binary',
+                    processData: 'false',
+                    responseType: 'arraybuffer',
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                });
+                
+                $("#progress_bar").width(0);
+                $("#info_progress").text("Flashing external...");
+                device.startAddress = 0x90000000;
+                await device.do_download(transferSize, external_firmware, false);
+                
+                $("#progress_bar").width(0);
+                $("#info_progress").text("Flashing internal...");
+                device.startAddress = 0x08000000;
+                ignore_disconnect = true;
+                should_flash_scripts = true;
+                await device.do_download(transferSize, internal_firmware, true);
+            } else {
+                const internal_firmware = await $.ajax({
+                    url: "firmware/" + version_info["name"] + "/n0100/epsilon.onboarding.internal.bin",
+                    method: 'GET',
+                    dataType: 'binary',
+                    processData: 'false',
+                    responseType: 'arraybuffer',
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                });
+                
+                $("#progress_bar").width(0);
+                $("#info_progress").text("Flashing internal...");
+                device.startAddress = 0x08000000;
+                ignore_disconnect = true;
+                should_flash_scripts = true;
+                await device.do_download(transferSize, internal_firmware, true);
+            }
+            
+            $("#info_progress").text("Waiting for reconnection...");
+            setTimeout(autoConnect.bind(null, 0x0483, 0xa291), 3000);
+        }));
+    }).fail(function(data, err) {
+        console.log("aaa");
+        $("#versions-error").removeClass('d-none');
+        $("#versions-error-message").text(err);
+    }).always(function() {
+        $("#version-spin").addClass('d-none');
+    });
 });

@@ -10,6 +10,34 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/omega.library.css">
+        
+        <style>
+            h1 {
+                font-size: 40px;
+                font-weight: 500;
+                margin-bottom: 24px;
+                text-align: center;
+            }
+            h2.versions-error {
+                font-size: 35px;
+                font-weight: 500;
+                margin-bottom: 24px;
+                text-align: center;
+                margin-top: 40px;
+            }
+            h2.versions-loading {
+                font-size: 35px;
+                font-weight: 500;
+                margin-bottom: 40px;
+                text-align: center;
+                margin-top: 40px;
+            }
+            small.versions-error {
+                margin-bottom: 40px;
+                text-align: center;
+                display: block;
+            }
+        </style>
     </head>
 
     <body>
@@ -19,62 +47,87 @@
             <a class="header__logo" href="index.html">Omega</a>
             <div class="header__links">
                 <a class="header__links__link" href="install.html">Install</a>
+                <a class="header__links__link" href="releases.html">Releases</a>
                 <a class="header__links__link" href="https://github.com/Omega-Numworks/Omega" target="_blank">Github</a>
             </div>
         </header>
 
+        <div class="content">
+            <!--<div class="parallax parallax-small"></div>-->
 
-        <!--<div class="parallax parallax-small"></div>-->
-
-        <div style="height: 48px;"></div>
-
-        <div class="container nw-plug d-none" id="detect_div">
-            <div class="row w-100 ml-auto">
-                <div class="col text-center h-100">
-                    <span class="position-absolute" style="top: 50%; left:50%; transform: translateX(-50%) translateY(-50%);" id="detect_message">Please plug your Numworks calculator and press "Detect".</span>
-                    <button type="button" class="btn btn-primary float-right position-absolute" style="bottom: 16px; right: 16px;" id="detect_button">Detect</button>
-                </div>
-            </div>
-        </div>
-        <div class="container nw-plug nw-plug-err d-flex" id="unavaliable_div">
-            <div class="row w-100 ml-auto">
-                <div class="col text-center h-100">
-                    <span class="position-absolute" style="top: 50%; left:50%; transform: translateX(-50%) translateY(-50%);">
-                        Sadly, your browser doesn't support WebUSB.
-                    </span>
-                    <a href="https://chromium.woolyss.com/download/" class="btn btn-primary float-right position-absolute" style="bottom: 16px; right: 16px;">Download Chromium</a>
-                </div>
-            </div>
-        </div>
-        <div class="container nw-plug nw-plug-ok d-none" id="ok_div">
-            <div class="row w-100 ml-auto">
-                <div class="col text-center h-100">
-                    <span class="position-absolute" style="top: 50%; left:50%; transform: translateX(-50%) translateY(-50%);">
-                        Numworks detected!<br/>
-                        <span class="badge badge-pill badge-danger">‎Ω <span id="version_omega">N/A</span></span>
-                        <span class="badge badge-pill badge-warning">‎E <span id="version_epsilon">N/A</span></span>
-                        <span class="badge badge-pill badge-primary">‎N <span id="version_numworks">?</span></span>
-                    </span>
-                    <button type="button" class="btn btn-success float-right position-absolute" style="bottom: 16px; right: 16px;" id="install_button">Install Omega</button>
-                </div>
-            </div>
-        </div>
-        <div class="container nw-plug nw-plug-ok d-none" id="install_div">
-            <div class="row w-100 ml-auto">
-                <div class="col text-center h-100">
-                    <span class="position-absolute" style="top: 50%; left:50%; transform: translateX(-50%) translateY(-50%);">
-                        Installing omega, don't unplug your calculator...<br/><br/>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0" id="progress_bar"></div>
+            <div style="height: 48px;"></div>
+            
+            <div class="container" id="version-spin">
+                <div class="row">
+                    <div class="col text-center mt-5">
+                        <h2 class="versions-loading">Loading versions...</h2>
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
                         </div>
-                        <small id="info_progress">...</small>
-                    </span>
-                    <a href="index.html" class="btn btn-success float-right position-absolute d-none" style="bottom: 16px; right: 16px;" id="button_finished">Back to Home page</a>
+                    </div>
                 </div>
             </div>
-        </div>
+            
+            <div class="container d-none" id="versions-error">
+                <div class="row">
+                    <div class="col">
+                        <h2 class="versions-error">Unable to fetch version history...</h2>
+                        <small class="versions-error" id="versions-error-message">...</small>
+                    </div>
+                </div>
+            </div>
 
-        <div style="height: 48px;"></div>
+            <div class="container nw-plug d-none" id="detect_div">
+                <div class="row w-100 ml-auto">
+                    <div class="col text-center h-100">
+                        <span class="position-absolute" style="top: 50%; left:50%; transform: translateX(-50%) translateY(-50%);" id="detect_message">Please plug your Numworks calculator and press "Detect".</span>
+                        <button type="button" class="btn btn-primary float-right position-absolute" style="bottom: 16px; right: 16px;" id="detect_button">Detect</button>
+                    </div>
+                </div>
+            </div>
+            <div class="container nw-plug nw-plug-err d-none" id="unavaliable_div">
+                <div class="row w-100 ml-auto">
+                    <div class="col text-center h-100">
+                        <span class="position-absolute" id="unavaliable_div_error" style="top: 50%; left:50%; transform: translateX(-50%) translateY(-50%);">
+                            Sadly, your browser doesn't support WebUSB.
+                        </span>
+                        <a href="https://chromium.woolyss.com/download/" id="unavaliable_div_button" class="btn btn-primary float-right position-absolute" style="bottom: 16px; right: 16px;">Download Chromium</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container nw-plug nw-plug-ok d-none" id="ok_div">
+                <div class="row w-100 ml-auto">
+                    <div class="col text-center h-100">
+                        <span class="position-absolute" style="top: 50%; left:50%; transform: translateX(-50%) translateY(-50%);">
+                            Numworks detected!<br/><br/>
+                            <span class="badge badge-pill badge-danger">‎Ω <span id="version_omega">N/A</span></span>
+                            <span class="badge badge-pill badge-warning">‎E <span id="version_epsilon">N/A</span></span>
+                            <span class="badge badge-pill badge-primary">‎N <span id="version_numworks">?</span></span><br/>
+                            <br/>
+                            <span id="ok_div_info"></span>
+                        </span>
+                        <button type="button" class="btn btn-success float-right position-absolute" style="bottom: 16px; right: 16px;" id="install_button">Install Omega</button>
+                    </div>
+                </div>
+            </div>
+            <div class="container nw-plug nw-plug-ok d-none" id="install_div">
+                <div class="row w-100 ml-auto">
+                    <div class="col text-center h-100">
+                        <span class="position-absolute" style="top: 50%; left:50%; transform: translateX(-50%) translateY(-50%);">
+                            Installing omega, don't unplug your calculator...<br/><br/>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 0" id="progress_bar"></div>
+                            </div>
+                            <br/>
+                            <small id="info_progress"><br/></small>
+                        </span>
+                        <a href="index.html" class="btn btn-success float-right position-absolute d-none" style="bottom: 16px; right: 16px;" id="button_finished">Back to Home page</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="height: 48px;"></div>
+        </div>
         
         <!-- Footer -->
         <footer class="footer">
@@ -99,6 +152,6 @@
         
         <script src="js/dfu/dfu.js"></script>
         <script src="js/dfu/dfuse.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/installer.js"></script>
     </body>
 </html>
