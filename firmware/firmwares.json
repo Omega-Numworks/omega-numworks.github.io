@@ -1,7 +1,20 @@
 {
-	"latest": "O1.18.3-E12",
+	"latest": "O1.18.4-E12",
 	"firmwares": [
 	    {
+	        "name": "O1.18.4-E12",
+	        "commit": "473c3e878cb06c84d59f6bee8ce3def99c49946b",
+		    "changelog": [
+			    "FIX Crash with e^(i*pi)"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
 	        "name": "O1.18.3-E12",
 	        "commit": "174786786a9057c5568a0037b0ac519a8a192c55",
 		    "changelog": [
