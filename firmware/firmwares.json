@@ -1,7 +1,20 @@
 {
-	"latest": "O1.18.4-E12",
+	"latest": "O1.18.5-E12",
 	"firmwares": [
 	    {
+	        "name": "O1.18.5-E12",
+	        "commit": "8ed907b35626856144038d0a52ead3398037cedf",
+		    "changelog": [
+			    "FIX Added back red LED color"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
 	        "name": "O1.18.4-E12",
 	        "commit": "473c3e878cb06c84d59f6bee8ce3def99c49946b",
 		    "changelog": [
