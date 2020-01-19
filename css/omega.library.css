@@ -190,6 +190,18 @@ table {
       .feature__images__image {
         width: 70%; } }
 
+.legal {
+  margin: 0 25%;
+  background-color: #fff; }
+  .legal__title {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 12px 0; }
+  .legal__subtitle {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 6px 0; }
+
 body {
   font-family: 'Fira Sans', sans-serif;
   display: flex;
