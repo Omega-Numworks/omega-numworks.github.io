@@ -1,7 +1,7 @@
 # The MIT License
 
-## For Omega-website:
-Copyright (c) 2019, Maxime "M4x1m3" Friess & The Omega dev team.
+## For Omega-Website:
+Copyright (c) 2019, Maxime "M4x1m3" Friess, Quentin Guidée & The Omega Dev Team.
 
 ## For webdfu-numworks:
 Copyright (c) 2018, Adriweb

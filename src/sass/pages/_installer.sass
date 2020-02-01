@@ -1,0 +1,137 @@
+.installer
+    background-color: #E8E8E8
+    width: 50%
+    margin: 32px 25%
+    border-radius: 6px
+    height: 160px
+    overflow: hidden
+    display: none
+
+    &-active
+        display: inline-block
+
+    &-notcompatible
+        margin: 32px 25%
+        display: none
+
+        &-active
+            display: inline-block
+
+    &__calculator
+        margin-top: 12px
+        margin-left: 18px
+        display: inline-block
+        position: relative
+
+        &__body
+            position: absolute
+            width: 165px
+            height: 147px
+            opacity: 0
+            transition: all 0.3s ease-in-out
+
+            &-active
+                opacity: 1
+
+        &__cable
+            position: absolute
+            top: 30px
+            transition: all 0.3s ease-in-out
+            width: 165px
+            height: 147px
+
+            &-active
+                top: 0
+
+    &__content
+        margin-left: 158px
+    
+        &__name
+            color: #4B4B4B
+            font-family: Righteous
+            font-size: 20px
+            display: block
+            vertical-align: top
+            margin-top: 12px
+
+        &__tag
+            padding: 6px 12px
+            font-weight: 700
+            margin-top: 12px
+            margin-right: -16px
+            background-color: #fff
+            border-radius: 6px
+            opacity: 0
+            transition: all 0.2s ease-in-out
+            display: inline-block
+            max-height: 30px
+            overflow: hidden
+            max-lines: 1
+
+            &-active
+                margin-right: 16px
+                opacity: 1
+
+            &-red
+                background-color: #C03535
+                border: 1px solid #721414
+                color: #ffffff
+
+            &-yellow
+                background-color: #EFCB16
+                border: 1px solid #707070
+                color: #404040
+
+            &-gray
+                background-color: #D8D8D8
+                border: 1px solid #707070
+                color: #404040
+
+        &__progress
+            height: 3px
+            border-radius: 1.5px
+            background-color: #D8D8D8
+            margin-right: 32px
+            margin-top: 14px
+            opacity: 0
+            transition: all 0.2s ease-in-out
+            
+            &-active
+                opacity: 1
+
+            &__bar
+                height: 3px
+                border-radius: 1.5px
+                background-color: #C03535
+                transition: all 0.3s ease-in-out
+
+            &__message
+                color: #7C7C7C
+                font-size: 12px
+                font-weight: 600
+                margin-top: 6px
+                opacity: 0
+                transition: all 0.2s ease-in-out
+
+                &-active
+                    opacity: 1
+    
+    &-thanks
+        text-align: center
+        overflow: hidden
+        background-color: #3585C0
+        width: 50%
+        margin: 0 25%
+        margin-bottom: 32px
+        border-radius: 6px
+        color: #ffffff
+        box-sizing: border-box
+        max-height: 0
+        padding: 0
+        opacity: 0
+        transition: all 0.2s ease-in-out
+
+        &-active
+            padding: 16px
+            max-height: 200px
+            opacity: 1

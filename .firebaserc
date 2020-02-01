@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "omega-numworks"
+  },
+  "targets": {
+    "omega-numworks": {
+      "hosting": {
+        "omega-dev": [
+          "omega-dev"
+        ],
+        "getomega": [
+          "getomega"
+        ]
+      }
+    }
+  }
+}

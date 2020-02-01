@@ -1,0 +1,104 @@
+.releases__cards
+    margin: 0 15%
+
+    &__card
+        text-decoration: none
+        background-color: #EFEFEF
+        border-radius: 6px
+        padding: 16px 32px
+        display: block
+        vertical-align: middle
+        border: 1px solid transparent
+        margin: 8px 0
+        color: #383838
+        position: relative
+        transition: all 0.2s
+
+        &:hover
+            cursor: pointer
+            border: 1px solid #A8A8A8
+            background-color: #F5F5F5
+
+            & .releases__cards__card__subtitle
+                opacity: 1
+                padding: 0 12px
+
+        &__title
+            font-family: Righteous
+            font-size: 20px
+            color: #4B4B4B
+            display: inline-block
+            line-height: 48px
+
+        &__subtitle
+            position: absolute
+            display: inline-block
+            color: #909090
+            font-size: 16px
+            line-height: 32px
+            padding: 0 2px
+            border-radius: 6px
+            font-weight: 700
+            margin-left: 12px
+            opacity: 0
+            background-color: #EFEFEF
+            top: 25px
+            transition: all 0.2s
+
+        &__actions
+            float: right
+            font-weight: 700
+            display: inline-block
+            margin-top: 6px
+            line-height: 36px
+            border: 1px solid #DEDEDE
+            border-radius: 6px
+            height: 36px
+            vertical-align: middle
+            color: #4B4B4B
+
+            &__subbutton
+                display: inline-block
+                height: 36px
+                border-radius: 6px
+                padding: 0 4px
+                transition: all 0.2s
+
+                &:hover
+                    cursor: pointer
+                    background-color: #DEDEDE
+                
+                &-disabled
+                    &:hover
+                        cursor: not-allowed
+                        background-color: transparent
+                        transition: all 0.2s
+            
+                &__text
+                    display: inline-block
+                    font-size: 14px
+                    margin-right: 8px
+                    color: rgba(1, 1, 1, 0.70)
+
+                    &-disabled
+                        color: rgba(1, 1, 1, 0.20)
+                
+                &__icon
+                    display: inline-block
+                    margin-top: -1px
+                    vertical-align: middle
+                    margin-left: 8px
+                    margin-right: 8px
+                    color: rgba(1, 1, 1, 0.70)
+
+                    &-disabled
+                        color: rgba(1, 1, 1, 0.20)
+        
+        &__changelog
+            &__ul
+                margin: 20px 0
+                &__li
+                    margin: 8px
+            
+.md-16
+    font-size: 16px
