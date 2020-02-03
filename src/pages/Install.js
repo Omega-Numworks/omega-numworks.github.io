@@ -4,6 +4,8 @@ import ImgCalculatorBodyOmega from '../img/calculator-body-omega.png'
 import ImgCalculatorBodyEpsilon from '../img/calculator-body-epsilon.png'
 import ImgCalculatorCable from '../img/calculator-cable.png'
 
+import Installer from '../dfu/installer'
+
 export default class Install extends Component {
     constructor(props) {
         super(props);
@@ -15,10 +17,13 @@ export default class Install extends Component {
             model: "nXXXX",
             omegaVersion: "N/A",
             epsilonVersion: "N/A",
+            installVersion: props.match.params.version,
             install: false,
             progressPercentage: 0,
             installationFinished: false
         }
+        
+        this.componentDidUpdate = this.componentDidUpdate.bind(this);
 
         // Detection
         this.calculatorDetected = this.calculatorDetected.bind(this);
@@ -41,6 +46,15 @@ export default class Install extends Component {
 
         // Browser compatibility
         this.installerNotCompatibleWithThisBrowser = this.installerNotCompatibleWithThisBrowser.bind(this);
+
+    }
+    
+    componentDidUpdate() {
+        if (this.props.match.params.version !== this.state.installVersion) {
+            this.setState({
+                installVersion: this.props.match.params.version
+            });
+        }
     }
 
     // Detection
@@ -100,6 +114,7 @@ export default class Install extends Component {
     render() {
         return (
             <div className="content">
+                <p>{this.state.installVersion}</p>
                 <div className={"installer " + (this.state.installerNotCompatibleWithThisBrowser ? "" : "installer-active")}>
                     <div className="installer__calculator">
                         <img className={"installer__calculator__cable " + (this.state.calculatorDetected ? "installer__calculator__cable-active" : "")} src={ImgCalculatorCable} alt="Calculator Cable"></img>
