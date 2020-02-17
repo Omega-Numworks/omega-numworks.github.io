@@ -1,7 +1,42 @@
 {
-	"latest": "O1.18.5-E12",
+	"latest": "O1.19.0-E13",
 	"firmwares": [
 	    {
+	        "name": "O1.19.0-E13",
+	        "commit": "dcaa1cb46dafbd40b13e46b1954c9b2c79b60d48",
+		    "changelog": [
+                "New: Omega Icons!",
+                "New: Hungarian language!",
+                "New: Compact display in the calculation app",
+                "New: In the Python app, there is a new option to duplicate a script",
+                "New: Red, purple and orange color choices for the LED",
+                "New: Url to install apps + infos about External available in the app",
+                "New: In the Python app, shift+up leads to the beginning of the script and shift+down allows you to jump to the end.",
+                "New: RAM usage in the settings",
+                "New: External is removed of n0100 and the web simulator.",
+                "New: Code-side system to check if an app is available in a specific exam mode (NoExaminationLevel, BasicExaminationLevel and StrictExaminationLevel)",
+                "New: Beta testers added in the contributors list",
+                "Change: Removed static buffers",
+                "Change: The exam mode icon is now better positioned.",
+                "Fixed: With get_keys() 2 keys were inverted (right and up)",
+                "Fixed: The input field of the RPN app now reflects the style of the calculation app",
+                "Fixed: Apps dependency in ion",
+                "Fixed: The sign of *10^",
+                "Fixed: Remove static buffers",
+                "Fixed: \"Activate exam mode\" button stayed highlighted",
+                "Fixed: The Onboarding logo is now better",
+                "Fixed: Shift + ÷ displays \"%\" instead of nothing",
+                "Fixed: In French, the description of \"monotonic function\" is fixed",
+                "Fixed: Some problems with alpha(lock)+backspace"
+		    ],
+		    "compatibility": {
+			    "N0110": true,
+			    "N0100": true,
+			    "web": true,
+			    "android": true
+		    },
+		    "available": true
+	    }, {
 	        "name": "O1.18.5-E12",
 	        "commit": "8ed907b35626856144038d0a52ead3398037cedf",
 		    "changelog": [
