@@ -1,11 +1,11 @@
 import DFU from '../dfu/dfu';
 
 export default class DFUse extends DFU {
-    GET_COMMANDS = 0x00;
-    SET_ADDRESS = 0x21;
-    ERASE_SECTOR = 0x41;
+    static get GET_COMMANDS() { return 0x00; }
+    static get SET_ADDRESS() { return 0x21; }
+    static get ERASE_SECTOR() { return 0x41; }
     
-    parseMemoryDescriptor(desc) {
+    static parseMemoryDescriptor(desc) {
         const nameEndIndex = desc.indexOf("/");
         if (!desc.startsWith("@") || nameEndIndex === -1) {
             throw new Error(`Not a DfuSe memory descriptor: "${desc}"`);

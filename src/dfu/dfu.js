@@ -3,29 +3,29 @@
  * Static DFU class.
  */
 export default class DFU {
-    DETACH = 0x00;
-    DNLOAD = 0x01;
-    UPLOAD = 0x02;
-    GETSTATUS = 0x03;
-    CLRSTATUS = 0x04;
-    GETSTATE = 0x05;
-    ABORT = 6;
-
-    appIDLE = 0;
-    appDETACH = 1;
-    dfuIDLE = 2;
-    dfuDNLOAD_SYNC = 3;
-    dfuDNBUSY = 4;
-    dfuDNLOAD_IDLE = 5;
-    dfuMANIFEST_SYNC = 6;
-    dfuMANIFEST = 7;
-    dfuMANIFEST_WAIT_RESET = 8;
-    dfuUPLOAD_IDLE = 9;
-    dfuERROR = 10;
-
-    STATUS_OK = 0x0;
+    static get DETACH() { return 0x00; }
+    static get DNLOAD() { return 0x01; }
+    static get UPLOAD() { return 0x02; }
+    static get GETSTATUS() { return 0x03; }
+    static get CLRSTATUS() { return 0x04; }
+    static get GETSTATE() { return 0x05; }
+    static get ABORT() { return 0x06; }
     
-    Device = null;
+    static get appIDLE() { return 0; }
+    static get appDETACH() { return 1; }
+    static get dfuIDLE() { return 2; }
+    static get dfuDNLOAD_SYNC() { return 3; }
+    static get dfuDNBUSY() { return 4; }
+    static get dfuDNLOAD_IDLE() { return 5; }
+    static get dfuMANIFEST_SYNC() { return 6; }
+    static get dfuMANIFEST() { return 7; }
+    static get dfuMANIFEST_WAIT_RESET() { return 8; }
+    static get dfuUPLOAD_IDLE() { return 9; }
+    static get dfuERROR() { return 10; }
+    
+    static get STATUS_OK() { return 0x0; }
+    
+    // Device = null;
     
     static findDeviceDfuInterfaces(device) {
         let interfaces = [];
@@ -426,6 +426,7 @@ DFU.Device = class {
                 }
             },
             error => {
+                console.error(error);
                 return Promise.reject("ControlTransferIn failed: " + error);
             }
         );
