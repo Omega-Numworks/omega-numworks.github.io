@@ -1,5 +1,6 @@
 import DFU from '../dfu/dfu'
 import DFUse from '../dfu/dfuse'
+import firebase from "../firebase"
 
 import {releases} from '../firmware/firmwares'
 
@@ -12,6 +13,7 @@ export default class Installer {
         this.toInstall = "latest";
         this.firmwareInfos = null;
         this.ignore_disconnect = false;
+        this.storage = firebase.storage();
     }
     
     init(versionToInstall) {
@@ -143,34 +145,38 @@ export default class Installer {
     }
     
     __downloadFirmware(model, version, fwname, callback) {
-        var oReq = new XMLHttpRequest();
-        
-        var urlBase = "/firmwares/" + version + "/" + model.toLowerCase() + "/" + fwname;
-        console.log("[DOWNLOAD] " + urlBase);
-        
-        oReq.open("GET", urlBase, true);
-        oReq.responseType = "blob";
+        this.storage.ref().child('firmwares/' + version + '/' + model.toLowerCase() + '/' + fwname).getDownloadURL().then(function(url) {
+            var oReq = new XMLHttpRequest();
+            oReq.responseType = 'blob';
 
-        oReq.onload = function(oEvent) {
-            var blob = oReq.response;
-            callback(blob);
-        };
+            console.log("[DOWNLOAD] " + url);
 
-        oReq.send();
+            oReq.onload = function(oEvent) {
+                var blob = oReq.response;
+                callback(blob);
+            };
+            oReq.open("GET", url, true);
+            oReq.send();
+        }).catch(function(error) {
+            console.log("[DOWNLOAD] " + error.code);
+        });
     }
     
     __downloadSHA256(model, version, fwname, callback) {
-        var oReq = new XMLHttpRequest();
-        
-        var urlBase = "/firmwares/" + version + "/" + model.toLowerCase() + "/" + fwname + ".sha256";
-        console.log("[DOWNLOAD] " + urlBase);
-        
-        oReq.open("GET", urlBase, true);
-        oReq.onload = function(e) {
-            callback(oReq.responseText.split(' ')[0]);
+        this.storage.ref().child('firmwares/' + version + '/' + model.toLowerCase() + '/' + fwname + ".sha256").getDownloadURL().then(function(url) {
+            var oReq = new XMLHttpRequest();
             
-        }
-        oReq.send();
+            console.log("[DOWNLOAD] " + url);
+
+            oReq.onload = function(e) {
+                callback(oReq.responseText.split(' ')[0]);
+            }
+
+            oReq.open("GET", url, true);
+            oReq.send();
+        }).catch(function(error) {
+            console.log("[DOWNLOAD] " + error.code);
+        });
     }
     
     __downloadFirmwareCheck(model, version, firmware, callback) {
