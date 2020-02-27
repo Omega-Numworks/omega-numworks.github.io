@@ -207,7 +207,18 @@ export default class Installer {
     }
     
     __installN0100() {
+        var _this = this;
         
+        _this.__downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, "epsilon.onboarding.internal.bin", async (internal_check, internal_blob) => {
+            if (!internal_check) {
+                _this.installInstance.calculatorError(true, "Download of internal seems corrupted, please retry.");
+            }
+            
+            _this.device.startAddress = 0x08000000;
+            await _this.device.do_download(_this.transferSize, await internal_blob.arrayBuffer(), true);
+            
+            _this.installInstance.installationFinished();
+        });
     }
     
     __installN0110() {
@@ -223,7 +234,13 @@ export default class Installer {
                     _this.installInstance.calculatorError(true, "Download of internal seems corrupted, please retry.");
                 }
                 
-                console.log("DLED!");
+                _this.device.startAddress = 0x90000000;
+                await _this.device.do_download(_this.transferSize, await external_blob.arrayBuffer(), false);
+                
+                _this.device.startAddress = 0x08000000;
+                await _this.device.do_download(_this.transferSize, await internal_blob.arrayBuffer(), true);
+                
+                _this.installInstance.installationFinished();
             });
         });
     }
