@@ -11,6 +11,7 @@ export default class Installer {
         this.manifestationTolerant = false;
         this.toInstall = "latest";
         this.firmwareInfos = null;
+        this.ignore_disconnect = false;
     }
     
     init(versionToInstall) {
@@ -214,6 +215,12 @@ export default class Installer {
                 _this.installInstance.calculatorError(true, "Download of internal seems corrupted, please retry.");
             }
             
+            _this.device.logProgress = function(done, total) {
+                _this.installInstance.setProgressPercentage(done / total * 100);
+            };
+            
+            this.ignore_disconnect = true;
+            
             _this.device.startAddress = 0x08000000;
             await _this.device.do_download(_this.transferSize, await internal_blob.arrayBuffer(), true);
             
@@ -234,8 +241,14 @@ export default class Installer {
                     _this.installInstance.calculatorError(true, "Download of internal seems corrupted, please retry.");
                 }
                 
+                _this.device.logProgress = function(done, total) {
+                    _this.installInstance.setProgressPercentage(done / total  * 100);
+                };
+                
                 _this.device.startAddress = 0x90000000;
                 await _this.device.do_download(_this.transferSize, await external_blob.arrayBuffer(), false);
+                    
+                this.ignore_disconnect = true;
                 
                 _this.device.startAddress = 0x08000000;
                 await _this.device.do_download(_this.transferSize, await internal_blob.arrayBuffer(), true);
@@ -271,7 +284,8 @@ export default class Installer {
         if (this.device !== null && this.device.device_ !== null) {
             if (this.device.device_ === event.device) {
                 this.device.disconnected = true;
-                this.installInstance.calculatorError(true, event);
+                if (this.ignore_disconnect === false)
+                    this.installInstance.calculatorError(true, event);
                 this.device = null;
             }
         }
