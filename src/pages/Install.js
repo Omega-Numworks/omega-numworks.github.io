@@ -102,12 +102,14 @@ export default class Install extends Component {
     
     calculatorError(state, message) {
         /*global USBConnectionEvent,NotFoundError*/
-        if (message instanceof USBConnectionEvent) {
-            if (message.type == "disconnect") {
-                message = "The calculator has been disconnected.";
+        if (typeof USBConnectionEvent !== "undefined") {
+            if (message instanceof USBConnectionEvent) {
+                if (message.type == "disconnect") {
+                    message = "The calculator has been disconnected.";
+                }
+            } else if (message instanceof DOMException) {
+                message = message.message;
             }
-        } else if (message instanceof DOMException) {
-            message = message.message;
         }
     
         this.setState({
