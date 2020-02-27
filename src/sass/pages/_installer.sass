@@ -6,6 +6,7 @@
     height: 160px
     overflow: hidden
     display: none
+    position: relative
 
     &-active
         display: inline-block
@@ -93,11 +94,11 @@
             background-color: #D8D8D8
             margin-right: 32px
             margin-top: 14px
-            display: none
+            opacity: 0
             transition: all 0.2s ease-in-out
             
             &-active
-                display: inherit
+                opacity: 1
 
             &__bar
                 height: 3px
@@ -106,15 +107,39 @@
                 // transition: all 0.3s ease-in-out
 
             &__message
+                position: absolute
                 color: #7C7C7C
                 font-size: 12px
                 font-weight: 600
                 margin-top: 6px
-                display: none
+                opacity: 0
                 transition: all 0.2s ease-in-out
 
                 &-active
-                    display: inherit
+                    opacity: 1
+
+        &__button
+            background-color: #3585C0
+            color: #ffffff
+            font-size: 13px
+            cursor: pointer
+            font-weight: 700
+            position: absolute
+            bottom: 16px
+            right: 32px
+            padding: 8px 18px
+            border-radius: 6px
+            transition: all 0.2s
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
+            display: none
+            border: 0
+
+            &-active
+                display: inherit
+
+            &:hover
+                box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
+
         
         &__error
             color: #7C7C7C

@@ -178,6 +178,8 @@ export default class Install extends Component {
                         </div>
                         <div className={"installer__content__progress__message " +  (this.state.install ? "installer__content__progress__message-active" : "")}>Installation d'Omega {this.state.installerInstance.toInstall}. Veuillez ne pas débrancher la calculatrice.</div>
                         <div className={"installer__content__error " +  (this.state.error ? "installer__content__error-active" : "")}>{this.state.errorMessage}</div>
+                        <button onClick={() => this.detectCalculator()} className={"installer__content__button " +  (!this.state.calculatorDetected ? "installer__content__button-active" : "")}>DETECT CALCULATOR</button>
+                        <button onClick={this.install} className={"installer__content__button " +  ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? "installer__content__button-active" : "")}>INSTALL OMEGA</button>
                     </div>
                 </div>
 
@@ -188,15 +190,8 @@ export default class Install extends Component {
                 <div className={"installer-notcompatible " + (this.state.installerNotCompatibleWithThisBrowser ? "installer-notcompatible-active" : "")}>
                     Our installer is not compatible with your browser. Please use a browser like Chromium/Google Chrome or Edge.
                 </div>
+                
 
-                <button onClick={() => this.detectCalculator()}>Detect calculator</button>
-                <button onClick={this.install}>Install</button>
-
-                <button onClick={() => this.setProgressPercentage(0)}>0%</button>
-                <button onClick={() => this.setProgressPercentage(24)}>24%</button>
-                <button onClick={() => this.setProgressPercentage(73)}>73%</button>
-                <button onClick={() => this.setProgressPercentage(100)}>100%</button>
-                <button onClick={this.installationFinished}>Installation finished</button>
             </div>
         )
     }
