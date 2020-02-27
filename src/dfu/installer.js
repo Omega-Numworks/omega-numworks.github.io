@@ -4,6 +4,8 @@ import firebase from "../firebase"
 
 import {releases} from '../firmware/firmwares'
 
+const AUTOCONNECT_DELAY = 1000;
+
 export default class Installer {
     constructor(install) {
         this.installInstance = install;
@@ -14,6 +16,7 @@ export default class Installer {
         this.firmwareInfos = null;
         this.ignore_disconnect = false;
         this.storage = firebase.storage();
+        this.autoconnectId = 0;
     }
     
     init(versionToInstall) {
@@ -214,8 +217,7 @@ export default class Installer {
         
         let storage_blob = await this.__retreiveStorage(pinfo["storage"]["address"], pinfo["storage"]["size"]);
         
-        console.log(storage_blob);
-        return;
+        
         
         if (this.installInstance.state.model === "N0100") {
             this.__installN0100();
@@ -285,9 +287,6 @@ export default class Installer {
                 await fixInterfaceNames(selectedDevice, interfaces);
                 this.device = await this.__connect(new DFU.Device(selectedDevice, interfaces[0]));
                 
-                
-                
-                
                 await this.__setCalculatorInfos();
             }
         ).catch(error => {
@@ -295,8 +294,57 @@ export default class Installer {
         });
     }
     
+    __findMatchingDevices(vid, pid, serial, dfu_devices) {
+        let matching_devices = [];
+        for (let dfu_device of dfu_devices) {
+            if (serial) {
+                if (dfu_device.device_.serialNumber === serial) {
+                    matching_devices.push(dfu_device);
+                }
+            } else {
+                if (
+                    (!pid && vid > 0 && dfu_device.device_.vendorId  === vid) ||
+                    (!vid && pid > 0 && dfu_device.device_.productId === pid) ||
+                    (vid > 0 && pid > 0 && dfu_device.device_.vendorId  === vid && dfu_device.device_.productId === pid)
+                   )
+                {
+                    matching_devices.push(dfu_device);
+                }
+            }
+        }
+        
+        return matching_devices;
+    }
+    
+    async __autoConnectDevice(device) {
+        let interfaces = DFU.findDeviceDfuInterfaces(device.device_);
+        await fixInterfaceNames(device.device_, interfaces);
+        device = await this.__connect(new DFU.Device(device.device_, interfaces[0]));
+        console.log("Autoconnected to device:", device);
+        return device;
+    }
+    
+    stopAutoConnect() {
+        clearTimeout(this.autoconnectId);
+    }
+    
     autoConnect(vid, pid, serial) {
-        // !TODO
+        var _this = this;
+        DFU.findAllDfuInterfaces().then(async dfu_devices => {
+            let matching_devices = _this.__findMatchingDevices(vid, pid, serial, dfu_devices);
+            console.log(matching_devices);
+            
+            if (matching_devices.length !== 0) {
+                this.stopAutoConnect();
+                
+                this.device = await this.__autoConnectDevice(matching_devices[0]);
+                
+                this.installInstance.calculatorError(false, null);
+                await this.__setCalculatorInfos();
+            }
+        });
+        
+        this.autoconnectId = setTimeout(this.autoConnect.bind(this, vid, pid), AUTOCONNECT_DELAY);
     }
     
     onUnexpectedDisconnect(event) {
@@ -308,6 +356,8 @@ export default class Installer {
                 this.device = null;
             }
         }
+        
+        this.autoConnect(0x0483, 0xa291);
     }
 }
 
