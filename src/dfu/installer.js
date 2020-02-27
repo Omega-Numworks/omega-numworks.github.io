@@ -210,14 +210,123 @@ export default class Installer {
         await this.device.do_download(this.transferSize, data, false);
     }
     
+    __readString(dv, index, maxLen) {
+        var out = "";
+        var i = 0;
+        for(i = 0; i < maxLen || maxLen === 0; i++) {
+            var chr = dv.getUint8(index + i);
+            
+            if (chr === 0) {
+                break;
+            }
+            
+            out += String.fromCharCode(chr);
+        }
+        
+        return {
+            size: i + 1,
+            content: out
+        };
+    }
+    
+    async __sliceStorage(blob) {
+        var dv = new DataView(await blob.arrayBuffer());
+        
+        if (dv.getUint32(0x00, false) === 0xBADD0BEE) {
+            var offset = 4;
+            var records = [];
+            
+            do {
+                var size = dv.getUint16(offset, true);
+                
+                if (size === 0) break;
+                
+                var name = this.__readString(dv, offset + 2, size - 2);
+                
+                var data = blob.slice(offset + 2 + name.size, offset + size);
+                
+                var record = {
+                    name: name.content.split(/\.(?=[^\.]+$)/)[0], // eslint-disable-line no-useless-escape
+                    type: name.content.split(/\.(?=[^\.]+$)/)[1], // eslint-disable-line no-useless-escape
+                    data: data,
+                }
+                
+                records.push(record);
+                
+                offset += size;
+                
+            } while (size !== 0 && offset < blob.size);
+            
+            return records;
+        } else {
+            return {};
+        }
+    }
+    
+    async __parsePyRecord(record) {
+        var dv = new DataView(await record.data.arrayBuffer());
+        
+        record.autoImport = dv.getUint8(0) !== 0;
+        record.code = this.__readString(dv, 1, record.data.size - 1);
+        
+        delete record.data;
+        
+        return record;
+    }
+    
+    __getRecordParsers() {
+        return {
+            py: this.__parsePyRecord.bind(this)
+        };
+    }
+    
+    async __parseRecord(record) {
+        var parsers = this.__getRecordParsers();
+        
+        if (record.type in parsers) {
+            record = parsers[record.type](record);
+        }
+        
+        return record;
+    }
+    
+    async __parseStorage(blob) {
+        var dv = new DataView(await blob.arrayBuffer());
+        
+        var data = {};
+        
+        data["magik"] = dv.getUint32(0x00, false) === 0xBADD0BEE;
+    
+        data["records"] = {};
+        
+        if (data["magik"]) {
+            var records = await this.__sliceStorage(blob);
+            
+            for(var i in records) {
+                console.log(await this.__parseRecord(records[i]));
+            }
+            
+            
+        }
+        
+        return data;
+    }
+    
     async install() {
         console.log("install version" + this.toInstall + "/" + this.installInstance.state.model);
+        
+        var _this = this;
+        this.device.logProgress = function(done, total) {
+            _this.installInstance.setProgressPercentage(done / total * 100);
+        };
         
         let pinfo = await this.__getPlatformInfo();
         
         let storage_blob = await this.__retreiveStorage(pinfo["storage"]["address"], pinfo["storage"]["size"]);
         
+        let storage_content = await this.__parseStorage(storage_blob);
         
+        return;
         
         if (this.installInstance.state.model === "N0100") {
             this.__installN0100();
@@ -235,10 +344,6 @@ export default class Installer {
             if (!internal_check) {
                 _this.installInstance.calculatorError(true, "Download of internal seems corrupted, please retry.");
             }
-            
-            _this.device.logProgress = function(done, total) {
-                _this.installInstance.setProgressPercentage(done / total * 100);
-            };
             
             this.ignore_disconnect = true;
             
@@ -261,10 +366,6 @@ export default class Installer {
                 if (!internal_check) {
                     _this.installInstance.calculatorError(true, "Download of internal seems corrupted, please retry.");
                 }
-                
-                _this.device.logProgress = function(done, total) {
-                    _this.installInstance.setProgressPercentage(done / total  * 100);
-                };
                 
                 _this.device.startAddress = 0x90000000;
                 await _this.device.do_download(_this.transferSize, await external_blob.arrayBuffer(), false);
