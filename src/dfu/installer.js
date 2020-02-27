@@ -21,7 +21,7 @@ export default class Installer {
         
         
         for (var firm in releases.firmwares) {
-            if (releases.firmwares[firm].name == this.toInstall) {
+            if (releases.firmwares[firm].name === this.toInstall) {
                 this.firmwareInfos = releases.firmwares[firm];
                 break;
             }
@@ -133,8 +133,99 @@ export default class Installer {
         
     }
     
+    async __sha256(blob) {
+        const msgUint8 = await blob.arrayBuffer();
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+    }
+    
+    __downloadFirmware(model, version, fwname, callback) {
+        var oReq = new XMLHttpRequest();
+        
+        var urlBase = "/firmwares/" + version + "/" + model.toLowerCase() + "/" + fwname;
+        console.log("[DOWNLOAD] " + urlBase);
+        
+        oReq.open("GET", urlBase, true);
+        oReq.responseType = "blob";
+
+        oReq.onload = function(oEvent) {
+            var blob = oReq.response;
+            callback(blob);
+        };
+
+        oReq.send();
+    }
+    
+    __downloadSHA256(model, version, fwname, callback) {
+        var oReq = new XMLHttpRequest();
+        
+        var urlBase = "/firmwares/" + version + "/" + model.toLowerCase() + "/" + fwname + ".sha256";
+        console.log("[DOWNLOAD] " + urlBase);
+        
+        oReq.open("GET", urlBase, true);
+        oReq.onload = function(e) {
+            callback(oReq.responseText.split(' ')[0]);
+            
+        }
+        oReq.send();
+    }
+    
+    __downloadFirmwareCheck(model, version, firmware, callback) {
+        this.__downloadFirmware(model, version, firmware, async blob => {
+            this.__downloadSHA256(model, version, firmware, async sha256 => {
+                var calcSha256 = await this.__sha256(blob);
+                
+                console.log(sha256);
+                console.log(calcSha256);
+                
+                if (sha256 === calcSha256) {
+                    callback(true, blob);
+                } else {
+                    callback(false, blob);
+                }
+            });
+            
+        });
+    }
+    
     install() {
-        console.log("install version" + this.installInstance.state.installVersion);
+        console.log("install version" + this.toInstall + "/" + this.installInstance.state.model);
+        
+        // this.__downloadSHA256(this.installInstance.state.model, this.toInstall, "epsilon.onboarding.external.bin", sha256 => {
+        //     console.log(sha256);
+        // });
+        
+        if (this.installInstance.state.model === "N0100") {
+            this.__installN0100();
+        } else {
+            this.__installN0110();
+        }
+        
+
+    }
+    
+    __installN0100() {
+        
+    }
+    
+    __installN0110() {
+        var _this = this;
+        
+        this.__downloadFirmwareCheck(this.installInstance.state.model, this.toInstall, "epsilon.onboarding.external.bin", async (external_check, external_blob) => {
+            if (!external_check) {
+                _this.installInstance.calculatorError(true, "Download of external seems corrupted, please retry.");
+            }
+            
+            _this.__downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, "epsilon.onboarding.internal.bin", async (internal_check, internal_blob) => {
+                if (!internal_check) {
+                    _this.installInstance.calculatorError(true, "Download of internal seems corrupted, please retry.");
+                }
+                
+                console.log("DLED!");
+            });
+        });
     }
     
     detect() {
@@ -156,7 +247,7 @@ export default class Installer {
     }
     
     autoConnect(vid, pid, serial) {
-        
+        // !TODO
     }
     
     onUnexpectedDisconnect(event) {

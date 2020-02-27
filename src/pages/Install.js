@@ -101,10 +101,10 @@ export default class Install extends Component {
     }
     
     calculatorError(state, message) {
-        /*global USBConnectionEvent,NotFoundError*/
+        /*global USBConnectionEvent*/
         if (typeof USBConnectionEvent !== "undefined") {
             if (message instanceof USBConnectionEvent) {
-                if (message.type == "disconnect") {
+                if (message.type === "disconnect") {
                     message = "The calculator has been disconnected.";
                 }
             } else if (message instanceof DOMException) {
@@ -176,7 +176,7 @@ export default class Install extends Component {
                         <div className={"installer__content__progress " + (this.state.install ? "installer__content__progress-active" : "")}>
                             <div className="installer__content__progress__bar" style={{ width: this.state.progressPercentage + "%" }}></div>
                         </div>
-                        <div className={"installer__content__progress__message " +  (this.state.install ? "installer__content__progress__message-active" : "")}>Installation d'Omega 1.18.5. Veuillez ne pas débrancher la calculatrice.</div>
+                        <div className={"installer__content__progress__message " +  (this.state.install ? "installer__content__progress__message-active" : "")}>Installation d'Omega {this.state.installerInstance.toInstall}. Veuillez ne pas débrancher la calculatrice.</div>
                         <div className={"installer__content__error " +  (this.state.error ? "installer__content__error-active" : "")}>{this.state.errorMessage}</div>
                     </div>
                 </div>
@@ -190,12 +190,8 @@ export default class Install extends Component {
                 </div>
 
                 <button onClick={() => this.detectCalculator()}>Detect calculator</button>
-
-                <button onClick={() => this.calculatorDetected("epsilon")}>Calculator detected (Epsilon)</button>
-                <button onClick={() => this.calculatorDetected("omega")}>Calculator detected (Omega)</button>
-                <button onClick={this.calculatorConnectionLost}>Calculator connection lost</button>
-                <button onClick={this.installerNotCompatibleWithThisBrowser}>Installer not compatible with this browser</button>
                 <button onClick={this.install}>Install</button>
+
                 <button onClick={() => this.setProgressPercentage(0)}>0%</button>
                 <button onClick={() => this.setProgressPercentage(24)}>24%</button>
                 <button onClick={() => this.setProgressPercentage(73)}>73%</button>
