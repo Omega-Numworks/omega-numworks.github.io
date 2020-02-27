@@ -191,12 +191,25 @@ export default class Installer {
         });
     }
     
-    install() {
+    async __retreiveStorage(address, size) {
+        this.device.startAddress = address;
+        return await this.device.do_upload(this.transferSize, size + 8);
+    }
+    
+    async __flashStorage(address, data) {
+        this.device.startAddress = address;
+        await this.device.do_download(this.transferSize, data, false);
+    }
+    
+    async install() {
         console.log("install version" + this.toInstall + "/" + this.installInstance.state.model);
         
-        // this.__downloadSHA256(this.installInstance.state.model, this.toInstall, "epsilon.onboarding.external.bin", sha256 => {
-        //     console.log(sha256);
-        // });
+        let pinfo = await this.__getPlatformInfo();
+        
+        let storage_blob = await this.__retreiveStorage(pinfo["storage"]["address"], pinfo["storage"]["size"]);
+        
+        console.log(storage_blob);
+        return;
         
         if (this.installInstance.state.model === "N0100") {
             this.__installN0100();
