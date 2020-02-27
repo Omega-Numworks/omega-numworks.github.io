@@ -17,6 +17,7 @@ function App() {
         <Switch>
           <Route path="/releases" component={Releases} exact />
           <Route path="/install" component={Install} exact />
+          <Route path="/install/:version" component={Install} />
           <Route path="/policy" component={Policy} exact />
           <Route path="/" component={Home} exact />
         </Switch>

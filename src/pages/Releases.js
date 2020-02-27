@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { releases } from '../firmware/firmwares'
+import { Link } from 'react-router-dom'
 
 
 export default class Releases extends Component {
@@ -25,7 +26,7 @@ export default class Releases extends Component {
 
     render() {
         return (
-            <div class="content">
+            <div className="content">
         
                 <div style={ { height: "48px" } }></div>
 
@@ -33,7 +34,7 @@ export default class Releases extends Component {
                     releases.firmwares.map(element => {
                         return (
                             <div className="releases__cards">
-                                <a className="releases__cards__card" href={"https://github.com/Omega-Numworks/Omega/releases/tag/" + element.name}>
+                                <div className="releases__cards__card">
                                     <div className="releases__cards__card__title">{"Omega " + this.getReleaseVersion(element.name)}</div>
                                     <div className="releases__cards__card__subtitle">{"Epsilon " + this.getEpsilonVersion(element.name)}</div>
                                     <div className="releases__cards__card__actions">
@@ -42,14 +43,14 @@ export default class Releases extends Component {
                                             <i className="releases__cards__card__actions__subbutton__icon material-icons md-18">more_vert</i>
                                         </div> */}
 
-                                        <a className="releases__cards__card__actions__subbutton" href={"https://github.com/Omega-Numworks/Omega/releases/tag/" + element.name}>
+                                        <a className="releases__cards__card__actions__subbutton" href={"https://github.com/Omega-Numworks/Omega/releases/tag/" + element.name} target="_blank" rel="noopener noreferrer">
                                             <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">launch</i>
                                             <div className="releases__cards__card__actions__subbutton__text">GITHUB</div>
                                         </a>
-                                        <div className="releases__cards__card__actions__subbutton">
-                                            <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">system_update_alt</i>
-                                            <div className="releases__cards__card__actions__subbutton__text">INSTALL</div>
-                                        </div>
+                                        <Link className={"releases__cards__card__actions__subbutton" + (element.available && (element.compatibility.N0110 || element.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton-disabled")} to={"/install/" + element.name}>
+                                            <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (element.available && (element.compatibility.N0110 || element.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>system_update_alt</i>
+                                            <div className={"releases__cards__card__actions__subbutton__text" + (element.available && (element.compatibility.N0110 || element.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton__text-disabled")}>INSTALL</div>
+                                        </Link>
                                         <a className={"releases__cards__card__actions__subbutton" + (element.compatibility.android && element.available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={element.compatibility.android && element.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + element.name + "/simulator.apk") : "#"}>
                                             <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (element.compatibility.android && element.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>android</i>
                                             <div className={"releases__cards__card__actions__subbutton__text" + (element.compatibility.android && element.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}>ANDROID</div>
@@ -66,7 +67,7 @@ export default class Releases extends Component {
                                     <div className="releases__cards__card__changelog">
                                         <ul className="releases__cards__card__changelog__ul">
                                         {
-                                            element.changelog.map(change => {
+                                            element.changelog.map((change) => {
                                                 return (
                                                     <li className="releases__cards__card__changelog__ul__li">{"• " + change}</li>
                                                 );
@@ -74,7 +75,7 @@ export default class Releases extends Component {
                                         }
                                         </ul>
                                     </div>
-                                </a>
+                                </div>
                             </div>);
                         }
                     )

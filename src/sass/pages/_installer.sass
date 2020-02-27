@@ -93,28 +93,38 @@
             background-color: #D8D8D8
             margin-right: 32px
             margin-top: 14px
-            opacity: 0
+            display: none
             transition: all 0.2s ease-in-out
             
             &-active
-                opacity: 1
+                display: inherit
 
             &__bar
                 height: 3px
                 border-radius: 1.5px
                 background-color: #C03535
-                transition: all 0.3s ease-in-out
+                // transition: all 0.3s ease-in-out
 
             &__message
                 color: #7C7C7C
                 font-size: 12px
                 font-weight: 600
                 margin-top: 6px
-                opacity: 0
+                display: none
                 transition: all 0.2s ease-in-out
 
                 &-active
-                    opacity: 1
+                    display: inherit
+        
+        &__error
+            color: #7C7C7C
+            font-size: 12px
+            font-weight: 600
+            margin-top: 6px
+            opacity: 0
+            transition: all 0.2s ease-in-out
+            &-active
+                opacity: 1
     
     &-thanks
         text-align: center
