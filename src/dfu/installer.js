@@ -1,14 +1,14 @@
 import DFU from '../dfu/dfu'
 import DFUse from '../dfu/dfuse'
 import Storage from "../dfu/storage"
-import firebase from "../firebase"
+import Downloader from "../dfu/downloader"
 
 import {releases} from '../firmware/firmwares'
 
 const AUTOCONNECT_DELAY = 1000;
 
 // Used for debugging. When true, skips downloading and flashing.
-const DO_DRY_RUN = true;
+const DO_DRY_RUN = false;
 
 export default class Installer {
     constructor(install) {
@@ -19,11 +19,11 @@ export default class Installer {
         this.toInstall = "latest";
         this.firmwareInfos = null;
         this.ignore_disconnect = false;
-        this.storage = firebase.storage();
         this.autoconnectId = null;
         this.waiting_for_flash = false;
         
         this.storage_content = new Storage();
+        this.downloader = new Downloader();
     }
     
     init(versionToInstall) {
@@ -146,67 +146,6 @@ export default class Installer {
         
     }
     
-    async __sha256(blob) {
-        const msgUint8 = await blob.arrayBuffer();
-        const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        return hashHex;
-    }
-    
-    __downloadFirmware(model, version, fwname, callback) {
-        this.storage.ref().child('firmwares/' + version + '/' + model.toLowerCase() + '/' + fwname).getDownloadURL().then(function(url) {
-            var oReq = new XMLHttpRequest();
-            oReq.responseType = 'blob';
-
-            console.log("[DOWNLOAD] " + url);
-
-            oReq.onload = function(oEvent) {
-                var blob = oReq.response;
-                callback(blob);
-            };
-            oReq.open("GET", url, true);
-            oReq.send();
-        }).catch(function(error) {
-            console.log("[DOWNLOAD] " + error.code);
-        });
-    }
-    
-    __downloadSHA256(model, version, fwname, callback) {
-        this.storage.ref().child('firmwares/' + version + '/' + model.toLowerCase() + '/' + fwname + ".sha256").getDownloadURL().then(function(url) {
-            var oReq = new XMLHttpRequest();
-            
-            console.log("[DOWNLOAD] " + url);
-
-            oReq.onload = function(e) {
-                callback(oReq.responseText.split(' ')[0]);
-            }
-
-            oReq.open("GET", url, true);
-            oReq.send();
-        }).catch(function(error) {
-            console.log("[DOWNLOAD] " + error.code);
-        });
-    }
-    
-    __downloadFirmwareCheck(model, version, firmware, callback) {
-        this.__downloadFirmware(model, version, firmware, async blob => {
-            this.__downloadSHA256(model, version, firmware, async sha256 => {
-                var calcSha256 = await this.__sha256(blob);
-                
-                console.log(sha256);
-                console.log(calcSha256);
-                
-                if (sha256 === calcSha256) {
-                    callback(true, blob);
-                } else {
-                    callback(false, blob);
-                }
-            });
-            
-        });
-    }
-    
     async __retreiveStorage(address, size) {
         this.device.startAddress = address;
         return await this.device.do_upload(this.transferSize, size + 8);
@@ -271,7 +210,7 @@ export default class Installer {
     async __installN0100(callback) {
         var _this = this;
         
-        _this.__downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, "epsilon.onboarding.internal.bin", async (internal_check, internal_blob) => {
+        _this.downloader.downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, "epsilon.onboarding.internal.bin", async (internal_check, internal_blob) => {
             if (!internal_check) {
                 _this.installInstance.calculatorError(true, "Download of internal seems corrupted, please retry.");
             }
@@ -288,12 +227,12 @@ export default class Installer {
     async __installN0110(callback) {
         var _this = this;
         
-        this.__downloadFirmwareCheck(this.installInstance.state.model, this.toInstall, "epsilon.onboarding.external.bin", async (external_check, external_blob) => {
+        this.downloader.downloadFirmwareCheck(this.installInstance.state.model, this.toInstall, "epsilon.onboarding.external.bin", async (external_check, external_blob) => {
             if (!external_check) {
                 _this.installInstance.calculatorError(true, "Download of external seems corrupted, please retry.");
             }
             
-            _this.__downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, "epsilon.onboarding.internal.bin", async (internal_check, internal_blob) => {
+            _this.downloader.downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, "epsilon.onboarding.internal.bin", async (internal_check, internal_blob) => {
                 if (!internal_check) {
                     _this.installInstance.calculatorError(true, "Download of internal seems corrupted, please retry.");
                 }

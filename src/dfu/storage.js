@@ -1,6 +1,8 @@
 
 /**
  * Class to parse and reconstruct the numworks' internal storage.
+ * Only parses python scripts for now, ditches the rest.
+ * @TODO parse other things.
  *
  * @author Maxime "M4x1m3" FRIESS
  * @license MIT
