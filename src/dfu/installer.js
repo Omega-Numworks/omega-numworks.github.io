@@ -6,6 +6,9 @@ import {releases} from '../firmware/firmwares'
 
 const AUTOCONNECT_DELAY = 1000;
 
+// Used for debugging. When true, skips downloading and flashing.
+const DO_DRY_RUN = false;
+
 export default class Installer {
     constructor(install) {
         this.installInstance = install;
@@ -17,6 +20,8 @@ export default class Installer {
         this.ignore_disconnect = false;
         this.storage = firebase.storage();
         this.autoconnectId = 0;
+        this.storage_content = null;
+        this.waiting_for_flash = false;
     }
     
     init(versionToInstall) {
@@ -206,6 +211,7 @@ export default class Installer {
     }
     
     async __flashStorage(address, data) {
+        console.log(data);
         this.device.startAddress = address;
         await this.device.do_download(this.transferSize, data, false);
     }
@@ -398,6 +404,18 @@ export default class Installer {
         return await this.__assembleStorage(data.records, size);
     }
     
+    async __reinstallStorage() {
+        let pinfo = await this.__getPlatformInfo();
+        
+        let storage_blob = await this.__encodeStorage(this.storage_content, pinfo["storage"]["size"]);
+        await this.__flashStorage(pinfo["storage"]["address"], await storage_blob.arrayBuffer());
+        
+        this.storage_content = null;
+        this.waiting_for_flash = false;
+        
+        this.installInstance.installationFinished();
+    }
+    
     async install() {
         console.log("install version" + this.toInstall + "/" + this.installInstance.state.model);
         
@@ -410,26 +428,33 @@ export default class Installer {
         
         let storage_blob = await this.__retreiveStorage(pinfo["storage"]["address"], pinfo["storage"]["size"]);
         
-        let storage_content = await this.__parseStorage(storage_blob);
+        this.storage_content = await this.__parseStorage(storage_blob);
         
-        let storage_data = await this.__encodeStorage(storage_content, pinfo["storage"]["size"]);
+        // return;
         
-        // console.log(pinfo["storage"]["address"]);
-        // console.log(new TextDecoder("utf-8").decode(await storage_data.arrayBuffer()));
-        await this.__flashStorage(pinfo["storage"]["address"], await storage_data.arrayBuffer());
+        var callback = function() {
+            this.waiting_for_flash = true;
+            this.autoConnect(0x0483, 0xa291);
+        }.bind(this);
         
-        return;
-        
-        if (this.installInstance.state.model === "N0100") {
-            this.__installN0100();
+        if (!DO_DRY_RUN) {
+            if (this.installInstance.state.model === "N0100") {
+                await this.__installN0100(callback);
+            } else {
+                await this.__installN0110(callback);
+            }
         } else {
-            this.__installN0110();
+            callback();
         }
+
         
+
+        
+        // this.installInstance.installationFinished();
 
     }
     
-    __installN0100() {
+    async __installN0100(callback) {
         var _this = this;
         
         _this.__downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, "epsilon.onboarding.internal.bin", async (internal_check, internal_blob) => {
@@ -442,11 +467,11 @@ export default class Installer {
             _this.device.startAddress = 0x08000000;
             await _this.device.do_download(_this.transferSize, await internal_blob.arrayBuffer(), true);
             
-            _this.installInstance.installationFinished();
+            callback();
         });
     }
     
-    __installN0110() {
+    async __installN0110(callback) {
         var _this = this;
         
         this.__downloadFirmwareCheck(this.installInstance.state.model, this.toInstall, "epsilon.onboarding.external.bin", async (external_check, external_blob) => {
@@ -466,8 +491,8 @@ export default class Installer {
                 
                 _this.device.startAddress = 0x08000000;
                 await _this.device.do_download(_this.transferSize, await internal_blob.arrayBuffer(), true);
-                
-                _this.installInstance.installationFinished();
+            
+                callback();
             });
         });
     }
@@ -519,6 +544,8 @@ export default class Installer {
     
     stopAutoConnect() {
         clearTimeout(this.autoconnectId);
+        
+        this.autoconnectId = 0;
     }
     
     autoConnect(vid, pid, serial) {
@@ -531,8 +558,14 @@ export default class Installer {
                 
                 this.device = await this.__autoConnectDevice(matching_devices[0]);
                 
-                this.installInstance.calculatorError(false, null);
-                await this.__setCalculatorInfos();
+                if (this.waiting_for_flash) {
+                    await this.__reinstallStorage();
+                } else {
+                    this.installInstance.calculatorError(false, null);
+                    await this.__setCalculatorInfos();
+                }
+                
+                
             }
         });
         
@@ -641,7 +674,7 @@ function parsePlatformInfo(array) {
 
 function concatTypedArrays(a, b) {
     // Checks for truthy values on both arrays
-    if(!a && !b) throw 'Please specify valid arguments for parameters a and b.';  
+    if(!a && !b) throw new Error('Please specify valid arguments for parameters a and b.');  
 
     // Checks for truthy values or empty arrays on each argument
     // to avoid the unnecessary construction of a new array and
@@ -651,7 +684,7 @@ function concatTypedArrays(a, b) {
 
     // Make sure that both typed arrays are of the same type
     if(Object.prototype.toString.call(a) !== Object.prototype.toString.call(b))
-        throw 'The types of the two arguments passed for parameters a and b do not match.';
+        throw new Error('The types of the two arguments passed for parameters a and b do not match.');
 
     var c = new a.constructor(a.length + b.length);
     c.set(a);
