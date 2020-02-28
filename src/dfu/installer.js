@@ -19,7 +19,7 @@ export default class Installer {
         this.firmwareInfos = null;
         this.ignore_disconnect = false;
         this.storage = firebase.storage();
-        this.autoconnectId = 0;
+        this.autoconnectId = null;
         this.storage_content = null;
         this.waiting_for_flash = false;
     }
@@ -543,9 +543,11 @@ export default class Installer {
     }
     
     stopAutoConnect() {
+        if (this.autoconnectId === null) return;
+        
         clearTimeout(this.autoconnectId);
         
-        this.autoconnectId = 0;
+        this.autoconnectId = null;
     }
     
     autoConnect(vid, pid, serial) {

@@ -30,6 +30,7 @@ export default class Install extends Component {
         
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.detectCalculator = this.detectCalculator.bind(this);
+        this.componentWillUnmount = this.componentWillUnmount.bind(this);
 
         // Detection
         this.calculatorDetected = this.calculatorDetected.bind(this);
@@ -74,6 +75,10 @@ export default class Install extends Component {
             
             this.state.installerInstance.init(this.props.match.params.version);
         }
+    }
+    
+    componentWillUnmount() {
+        this.state.installerInstance.stopAutoConnect();
     }
     
     firmwareNotFound(version) {
