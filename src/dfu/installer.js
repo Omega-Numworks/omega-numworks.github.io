@@ -8,6 +8,12 @@ import {releases} from '../firmware/firmwares'
 // Used for debugging. When true, skips downloading and flashing.
 const DO_DRY_RUN = false;
 
+/**
+ * Installer class. Makes link between the front-end and the nw.js lib.
+ *
+ * @author Maxime "M4x1m3" FRIESS
+ * @license MIT
+ */
 export default class Installer {
     constructor(install) {
         this.installInstance = install;

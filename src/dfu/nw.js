@@ -12,8 +12,8 @@ const AUTOCONNECT_DELAY = 1000;
  * @author Maxime "M4x1m3" FRIESS
  * @license MIT
  */
-
 export default class Numworks {
+
     constructor() {
         this.device = null;
         this.transferSize = 2048;
@@ -371,6 +371,11 @@ export default class Numworks {
         callback();
     }
     
+    /**
+     * Get and parse storage on the calculator.
+     *
+     * @return  Storage class describing the storage of the calculator.
+     */
     async backupStorage() {
         let pinfo = await this.getPlatformInfo();
         
