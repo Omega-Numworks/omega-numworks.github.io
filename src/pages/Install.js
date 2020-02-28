@@ -78,7 +78,7 @@ export default class Install extends Component {
     }
     
     componentWillUnmount() {
-        this.state.installerInstance.stopAutoConnect();
+        this.state.installerInstance.calculator.stopAutoConnect();
     }
     
     firmwareNotFound(version) {
