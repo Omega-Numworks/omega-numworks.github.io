@@ -1,5 +1,6 @@
 import DFU from '../dfu/dfu'
 import DFUse from '../dfu/dfuse'
+import Storage from "../dfu/storage"
 import firebase from "../firebase"
 
 import {releases} from '../firmware/firmwares'
@@ -7,7 +8,7 @@ import {releases} from '../firmware/firmwares'
 const AUTOCONNECT_DELAY = 1000;
 
 // Used for debugging. When true, skips downloading and flashing.
-const DO_DRY_RUN = false;
+const DO_DRY_RUN = true;
 
 export default class Installer {
     constructor(install) {
@@ -20,8 +21,9 @@ export default class Installer {
         this.ignore_disconnect = false;
         this.storage = firebase.storage();
         this.autoconnectId = null;
-        this.storage_content = null;
         this.waiting_for_flash = false;
+        
+        this.storage_content = new Storage();
     }
     
     init(versionToInstall) {
@@ -216,201 +218,13 @@ export default class Installer {
         await this.device.do_download(this.transferSize, data, false);
     }
     
-    __readString(dv, index, maxLen) {
-        var out = "";
-        var i = 0;
-        for(i = 0; i < maxLen || maxLen === 0; i++) {
-            var chr = dv.getUint8(index + i);
-            
-            if (chr === 0) {
-                break;
-            }
-            
-            out += String.fromCharCode(chr);
-        }
-        
-        return {
-            size: i + 1,
-            content: out
-        };
-    }
-    
-    async __sliceStorage(blob) {
-        var dv = new DataView(await blob.arrayBuffer());
-        
-        if (dv.getUint32(0x00, false) === 0xBADD0BEE) {
-            var offset = 4;
-            var records = [];
-            
-            do {
-                var size = dv.getUint16(offset, true);
-                
-                if (size === 0) break;
-                
-                var name = this.__readString(dv, offset + 2, size - 2);
-                
-                var data = blob.slice(offset + 2 + name.size, offset + size);
-                
-                var record = {
-                    name: name.content.split(/\.(?=[^\.]+$)/)[0], // eslint-disable-line no-useless-escape
-                    type: name.content.split(/\.(?=[^\.]+$)/)[1], // eslint-disable-line no-useless-escape
-                    data: data,
-                }
-                
-                records.push(record);
-                
-                offset += size;
-                
-            } while (size !== 0 && offset < blob.size);
-            
-            return records;
-        } else {
-            return {};
-        }
-    }
-    
-    async __parsePyRecord(record) {
-        var dv = new DataView(await record.data.arrayBuffer());
-        
-        record.autoImport = dv.getUint8(0) !== 0;
-        record.code = this.__readString(dv, 1, record.data.size - 1).content;
-        
-        delete record.data;
-        
-        return record;
-    }
-    
-    __getRecordParsers() {
-        return {
-            py: this.__parsePyRecord.bind(this)
-        };
-    }
-    
-    async __parseRecord(record) {
-        var parsers = this.__getRecordParsers();
-        
-        if (record.type in parsers) {
-            record = parsers[record.type](record);
-        }
-        
-        return record;
-    }
-    
-    async __parseStorage(blob) {
-        var dv = new DataView(await blob.arrayBuffer());
-        
-        var data = {};
-        
-        data["magik"] = dv.getUint32(0x00, false) === 0xBADD0BEE;
-    
-        data["records"] = {};
-        
-        if (data["magik"]) {
-            var records = await this.__sliceStorage(blob);
-            
-            for(var i in records) {
-                records[i] = await this.__parseRecord(records[i]);
-                
-                // Throwing away non-python stuff, for convinience.
-                if (records[i].type !== 'py') records.splice(i, 1);
-            }
-            
-            data["records"] = records;
-        }
-        
-        return data;
-    }
-    
-    async __encodePyRecord(record) {
-        var content = new TextEncoder("utf-8").encode(record.code);
-        
-        record.data = new Blob([
-            concatTypedArrays(
-                new Uint8Array([record.autoImport ? 1 : 0]),
-                concatTypedArrays(
-                    content,
-                    new Uint8Array([0])
-                )
-            )
-        ]);
-        
-        delete record.autoImport;
-        delete record.code;
-        
-        return record;
-    }
-    
-    __getRecordEncoders() {
-        return {
-            py: this.__encodePyRecord.bind(this)
-        };
-    }
-    
-    async __assembleStorage(records, maxSize) {
-        const encoder = new TextEncoder();
-        
-        var data = new Uint8Array([0xBA, 0xDD, 0x0B, 0xEE]); // Magic value 0xBADD0BEE (big endian)
-        
-        for(var i in records) {
-            var record = records[i];
-            var name = record.name + "." + record.type;
-            
-            var encoded_name = concatTypedArrays(
-                encoder.encode(name),
-                new Uint8Array([0])
-            );
-            
-            var encoded_content = concatTypedArrays(
-                encoded_name,
-                new Uint8Array(await record.data.arrayBuffer())
-            );
-            
-            var length_buffer = new Uint8Array([0xFF, 0xFF]);
-            
-            encoded_content = concatTypedArrays(length_buffer, encoded_content);
-            
-            var dv = new DataView(encoded_content.buffer);
-            dv.setUint16(0, encoded_content.length, true);
-            
-            if (data.length + encoded_content.length + 2 > maxSize) {
-                console.error("Too much data!");
-                throw new Error("Too much data!");
-            }
-            
-            data = concatTypedArrays(data, encoded_content);
-        }
-        
-        data = concatTypedArrays(data, new Uint8Array([0, 0]));
-        
-        return new Blob([data]);
-    }
-    
-    async __encodeRecord(record) {
-        var encoders = this.__getRecordEncoders();
-        
-        if (record.type in encoders) {
-            record = encoders[record.type](record);
-        }
-        
-        return record;
-    }
-    
-    async __encodeStorage(data, size) {
-        for(var i in data.records) {
-            data.records[i] = await this.__encodeRecord(data.records[i]);
-            
-        }
-        
-        return await this.__assembleStorage(data.records, size);
-    }
-    
     async __reinstallStorage() {
         let pinfo = await this.__getPlatformInfo();
         
-        let storage_blob = await this.__encodeStorage(this.storage_content, pinfo["storage"]["size"]);
+        let storage_blob = await this.storage_content.encodeStorage(pinfo["storage"]["size"]);
         await this.__flashStorage(pinfo["storage"]["address"], await storage_blob.arrayBuffer());
         
-        this.storage_content = null;
+        this.storage_content = new Storage();
         this.waiting_for_flash = false;
         
         this.installInstance.installationFinished();
@@ -428,7 +242,7 @@ export default class Installer {
         
         let storage_blob = await this.__retreiveStorage(pinfo["storage"]["address"], pinfo["storage"]["size"]);
         
-        this.storage_content = await this.__parseStorage(storage_blob);
+        this.storage_content.parseStorage(storage_blob);
         
         // return;
         
@@ -672,27 +486,6 @@ function parsePlatformInfo(array) {
     }
     
     return data;
-}
-
-function concatTypedArrays(a, b) {
-    // Checks for truthy values on both arrays
-    if(!a && !b) throw new Error('Please specify valid arguments for parameters a and b.');  
-
-    // Checks for truthy values or empty arrays on each argument
-    // to avoid the unnecessary construction of a new array and
-    // the type comparison
-    if(!b || b.length === 0) return a;
-    if(!a || a.length === 0) return b;
-
-    // Make sure that both typed arrays are of the same type
-    if(Object.prototype.toString.call(a) !== Object.prototype.toString.call(b))
-        throw new Error('The types of the two arguments passed for parameters a and b do not match.');
-
-    var c = new a.constructor(a.length + b.length);
-    c.set(a);
-    c.set(b, a.length);
-
-    return c;
 }
 
 function getDFUDescriptorProperties(device) {
