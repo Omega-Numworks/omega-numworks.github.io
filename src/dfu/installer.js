@@ -99,6 +99,11 @@ export default class Installer {
         };
         
         this.storage_content = await this.calculator.backupStorage();
+
+        // Ditch all non-python stuff, for convinience.
+        for(var i in this.storage_content.records) {
+            if (this.storage_content.records[i].type !== 'py') this.storage_content.records.splice(i, 1);
+        }
         
         // return;
         
