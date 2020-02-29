@@ -185,7 +185,7 @@ export default class Install extends Component {
                         <div className={"installer__content__progress__message " +  (this.state.install ? "installer__content__progress__message-active" : "")}>Installation d'Omega {this.state.installerInstance.toInstall}. Veuillez ne pas débrancher la calculatrice.</div>
                         <div className={"installer__content__error " +  (this.state.error ? "installer__content__error-active" : "")}>{this.state.errorMessage}</div>
                         <button onClick={() => this.detectCalculator()} className={"installer__content__button " +  (!this.state.calculatorDetected ? "installer__content__button-active" : "")}>DETECT CALCULATOR</button>
-                        <button onClick={this.showPopup} className={"installer__content__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__button-active" : "") + (this.state.showPopup ? " installer__content__button-disabled" : "")}>INSTALL OMEGA</button>
+                        <button onClick={this.install} className={"installer__content__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__button-active" : "") + (this.state.showPopup ? " installer__content__button-disabled" : "")}>INSTALL OMEGA</button>
                     </div>
                 </div>
 
