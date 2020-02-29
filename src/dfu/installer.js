@@ -1,7 +1,6 @@
 
-import Storage from "../dfu/storage"
 import Downloader from "../dfu/downloader"
-import Numworks from "../dfu/nw"
+import Numworks from "numworks.js"
 
 import {releases} from '../firmware/firmwares'
 
@@ -24,7 +23,7 @@ export default class Installer {
         this.waiting_for_flash = false;
         
         this.calculator = new Numworks();
-        this.storage_content = new Storage();
+        this.storage_content = new Numworks.Storage();
         this.downloader = new Downloader();
     }
     
@@ -81,7 +80,7 @@ export default class Installer {
     }
     
     __reinstallStorageCallback() {
-        this.storage_content = new Storage();
+        this.storage_content = new Numworks.Storage();
         this.waiting_for_flash = false;
         
         this.installInstance.installationFinished();
