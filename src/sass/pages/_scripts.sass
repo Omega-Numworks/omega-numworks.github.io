@@ -1,0 +1,122 @@
+.scripts
+    margin: 32px 15%
+
+    &__noscripts
+        margin-bottom: 16px
+
+    &__button
+        background-color: #3585C0
+        color: #ffffff
+        font-size: 13px
+        cursor: pointer
+        font-weight: 700
+        padding: 8px 18px
+        border-radius: 6px
+        transition: all 0.2s ease-in-out
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
+        display: inline-block
+        border: 0
+        outline: none
+        margin-bottom: 32px
+        user-select: none
+
+        &-hide
+
+        &:hover
+            box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
+
+    &__script
+        background-color: #EFEFEF
+        border-radius: 6px
+        transition: 0.2s all ease-in-out
+        box-sizing: border-box
+        display: block
+        padding: 16px
+        border: 1px solid transparent
+        margin-bottom: 8px
+        overflow: hidden
+        height: 51px
+        z-index: 2
+
+        &:hover
+            border-color: #A8A8A8
+
+        &-new
+            margin-bottom: 16px
+            margin-top: -16px
+            max-height: 200px
+            height: auto
+
+            &-hide
+                max-height: 0
+                padding: 0 16px
+                margin-bottom: 2px
+                margin-top: -2px
+                border-width: 0
+        
+        &__input
+            height: 32px
+            font-size: 14px
+            padding: 0 12px
+            border-radius: 6px
+            outline: none
+            background-color: #f3f3f3
+            border: 1px solid #dfdfdf
+            color: #2e2e2e
+            font-family: 'Righteous', sans-serif
+            &-new
+            &::placeholder
+                color: #919191
+
+        &__name
+            font-family: 'Righteous', sans-serif
+            color: #4B4B4B
+            vertical-align: middle
+            &-new
+        
+        &__action
+            float: right
+            opacity: 0
+            margin-right: 4px
+            margin-top: -6px
+            font-weight: 500
+            color: #303030
+            font-size: 13px
+            vertical-align: middle
+            background-color: rgba(0, 0, 0, 0.07)
+            border-radius: 4px
+            padding: 8px 4px
+            cursor: pointer
+            transition: 0.2s all ease-in-out
+
+            &:hover
+                background-color: rgba(0, 0, 0, 0.16)
+
+            &-new
+                opacity: 1
+                margin-right: 12px
+                padding: 8px 12px
+                margin-top: 2px
+                &-blue
+                    background-color: #2973a8
+                    color: #ffffff
+                    &:hover
+                        background-color: #1b6194
+
+        &__github
+            width: 16px
+            height: 16px
+            float: right
+            opacity: 0.4
+            vertical-align: middle
+            margin-left: 4px
+            transition: 0.2s all
+
+        &:hover &__github
+            opacity: 0.8
+    
+        &:hover &__action
+            opacity: 1
+            margin-right: 12px
+            padding: 8px 12px
+            

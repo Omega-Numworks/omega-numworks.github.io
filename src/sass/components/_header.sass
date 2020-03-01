@@ -2,6 +2,7 @@
     height: 64px
     background-color: #fff
     border-bottom: 1px solid #ececec
+    user-select: none
 
     &__logo
         font-family: 'Righteous', cursive
@@ -17,25 +18,99 @@
     
     &__links
         float: right
-        margin-right: 24px
+        margin-right: 12px
+        display: inline-block
+        line-height: 64px
 
         &__link
+            display: inline-block
+            vertical-align: middle
             text-decoration: none
             color: #484848
-            line-height: 64px
             font-weight: 500
             margin: 0 4px
-            padding: 4px 8px
+            padding: 0px 8px
             transition: 0.2s all
             border-radius: 4px
+            line-height: 28px
+            height: 28px
+            cursor: pointer
+
+            &-hide
+                display: none
 
             &-active
                 color: #242424
                 font-weight: 900
                 background-color: rgba(0, 0, 0, 0.05)
             
+            &-red
+                color: #c53431
+                
+            
             &:hover
                 background-color: rgba(0, 0, 0, 0.1)
+        
+        &__separator
+            vertical-align: middle
+            margin: 12px
+            height: 24px
+            width: 1px
+            display: inline-block
+            background-color: rgba(0, 0, 0, 0.3)
+
+        
+        &__profile
+            cursor: pointer
+            vertical-align: middle
+            display: inline-block
+            line-height: 42px
+            padding: 0 8px
+            border-radius: 4px
+            transition: 0.2s all
+
+            &:hover
+                background-color: rgba(0, 0, 0, 0.1)
+
+
+            &-hide
+                display: none
+
+            &-actions
+                vertical-align: middle
+                display: inline-block
+                margin-top: -2px
+                overflow: hidden
+                max-width: 300px
+                transition: 0.3s all ease-in-out
+                height: 64px
+                word-wrap: none
+                white-space: nowrap
+                opacity: 1
+
+                &-hide
+                    max-width: 0
+                    margin-right: 0
+                    opacity: 0
+
+                &__link
+
+
+            &__name
+                color: #484848
+                font-weight: 500
+                vertical-align: middle
+                display: inline-block
+                margin-right: 12px
+
+            &__picture
+                vertical-align: middle
+                background-color: #AAAAAA
+                height: 32px
+                width: 32px
+                display: inline-block
+                border-radius: 50%
+
 
 @media screen and ( max-width: 420px )
     .header
