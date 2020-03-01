@@ -8,6 +8,7 @@ import Releases from './pages/Releases';
 import Policy from './pages/Policy';
 import Install from './pages/Install';
 import Scripts from './pages/Scripts';
+import Editor from './pages/Editor';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/install/:version" component={Install} />
           <Route path="/policy" component={Policy} exact />
           <Route path="/scripts" component={Scripts} exact />
+          <Route path="/editor" component={Editor} exact />
           <Route path="/" component={Home} exact />
         </Switch>
 
