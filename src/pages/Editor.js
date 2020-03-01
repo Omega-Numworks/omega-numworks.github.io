@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MonacoEditor from 'react-monaco-editor';
+import * as monaco from 'monaco-editor';
 
 export default class Editor extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ export default class Editor extends Component {
                         <i class="material-icons-round editor__toolbar__item__icon">save</i>
                         <div className="editor__toolbar__item__text">SAVE</div>
                     </div>
-                    <div className="editor__toolbar__item">
+                    <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item-right">
                         <i class="material-icons-round editor__toolbar__item__icon">play_arrow</i>
                         <div className="editor__toolbar__item__text">RUN</div>
                     </div>
@@ -43,7 +44,6 @@ export default class Editor extends Component {
                     width="100%"
                     height="calc(100vh - 64px - 48px)"
                     language="python"
-                    /* theme="vs-dark" */
                     theme="vs-dark"
                     value={code}
                     options={options}
