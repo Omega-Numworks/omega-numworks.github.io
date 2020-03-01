@@ -1,13 +1,11 @@
 .project-description
-    // background-color: #fff
     background-color: #c53431
     padding-top: 64px
 
     &__title
-        margin-top: 48px
+        padding-top: 48px
         font-size: 64px
         font-family: Righteous
-        // color: #6A6A6A
         color: #fff
         text-align: center
     
@@ -16,11 +14,9 @@
         font-weight: 500
         text-align: center
         margin-top: 24px
-        // color: #4B4B4B
         color: #fafafa
 
     &__description
-        padding: 0 25%
         font-size: 16px
         color: #656565
         background-color: #F4F4F4
@@ -131,14 +127,36 @@
                     color: rgba(0, 0, 0, 0.20)
     
 
-@media screen and ( max-width: 700px )
-    .project-description
-        margin: 0 32px
-        padding: 0 0
-    
+@media screen and ( max-width: 1100px )
     .feature
-        padding: 0 32px
+        padding: 16px calc(15% - 16px)
+    
+    .project-description
+        &__description
+            padding: 32px 15%
 
+
+@media screen and ( max-width: 800px )
+    .feature
+        padding: 16px calc(32px - 16px)
+    
+    .project-description
+        &__description
+            padding: 32px 32px
+
+
+@media screen and ( max-width: 680px )
+    .project-description
+        padding-top: 64px
+        &__title
+            padding-top: 0
+            font-size: 54px
+
+        &__description
+            font-size: 16px
+            margin-top: 64px
+
+    .feature
         &-mobile
             display: inline-block
         &-desktop
@@ -146,11 +164,25 @@
         
         &__content
             width: 100%
+            &__title
+                padding-top: 16px
+            &__description
+                padding-bottom: 0
 
         &__images
-            width: 100%
+            margin-left: 15%
+            width: 70%
             text-align: center
             display: block
 
             &__image
                 width: 70%
+
+@media screen and ( max-width: 500px )
+    .feature
+        &__images
+            margin-left: 0
+            width: 100%
+            &__image
+                margin-top: 8px
+                margin-bottom: 8px

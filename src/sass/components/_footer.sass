@@ -50,6 +50,7 @@
         font-weight: 300
     
     &__about-nw
+        float: left
         margin-top: 8px
         margin-bottom: 4px
         color: #858585
@@ -57,3 +58,27 @@
         &__contact
             color: #858585
 
+
+@media screen and ( max-width: 900px )
+    .footer
+        padding: 32px 32px
+
+@media screen and ( max-width: 600px )
+    .footer
+        &__list
+            display: block
+
+        &__discord
+            display: block
+            float: inherit
+            margin-top: 32px
+
+        &__about-nw
+            display: block
+            text-align: center
+
+        &__logo
+            line-height: 64px
+            float: inherit
+            display: block
+            text-align: center

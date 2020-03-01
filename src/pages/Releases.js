@@ -28,7 +28,7 @@ export default class Releases extends Component {
         return (
             <div className="content">
         
-                <div style={ { height: "48px" } }></div>
+                <div style={ { height: "16px" } }></div>
 
                 {
                     releases.firmwares.map(element => {
@@ -47,7 +47,7 @@ export default class Releases extends Component {
                                             <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">launch</i>
                                             <div className="releases__cards__card__actions__subbutton__text">GITHUB</div>
                                         </a>
-                                        <Link className={"releases__cards__card__actions__subbutton" + (element.available && (element.compatibility.N0110 || element.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton-disabled")} to={"/install/" + element.name}>
+                                        <Link className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (element.available && (element.compatibility.N0110 || element.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton-disabled")} to={"/install/" + element.name}>
                                             <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (element.available && (element.compatibility.N0110 || element.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>system_update_alt</i>
                                             <div className={"releases__cards__card__actions__subbutton__text" + (element.available && (element.compatibility.N0110 || element.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton__text-disabled")}>INSTALL</div>
                                         </Link>
@@ -55,7 +55,7 @@ export default class Releases extends Component {
                                             <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (element.compatibility.android && element.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>android</i>
                                             <div className={"releases__cards__card__actions__subbutton__text" + (element.compatibility.android && element.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}>ANDROID</div>
                                         </a>
-                                        <a className={"releases__cards__card__actions__subbutton" + (element.compatibility.web && element.available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={element.compatibility.web && element.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + element.name + "/simulator.zip") : "#"}>
+                                        <a className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (element.compatibility.web && element.available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={element.compatibility.web && element.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + element.name + "/simulator.zip") : "#"}>
                                             <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (element.compatibility.web && element.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>web</i>
                                             <div className={"releases__cards__card__actions__subbutton__text" + (element.compatibility.web && element.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}>WEB</div>
                                         </a>
@@ -81,7 +81,7 @@ export default class Releases extends Component {
                     )
                 }
 
-                <div style={ { height: "48px" } }></div>
+                <div style={ { height: "16px" } }></div>
             </div>
         )
     }

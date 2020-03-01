@@ -13,7 +13,6 @@ export default class Footer extends Component {
                         <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-CLI-Installer">Omega CLI Installer</a></li>
                         <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-RPN">Omega RPN <span className="footer__list__item__tag">APP</span></a></li>
                         <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Atom">Omega Atom <span className="footer__list__item__tag">APP</span></a></li>
-                        <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Converter">Omega Converter <span className="footer__list__item__tag">APP</span></a></li>
                         <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Design">Omega Design</a></li>
                     </div>
                 </div>
@@ -21,8 +20,8 @@ export default class Footer extends Component {
                     <iframe title="Discord" src="https://discordapp.com/widget?id=663420259851567114&theme=dark" width="300" height="300" allowtransparency="true" frameborder="0"></iframe>
                 </div>
                 <div className="footer__separator" />
-                <div className="footer__logo">Omega</div>
                 <div className="footer__about-nw">NumWorks is a registered trademark. Omega is not affiliated with Numworks. <a className="footer__about-nw__contact" href="mailto:getomega.pro@gmail.com">Contact</a></div>
+                <div className="footer__logo">Omega</div>
             </footer>
         )
     }

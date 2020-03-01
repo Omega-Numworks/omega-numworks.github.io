@@ -3,6 +3,7 @@ import ImgSymbolicCalculation from '../img/symbolic-calculation.png'
 import ImgAtom from '../img/atom.png'
 import ImgRpn from '../img/rpn.png'
 import { releases } from '../firmware/firmwares'
+import { Link } from 'react-router-dom'
 
 export default class Home extends Component {
     constructor(props) {
@@ -120,15 +121,15 @@ export default class Home extends Component {
                             <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">launch</i>
                             <div className="releases__cards__card__actions__subbutton__text">GITHUB</div>
                         </a>
-                        <div className="releases__cards__card__actions__subbutton">
-                            <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">system_update_alt</i>
-                            <div className="releases__cards__card__actions__subbutton__text">INSTALL</div>
-                        </div>
+                        <Link className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (releases.firmwares[0].available && (releases.firmwares[0].compatibility.N0110 || releases.firmwares[0].compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton-disabled")} to={"/install/" + releases.firmwares[0].name}>
+                            <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (releases.firmwares[0].available && (releases.firmwares[0].compatibility.N0110 || releases.firmwares[0].compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>system_update_alt</i>
+                            <div className={"releases__cards__card__actions__subbutton__text" + (releases.firmwares[0].available && (releases.firmwares[0].compatibility.N0110 || releases.firmwares[0].compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton__text-disabled")}>INSTALL</div>
+                        </Link>
                         <a className={"releases__cards__card__actions__subbutton" + (releases.firmwares[0].compatibility.android && releases.firmwares[0].available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={releases.firmwares[0].compatibility.android && releases.firmwares[0].available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + releases.firmwares[0].name + "/simulator.apk") : "#"}>
                             <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (releases.firmwares[0].compatibility.android && releases.firmwares[0].available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>android</i>
                             <div className={"releases__cards__card__actions__subbutton__text" + (releases.firmwares[0].compatibility.android && releases.firmwares[0].available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}>ANDROID</div>
                         </a>
-                        <a className={"releases__cards__card__actions__subbutton" + (releases.firmwares[0].compatibility.web && releases.firmwares[0].available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={releases.firmwares[0].compatibility.web && releases.firmwares[0].available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + releases.firmwares[0].name + "/simulator.zip") : "#"}>
+                        <a className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (releases.firmwares[0].compatibility.web && releases.firmwares[0].available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={releases.firmwares[0].compatibility.web && releases.firmwares[0].available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + releases.firmwares[0].name + "/simulator.zip") : "#"}>
                             <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (releases.firmwares[0].compatibility.web && releases.firmwares[0].available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>web</i>
                             <div className={"releases__cards__card__actions__subbutton__text" + (releases.firmwares[0].compatibility.web && releases.firmwares[0].available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}>WEB</div>
                         </a>

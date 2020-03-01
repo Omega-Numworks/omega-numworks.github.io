@@ -1,7 +1,25 @@
 export const releases = {
-	"latest": "O1.19.0-E13",
-	"firmwares": [
-	    {
+	"latest": "O1.19.1-E13",
+	"firmwares": [{
+			"name": "O1.19.1-E13",
+			"commit": "95095423cd23aea421307076aee1f053ea2b029b",
+			"changelog": [
+				"Update: Epsilon updated (especially `Fix input(), that did not return the input` and `Allow interruption of infinite print loops`)",
+				"Change: Free 1776 bytes of heap",
+				"Change: Disable the LED choice",
+				"Change: In the Python app, `alpha+up` leads to the beginning of the script and `alpha+down` allows you to jump to the end. Same for `alpha+left` and `alpha+right`. Before, it was with the `shift` key, but it's now used to select the text.",
+				"Fixed: Some problems with the Compact Display",
+				"Fixed: Some Hungarian translations",
+				"Fixed: Allow simulator to be loaded with multiple scripts."
+			],
+			"compatibility": {
+				"N0110": true,
+				"N0100": true,
+				"web": true,
+				"android": true
+			},
+			"available": true
+		}, {
 	        "name": "O1.19.0-E13",
 	        "commit": "dcaa1cb46dafbd40b13e46b1954c9b2c79b60d48",
 		    "changelog": [
