@@ -24,11 +24,17 @@
             color: #484848
             line-height: 64px
             font-weight: 500
-            margin: 0 12px
+            margin: 0 4px
+            padding: 4px 8px
+            transition: 0.2s all
 
             &-active
                 color: #242424
                 font-weight: 900
+                background-color: rgba(0, 0, 0, 0.05)
+            
+            &:hover
+                background-color: rgba(0, 0, 0, 0.1)
 
 @media screen and ( max-width: 420px )
     .header
