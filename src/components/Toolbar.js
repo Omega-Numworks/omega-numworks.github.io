@@ -25,12 +25,13 @@ export default class Toolbar extends Component {
 
     loginWithGitHub() {
         var provider = new firebase.auth.GithubAuthProvider();
+        provider.addScope("gist");
 
         firebase.auth().signInWithPopup(provider).then((result) => {
             var token = result.credential.accessToken;
             this.setState({ user: result.user });
             console.log(this.state.user)
-            //firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            localStorage.setItem('accessToken', token);
         }).catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -66,7 +67,7 @@ export default class Toolbar extends Component {
                     <div onClick={this.loginWithGitHub} className={"header__links__link" + (this.state.user == null ? "" : " header__links__link-hide")} activeClassName="header__links__link-active">Login with GitHub</div>
                     <div className={"header__links__profile-actions" + (this.state.isProfileActive ? "" : " header__links__profile-actions-hide")}>
                         <div onClick={this.logout} className="header__links__link header__links__link-red header__links__profile-actions__link" activeClassName="header__links__link-active">Logout</div>
-                        <Link className="header__links__link header__links__profile-actions__link" activeClassName="header__links__link-active" to="/scripts">Mes scripts</Link>
+                        <Link className="header__links__link header__links__profile-actions__link" activeClassName="header__links__link-active" to="/projects">Mes scripts</Link>
                     </div>
                     <div onClick={this.onProfileClick} className={"header__links__profile" + (this.state.user == null ? " header__links__profile-hide" : "")}>
                         <div className="header__links__profile__name">{(this.state.user == null ? "undefined" : this.state.user.displayName)}</div>
