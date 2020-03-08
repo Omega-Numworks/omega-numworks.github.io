@@ -15,7 +15,11 @@ export default class Simulator extends Component {
 
     render() {
         return (
-            <Calculator></Calculator>
+            <div className="content">
+                <div className="simulator">
+                    <Calculator></Calculator>
+                </div>
+            </div>
         )
     }
 }
