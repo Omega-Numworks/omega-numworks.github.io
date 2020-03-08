@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import GitHub from '../img/github.png'
 import firebase from "../firebase"
-import { Link } from 'react-router-dom'
 
 export default class Scripts extends Component {
     constructor(props) {
@@ -114,7 +113,7 @@ export default class Scripts extends Component {
                     <div className="scripts__script">
                         <span className="scripts__script__name">{gist.description}</span>
                         <img className="scripts__script__github" alt="GitHub" src={GitHub} />
-                        <Link className="scripts__script__action" to={'/editor/' + gist.id}>OPEN</Link>
+                        <a className="scripts__script__action" href={'/editor/' + gist.id}>OPEN</a>
                     </div>
                 );
             })
@@ -123,13 +122,9 @@ export default class Scripts extends Component {
         return (
             <div className="content">
                 <div className="scripts">
-                    {/* <div className="scripts__noscripts">
-                        Looks like you don't have scripts yet.
-                    </div> */}
                     <div className={"scripts__button" + (this.state.createNew ? " scripts__button-hide" : "")} onClick={this.onCreateNewScriptClick}>NEW PROJECT</div>
                     <div className={"scripts__script scripts__script-new" + (this.state.createNew ? "" : " scripts__script-new-hide")}>
                         <input className="scripts__script__input scripts__script__input-new" onChange={this.onNewProjectNameChange} type="text" placeholder="Project" />
-                        {/* <span className="scripts__script__name scripts__script__name-new">.py</span> */}
                         <div onClick={this.createGist} className="scripts__script__action scripts__script__action-new scripts__script__action-new-blue">CREATE</div>
                         <div onClick={this.onCreateNewScriptClick} className="scripts__script__action scripts__script__action-new">CANCEL</div>
                     </div>
