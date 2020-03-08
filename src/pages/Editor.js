@@ -94,7 +94,7 @@ export default class Editor extends Component {
                     ...this.state.localSave.files,
                     [this.state.activeFile]: {
                         ...this.state.localSave.files[this.state.activeFile],
-                        content: newValue
+                        content: (newValue === "" ? "# " + this.state.activeFile + "\n" : newValue)
                     }
                 }
             } 
@@ -135,6 +135,8 @@ export default class Editor extends Component {
                         files: result.files
                     }
                 });
+
+                this.changeFile(this.state.activeFile)
             },
             (error) => {
                 this.setState({ });

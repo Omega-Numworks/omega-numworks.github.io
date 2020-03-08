@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './sass/omega.library.sass'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Toolbar from './components/Toolbar';
@@ -14,7 +14,7 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <Router>
-      <div className="body">
+      <div className="body" style={window.location.pathname.includes("/editor") ? { overflow: "hidden", height: "100vh" } : {}}>
           {!window.location.pathname.includes("/editor") && <Toolbar />}
 
           <Switch>
