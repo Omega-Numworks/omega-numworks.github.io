@@ -40,7 +40,7 @@ export default class Calculator extends Component {
     
     render() {
         return (
-            <div className="calculator">
+            <div className={"calculator" + (this.state.keyboard ? "" : " calculator__nokeyboard")}>
                 <img className={"calculator__background" + (this.state.keyboard ? "" : " calculator__background__disabled")} src={ImgSimulatorBackground} alt="Red Ultra Swagg NumWorks Calculator"></img>
                 <canvas className={"calculator__screen" + (this.state.keyboard ? "" : " calculator__screen__nokeyboard")} oncontextmenu="event.preventDefault()"></canvas>
                 <div className={"calculator__keyboard" + (this.state.keyboard ? "" : " calculator__keyboard__disabled")}>

@@ -84,10 +84,3 @@ export default class PythonSimulator {
     }
 };
 
-PythonSimulator.Script = class {
-    constructor(name, code) {
-        this.name = name;
-        this.code = code;
-    }
-};
-
