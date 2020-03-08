@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './sass/omega.library.sass'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Toolbar from './components/Toolbar';
