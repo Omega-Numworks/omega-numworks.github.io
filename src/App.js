@@ -13,7 +13,7 @@ import Editor from './pages/Editor';
 function App() {
   return (
     <Router>
-      <div className="body">
+      <div className="body" style={window.location.pathname.includes("/editor") ? { overflow: "hidden", height: "100vh" } : {}}>
           {!window.location.pathname.includes("/editor") && <Toolbar />}
 
           <Switch>
