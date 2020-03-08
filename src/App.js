@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Toolbar from './components/Toolbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import Simulator from './pages/Simulator';
 import Releases from './pages/Releases';
 import Policy from './pages/Policy';
 import Install from './pages/Install';
@@ -18,6 +19,7 @@ function App() {
           {!window.location.pathname.includes("/editor") && <Toolbar />}
 
           <Switch>
+            <Route path="/simulator" component={Simulator} exact />
             <Route path="/releases" component={Releases} exact />
             <Route path="/install" component={Install} exact />
             <Route path="/install/:version" component={Install} />
