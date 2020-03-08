@@ -7,12 +7,18 @@ export default class PythonSimulator {
         this.script = null;
     }
     
-    run(scripts_list = null, python_only = false) {
+    run(calculator_element, keyboard = false, scripts_list = null, python_only = false) {
+        var screen_element = calculator_element.querySelector("canvas");
+        
+        if (screen_element === null) {
+            throw new Error("No canvas in calculator element!");
+        }
+        
         this.module = {
             // arguments: ["--language", window.navigator.language.split('-')[0], "--code-script", name + ":" + code, "--code-lock-on-console"],
             arguments: ["--language", window.navigator.language.split('-')[0]],
-            canvas: document.getElementById('screen'),
-            keyboardListeningElement: document.getElementById('screen')
+            canvas: screen_element,
+            keyboardListeningElement: screen_element
         };
         
         if (scripts_list !== null) {
@@ -29,6 +35,19 @@ export default class PythonSimulator {
             this.module.arguments.push("--code-lock-on-console");
         
         Epsilon(this.module);
+        
+        if (keyboard) {
+            var spans = calculator_element.querySelectorAll(".calculator__keyboard__nav__key,.calculator__keyboard__functions__key,.calculator__keyboard__digits__key");
+            for (var i=0; i< spans.length; i++) {
+                var span = spans[i];
+                span.addEventListener("mousedown", function(e) {
+                    this.module._IonSimulatorKeyboardKeyDown(e.target.getAttribute("data-key"));
+                }.bind(this));
+                span.addEventListener("mouseup", function(e) {
+                    this.module._IonSimulatorKeyboardKeyUp(e.target.getAttribute("data-key"));
+                }.bind(this));
+            }
+        }
     }
     
     stop() {
@@ -51,6 +70,10 @@ export default class PythonSimulator {
         };
         
         document.body.appendChild(this.script);
+    }
+    
+    screenshot() {
+        
     }
     
     unload() {
