@@ -9,6 +9,7 @@ import Policy from './pages/Policy';
 import Install from './pages/Install';
 import Projects from './pages/Projects';
 import Editor from './pages/Editor';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/projects" component={Projects} exact />
             <Route path="/editor/:id" component={Editor} exact />
             <Route path="/" component={Home} exact />
+            <Route component={NotFound} />
           </Switch>
 
           {!window.location.pathname.includes("/editor") && <Footer />}
