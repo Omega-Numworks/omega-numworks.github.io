@@ -44,7 +44,7 @@ export default class Releases extends Component {
                                         </div> */}
 
                                         <a className="releases__cards__card__actions__subbutton" href={"https://github.com/Omega-Numworks/Omega/releases/tag/" + element.name} target="_blank" rel="noopener noreferrer">
-                                            <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">launch</i>
+                                            <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">code</i>
                                             <div className="releases__cards__card__actions__subbutton__text">GITHUB</div>
                                         </a>
                                         <Link className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (element.available && (element.compatibility.N0110 || element.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton-disabled")} to={"/install/" + element.name}>

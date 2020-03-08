@@ -29,6 +29,20 @@
             margin-left: 24px
             margin-right: 16px
         
+        &__status
+            float: right
+            width: 0
+            color: #8d8d8d
+            display: inline-block
+            line-height: 48px
+            height: 48px
+            font-size: 13px
+            overflow: hidden
+            transition: 0.2s all
+            position: relative
+            &-active
+                width: 200px
+
         &__item
             user-select: none
             display: inline-block
@@ -47,15 +61,22 @@
             height: 32px
             overflow: hidden
 
+            &-right
+                float: right
+                margin-right: 16px
+
             &-green
                 color: #2fa757
+                margin-right: 0
 
                 &:hover
                     color: #13662f
             
-            &-right
-                float: right
-                margin-right: 16px
+            &-yellow
+                color: #a79f2f
+
+                &:hover
+                    color: #665e13
 
             &:hover
                 background-color: rgb(30, 30, 30)
@@ -100,6 +121,8 @@
                     width: 4px
                     border-radius: 50%
                     background-color: #fff
+                    &-yellow
+                        background-color: #a79f2f
                 &-show
                     opacity: 1
                     margin: 0

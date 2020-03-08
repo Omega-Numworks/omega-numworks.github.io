@@ -13,10 +13,12 @@ export default class Editor extends Component {
                 files: {}
             },
             isSaving: false,
+            isUploading: false,
             contextMenuPosition: {
                 x: 0,
                 y: 0
-            }
+            },
+            statusMessage: 'Loading...'
         }
 
         const requestOptions = {
@@ -62,6 +64,7 @@ export default class Editor extends Component {
         )
 
         this.save = this.save.bind(this);
+        this.upload = this.upload.bind(this);
         this.changeFile = this.changeFile.bind(this);
         this.onChange = this.onChange.bind(this);
         this.editorDidMount = this.editorDidMount.bind(this);
@@ -100,6 +103,10 @@ export default class Editor extends Component {
     
     newScriptButtonClick() {
         this.setState({ newScript: !this.state.newScript })
+    }
+
+    upload() {
+        this.setState({ isUploading: true })
     }
 
     save() {
@@ -244,9 +251,19 @@ export default class Editor extends Component {
                             <div className="editor__toolbar__item__loading__circle"></div>
                         </div>
                     </div>
+                    <div className={"editor__toolbar__status" + (this.state.isUploading ? " editor__toolbar__status-active" : "")}>
+                        <div className="editor__toolbar__status__text">{this.state.statusMessage}</div>
+                    </div>
+                    <div className="editor__toolbar__item editor__toolbar__item-yellow editor__toolbar__item-right" onClick={this.upload}>
+                        <i class={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
+                        <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
+                        <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
+                            <div className="editor__toolbar__item__loading__circle editor__toolbar__item__loading__circle-yellow"></div>
+                        </div>
+                    </div>
                     <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item-right">
                         <i class="material-icons-round editor__toolbar__item__icon">play_arrow</i>
-                        <div className="editor__toolbar__item__text">RUN</div>
+                        <div className="editor__toolbar__item__text">SIMULATOR</div>
                     </div>
                 </div>
                 <div className="editor__sidebar">

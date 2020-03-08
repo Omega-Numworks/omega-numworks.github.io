@@ -118,7 +118,7 @@ export default class Home extends Component {
                     <div className="download__version">Omega {this.getReleaseVersion(releases.firmwares[0].name)}</div>
                     <div className="releases__cards__card__actions">
                         <a className="releases__cards__card__actions__subbutton" href={"https://github.com/Omega-Numworks/Omega/releases/tag/" + releases.firmwares[0].name}>
-                            <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">launch</i>
+                            <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">code</i>
                             <div className="releases__cards__card__actions__subbutton__text">GITHUB</div>
                         </a>
                         <Link className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (releases.firmwares[0].available && (releases.firmwares[0].compatibility.N0110 || releases.firmwares[0].compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton-disabled")} to={"/install/" + releases.firmwares[0].name}>
