@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import GitHub from '../img/github.png'
 import firebase from "../firebase"
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 export default class Scripts extends Component {
     constructor(props) {
@@ -114,7 +114,7 @@ export default class Scripts extends Component {
                     <div className="scripts__script">
                         <span className="scripts__script__name">{gist.description}</span>
                         <img className="scripts__script__github" alt="GitHub" src={GitHub} />
-                        <Link className="scripts__script__action" to={'/editor/' + gist.id}>OPEN</Link>
+                        <a className="scripts__script__action" href={'/editor/' + gist.id}>OPEN</a>
                     </div>
                 );
             })
