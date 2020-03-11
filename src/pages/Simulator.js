@@ -15,10 +15,8 @@ export default class Simulator extends Component {
 
     render() {
         return (
-            <div className="content">
-                <div className="simulator">
-                    <Calculator></Calculator>
-                </div>
+            <div className="content" style={{ textAlign: "center" }}>
+                <Calculator></Calculator>
             </div>
         )
     }
