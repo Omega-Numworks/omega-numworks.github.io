@@ -17,7 +17,6 @@ function App() {
     <Router>
       <div className="body" style={window.location.pathname.includes("/editor") ? { overflow: "hidden", height: "100vh" } : {}}>
           {!window.location.pathname.includes("/editor") && <Toolbar />}
-
           <Switch>
             <Route path="/simulator" component={Simulator} exact />
             <Route path="/releases" component={Releases} exact />
@@ -29,7 +28,6 @@ function App() {
             <Route path="/" component={Home} exact />
             <Route component={NotFound} />
           </Switch>
-
           {!window.location.pathname.includes("/editor") && <Footer />}
         </div>
       </Router>

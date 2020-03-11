@@ -55,13 +55,13 @@ export default class Editor extends Component {
                 this.setState({
                     activeFile: Object.entries(result.files)[0][0],
                     code: result.files[Object.entries(result.files)[0][0]].content
-                })
+                });
             },
             (error) => {
                 this.setState({ });
                 console.error(error)
             }
-        )
+        );
 
         this.save = this.save.bind(this);
         this.upload = this.upload.bind(this);
@@ -97,20 +97,20 @@ export default class Editor extends Component {
                         content: (newValue === "" ? "# " + this.state.activeFile + "\n" : newValue)
                     }
                 }
-            } 
+            }
         });
     }
     
     newScriptButtonClick() {
-        this.setState({ newScript: !this.state.newScript })
+        this.setState({ newScript: !this.state.newScript });
     }
 
     upload() {
-        this.setState({ isUploading: true })
+        this.setState({ isUploading: true });
     }
 
     save() {
-        this.setState({ isSaving: true })
+        this.setState({ isSaving: true });
 
         const requestOptions = {
             method: 'PATCH',
@@ -121,7 +121,7 @@ export default class Editor extends Component {
             body: JSON.stringify(this.state.localSave)
         };
 
-        console.log(this.state)
+        console.log(this.state);
 
         fetch("https://api.github.com/gists/" + this.props.match.params.id, requestOptions)
             .then(res => res.json())
@@ -142,14 +142,14 @@ export default class Editor extends Component {
                 this.setState({ });
                 console.error(error)
             }
-        )
+        );
     }
 
     changeFile(filename) {
         this.setState({
             activeFile: filename,
             code: this.state.localSave.files[filename].content
-        })
+        });
     }
     
     handleChange(event) {
@@ -173,9 +173,9 @@ export default class Editor extends Component {
                     }
                 }
             }
-        })
+        });
 
-        console.log(this.state)
+        console.log(this.state);
     }
 
     onRightClickFile(e, key) {
@@ -187,7 +187,7 @@ export default class Editor extends Component {
                 y: e.pageY
             },
             contextMenuScriptName: key
-        })
+        });
     }
 
     delete() {
@@ -200,12 +200,12 @@ export default class Editor extends Component {
                     [this.state.contextMenuScriptName]: null
                 }
             } 
-        })
-        console.log(this.state)
+        });
+        console.log(this.state);
     }
 
     onClickOverlay(e) {
-        this.setState({ showContextMenu: false })
+        this.setState({ showContextMenu: false });
     }
 
     render() {
@@ -218,7 +218,7 @@ export default class Editor extends Component {
 
         
         if (this.state.localSave && this.state.localSave.files) {
-            console.log(this.state.localSave)
+            console.log(this.state.localSave);
             files = Object.entries(this.state.localSave.files).map(([key, value]) => {
                 if (value !== null) {
                     return <div onContextMenu={(e) => this.onRightClickFile(e, key)} onClick={() => this.changeFile(key)} className={"editor__sidebar__file" + (this.state.activeFile === key ? " editor__sidebar__file-active" : "")}>
@@ -227,7 +227,7 @@ export default class Editor extends Component {
                         <div className={"editor__sidebar__file__circle" + (this.state.saveState[key] ? " editor__sidebar__file__circle-active" : "")}></div>
                     </div>;
                 }
-            })
+            });
         }
 
         return (

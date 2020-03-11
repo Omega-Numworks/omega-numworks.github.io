@@ -27,9 +27,7 @@ export default class Releases extends Component {
     render() {
         return (
             <div className="content">
-        
                 <div style={ { height: "16px" } }></div>
-
                 {
                     releases.firmwares.map(element => {
                         return (
@@ -80,7 +78,6 @@ export default class Releases extends Component {
                         }
                     )
                 }
-
                 <div style={ { height: "16px" } }></div>
             </div>
         )

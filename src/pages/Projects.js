@@ -31,7 +31,7 @@ export default class Scripts extends Component {
                         this.setState({
                             githubUser: result
                         });
-                        console.log(result)
+                        console.log(result);
 
                         fetch("https://api.github.com/users/" + result.login + "/gists")
                             .then(res => res.json())
@@ -40,17 +40,17 @@ export default class Scripts extends Component {
                                 this.setState({
                                     gists: result
                                 });
-                                console.log(result)
+                                console.log(result);
                             },
                             (error) => {
                                 this.setState({ });
-                                console.log(error)
+                                console.log(error);
                             }
                         )
                     },
                     (error) => {
                         this.setState({ });
-                        console.log(error)
+                        console.log(error);
                     }
                 )
 
@@ -58,7 +58,7 @@ export default class Scripts extends Component {
             }
         });
         
-        console.log("auth:" + localStorage.getItem('accessToken'))
+        console.log("auth:" + localStorage.getItem('accessToken'));
 
         this.onCreateNewScriptClick = this.onCreateNewScriptClick.bind(this);
         this.createGist = this.createGist.bind(this);
@@ -66,7 +66,7 @@ export default class Scripts extends Component {
     }
 
     onCreateNewScriptClick() {
-        this.setState({ createNew: !this.state.createNew })
+        this.setState({ createNew: !this.state.createNew });
     }
 
     async createGist() {
@@ -116,7 +116,7 @@ export default class Scripts extends Component {
                         <a className="scripts__script__action" href={'/editor/' + gist.id}>OPEN</a>
                     </div>
                 );
-            })
+            });
         }
 
         return (
@@ -131,6 +131,6 @@ export default class Scripts extends Component {
                     {gists}
                 </div>
             </div>
-        )
+        );
     }
 }
