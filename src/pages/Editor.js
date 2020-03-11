@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MonacoEditor from 'react-monaco-editor';
+import ReactResizeDetector from 'react-resize-detector';
 
 export default class Editor extends Component {
     constructor(props) {
@@ -283,16 +284,18 @@ export default class Editor extends Component {
                     </div>
                 </div>
                 <div className="editor__monaco">
-                    <MonacoEditor
-                        ref="monaco"
-                        width="100%"
-                        height="100%"
-                        language="python"
-                        theme="vs-dark"
-                        value={code}
-                        options={options}
-                        onChange={(nv, e) => this.onChange(nv, e)}
-                        editorDidMount={this.editorDidMount} />
+                    <ReactResizeDetector handleWidth handleHeight>
+                        <MonacoEditor
+                            ref="monaco"
+                            width="100%"
+                            height="100%"
+                            language="python"
+                            theme="vs-dark"
+                            value={code}
+                            options={options}
+                            onChange={(nv, e) => this.onChange(nv, e)}
+                            editorDidMount={this.editorDidMount} />
+                    </ReactResizeDetector>
                 </div>
                 <div className="editor__powered">Powered by Omega.</div>
             </div>
