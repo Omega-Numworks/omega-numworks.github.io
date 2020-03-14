@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GitHub from '../img/github.png'
 import firebase from "../firebase"
+import { Redirect } from 'react-router-dom'
 
 export default class Scripts extends Component {
     constructor(props) {
@@ -9,7 +10,9 @@ export default class Scripts extends Component {
         this.state = {
             createNew: false,
             newProjectName: '',
-            gists: ''
+            gists: '',
+            redirect: '',
+            isCreatingProject: false,
         }
 
         firebase.auth().onAuthStateChanged(user => {
@@ -70,25 +73,37 @@ export default class Scripts extends Component {
     }
 
     async createGist() {
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                "Authorization": "token " + localStorage.getItem('accessToken'),
-            },
-            credentials: "same-origin",
-            body: JSON.stringify({
-                "description": this.state.newProjectName,
-                "public": true,
-                "files": {
-                  "main.py": {
-                    "content": "from math import *\n"
-                  }
-                }
+        let projectName = this.state.newProjectName.trim()
+
+        if (!this.state.isCreatingProject && projectName !== "") {
+            this.setState({
+                isCreatingProject: true
             })
-        };
-        const response = await fetch('https://api.github.com/gists', requestOptions);
-        const data = await response.json();
-        this.setState({ postId: data.id });
+    
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    "Authorization": "token " + localStorage.getItem('accessToken'),
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({
+                    "description": projectName,
+                    "public": true,
+                    "files": {
+                      "main.py": {
+                        "content": "from math import *\n"
+                      }
+                    }
+                })
+            };
+            const response = await fetch('https://api.github.com/gists', requestOptions);
+            const data = await response.json();
+            console.log(data)
+            this.setState({
+                postId: data.id,
+                redirect: <Redirect to={'/editor/' + data.id} />
+            });
+        }
     }
 
     onNewProjectNameChange(event) {
@@ -112,7 +127,7 @@ export default class Scripts extends Component {
                 return (
                     <div className="scripts__script">
                         <span className="scripts__script__name">{gist.description}</span>
-                        <img className="scripts__script__github" alt="GitHub" src={GitHub} />
+                        <a href={gist.html_url} target="_blank" rel="noopener noreferrer"><img className="scripts__script__github" alt="GitHub" src={GitHub} /></a>
                         <a className="scripts__script__action" href={'/editor/' + gist.id}>OPEN</a>
                     </div>
                 );
@@ -121,11 +136,12 @@ export default class Scripts extends Component {
 
         return (
             <div className="content">
+                {this.state.redirect}
                 <div className="scripts">
                     <div className={"scripts__button" + (this.state.createNew ? " scripts__button-hide" : "")} onClick={this.onCreateNewScriptClick}>NEW PROJECT</div>
                     <div className={"scripts__script scripts__script-new" + (this.state.createNew ? "" : " scripts__script-new-hide")}>
                         <input className="scripts__script__input scripts__script__input-new" onChange={this.onNewProjectNameChange} type="text" placeholder="Project" />
-                        <div onClick={this.createGist} className="scripts__script__action scripts__script__action-new scripts__script__action-new-blue">CREATE</div>
+                        <div onClick={this.createGist} className={"scripts__script__action scripts__script__action-new scripts__script__action-new-blue" + (this.state.newProjectName.trim() === "" ? " scripts__script__action-new-disabled" : "") + (this.state.isCreatingProject ? " scripts__script__action-new-loading" : "")}>CREATE</div>
                         <div onClick={this.onCreateNewScriptClick} className="scripts__script__action scripts__script__action-new">CANCEL</div>
                     </div>
                     {gists}

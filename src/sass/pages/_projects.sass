@@ -103,6 +103,18 @@
                     color: #ffffff
                     &:hover
                         background-color: #1b6194
+                &-disabled
+                    cursor: not-allowed
+                    background-color: rgba(0, 0, 0, 0.07)
+                    color: #9b9b9b
+                    &:hover
+                        background-color: rgba(0, 0, 0, 0.07)
+                &-loading
+                    cursor: progress
+                    background-color: rgba(0, 0, 0, 0.07)
+                    color: #9b9b9b
+                    &:hover
+                        background-color: rgba(0, 0, 0, 0.07)
 
         &__github
             width: 16px
@@ -112,9 +124,8 @@
             vertical-align: middle
             margin-left: 4px
             transition: 0.2s all
-
-        &:hover &__github
-            opacity: 0.8
+            &:hover
+                opacity: 0.8
     
         &:hover &__action
             opacity: 1
