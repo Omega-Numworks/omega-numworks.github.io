@@ -66,6 +66,7 @@ export default class Scripts extends Component {
         this.onCreateNewScriptClick = this.onCreateNewScriptClick.bind(this);
         this.createGist = this.createGist.bind(this);
         this.onNewProjectNameChange = this.onNewProjectNameChange.bind(this);
+        this.deleteGist = this.deleteGist.bind(this);
     }
 
     onCreateNewScriptClick() {
@@ -101,9 +102,20 @@ export default class Scripts extends Component {
             console.log(data)
             this.setState({
                 postId: data.id,
-                redirect: <Redirect to={'/editor/' + data.id} />
+                redirect: window.location.assign('/editor/' + data.id)
             });
         }
+    }
+
+    async deleteGist(id) {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: {
+                "Authorization": "token " + localStorage.getItem('accessToken'),
+            },
+            credentials: "same-origin"
+        };
+        await fetch('https://api.github.com/gists/' + id, requestOptions);
     }
 
     onNewProjectNameChange(event) {
@@ -122,11 +134,11 @@ export default class Scripts extends Component {
                 Looks like you don't have projects yet.
             </div>);
         } else {
-            //gists = []
             gists = this.state.gists.map(gist => {
                 return (
                     <div className="scripts__script">
                         <span className="scripts__script__name">{gist.description}</span>
+                        <i onClick={() => this.deleteGist(gist.id)} className="material-icons-round scripts__script__delete">delete</i>
                         <a href={gist.html_url} target="_blank" rel="noopener noreferrer"><img className="scripts__script__github" alt="GitHub" src={GitHub} /></a>
                         <a className="scripts__script__action" href={'/editor/' + gist.id}>OPEN</a>
                     </div>

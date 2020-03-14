@@ -123,12 +123,33 @@
             opacity: 0.4
             vertical-align: middle
             margin-left: 4px
+            margin-right: 12px
             transition: 0.2s all
             &:hover
-                opacity: 0.8
+                opacity: 1
+        
+        &__delete
+            float: right
+            width: 22px
+            height: 22px
+            font-size: 22px
+            opacity: 0.9
+            color: rgba(0, 0, 0, 0.4)
+            vertical-align: middle
+            display: inline-block
+            transition: 0.2s all
+            cursor: pointer
+            margin-top: -3.5px
+            margin-right: -48px
+            &:hover
+                color: #c53431
+                opacity: 1
     
         &:hover &__action
             opacity: 1
             margin-right: 12px
             padding: 8px 12px
+        
+        &:hover &__delete
+            margin-right: 0
             
