@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
 import PythonSimulator from '../simulator'
-import ImgSimulatorBackground from '../img/simulator-background.jpg'
+import ImgSimulatorBackground from '../img/simulator-background.png'
 
 export default class Calculator extends Component {
     constructor(props) {
@@ -10,23 +10,38 @@ export default class Calculator extends Component {
         this.state = {
             keyboard: this.props.keyboard === undefined ? true : this.props.keyboard,
             scripts: this.props.scripts === undefined ? null : this.props.scripts,
-            python: this.props.python === undefined ? false : this.props.scripts,
+            python: this.props.python === undefined ? false : this.props.python,
             simulator: null
         };
         
         this.componentDidMount = this.componentDidMount.bind(this);
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
+        
+        this.reloadScripts = this.reloadScripts.bind(this);
     }
     
     componentDidMount() {
         var simulator = new PythonSimulator();
-        simulator.load(function() {
+        simulator.load(this.state.python, function() {
             simulator.run(ReactDOM.findDOMNode(this), this.state.keyboard, this.state.scripts, this.state.python);
         }.bind(this));
         
         this.setState({
             simulator: simulator
         });
+    }
+    
+    reloadScripts(scripts = null) {
+        if (this.state.simulator.isLoaded) {
+            this.setState({
+                scripts: scripts === undefined ? null : scripts,
+            });
+            
+            this.componentWillUnmount();
+            this.componentDidMount();
+            
+            // this.state.simulator.run(ReactDOM.findDOMNode(this), this.state.keyboard, scripts, this.state.python);
+        }
     }
     
     componentWillUnmount() {
@@ -42,7 +57,7 @@ export default class Calculator extends Component {
         return (
             <div className={"calculator" + (this.state.keyboard ? "" : " calculator__nokeyboard")}>
                 <img className={"calculator__background" + (this.state.keyboard ? "" : " calculator__background__disabled")} src={ImgSimulatorBackground} alt="Red Ultra Swagg NumWorks Calculator"></img>
-                <canvas className={"calculator__screen" + (this.state.keyboard ? "" : " calculator__screen__nokeyboard")} oncontextmenu="event.preventDefault()"></canvas>
+                <canvas className={"calculator__screen" + (this.state.keyboard ? "" : " calculator__screen__nokeyboard")} onContextMenu={function(e){e.preventDefault()}}></canvas>
                 <div className={"calculator__keyboard" + (this.state.keyboard ? "" : " calculator__keyboard__disabled")}>
                     <div className="calculator__keyboard__nav">
                         <span className="calculator__keyboard__nav__key calculator__keyboard__nav__left" data-key="0"></span>

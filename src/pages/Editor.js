@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import NewWindow from 'react-new-window';
 import MonacoEditor from 'react-monaco-editor';
 import ReactResizeDetector from 'react-resize-detector';
+import Calculator from '../components/Calculator';
 
 export default class Editor extends Component {
     constructor(props) {
@@ -19,7 +21,9 @@ export default class Editor extends Component {
                 x: 0,
                 y: 0
             },
-            statusMessage: 'Loading...'
+            statusMessage: 'Loading...',
+            simuState: 'hidden',
+            simuWindow: null
         }
 
         const requestOptions = {
@@ -75,6 +79,9 @@ export default class Editor extends Component {
         this.onRightClickFile = this.onRightClickFile.bind(this);
         this.onClickOverlay = this.onClickOverlay.bind(this);
         this.delete = this.delete.bind(this);
+        
+        this.runSimu = this.runSimu.bind(this);
+        this.onSimuWindowClose = this.onSimuWindowClose.bind(this);
     }
 
     editorDidMount(editor, monaco) {
@@ -209,6 +216,31 @@ export default class Editor extends Component {
         this.setState({ showContextMenu: false });
     }
 
+    onSimuWindowClose() {
+        this.setState({
+            simuWindow: null
+        });
+    }
+
+    runSimu() {
+        var simu_scripts = [];
+        
+        if (this.state.localSave && this.state.localSave.files) {
+            Object.entries(this.state.localSave.files).map(([key, value]) => {
+                simu_scripts.push({name: value.filename, code: value.content});
+            });
+        }
+        
+        console.log(simu_scripts);
+        
+        this.setState({
+            simuWindow: 
+                <NewWindow onUnload={this.onSimuWindowClose} name="Omega Simulator" features={{width: 320, height: 240, toolbar: 0, menubar: 0}}>
+                    <Calculator python={true} scripts={simu_scripts} keyboard={false}/>
+                </NewWindow>
+        });
+    }
+
     render() {
         const code = this.state.code;
         const options = {
@@ -248,7 +280,7 @@ export default class Editor extends Component {
                     <div className="editor__toolbar__logo">Omega IDE</div>
                     <div className="editor__toolbar__text">{this.state.project ? this.state.project.description : "Loading..."}</div>
                     <div className="editor__toolbar__item" onClick={this.save}>
-                        <i class={"material-icons-round editor__toolbar__item__icon" + (this.state.isSaving ? " editor__toolbar__item__icon-hide" : "")}>save</i>
+                        <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isSaving ? " editor__toolbar__item__icon-hide" : "")}>save</i>
                         <div className={"editor__toolbar__item__text" + (this.state.isSaving ? " editor__toolbar__item__text-hide" : "")}>SAVE</div>
                         <div className={"editor__toolbar__item__loading" + (this.state.isSaving ? " editor__toolbar__item__loading-show" : "")}>
                             <div className="editor__toolbar__item__loading__circle"></div>
@@ -258,14 +290,14 @@ export default class Editor extends Component {
                         <div className="editor__toolbar__status__text">{this.state.statusMessage}</div>
                     </div>
                     <div className="editor__toolbar__item editor__toolbar__item-yellow editor__toolbar__item-right" onClick={this.upload}>
-                        <i class={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
+                        <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
                         <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
                         <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
                             <div className="editor__toolbar__item__loading__circle editor__toolbar__item__loading__circle-yellow"></div>
                         </div>
                     </div>
-                    <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item-right">
-                        <i class="material-icons-round editor__toolbar__item__icon">play_arrow</i>
+                    <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item-right" onClick={this.runSimu}>
+                        <i className="material-icons-round editor__toolbar__item__icon">play_arrow</i>
                         <div className="editor__toolbar__item__text">SIMULATOR</div>
                     </div>
                 </div>
@@ -298,6 +330,7 @@ export default class Editor extends Component {
                     </ReactResizeDetector>
                 </div>
                 <div className="editor__powered">Powered by Omega.</div>
+                {this.state.simuWindow}
             </div>
         );
     }

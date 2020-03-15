@@ -5,10 +5,12 @@ export default class PythonSimulator {
     constructor() {
         this.module = undefined;
         this.script = null;
+        this.isLoaded = false;
     }
     
     run(calculator_element, keyboard = false, scripts_list = null, python_only = false) {
         var screen_element = calculator_element.querySelector("canvas");
+        this.python_only = python_only;
         
         if (screen_element === null) {
             throw new Error("No canvas in calculator element!");
@@ -36,6 +38,8 @@ export default class PythonSimulator {
         
         Epsilon(this.module);
         
+        console.log(this.module);
+        
         if (keyboard) {
             var spans = calculator_element.querySelectorAll(".calculator__keyboard__nav__key,.calculator__keyboard__functions__key,.calculator__keyboard__digits__key");
             for (var i=0; i< spans.length; i++) {
@@ -55,7 +59,7 @@ export default class PythonSimulator {
         this.module = undefined;
     }
     
-    load(callback) {
+    load(python_only = false, callback) {
         if (this.script !== null) {
             this.unload();
         }
@@ -63,11 +67,16 @@ export default class PythonSimulator {
         this.script = document.createElement('script');
         
         this.script.src = "/epsilon.js";
+
+        if (python_only)
+            this.script.src = "/epsilon-python.js";
+
         this.script.async = true;
         
         this.script.onload = function() {
+            this.isLoaded = true;
             callback();
-        };
+        }.bind(this);
         
         document.body.appendChild(this.script);
     }
@@ -80,6 +89,7 @@ export default class PythonSimulator {
         if (this.script !== null) {
             this.script.parentNode.removeChild(this.script);
             this.script = null;
+            this.isLoaded = false;
         }
     }
 };
