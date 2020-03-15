@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './sass/omega.library.sass'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 import Toolbar from './components/Toolbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -12,12 +12,12 @@ import Projects from './pages/Projects';
 import Editor from './pages/Editor';
 import NotFound from './pages/NotFound';
 
-function App() {
-  return (
-    <Router>
-      <div className="body" style={window.location.pathname.includes("/editor") ? { overflow: "hidden", height: "100vh" } : {}}>
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="body" style={window.location.pathname.includes("/editor") ? { overflow: "hidden", height: "100vh" } : {}}>
           {!window.location.pathname.includes("/editor") && <Toolbar />}
-
           <Switch>
             <Route path="/simulator" component={Simulator} exact />
             <Route path="/releases" component={Releases} exact />
@@ -29,11 +29,11 @@ function App() {
             <Route path="/" component={Home} exact />
             <Route component={NotFound} />
           </Switch>
-
           {!window.location.pathname.includes("/editor") && <Footer />}
         </div>
       </Router>
     );
+  }
 }
 
 export default App;

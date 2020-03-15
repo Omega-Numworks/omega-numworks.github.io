@@ -30,7 +30,7 @@ export default class Toolbar extends Component {
         firebase.auth().signInWithPopup(provider).then((result) => {
             var token = result.credential.accessToken;
             this.setState({ user: result.user });
-            console.log(this.state.user)
+            console.log(this.state.user);
             localStorage.setItem('accessToken', token);
         }).catch(function(error) {
             var errorCode = error.code;
@@ -42,7 +42,7 @@ export default class Toolbar extends Component {
     }
 
     onProfileClick() {
-        this.setState({ isProfileActive: !this.state.isProfileActive })
+        this.setState({ isProfileActive: !this.state.isProfileActive });
     }
 
     logout() {
@@ -76,6 +76,6 @@ export default class Toolbar extends Component {
                     </div>
                 </div>
             </header>
-        )
+        );
     }
 }
