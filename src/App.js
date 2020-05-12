@@ -10,6 +10,7 @@ import Policy from './pages/Policy';
 import Install from './pages/Install';
 import Projects from './pages/Projects';
 import Editor from './pages/Editor';
+import EditorRun from './pages/EditorRun';
 import NotFound from './pages/NotFound';
 
 class App extends Component {
@@ -25,6 +26,8 @@ class App extends Component {
             <Route path="/install/:version" component={Install} />
             <Route path="/policy" component={Policy} exact />
             <Route path="/projects" component={Projects} exact />
+            <Route path="/editor/run/:id" component={EditorRun} exact />
+            <Route path="/editor/run" component={EditorRun} exact />
             <Route path="/editor/:id" component={Editor} exact />
             <Route path="/" component={Home} exact />
             <Route component={NotFound} />
