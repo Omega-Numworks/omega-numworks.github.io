@@ -3,6 +3,7 @@ import NewWindow from 'react-new-window';
 import MonacoEditor from 'react-monaco-editor';
 import ReactResizeDetector from 'react-resize-detector';
 import Calculator from '../components/Calculator';
+import Numworks from "numworks.js";
 
 export default class Editor extends Component {
     constructor(props) {
@@ -23,7 +24,8 @@ export default class Editor extends Component {
             },
             statusMessage: 'Loading...',
             simuState: 'hidden',
-            simuWindow: null
+            simuWindow: null,
+            numworksInstance: new Numworks()
         }
 
         const requestOptions = {
@@ -115,6 +117,51 @@ export default class Editor extends Component {
 
     upload() {
         this.setState({ isUploading: true });
+        if (this.state.numworksInstance.device == null) {
+            var _this = this;
+            this.state.numworksInstance.detect(function() {
+                _this.send_scripts();
+            }, function(error) {
+                console.error(error);
+            });
+        } else {
+            this.send_scripts();
+        }
+
+    }
+    
+    send_scripts() {
+        var _this = this;
+        this.state.numworksInstance.backupStorage().then(function(storage) {
+            
+            var localSave = _this.state.localSave.files;
+            for (var i in localSave) {
+                var code = localSave[i].content;
+                var period = localSave[i].filename.lastIndexOf('.');
+                var fileName = localSave[i].filename.substring(0, period);
+                var fileExtension = localSave[i].filename.substring(period + 1);
+                
+                for(var i in storage.records) {
+                    var currentRecord = storage.records[i];
+                    if (currentRecord.name == fileName && currentRecord.type == fileExtension) {
+                        storage.records.splice(i, 1);
+                    }
+                }
+                
+                var newRecord = {
+                    name: fileName,
+                    type: fileExtension,
+                    autoImport: true,
+                    code: code
+                };
+                storage.records.push(newRecord);
+            }
+            _this.state.numworksInstance.installStorage(storage, function() {
+                _this.setState({
+                    isUploading: false
+                });
+            });
+        });
     }
 
     save() {
