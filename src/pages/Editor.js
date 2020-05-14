@@ -25,7 +25,13 @@ export default class Editor extends Component {
             statusMessage: 'Loading...',
             simuState: 'hidden',
             simuWindow: null,
-            numworksInstance: new Numworks()
+            numworksInstance: null
+        }
+        
+        if (typeof navigator.usb !== 'undefined') {
+            this.state.numworksInstance = new Numworks();
+            navigator.usb.addEventListener("disconnect", this.onUnexpectedDisconnect.bind(this));
+            this.state.numworksInstance.autoConnect(function(){});
         }
 
         const requestOptions = {
@@ -71,6 +77,7 @@ export default class Editor extends Component {
         );
 
         this.save = this.save.bind(this);
+        this.onUnexpectedDisconnect = this.onUnexpectedDisconnect.bind(this);
         this.upload = this.upload.bind(this);
         this.changeFile = this.changeFile.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -84,6 +91,12 @@ export default class Editor extends Component {
         
         this.runSimu = this.runSimu.bind(this);
         this.onSimuWindowClose = this.onSimuWindowClose.bind(this);
+    }
+    
+    onUnexpectedDisconnect(e) {
+        if (this.state.numworksInstance !== null) {
+            this.state.numworksInstance.onUnexpectedDisconnect(e, function(){});
+        }
     }
 
     editorDidMount(editor, monaco) {
@@ -116,6 +129,10 @@ export default class Editor extends Component {
     }
 
     upload() {
+        if (this.state.numworksInstance === null) {
+            return;
+        }
+        
         this.setState({ isUploading: true });
         if (this.state.numworksInstance.device == null) {
             var _this = this;
@@ -310,6 +327,16 @@ export default class Editor extends Component {
             });
         }
 
+        var uploadButton = (
+            <div className="editor__toolbar__item editor__toolbar__item-yellow editor__toolbar__item-right" onClick={this.upload}>
+                <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
+                <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
+                <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
+                    <div className="editor__toolbar__item__loading__circle editor__toolbar__item__loading__circle-yellow"></div>
+                </div>
+            </div>
+        );
+
         return (
             <div className="content">
                 <div className={"editor__overlay" + (this.state.showContextMenu ? " editor__overlay-show" : "")} onClick={this.onClickOverlay}></div>
@@ -336,13 +363,7 @@ export default class Editor extends Component {
                     <div className={"editor__toolbar__status" + (this.state.isUploading ? " editor__toolbar__status-active" : "")}>
                         <div className="editor__toolbar__status__text">{this.state.statusMessage}</div>
                     </div>
-                    <div className="editor__toolbar__item editor__toolbar__item-yellow editor__toolbar__item-right" onClick={this.upload}>
-                        <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
-                        <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
-                        <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
-                            <div className="editor__toolbar__item__loading__circle editor__toolbar__item__loading__circle-yellow"></div>
-                        </div>
-                    </div>
+                    {(this.state.numworksInstance !== null ? uploadButton : "")}
                     <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item-right" onClick={this.runSimu}>
                         <i className="material-icons-round editor__toolbar__item__icon">play_arrow</i>
                         <div className="editor__toolbar__item__text">SIMULATOR</div>
