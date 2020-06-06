@@ -314,8 +314,16 @@ export default class Editor extends Component {
             });
         }
 
-        var uploadButton = (
+        var uploadButton = this.state.numworksInstance !== null ? (
             <div className="editor__toolbar__item editor__toolbar__item-yellow editor__toolbar__item-right" onClick={this.upload}>
+                <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
+                <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
+                <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
+                    <div className="editor__toolbar__item__loading__circle editor__toolbar__item__loading__circle-yellow"></div>
+                </div>
+            </div>
+        ) : (
+            <div className="editor__toolbar__item editor__toolbar__item-yellow-disabled editor__toolbar__item-disabled editor__toolbar__item-right" title="Your browser deosn't support WebUSB. Please use Chromium">
                 <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
                 <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
                 <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
@@ -350,7 +358,7 @@ export default class Editor extends Component {
                     <div className={"editor__toolbar__status" + (this.state.isUploading ? " editor__toolbar__status-active" : "")}>
                         <div className="editor__toolbar__status__text">{this.state.statusMessage}</div>
                     </div>
-                    {(this.state.numworksInstance !== null ? uploadButton : "")}
+                    {uploadButton}
                     <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item-right" onClick={this.runSimu}>
                         <i className="material-icons-round editor__toolbar__item__icon">play_arrow</i>
                         <div className="editor__toolbar__item__text">SIMULATOR</div>
