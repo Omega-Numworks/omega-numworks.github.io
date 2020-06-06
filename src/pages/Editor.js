@@ -101,6 +101,14 @@ export default class Editor extends Component {
                 e.preventDefault();
                 this.newScriptButtonClick();
                 return false;
+            } else if (e.key === "F5") {
+                e.preventDefault();
+                this.runSimu();
+                return false;
+            } else if (e.key === "F6") {
+                e.preventDefault();
+                this.upload();
+                return false;
             }
         }.bind(this));
         
