@@ -103,6 +103,23 @@ export default class Editor extends Component {
                 return false;
             }
         }.bind(this));
+        
+        window.onbeforeunload = function() {
+            if (this.state.localSave && this.state.localSave.files) {
+                var unsaved = false;
+                Object.entries(this.state.localSave.files).map(([key, value]) => {
+                    if (value !== null) {
+                        if (this.state.saveState[key]) {
+                            unsaved = true;
+                        }
+                    }
+                });
+                
+                if (unsaved) {
+                    return "You have unsaved modifications!";
+                }
+            }
+        }.bind(this);
     }
     
     onUnexpectedDisconnect(e) {
