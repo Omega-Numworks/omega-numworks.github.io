@@ -90,11 +90,16 @@ export default class Editor extends Component {
         this.delete = this.delete.bind(this);
         
         this.runSimu = this.runSimu.bind(this);
+        this.handleKeyPressName = this.handleKeyPressName.bind(this);
         
         document.addEventListener("keydown", function(e) {
-            if(e.ctrlKey && e.which === 83){
-                this.save();
+            if(e.ctrlKey && e.key === "s"){
                 e.preventDefault();
+                this.save();
+                return false;
+            } else if (e.ctrlKey && e.key === "o") {
+                e.preventDefault();
+                this.newScriptButtonClick();
                 return false;
             }
         }.bind(this));
@@ -133,6 +138,7 @@ export default class Editor extends Component {
     
     newScriptButtonClick() {
         this.setState({ newScript: !this.state.newScript });
+        document.getElementById("script_name").focus();
     }
 
     upload() {
@@ -234,6 +240,12 @@ export default class Editor extends Component {
     handleChange(event) {
         this.setState({ newScriptName: event.target.value });
     }
+    
+    handleKeyPressName(event) {
+        if(event.key === 'Enter') {
+            this.createScript();
+        }
+    }
 
     createScript() {
         this.setState({
@@ -280,6 +292,7 @@ export default class Editor extends Component {
                 }
             } 
         });
+        this.setState({ showContextMenu: false });
         console.log(this.state);
     }
 
@@ -380,7 +393,7 @@ export default class Editor extends Component {
                     </div>
                     <div className={"editor__sidebar__add" + (this.state.newScript ? " editor__sidebar__add-active": "")}>
                         <span className="editor__sidebar__add__title">Name your new script</span>
-                        <input type="text" className="editor__sidebar__add__input" placeholder="script.py" value={this.state.newScriptName} onChange={this.handleChange}></input>
+                        <input type="text" id="script_name" className="editor__sidebar__add__input" placeholder="script.py" value={this.state.newScriptName} onChange={this.handleChange} onKeyPress={this.handleKeyPressName}></input>
                         <div className="editor__sidebar__add__button" onClick={this.createScript}>
                             <i className="editor__sidebar__add__button__icon material-icons-round">check</i>
                         </div>
