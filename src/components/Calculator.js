@@ -18,6 +18,10 @@ export default class Calculator extends Component {
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
         
         this.reloadScripts = this.reloadScripts.bind(this);
+        
+        document.addEventListener("reload-simu", function(e) {
+            this.reloadScripts(e.detail.scripts);
+        }.bind(this), false);
     }
     
     componentDidMount() {
@@ -55,9 +59,9 @@ export default class Calculator extends Component {
     
     render() {
         return (
-            <div className={"calculator" + (this.state.keyboard ? "" : " calculator__nokeyboard")}>
+            <div className={"calculator" + (this.state.keyboard ? "" : " calculator__nokeyboard")} onClick={(e) => e.target.focus()}>
                 <img className={"calculator__background" + (this.state.keyboard ? "" : " calculator__background__disabled")} src={ImgSimulatorBackground} alt="Red Ultra Swagg NumWorks Calculator"></img>
-                <canvas className={"calculator__screen" + (this.state.keyboard ? "" : " calculator__screen__nokeyboard")} onContextMenu={function(e){e.preventDefault()}}></canvas>
+                <canvas tabIndex="1" className={"calculator__screen" + (this.state.keyboard ? "" : " calculator__screen__nokeyboard")} onContextMenu={function(e){e.preventDefault()}}></canvas>
                 <div className={"calculator__keyboard" + (this.state.keyboard ? "" : " calculator__keyboard__disabled")}>
                     <div className="calculator__keyboard__nav">
                         <span className="calculator__keyboard__nav__key calculator__keyboard__nav__left" data-key="0"></span>
