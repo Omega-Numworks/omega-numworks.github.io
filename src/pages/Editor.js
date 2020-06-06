@@ -27,7 +27,7 @@ export default class Editor extends Component {
             simuWindow: null,
             numworksInstance: null
         }
-        
+
         if (typeof navigator.usb !== 'undefined') {
             this.state.numworksInstance = new Numworks();
             navigator.usb.addEventListener("disconnect", this.onUnexpectedDisconnect.bind(this));
@@ -90,6 +90,46 @@ export default class Editor extends Component {
         this.delete = this.delete.bind(this);
         
         this.runSimu = this.runSimu.bind(this);
+        this.expandSimu = this.expandSimu.bind(this);
+        this.retractSimu = this.retractSimu.bind(this);
+        this.handleKeyPressName = this.handleKeyPressName.bind(this);
+        
+        document.addEventListener("keydown", function(e) {
+            if(e.ctrlKey && e.key === "s"){
+                e.preventDefault();
+                this.save();
+                return false;
+            } else if (e.ctrlKey && e.key === "o") {
+                e.preventDefault();
+                this.newScriptButtonClick();
+                return false;
+            } else if (e.key === "F5") {
+                e.preventDefault();
+                this.runSimu();
+                return false;
+            } else if (e.key === "F6") {
+                e.preventDefault();
+                this.upload();
+                return false;
+            }
+        }.bind(this));
+        
+        window.onbeforeunload = function() {
+            if (this.state.localSave && this.state.localSave.files) {
+                var unsaved = false;
+                Object.entries(this.state.localSave.files).map(([key, value]) => {
+                    if (value !== null) {
+                        if (this.state.saveState[key]) {
+                            unsaved = true;
+                        }
+                    }
+                });
+                
+                if (unsaved) {
+                    return "You have unsaved modifications!";
+                }
+            }
+        }.bind(this);
     }
     
     onUnexpectedDisconnect(e) {
@@ -125,6 +165,7 @@ export default class Editor extends Component {
     
     newScriptButtonClick() {
         this.setState({ newScript: !this.state.newScript });
+        document.getElementById("script_name").focus();
     }
 
     upload() {
@@ -226,6 +267,12 @@ export default class Editor extends Component {
     handleChange(event) {
         this.setState({ newScriptName: event.target.value });
     }
+    
+    handleKeyPressName(event) {
+        if(event.key === 'Enter') {
+            this.createScript();
+        }
+    }
 
     createScript() {
         this.setState({
@@ -272,6 +319,7 @@ export default class Editor extends Component {
                 }
             } 
         });
+        this.setState({ showContextMenu: false });
         console.log(this.state);
     }
 
@@ -290,6 +338,36 @@ export default class Editor extends Component {
         
         var event = new CustomEvent("reload-simu", {'detail': {'scripts': simu_scripts}});
         document.getElementById("simu_frame").contentWindow.document.dispatchEvent(event);
+        
+        if (this.state.simuState == "hidden") {
+            this.setState({
+                "simuState": "screen"
+            });
+        }
+    }
+    
+    expandSimu() {
+        if (this.state.simuState == "hidden") {
+            this.setState({
+                "simuState": "screen"
+            });
+        } else if (this.state.simuState == "screen") {
+            this.setState({
+                "simuState": "full"
+            });
+        }
+    }
+    
+    retractSimu() {
+        if (this.state.simuState == "screen") {
+            this.setState({
+                "simuState": "hidden"
+            });
+        } else if (this.state.simuState == "full") {
+            this.setState({
+                "simuState": "screen"
+            });
+        }
     }
 
     render() {
@@ -314,8 +392,16 @@ export default class Editor extends Component {
             });
         }
 
-        var uploadButton = (
+        var uploadButton = this.state.numworksInstance !== null ? (
             <div className="editor__toolbar__item editor__toolbar__item-yellow editor__toolbar__item-right" onClick={this.upload}>
+                <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
+                <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
+                <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
+                    <div className="editor__toolbar__item__loading__circle editor__toolbar__item__loading__circle-yellow"></div>
+                </div>
+            </div>
+        ) : (
+            <div className="editor__toolbar__item editor__toolbar__item-yellow-disabled editor__toolbar__item-disabled editor__toolbar__item-right" title="Your browser deosn't support WebUSB. Please use Chromium">
                 <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
                 <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
                 <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
@@ -350,7 +436,7 @@ export default class Editor extends Component {
                     <div className={"editor__toolbar__status" + (this.state.isUploading ? " editor__toolbar__status-active" : "")}>
                         <div className="editor__toolbar__status__text">{this.state.statusMessage}</div>
                     </div>
-                    {(this.state.numworksInstance !== null ? uploadButton : "")}
+                    {uploadButton}
                     <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item-right" onClick={this.runSimu}>
                         <i className="material-icons-round editor__toolbar__item__icon">play_arrow</i>
                         <div className="editor__toolbar__item__text">SIMULATOR</div>
@@ -364,7 +450,7 @@ export default class Editor extends Component {
                     </div>
                     <div className={"editor__sidebar__add" + (this.state.newScript ? " editor__sidebar__add-active": "")}>
                         <span className="editor__sidebar__add__title">Name your new script</span>
-                        <input type="text" className="editor__sidebar__add__input" placeholder="script.py" value={this.state.newScriptName} onChange={this.handleChange}></input>
+                        <input type="text" id="script_name" className="editor__sidebar__add__input" placeholder="script.py" value={this.state.newScriptName} onChange={this.handleChange} onKeyPress={this.handleKeyPressName}></input>
                         <div className="editor__sidebar__add__button" onClick={this.createScript}>
                             <i className="editor__sidebar__add__button__icon material-icons-round">check</i>
                         </div>
@@ -384,8 +470,16 @@ export default class Editor extends Component {
                             editorDidMount={this.editorDidMount} />
                     </ReactResizeDetector>
                 </div>
+                <div class="editor__simulator__controls">
+                    <button type="button" class="editor__simulator__controls__button" onClick={this.expandSimu}>
+                        <i className="material-icons-round">keyboard_arrow_up</i>
+                    </button>
+                    <button type="button" class="editor__simulator__controls__button" onClick={this.retractSimu}>
+                        <i className="material-icons-round">keyboard_arrow_down</i>
+                    </button>
+                </div>
                 <div className="editor__powered">Powered by Omega.</div>
-                <div class="editor__simulator">
+                <div class={"editor__simulator editor__simulator-" + this.state.simuState }>
                     <iframe src="/editor/run" width="600" height="800" id="simu_frame"/>
                 </div>
             </div>
