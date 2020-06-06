@@ -90,6 +90,14 @@ export default class Editor extends Component {
         this.delete = this.delete.bind(this);
         
         this.runSimu = this.runSimu.bind(this);
+        
+        document.addEventListener("keydown", function(e) {
+            if(e.ctrlKey && e.which === 83){
+                this.save();
+                e.preventDefault();
+                return false;
+            }
+        }.bind(this));
     }
     
     onUnexpectedDisconnect(e) {
