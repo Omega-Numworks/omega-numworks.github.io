@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import NewWindow from 'react-new-window';
 import MonacoEditor from 'react-monaco-editor';
 import ReactResizeDetector from 'react-resize-detector';
-import Calculator from '../components/Calculator';
 import Numworks from "numworks.js";
 
 export default class Editor extends Component {
@@ -62,7 +60,8 @@ export default class Editor extends Component {
                                 }
                             }
                         }
-                    })
+                    });
+                    return null;
                 });
 
                 this.setState({
@@ -123,6 +122,7 @@ export default class Editor extends Component {
                             unsaved = true;
                         }
                     }
+                    return null;
                 });
                 
                 if (unsaved) {
@@ -198,9 +198,9 @@ export default class Editor extends Component {
                 var fileName = localSave[i].filename.substring(0, period);
                 var fileExtension = localSave[i].filename.substring(period + 1);
                 
-                for(var i in storage.records) {
-                    var currentRecord = storage.records[i];
-                    if (currentRecord.name == fileName && currentRecord.type == fileExtension) {
+                for(var j in storage.records) {
+                    var currentRecord = storage.records[j];
+                    if (currentRecord.name === fileName && currentRecord.type === fileExtension) {
                         storage.records.splice(i, 1);
                     }
                 }
@@ -333,13 +333,14 @@ export default class Editor extends Component {
         if (this.state.localSave && this.state.localSave.files) {
             Object.entries(this.state.localSave.files).map(([key, value]) => {
                 simu_scripts.push({name: value.filename, code: value.content});
+                return null;
             });
         }
         
         var event = new CustomEvent("reload-simu", {'detail': {'scripts': simu_scripts}});
         document.getElementById("simu_frame").contentWindow.document.dispatchEvent(event);
         
-        if (this.state.simuState == "hidden") {
+        if (this.state.simuState === "hidden") {
             this.setState({
                 "simuState": "screen"
             });
@@ -347,11 +348,11 @@ export default class Editor extends Component {
     }
     
     expandSimu() {
-        if (this.state.simuState == "hidden") {
+        if (this.state.simuState === "hidden") {
             this.setState({
                 "simuState": "screen"
             });
-        } else if (this.state.simuState == "screen") {
+        } else if (this.state.simuState === "screen") {
             this.setState({
                 "simuState": "full"
             });
@@ -359,11 +360,11 @@ export default class Editor extends Component {
     }
     
     retractSimu() {
-        if (this.state.simuState == "screen") {
+        if (this.state.simuState === "screen") {
             this.setState({
                 "simuState": "hidden"
             });
-        } else if (this.state.simuState == "full") {
+        } else if (this.state.simuState === "full") {
             this.setState({
                 "simuState": "screen"
             });
@@ -389,6 +390,7 @@ export default class Editor extends Component {
                         <div className={"editor__sidebar__file__circle" + (this.state.saveState[key] ? " editor__sidebar__file__circle-active" : "")}></div>
                     </div>;
                 }
+                return "";
             });
         }
 
@@ -480,7 +482,7 @@ export default class Editor extends Component {
                 </div>
                 <div className="editor__powered">Powered by Omega.</div>
                 <div class={"editor__simulator editor__simulator-" + this.state.simuState }>
-                    <iframe src="/editor/run" width="600" height="800" id="simu_frame"/>
+                    <iframe src="/editor/run" width="600" height="800" id="simu_frame" title="Simulator"/>
                 </div>
             </div>
         );

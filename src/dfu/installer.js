@@ -194,6 +194,7 @@ export default class Installer {
     
     async __autoConnectCallback() {
         if (this.waiting_for_flash) {
+            await this.__setCalculatorInfos();
             await this.__reinstallStorage();
         } else {
             this.installInstance.calculatorError(false, null);

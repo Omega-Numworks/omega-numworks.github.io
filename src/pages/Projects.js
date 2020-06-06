@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import GitHub from '../img/github.png'
 import firebase from "../firebase"
-import { Redirect } from 'react-router-dom'
 
 export default class Scripts extends Component {
     constructor(props) {
