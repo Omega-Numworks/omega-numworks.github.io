@@ -27,11 +27,7 @@ export default class Editor extends Component {
             simuWindow: null,
             numworksInstance: null
         }
-        
-        // Hidden : -800px
-        // Screen : -550px
-        // Full   : -180px
-        
+
         if (typeof navigator.usb !== 'undefined') {
             this.state.numworksInstance = new Numworks();
             navigator.usb.addEventListener("disconnect", this.onUnexpectedDisconnect.bind(this));
