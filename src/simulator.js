@@ -42,13 +42,15 @@ export default class PythonSimulator {
         
         if (keyboard) {
             var spans = calculator_element.querySelectorAll(".calculator__keyboard__nav__key,.calculator__keyboard__functions__key,.calculator__keyboard__digits__key");
-            for (var i=0; i< spans.length; i++) {
+            for (i = 0; i < spans.length; i++) {
                 var span = spans[i];
                 span.addEventListener("mousedown", function(e) {
-                    this.module._IonSimulatorKeyboardKeyDown(e.target.getAttribute("data-key"));
+                if (this.module)
+                        this.module._IonSimulatorKeyboardKeyDown(e.target.getAttribute("data-key"));
                 }.bind(this));
                 span.addEventListener("mouseup", function(e) {
-                    this.module._IonSimulatorKeyboardKeyUp(e.target.getAttribute("data-key"));
+                if (this.module)
+                        this.module._IonSimulatorKeyboardKeyUp(e.target.getAttribute("data-key"));
                 }.bind(this));
             }
         }
