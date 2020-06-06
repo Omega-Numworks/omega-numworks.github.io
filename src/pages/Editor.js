@@ -90,7 +90,6 @@ export default class Editor extends Component {
         this.delete = this.delete.bind(this);
         
         this.runSimu = this.runSimu.bind(this);
-        this.onSimuWindowClose = this.onSimuWindowClose.bind(this);
     }
     
     onUnexpectedDisconnect(e) {
@@ -280,12 +279,6 @@ export default class Editor extends Component {
         this.setState({ showContextMenu: false });
     }
 
-    onSimuWindowClose() {
-        this.setState({
-            simuWindow: null
-        });
-    }
-
     runSimu() {
         var simu_scripts = [];
         
@@ -295,14 +288,8 @@ export default class Editor extends Component {
             });
         }
         
-        console.log(simu_scripts);
-        
-        this.setState({
-            simuWindow: 
-                <NewWindow onUnload={this.onSimuWindowClose} name="Omega Simulator" features={{width: 320, height: 240, toolbar: 0, menubar: 0}}>
-                    <Calculator python={true} scripts={simu_scripts} keyboard={false}/>
-                </NewWindow>
-        });
+        var event = new CustomEvent("reload-simu", {'detail': {'scripts': simu_scripts}});
+        document.getElementById("simu_frame").contentWindow.document.dispatchEvent(event);
     }
 
     render() {
@@ -398,7 +385,9 @@ export default class Editor extends Component {
                     </ReactResizeDetector>
                 </div>
                 <div className="editor__powered">Powered by Omega.</div>
-                {this.state.simuWindow}
+                <div class="editor__simulator">
+                    <iframe src="/editor/run" width="600" height="800" id="simu_frame"/>
+                </div>
             </div>
         );
     }

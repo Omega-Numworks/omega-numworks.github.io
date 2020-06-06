@@ -274,7 +274,7 @@
         font-family: 'Righteous', sans-serif
         position: absolute
         bottom: 16px
-        right: 32px
+        left: 256px
         color: #3d3d3d
     
     &__contextmenu
@@ -335,6 +335,14 @@
         display: none
         &-show
             display: inherit
+    
+    &__simulator
+        position: fixed
+        right: 0
+        width: 490px
+        height: 800px
+        bottom: -550px
+        z-index: 5000
 
 @keyframes rotate
     0%
