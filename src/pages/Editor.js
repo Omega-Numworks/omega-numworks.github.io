@@ -28,6 +28,10 @@ export default class Editor extends Component {
             numworksInstance: null
         }
         
+        // Hidden : -800px
+        // Screen : -550px
+        // Full   : -180px
+        
         if (typeof navigator.usb !== 'undefined') {
             this.state.numworksInstance = new Numworks();
             navigator.usb.addEventListener("disconnect", this.onUnexpectedDisconnect.bind(this));
@@ -90,6 +94,8 @@ export default class Editor extends Component {
         this.delete = this.delete.bind(this);
         
         this.runSimu = this.runSimu.bind(this);
+        this.expandSimu = this.expandSimu.bind(this);
+        this.retractSimu = this.retractSimu.bind(this);
         this.handleKeyPressName = this.handleKeyPressName.bind(this);
         
         document.addEventListener("keydown", function(e) {
@@ -336,6 +342,36 @@ export default class Editor extends Component {
         
         var event = new CustomEvent("reload-simu", {'detail': {'scripts': simu_scripts}});
         document.getElementById("simu_frame").contentWindow.document.dispatchEvent(event);
+        
+        if (this.state.simuState == "hidden") {
+            this.setState({
+                "simuState": "screen"
+            });
+        }
+    }
+    
+    expandSimu() {
+        if (this.state.simuState == "hidden") {
+            this.setState({
+                "simuState": "screen"
+            });
+        } else if (this.state.simuState == "screen") {
+            this.setState({
+                "simuState": "full"
+            });
+        }
+    }
+    
+    retractSimu() {
+        if (this.state.simuState == "screen") {
+            this.setState({
+                "simuState": "hidden"
+            });
+        } else if (this.state.simuState == "full") {
+            this.setState({
+                "simuState": "screen"
+            });
+        }
     }
 
     render() {
@@ -438,8 +474,16 @@ export default class Editor extends Component {
                             editorDidMount={this.editorDidMount} />
                     </ReactResizeDetector>
                 </div>
+                <div class="editor__simulator__controls">
+                    <button type="button" class="editor__simulator__controls__button" onClick={this.expandSimu}>
+                        <i className="material-icons-round">keyboard_arrow_up</i>
+                    </button>
+                    <button type="button" class="editor__simulator__controls__button" onClick={this.retractSimu}>
+                        <i className="material-icons-round">keyboard_arrow_down</i>
+                    </button>
+                </div>
                 <div className="editor__powered">Powered by Omega.</div>
-                <div class="editor__simulator">
+                <div class={"editor__simulator editor__simulator-" + this.state.simuState }>
                     <iframe src="/editor/run" width="600" height="800" id="simu_frame"/>
                 </div>
             </div>
