@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GitHub from '../img/github.png'
 import firebase from "../firebase"
+import { FormattedMessage } from 'react-intl'
 
 export default class Scripts extends Component {
     constructor(props) {
@@ -126,11 +127,11 @@ export default class Scripts extends Component {
 
         if (!this.state.gists) {
             gists = (<div className="scripts__noscripts">
-                Loading...
+                <FormattedMessage id="projects.loading" defaultMessage="Loading..." />
             </div>);
         } else if (this.state.gists.length === 0) {
             gists = (<div className="scripts__noscripts">
-                Looks like you don't have projects yet.
+                <FormattedMessage id="projects.none" defaultMessage="Looks like you don't have any project yet." />
             </div>);
         } else {
             gists = this.state.gists.map(gist => {
@@ -139,7 +140,7 @@ export default class Scripts extends Component {
                         <span className="scripts__script__name">{gist.description}</span>
                         <i onClick={() => this.deleteGist(gist.id)} className="material-icons-round scripts__script__delete">delete</i>
                         <a href={gist.html_url} target="_blank" rel="noopener noreferrer"><img className="scripts__script__github" alt="GitHub" src={GitHub} /></a>
-                        <a className="scripts__script__action" href={'/editor/' + gist.id}>OPEN</a>
+                        <a className="scripts__script__action" href={'/editor/' + gist.id}><FormattedMessage id="projects.open" defaultMessage="OPEN" /></a>
                     </div>
                 );
             });
@@ -149,11 +150,11 @@ export default class Scripts extends Component {
             <div className="content">
                 {this.state.redirect}
                 <div className="scripts">
-                    <div className={"scripts__button" + (this.state.createNew ? " scripts__button-hide" : "")} onClick={this.onCreateNewScriptClick}>NEW PROJECT</div>
+                    <div className={"scripts__button" + (this.state.createNew ? " scripts__button-hide" : "")} onClick={this.onCreateNewScriptClick}><FormattedMessage id="projects.new" defaultMessage="NEW PROJECT" /></div>
                     <div className={"scripts__script scripts__script-new" + (this.state.createNew ? "" : " scripts__script-new-hide")}>
                         <input className="scripts__script__input scripts__script__input-new" onChange={this.onNewProjectNameChange} type="text" placeholder="Project" />
-                        <div onClick={this.createGist} className={"scripts__script__action scripts__script__action-new scripts__script__action-new-blue" + (this.state.newProjectName.trim() === "" ? " scripts__script__action-new-disabled" : "") + (this.state.isCreatingProject ? " scripts__script__action-new-loading" : "")}>CREATE</div>
-                        <div onClick={this.onCreateNewScriptClick} className="scripts__script__action scripts__script__action-new">CANCEL</div>
+                        <div onClick={this.createGist} className={"scripts__script__action scripts__script__action-new scripts__script__action-new-blue" + (this.state.newProjectName.trim() === "" ? " scripts__script__action-new-disabled" : "") + (this.state.isCreatingProject ? " scripts__script__action-new-loading" : "")}><FormattedMessage id="projects.create" defaultMessage="CREATE" /></div>
+                        <div onClick={this.onCreateNewScriptClick} className="scripts__script__action scripts__script__action-new"><FormattedMessage id="projects.cancel" defaultMessage="CANCEL" /></div>
                     </div>
                     {gists}
                 </div>
