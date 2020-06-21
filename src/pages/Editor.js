@@ -437,7 +437,7 @@ class Editor extends Component {
                         <div className="editor__contextmenu__action__text"><FormattedMessage id="editor.delete" defaultMessage="DELETE" /></div>
                     </div>
                 </div>
-                {/*<div className="editor__toolbar">
+                <div className="editor__toolbar">
                     <a href="/projects"><i className="editor__toolbar__back material-icons-round">keyboard_backspace</i></a>
                     <div className="editor__toolbar__logo"><FormattedMessage id="editor.title" defaultMessage="Omega IDE"/></div>
                     <div className="editor__toolbar__item" onClick={this.save}>
@@ -450,29 +450,6 @@ class Editor extends Component {
                     <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item" onClick={this.runSimu}>
                         <i className="material-icons-round editor__toolbar__item__icon">play_arrow</i>
                         <div className="editor__toolbar__item__text"><FormattedMessage id="editor.simulator" defaultMessage="SIMULATOR"/></div>
-                    </div>
-                    {uploadButton}
-                    <div className={"editor__toolbar__status" + (this.state.isUploading ? " editor__toolbar__status-active" : "")}>
-                        <div className="editor__toolbar__status__text">{this.state.statusMessage}</div>
-                    </div>
-                    <div className={"editor__toolbar__profile" + (this.state.user == null ? " editor__toolbar__profile-hide" : "")}>
-                        <div className="editor__toolbar__profile__name">{(this.state.user == null ? "undefined" : this.state.user.displayName)}</div>
-                        <img className="editor__toolbar__profile__picture" alt="profile" src={(this.state.user == null ? "" : this.state.user.photoURL)} />
-                    </div>
-                </div>*/}
-                <div className="editor__toolbar">
-                    <a href="/projects"><i className="editor__toolbar__back material-icons-round">keyboard_backspace</i></a>
-                    <div className="editor__toolbar__logo">Omega IDE</div>
-                    <div className="editor__toolbar__item" onClick={this.save}>
-                        <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isSaving ? " editor__toolbar__item__icon-hide" : "")}>save</i>
-                        <div className={"editor__toolbar__item__text" + (this.state.isSaving ? " editor__toolbar__item__text-hide" : "")}>SAVE</div>
-                        <div className={"editor__toolbar__item__loading" + (this.state.isSaving ? " editor__toolbar__item__loading-show" : "")}>
-                            <div className="editor__toolbar__item__loading__circle"></div>
-                        </div>
-                    </div>
-                    <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item" onClick={this.runSimu}>
-                        <i className="material-icons-round editor__toolbar__item__icon">play_arrow</i>
-                        <div className="editor__toolbar__item__text">SIMULATOR</div>
                     </div>
                     {uploadButton}
                     <div className={"editor__toolbar__status" + (this.state.isUploading ? " editor__toolbar__status-active" : "")}>

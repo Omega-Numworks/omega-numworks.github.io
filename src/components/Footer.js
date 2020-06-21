@@ -2,6 +2,26 @@ import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
 
 export default class Footer extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.changeLang = props.onChangeLanguage;
+        
+        this.state = {
+            locale: props.locale
+        };
+        
+        this.onChangeSelectLanguage = this.onChangeSelectLanguage.bind(this);
+    }
+    
+    onChangeSelectLanguage(event) {
+        this.setState({
+            locale: event.target.value
+        })
+    
+        this.changeLang(event.target.value);
+    }
+
     render() {
         return (
             <footer className="footer">
@@ -49,15 +69,10 @@ export default class Footer extends Component {
                     <a className="footer__about-nw__contact" href="mailto:getomega.pro@gmail.com">
                         <FormattedMessage id="footer.contact" defaultMessage="Contact" />
                     </a></div>
-                {/*<div className="footer__logo">*/}
-                    {/*<FormattedMessage id="footer.omega-logo" defaultMessage="Omega" />*/}
-                    <select className="footer__logo">
+                    <select className="footer__logo" onChange={this.onChangeSelectLanguage} value={this.state.locale}>
                         <option value="en">English 🇺🇸</option>
                         <option value="fr">Français 🇫🇷</option>
                     </select>
-                    {/*<span><FormattedMessage id="footer.language" defaultMessage="English" /> <FormattedMessage id="footer.flag" defaultMessage="🇺🇸" /></span>*/}
-                {/*</div>*/}
-                
             </footer>
         )
     }
