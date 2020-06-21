@@ -15,6 +15,8 @@ export default class Scripts extends Component {
             isCreatingProject: false,
         }
 
+        document.title = "Omega - Scripts"
+
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 this.setState({ user: user });

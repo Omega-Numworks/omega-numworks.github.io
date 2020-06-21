@@ -10,33 +10,33 @@ export default class Footer extends Component {
                         <FormattedMessage id="footer.projects" defaultMessage="Projects" />
                     </h3>
                     <div className="footer__list">
-                        <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega">
+                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega">
                             <FormattedMessage id="footer.projects.omega" defaultMessage="Omega" />
-                        </a></li>
-                        <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Themes">
+                        </a>
+                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Themes">
                             <FormattedMessage id="footer.projects.omega-themes" defaultMessage="Omega Themes" />
-                        </a></li>
-                        <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Website">
+                        </a>
+                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Website">
                             <FormattedMessage id="footer.projects.omega-website" defaultMessage="Omega Website" />
-                        </a></li>
-                        <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-CLI-Installer">
+                        </a>
+                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-CLI-Installer">
                             <FormattedMessage id="footer.projects.omega-cli" defaultMessage="Omega CLI Installer" />
-                        </a></li>
-                        <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-RPN">
+                        </a>
+                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-RPN">
                             <FormattedMessage id="footer.projects.omega-rpn" defaultMessage="Omega RPN" />
                             <span className="footer__list__item__tag">
                                 <FormattedMessage id="app" defaultMessage="APP" />
                             </span>
-                        </a></li>
-                        <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Atom">
+                        </a>
+                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Atom">
                             <FormattedMessage id="footer.projects.omega-atom" defaultMessage="Omega Atom" />
                             <span className="footer__list__item__tag">
                                 <FormattedMessage id="app" defaultMessage="APP" />
                             </span>
-                        </a></li>
-                        <li className="footer__list__item"><a className="footer__list__item__link" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Design">
+                        </a>
+                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Design">
                             <FormattedMessage id="footer.projects.omega-design" defaultMessage="Omega Design" />
-                        </a></li>
+                        </a>
                     </div>
                 </div>
                 <div className="footer__discord">

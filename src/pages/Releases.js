@@ -10,6 +10,8 @@ export default class Releases extends Component {
         
         this.getReleaseVersion = this.getReleaseVersion.bind(this);
         this.getEpsilonVersion = this.getEpsilonVersion.bind(this);
+
+        document.title = "Omega — Releases"
     }
 
     getReleaseVersion(tag) {

@@ -28,6 +28,8 @@ export default class Install extends Component {
             installerInstance: new Installer(this),
             showPopup: false
         }
+
+        document.title = "Omega — Install"
         
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.detectCalculator = this.detectCalculator.bind(this);

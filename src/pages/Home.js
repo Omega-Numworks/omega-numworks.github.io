@@ -11,6 +11,7 @@ export default class Home extends Component {
         super(props);
         
         this.getReleaseVersion = this.getReleaseVersion.bind(this);
+        document.title = "Omega"
     }
 
     getReleaseVersion(tag) {
@@ -34,6 +35,11 @@ export default class Home extends Component {
                     <h2 className="project-description__subtitle">
                         <FormattedMessage id="home.head.subtitle" defaultMessage="The next evolution of Epsilon." />
                     </h2>
+                    <Link to="/simulator" className="project-description__button">
+                        <div className="project-description__button__text">
+                            <FormattedMessage id="home.head.tryit" defaultMessage="TRY IT ONLINE" />T <i className="project-description__button__icon material-icons md-16">play_arrow</i>
+                        </div>
+                    </Link>
                     <p className="project-description__description">
                         <FormattedMessage id="home.head.description" defaultMessage="Omega is a fork of Numworks' Epsilon, the OS that runs on their calculator, which brings many features to it. Omega is for the people who want to add features to the calculator, but cannot because they have been rejected by Numworks (for reasons that are 100% understandable!)." />
                     </p>
@@ -121,7 +127,7 @@ export default class Home extends Component {
                             <FormattedMessage id="home.features.more.name" defaultMessage="And more!" />
                         </h3>
                         <p className="feature__content__description">
-                            <FormattedMessage id="home.features.more.description" defaultMessage="A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames, a 32KB Python heap instead of 16KB one..." />
+                            <FormattedMessage id="home.features.more.description" defaultMessage="A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames..." />
                         </p>
                         <div style={ {height: "24"} }></div>
                     </div>

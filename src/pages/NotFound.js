@@ -3,6 +3,10 @@ import ImgSadCalculator from '../img/sad-calculator.png'
 import { FormattedMessage } from 'react-intl'
 
 export default class NotFound extends Component {
+    constructor(props) {
+        document.title = "Omega - 404"
+    }
+
     render() {
         return (
             <div className="content">

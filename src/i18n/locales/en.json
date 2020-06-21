@@ -29,7 +29,7 @@
   "home.download.web": "WEB",
   "home.features.atom.description": "Inspired by the TI83PCE's periodic table app, Omega's periodic table is clean and simple to use.",
   "home.features.atom.name": "Periodic table",
-  "home.features.more.description": "A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames, a 32KB Python heap instead of 16KB one...",
+  "home.features.more.description": "A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames...",
   "home.features.more.name": "And more!",
   "home.features.rpn.description": "Omega supports using Reverse Polish Notation to do calculations.",
   "home.features.rpn.name": "RPN",
