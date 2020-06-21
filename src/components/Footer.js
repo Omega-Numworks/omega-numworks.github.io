@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
+import translations from '../i18n/locales'
 
 export default class Footer extends Component {
     constructor(props) {
@@ -23,6 +24,11 @@ export default class Footer extends Component {
     }
 
     render() {
+        var langs_list = [];
+        for(var lang in translations) {
+            langs_list.push(<option value={lang}>{translations[lang]["footer.language"]} {translations[lang]["footer.flag"]}</option>);
+        }
+    
         return (
             <footer className="footer">
                 <div className="footer__links">
@@ -70,8 +76,7 @@ export default class Footer extends Component {
                         <FormattedMessage id="footer.contact" defaultMessage="Contact" />
                     </a></div>
                     <select className="footer__logo" onChange={this.onChangeSelectLanguage} value={this.state.locale}>
-                        <option value="en">English 🇺🇸</option>
-                        <option value="fr">Français 🇫🇷</option>
+                        {langs_list}
                     </select>
             </footer>
         )
