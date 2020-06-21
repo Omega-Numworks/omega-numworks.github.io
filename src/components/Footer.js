@@ -72,6 +72,7 @@ export default class Footer extends Component {
                     <select className="footer__logo" onChange={this.onChangeSelectLanguage} value={this.state.locale}>
                         <option value="en">English 🇺🇸</option>
                         <option value="fr">Français 🇫🇷</option>
+                        <option value="de">Deutsche 🇩🇪</option>
                     </select>
             </footer>
         )
