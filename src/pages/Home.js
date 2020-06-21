@@ -30,6 +30,7 @@ export default class Home extends Component {
                 <div className="project-description">
                     <h1 className="project-description__title">Omega</h1>
                     <h2 className="project-description__subtitle">The next evolution of Epsilon.</h2>
+                    <Link to="/simulator" className="project-description__button"><div className="project-description__button__text">TRY IT ONLINE <i className="project-description__button__icon material-icons md-16">play_arrow</i></div></Link>
                     <p className="project-description__description">
                         Omega is a fork of Numworks' Epsilon, the OS that runs on their calculator, which brings many features to it. Omega is for the people who want to add features to the calculator, but cannot because they have been rejected by Numworks (for reasons that are 100% understandable!).
                     </p>
