@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FormattedMessage } from 'react-intl'
 import ImgCalculatorBody from '../img/calculator-body.png'
 import ImgCalculatorBodyOmega from '../img/calculator-body-omega.png'
 import ImgCalculatorBodyEpsilon from '../img/calculator-body-epsilon.png'
@@ -15,7 +16,7 @@ export default class Install extends Component {
             showTags: false,
             installerNotCompatibleWithThisBrowser: false,
             model: "nXXXX",
-            username: "Someone",
+            username: <FormattedMessage id="installer.someone" defaultMessage="Someone" />,
             omegaVersion: "N/A",
             epsilonVersion: "N/A",
             installVersion: this.props.match.params.version,
@@ -84,7 +85,7 @@ export default class Install extends Component {
     }
     
     firmwareNotFound(version) {
-        this.calculatorError(true, "Firmware version " + version + " doesn't exist!");
+        this.calculatorError(true, <FormattedMessage id="installer.unknown-version" defaultMessage="Firmware version {version} doesn't exist!" values={{version: version}} />);
     }
     
     detectCalculator() {
@@ -115,7 +116,7 @@ export default class Install extends Component {
         if (typeof USBConnectionEvent !== "undefined") {
             if (message instanceof USBConnectionEvent) {
                 if (message.type === "disconnect") {
-                    message = "The calculator has been disconnected.";
+                    message = <FormattedMessage id="installer.unpluged" defaultMessage="The calculator has been disconnected." />;
                 }
             } else if (message instanceof DOMException) {
                 message = message.message;
@@ -182,41 +183,31 @@ export default class Install extends Component {
                         <img className={"installer__calculator__body " + (this.state.osDetected === "epsilon" ? "installer__calculator__body-active" : "")} src={ImgCalculatorBodyEpsilon} alt="Calculator Body"></img>
                     </div>
                     <div className="installer__content">
-                        <div className="installer__content__name">{this.state.showTags ? this.state.username + "'s Numworks" : "Omega Installer"}</div>
+                        <div className="installer__content__name">{this.state.showTags ? <FormattedMessage id="installer.owner" defaultMessage="{name}'s Numworks" values={{name: this.state.username}} /> : <FormattedMessage id="installer.title" defaultMessage="Omega Installer" />}</div>
                         <div className={"installer__content__tag installer__content__tag-gray " + (this.state.showTags ? "installer__content__tag-active" : "")}>{this.state.model}</div>
                         <div className={"installer__content__tag installer__content__tag-red " + (this.state.showTags && !this.state.install ? "installer__content__tag-active" : "")}>‎Ω {this.state.omegaVersion}</div>
                         <div className={"installer__content__tag installer__content__tag-yellow " + (this.state.showTags && !this.state.install ? "installer__content__tag-active" : "")}>‎E {this.state.epsilonVersion}</div>
                         <div className={"installer__content__progress " + (this.state.install ? "installer__content__progress-active" : "")}>
                             <div className="installer__content__progress__bar" style={{ width: this.state.progressPercentage + "%" }}></div>
                         </div>
-                        <div className={"installer__content__progress__message " +  (this.state.install ? "installer__content__progress__message-active" : "")}>Installation d'Omega {this.state.installerInstance.toInstall}. Veuillez ne pas débrancher la calculatrice.</div>
+                        <div className={"installer__content__progress__message " +  (this.state.install ? "installer__content__progress__message-active" : "")}><FormattedMessage id="installer.installing" defaultMessage="Installing Omega {version}. Please do not unplug your Numworks." values={{version: this.state.installerInstance.toInstall}} /></div>
                         <div className={"installer__content__error " +  (this.state.error ? "installer__content__error-active" : "")}>{this.state.errorMessage}</div>
-                        <button onClick={() => this.detectCalculator()} className={"installer__content__button " +  (!this.state.calculatorDetected ? "installer__content__button-active" : "")}>DETECT CALCULATOR</button>
-                        <button onClick={this.install} className={"installer__content__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__button-active" : "") + (this.state.showPopup ? " installer__content__button-disabled" : "")}>INSTALL OMEGA</button>
+                        <button onClick={() => this.detectCalculator()} className={"installer__content__button " +  (!this.state.calculatorDetected ? "installer__content__button-active" : "")}><FormattedMessage id="installer.detect" defaultMessage="DETECT CALCULATOR" /></button>
+                        <button onClick={this.install} className={"installer__content__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__button-active" : "") + (this.state.showPopup ? " installer__content__button-disabled" : "")}><FormattedMessage id="installer.install" defaultMessage="INSTALL OMEGA" /></button>
                     </div>
                 </div>
 
                 <div className={"popup " + (this.state.showPopup ? "popup-active" : "")}>
-                    <span className="popup__subtitle">English</span>
-                    Omega is a redistribution of Epsilon that adds various features to it.
-                    We spend a lot of time trying to comply with exam guidelines from different countries.
-                    The software is therefore theoretically authorized for examination; however, Omega has not applied for certification by any organization.
-                    By clicking on "I agree", you accept that neither Omega nor NumWorks can be held responsible in the event of a problem with this software.
-
-                    <span className="popup__subtitle">Français</span>
-                    Omega est une redistribution d'Epsilon, lui ajoutant diverses fonctionnalités.
-                    Nous passons beaucoup de temps à essayer de respecter les directives d'examen de différents pays. Le logiciel est donc théoriquement autorisé en examen.
-                    Cependant, Omega n'a pas fait de demande de certification par un quelconque organisme.
-                    En cliquant sur "j'accepte", vous acceptez que ni Omega ni NumWorks ne peut être tenu responsable en cas de problème avec ce logiciel.
-                    <button onClick={this.install} className="popup__button popup__button-active">I AGREE - J'ACCEPTE</button>
+                    <FormattedMessage id="installer.disclaimer" defaultMessage="Omega is a redistribution of Epsilon that adds various features to it. We spend a lot of time trying to comply with exam guidelines from different countries. The software is therefore theoretically authorized for examination; however, Omega has not applied for certification by any organization. By clicking on I agree, you accept that neither Omega nor NumWorks can be held responsible in the event of a problem with this software." />
+                    <button onClick={this.install} className="popup__button popup__button-active"><FormattedMessage id="installer.agree" defaultMessage="I AGREE" /></button>
                 </div>
 
                 <div className={"installer-thanks " + (this.state.installationFinished ? "installer-thanks-active" : "")}>
-                    Thank you for installing Omega! Your calculator is now running Omega {this.state.omegaVersion}.
+                    <FormattedMessage id="installer.thanks" defaultMessage="Thank you for installing Omega! Your calculator is now running Omega {version}." values={{version: this.state.omegaVersion}} />
                 </div>
 
                 <div className={"installer-notcompatible " + (this.state.installerNotCompatibleWithThisBrowser ? "installer-notcompatible-active" : "")}>
-                    Our installer is not compatible with your browser. Please use a browser like Chromium/Google Chrome or Edge.
+                    <FormattedMessage id="installer.incompatible" defaultMessage="Our installer is not compatible with your browser. Please use a browser like Chromium/Google Chrome or Edge." />
                 </div>
             </div>
         )

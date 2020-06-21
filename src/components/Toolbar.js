@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import firebase from "../firebase"
 import { Link } from 'react-router-dom'
+import { FormattedMessage } from 'react-intl'
 
 export default class Toolbar extends Component {
 
@@ -56,19 +57,35 @@ export default class Toolbar extends Component {
     render() {
         return (
             <header className="header">
-                <NavLink className="header__logo" to="/">Omega</NavLink>
+                <NavLink className="header__logo" to="/">
+                    <FormattedMessage id="toolbar.omega" defaultMessage="Omega" />
+                </NavLink>
                 <div className="header__links">
-                    <NavLink className="header__links__link" activeClassName="header__links__link-active" to="/install/latest" exact>Install</NavLink>
-                    <NavLink className="header__links__link" activeClassName="header__links__link-active" to="/releases" exact>Releases</NavLink>
-                    <NavLink className="header__links__link" activeClassName="header__links__link-active" to="/simulator" exact>Simulator</NavLink>
-                    <a className="header__links__link" href="https://github.com/Omega-Numworks/Omega" target="_blank" rel="noopener noreferrer">Github</a>
+                    <NavLink className="header__links__link" activeClassName="header__links__link-active" to="/install/latest" exact>
+                        <FormattedMessage id="toolbar.install" defaultMessage="Install" />
+                    </NavLink>
+                    <NavLink className="header__links__link" activeClassName="header__links__link-active" to="/releases" exact>
+                        <FormattedMessage id="toolbar.releases" defaultMessage="Releases" />
+                    </NavLink>
+                    <NavLink className="header__links__link" activeClassName="header__links__link-active" to="/simulator" exact>
+                        <FormattedMessage id="toolbar.simulator" defaultMessage="Simulator" />
+                    </NavLink>
+                    <a className="header__links__link" href="https://github.com/Omega-Numworks/Omega" target="_blank" rel="noopener noreferrer">
+                        <FormattedMessage id="toolbar.github" defaultMessage="Github" />
+                    </a>
                     
                     <div className="header__links__separator" />
 
-                    <div onClick={this.loginWithGitHub} className={"header__links__link" + (this.state.user == null ? "" : " header__links__link-hide")} activeClassName="header__links__link-active">Login with GitHub</div>
+                    <div onClick={this.loginWithGitHub} className={"header__links__link" + (this.state.user == null ? "" : " header__links__link-hide")} activeClassName="header__links__link-active">
+                        <FormattedMessage id="toolbar.login" defaultMessage="Login with Github" />
+                    </div>
                     <div className={"header__links__profile-actions" + (this.state.isProfileActive ? "" : " header__links__profile-actions-hide")}>
-                        <div onClick={this.logout} className="header__links__link header__links__link-red header__links__profile-actions__link" activeClassName="header__links__link-active">Logout</div>
-                        <Link className="header__links__link header__links__profile-actions__link" activeClassName="header__links__link-active" to="/projects">My scripts</Link>
+                        <div onClick={this.logout} className="header__links__link header__links__link-red header__links__profile-actions__link" activeClassName="header__links__link-active">
+                            <FormattedMessage id="toolbar.logout" defaultMessage="Logout" />
+                        </div>
+                        <Link className="header__links__link header__links__profile-actions__link" activeClassName="header__links__link-active" to="/projects">
+                            <FormattedMessage id="toolbar.myscripts" defaultMessage="My scripts" />
+                        </Link>
                     </div>
                     <div onClick={this.onProfileClick} className={"header__links__profile" + (this.state.user == null ? " header__links__profile-hide" : "")}>
                         <div className="header__links__profile__name">{(this.state.user == null ? "undefined" : this.state.user.displayName)}</div>

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { injectIntl, FormattedMessage } from 'react-intl';
 import MonacoEditor from 'react-monaco-editor';
 import ReactResizeDetector from 'react-resize-detector';
 import Numworks from "numworks.js";
 import firebase from "../firebase"
 import { Link } from 'react-router-dom';
 
-export default class Editor extends Component {
+class Editor extends Component {
     constructor(props) {
         super(props);
 
@@ -29,7 +30,7 @@ export default class Editor extends Component {
                 x: 0,
                 y: 0
             },
-            statusMessage: 'Loading...',
+            statusMessage: <FormattedMessage id="editor.loading" defaultMessage="Loading..." />,
             simuState: 'hidden',
             simuWindow: null,
             numworksInstance: null
@@ -137,7 +138,7 @@ export default class Editor extends Component {
                 });
                 
                 if (unsaved) {
-                    return "You have unsaved modifications!";
+                    return <FormattedMessage id="editor.unsaved" defaultMessage="You have unsaved modifications!" />;
                 }
             }
         }.bind(this);
@@ -404,19 +405,19 @@ export default class Editor extends Component {
                 return "";
             });
         }
-
+        const {formatMessage} = this.props.intl;
         var uploadButton = this.state.numworksInstance !== null ? (
             <div className="editor__toolbar__item editor__toolbar__item-yellow editor__toolbar__item" onClick={this.upload}>
                 <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
-                <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
+                <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}><FormattedMessage id="editor.upload" defaultMessage="UPLOAD ON DEVICE" /></div>
                 <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
                     <div className="editor__toolbar__item__loading__circle editor__toolbar__item__loading__circle-yellow"></div>
                 </div>
             </div>
         ) : (
-            <div className="editor__toolbar__item editor__toolbar__item-yellow-disabled editor__toolbar__item-disabled editor__toolbar__item" title="Your browser deosn't support WebUSB. Please use Chromium">
+            <div className="editor__toolbar__item editor__toolbar__item-yellow-disabled editor__toolbar__item-disabled editor__toolbar__item" title={formatMessage({id:"editor.nowebusb", defaultMessage:"Your browser doesn't support WebUSB. Please use Chromium"})}>
                 <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
-                <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
+                <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}><FormattedMessage id="editor.upload" defaultMessage="UPLOAD ON DEVICE" /></div>
                 <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
                     <div className="editor__toolbar__item__loading__circle editor__toolbar__item__loading__circle-yellow"></div>
                 </div>
@@ -429,26 +430,26 @@ export default class Editor extends Component {
                 <div className={"editor__contextmenu" + (this.state.showContextMenu ? " editor__contextmenu-show" : "")} style={{top: this.state.contextMenuPosition.y + "px", left: this.state.contextMenuPosition.x + "px" }}>
                     <div className="editor__contextmenu__action">
                         <i className="material-icons-round editor__contextmenu__action__icon">edit</i>
-                        <div className="editor__contextmenu__action__text">RENAME</div>
+                        <div className="editor__contextmenu__action__text"><FormattedMessage id="editor.rename" defaultMessage="RENAME" /></div>
                     </div>
                     <div className="editor__contextmenu__action editor__contextmenu__action-red" onClick={this.delete}>
                         <i className="material-icons-round editor__contextmenu__action__icon">delete</i>
-                        <div className="editor__contextmenu__action__text">DELETE</div>
+                        <div className="editor__contextmenu__action__text"><FormattedMessage id="editor.delete" defaultMessage="DELETE" /></div>
                     </div>
                 </div>
                 <div className="editor__toolbar">
                     <a href="/projects"><i className="editor__toolbar__back material-icons-round">keyboard_backspace</i></a>
-                    <div className="editor__toolbar__logo">Omega IDE</div>
+                    <div className="editor__toolbar__logo"><FormattedMessage id="editor.title" defaultMessage="Omega IDE"/></div>
                     <div className="editor__toolbar__item" onClick={this.save}>
                         <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isSaving ? " editor__toolbar__item__icon-hide" : "")}>save</i>
-                        <div className={"editor__toolbar__item__text" + (this.state.isSaving ? " editor__toolbar__item__text-hide" : "")}>SAVE</div>
+                        <div className={"editor__toolbar__item__text" + (this.state.isSaving ? " editor__toolbar__item__text-hide" : "")}><FormattedMessage id="editor.save" defaultMessage="SAVE" /></div>
                         <div className={"editor__toolbar__item__loading" + (this.state.isSaving ? " editor__toolbar__item__loading-show" : "")}>
                             <div className="editor__toolbar__item__loading__circle"></div>
                         </div>
                     </div>
                     <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item" onClick={this.runSimu}>
                         <i className="material-icons-round editor__toolbar__item__icon">play_arrow</i>
-                        <div className="editor__toolbar__item__text">SIMULATOR</div>
+                        <div className="editor__toolbar__item__text"><FormattedMessage id="editor.simulator" defaultMessage="SIMULATOR"/></div>
                     </div>
                     {uploadButton}
                     <div className={"editor__toolbar__status" + (this.state.isUploading ? " editor__toolbar__status-active" : "")}>
@@ -464,10 +465,10 @@ export default class Editor extends Component {
                     {files}
                     <div className={"editor__sidebar__file editor__sidebar__file-new" + (this.state.newScript ? " editor__sidebar__file-hide" : "")} onClick={this.newScriptButtonClick}>
                         <i className="editor__sidebar__file__icon material-icons-round">add</i>
-                        <div className="editor__sidebar__file__name">New script</div>
+                        <div className="editor__sidebar__file__name"><FormattedMessage id="editor.new" defaultMessage="New script"/></div>
                     </div>
                     <div className={"editor__sidebar__add" + (this.state.newScript ? " editor__sidebar__add-active": "")}>
-                        <span className="editor__sidebar__add__title">Name your new script</span>
+                        <span className="editor__sidebar__add__title"><FormattedMessage id="editor.name" defaultMessage="Name your new script" /></span>
                         <input type="text" id="script_name" className="editor__sidebar__add__input" placeholder="script.py" value={this.state.newScriptName} onChange={this.handleChange} onKeyPress={this.handleKeyPressName}></input>
                         <div className="editor__sidebar__add__button" onClick={this.createScript}>
                             <i className="editor__sidebar__add__button__icon material-icons-round">check</i>
@@ -504,3 +505,5 @@ export default class Editor extends Component {
         );
     }
 }
+
+export default injectIntl(Editor);
