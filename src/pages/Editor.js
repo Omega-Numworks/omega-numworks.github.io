@@ -2,10 +2,19 @@ import React, { Component } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import ReactResizeDetector from 'react-resize-detector';
 import Numworks from "numworks.js";
+import firebase from "../firebase"
+import { Link } from 'react-router-dom';
 
 export default class Editor extends Component {
     constructor(props) {
         super(props);
+
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.setState({ user: user });
+            }
+        });
+
         this.state = {
             code: '',
             activeFile: 'main.py',
@@ -397,7 +406,7 @@ export default class Editor extends Component {
         }
 
         var uploadButton = this.state.numworksInstance !== null ? (
-            <div className="editor__toolbar__item editor__toolbar__item-yellow editor__toolbar__item-right" onClick={this.upload}>
+            <div className="editor__toolbar__item editor__toolbar__item-yellow editor__toolbar__item" onClick={this.upload}>
                 <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
                 <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
                 <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
@@ -405,7 +414,7 @@ export default class Editor extends Component {
                 </div>
             </div>
         ) : (
-            <div className="editor__toolbar__item editor__toolbar__item-yellow-disabled editor__toolbar__item-disabled editor__toolbar__item-right" title="Your browser deosn't support WebUSB. Please use Chromium">
+            <div className="editor__toolbar__item editor__toolbar__item-yellow-disabled editor__toolbar__item-disabled editor__toolbar__item" title="Your browser deosn't support WebUSB. Please use Chromium">
                 <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isUploading ? " editor__toolbar__item__icon-hide" : "")}>usb</i>
                 <div className={"editor__toolbar__item__text" + (this.state.isUploading ? " editor__toolbar__item__text-hide" : "")}>UPLOAD ON DEVICE</div>
                 <div className={"editor__toolbar__item__loading" + (this.state.isUploading ? " editor__toolbar__item__loading-show" : "")}>
@@ -428,6 +437,7 @@ export default class Editor extends Component {
                     </div>
                 </div>
                 <div className="editor__toolbar">
+                    <a href="/projects"><i className="editor__toolbar__back material-icons-round">keyboard_backspace</i></a>
                     <div className="editor__toolbar__logo">Omega IDE</div>
                     <div className="editor__toolbar__item" onClick={this.save}>
                         <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isSaving ? " editor__toolbar__item__icon-hide" : "")}>save</i>
@@ -436,13 +446,17 @@ export default class Editor extends Component {
                             <div className="editor__toolbar__item__loading__circle"></div>
                         </div>
                     </div>
+                    <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item" onClick={this.runSimu}>
+                        <i className="material-icons-round editor__toolbar__item__icon">play_arrow</i>
+                        <div className="editor__toolbar__item__text">SIMULATOR</div>
+                    </div>
+                    {uploadButton}
                     <div className={"editor__toolbar__status" + (this.state.isUploading ? " editor__toolbar__status-active" : "")}>
                         <div className="editor__toolbar__status__text">{this.state.statusMessage}</div>
                     </div>
-                    {uploadButton}
-                    <div className="editor__toolbar__item editor__toolbar__item-green editor__toolbar__item-right" onClick={this.runSimu}>
-                        <i className="material-icons-round editor__toolbar__item__icon">play_arrow</i>
-                        <div className="editor__toolbar__item__text">SIMULATOR</div>
+                    <div className={"editor__toolbar__profile" + (this.state.user == null ? " editor__toolbar__profile-hide" : "")}>
+                        <div className="editor__toolbar__profile__name">{(this.state.user == null ? "undefined" : this.state.user.displayName)}</div>
+                        <img className="editor__toolbar__profile__picture" alt="profile" src={(this.state.user == null ? "" : this.state.user.photoURL)} />
                     </div>
                 </div>
                 <div className="editor__sidebar">
