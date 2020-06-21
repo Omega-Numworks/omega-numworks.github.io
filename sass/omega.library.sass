@@ -3,17 +3,33 @@
 @import '_reset.sass'
 @import '_fonts.sass'
 
-@import 'components/_header.sass'
-@import 'components/_footer.sass'
-
-@import 'pages/_index.sass'
-@import 'pages/_legal.sass'
-
 body
-    font-family: 'Fira Sans', sans-serif
+    font-family: 'Righteous', sans-serif
     display: flex
     flex-direction: column
     min-height: 100vh
 
+body
+    text-align: center
+
 .content
-    flex: 1 0 auto
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -80%)
+    width: 100%
+
+.logo
+    color: #c53431
+    font-size: 40px
+
+.moved
+    color: #333a41
+
+.link
+    font-family: 'Fira Sans'
+    font-weight: 500
+    position: relative
+    color: #215c83
+    top: 16px
+    text-decoration: none
