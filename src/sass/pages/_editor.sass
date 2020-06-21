@@ -9,34 +9,40 @@
         background-color: #101010
         border-bottom: 1px solid rgb(15, 15, 15)
 
+        &__back
+            height: 48px
+            line-height: 48px
+            vertical-align: top
+            display: inline-block
+            color: #ffffff
+            width: 24px
+            margin-left: 16px
+            text-align: center
+            cursor: pointer
+            transition: all 0.2s
+            &:hover
+                background-color: rgba(255, 255, 255, 0.1)
+
         &__logo
+            height: 48px
+            line-height: 48px
             user-select: none
-            vertical-align: middle
+            vertical-align: top
             font-family: 'Righteous', sans-serif
             display: inline-block
             color: #ffffff
-            margin-left: 24px
+            margin-left: 20px
             margin-right: 12px
             font-size: 18px
-
-        &__text
-            user-select: none
-            vertical-align: middle
-            font-size: 13px
-            color: #686868
-            font-family: 'Righteous', sans-serif
-            display: inline-block
-            margin-left: 24px
-            margin-right: 16px
         
         &__status
-            float: right
             width: 0
             color: #8d8d8d
             display: inline-block
             line-height: 48px
             height: 48px
             font-size: 13px
+            margin-left: 12px
             overflow: hidden
             transition: 0.2s all
             position: relative
@@ -47,19 +53,19 @@
             user-select: none
             display: inline-block
             color: #e4e4e4
-            background-color: rgb(24, 24, 24)
+            background-color: rgba(24, 24, 24, 0.2)
             padding-right: 12px
             padding-left: 12px
             margin: 8px 0
             border-radius: 6px
-            vertical-align: middle
-            line-height: 32px
+            line-height: 30px
             margin-left: 8px
             cursor: pointer
             position: relative
             transition: 0.2s all ease-in-out
-            height: 32px
+            height: 30px
             overflow: hidden
+            border: 1px solid rgba(255, 255, 255, 0.1)
 
             &-right
                 float: right
@@ -68,25 +74,21 @@
             &-green
                 color: #2fa757
                 margin-right: 0
-
-                &:hover
-                    color: #13662f
             
             &-yellow
                 color: #a79f2f
-
-                &:hover
-                    color: #665e13
                 &-disabled
-                    color: #665e13
+                    color: #4d460d
 
             &:hover
                 background-color: rgb(30, 30, 30)
+                animation: hover-feedback 0.3s
             
             &-disabled
-                background-color: rgb(30, 30, 30)
+                background-color: rgba(24, 24, 24, 0.2)
                 
                 &:hover
+                    background-color: rgba(24, 24, 24, 0.2)
                     cursor: not-allowed;
 
             &__icon
@@ -104,7 +106,6 @@
                 font-size: 13px
                 font-weight: 500
                 margin-left: 8px
-                margin-top: 1px
                 transition: 0.2s all ease-in-out
                 &-hide
                     opacity: 0
@@ -136,6 +137,42 @@
                     margin: 0
                     transform: translate(-50%, -50%)
                     animation: rotate 0.7s ease-in-out infinite
+        
+        &__profile
+            //cursor: pointer
+            vertical-align: middle
+            display: inline-block
+            line-height: 32px
+            margin-top: 8px
+            margin-right: 8px
+            padding: 0 8px
+            border-radius: 4px
+            transition: 0.2s all
+            float: right
+
+            //&:hover
+            //    background-color: rgba(255, 255, 255, 0.04)
+
+            &-hide
+                display: none
+
+            &__name
+                font-size: 14px
+                color: #dadada
+                font-weight: 500
+                vertical-align: middle
+                display: inline-block
+                margin-right: 12px
+                margin-top: 
+
+            &__picture
+                vertical-align: middle
+                background-color: #AAAAAA
+                height: 24px
+                width: 24px
+                margin-top: -1px
+                display: inline-block
+                border-radius: 50%
 
 
     &__sidebar
@@ -148,16 +185,29 @@
         box-sizing: border-box
         overflow-x: hidden
         overflow-y: scroll
+
+        &__title
+            user-select: none
+            vertical-align: middle
+            font-size: 13px
+            color: #686868
+            font-family: 'Righteous', sans-serif
+            display: inline-block
+            margin-left: 24px
+            margin-right: 16px
+            margin-top: 4px
+            margin-bottom: 8px
+
         &__file
             vertical-align: middle
             user-select: none
             border-radius: 6px
             width: 100%
-            height: 44px
+            height: 32px
             display: inline-block
             color: #ffffff
-            padding: 10px 16px
-            margin: 4px 16px
+            padding: 7px 16px
+            margin: 2px 8px
             overflow: hidden
             transition: 0.2s all ease-in-out
             cursor: pointer
@@ -170,9 +220,10 @@
                 color: #3585C0
             &:hover
                 background-color: #050505
-                margin-left: 18px
+                margin-left: 12px
                 padding-left: 20px
             &__icon
+                font-size: 16px
                 vertical-align: middle
                 display: inline-block
                 margin-top: -1px
@@ -181,7 +232,8 @@
             &-new:hover &__icon
                 transform: rotate(90deg)
             &__name
-                font-size: 15px
+                font-size: 14px
+                font-weight: 400
                 margin-left: 16px
                 vertical-align: middle
                 display: inline-block
@@ -196,19 +248,19 @@
                 height: 6px
                 width: 6px
                 opacity: 0.4
-                margin-top: 8px
+                margin-top: 6px
                 transform: scale(0)
                 transition: 0.2s all ease-in-out
                 &-active
                     transform: scale(1)
             &:hover &__circle
-                margin-right: 18px
+                margin-right: 20px
             &-hide
                 opacity: 0.3
                 &:hover
                     background-color: inherit
-                    padding: 10px 16px
-                    margin: 4px 16px
+                    padding: 7px 12px
+                    margin: 2px 12px
             &-hide:hover &__icon
                 transform: none
                 
@@ -234,11 +286,11 @@
                 border-radius: 6px
                 border: 1px solid #101010
                 outline: none
-                font-size: 15px
+                font-size: 14px
                 vertical-align: middle
                 display: inline-block
                 padding: 4px 8px
-                height: 42px
+                height: 32px
                 box-sizing: border-box
                 width: calc(100% - 84px)
                 transition: 0.2s all ease-in-out
@@ -250,8 +302,8 @@
             &__button
                 vertical-align: middle
                 background-color: #101010
-                height: 42px
-                width: 42px
+                height: 32px
+                width: 32px
                 display: inline-block
                 border-radius: 6px
                 margin-left: 8px
@@ -260,9 +312,9 @@
                 text-align: center
                 &__icon
                     display: inline-block
-                    line-height: 42px
+                    line-height: 32px
                     color: #636363
-                    font-size: 20px
+                    font-size: 18px
                     transition: 0.2s all ease-in-out
                 &:hover &__icon
                     color: #fafafa

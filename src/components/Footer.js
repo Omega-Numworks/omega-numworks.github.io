@@ -49,9 +49,15 @@ export default class Footer extends Component {
                     <a className="footer__about-nw__contact" href="mailto:getomega.pro@gmail.com">
                         <FormattedMessage id="footer.contact" defaultMessage="Contact" />
                     </a></div>
-                <div className="footer__logo">
-                    <FormattedMessage id="footer.omega-logo" defaultMessage="Omega" />
-                </div>
+                {/*<div className="footer__logo">*/}
+                    {/*<FormattedMessage id="footer.omega-logo" defaultMessage="Omega" />*/}
+                    <select className="footer__logo">
+                        <option value="en">English 🇺🇸</option>
+                        <option value="fr">Français 🇫🇷</option>
+                    </select>
+                    {/*<span><FormattedMessage id="footer.language" defaultMessage="English" /> <FormattedMessage id="footer.flag" defaultMessage="🇺🇸" /></span>*/}
+                {/*</div>*/}
+                
             </footer>
         )
     }
