@@ -429,7 +429,6 @@ export default class Editor extends Component {
                 </div>
                 <div className="editor__toolbar">
                     <div className="editor__toolbar__logo">Omega IDE</div>
-                    <div className="editor__toolbar__text">{this.state.project ? this.state.project.description : "Loading..."}</div>
                     <div className="editor__toolbar__item" onClick={this.save}>
                         <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isSaving ? " editor__toolbar__item__icon-hide" : "")}>save</i>
                         <div className={"editor__toolbar__item__text" + (this.state.isSaving ? " editor__toolbar__item__text-hide" : "")}>SAVE</div>
@@ -447,6 +446,7 @@ export default class Editor extends Component {
                     </div>
                 </div>
                 <div className="editor__sidebar">
+                    <div className="editor__sidebar__title">{this.state.project ? this.state.project.description : "Loading..."}</div>
                     {files}
                     <div className={"editor__sidebar__file editor__sidebar__file-new" + (this.state.newScript ? " editor__sidebar__file-hide" : "")} onClick={this.newScriptButtonClick}>
                         <i className="editor__sidebar__file__icon material-icons-round">add</i>

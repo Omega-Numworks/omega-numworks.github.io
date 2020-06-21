@@ -18,16 +18,6 @@
             margin-left: 24px
             margin-right: 12px
             font-size: 18px
-
-        &__text
-            user-select: none
-            vertical-align: middle
-            font-size: 13px
-            color: #686868
-            font-family: 'Righteous', sans-serif
-            display: inline-block
-            margin-left: 24px
-            margin-right: 16px
         
         &__status
             float: right
@@ -148,16 +138,29 @@
         box-sizing: border-box
         overflow-x: hidden
         overflow-y: scroll
+
+        &__title
+            user-select: none
+            vertical-align: middle
+            font-size: 13px
+            color: #686868
+            font-family: 'Righteous', sans-serif
+            display: inline-block
+            margin-left: 24px
+            margin-right: 16px
+            margin-top: 4px
+            margin-bottom: 8px
+
         &__file
             vertical-align: middle
             user-select: none
             border-radius: 6px
             width: 100%
-            height: 44px
+            height: 32px
             display: inline-block
             color: #ffffff
-            padding: 10px 16px
-            margin: 4px 16px
+            padding: 7px 16px
+            margin: 2px 8px
             overflow: hidden
             transition: 0.2s all ease-in-out
             cursor: pointer
@@ -170,9 +173,10 @@
                 color: #3585C0
             &:hover
                 background-color: #050505
-                margin-left: 18px
+                margin-left: 12px
                 padding-left: 20px
             &__icon
+                font-size: 16px
                 vertical-align: middle
                 display: inline-block
                 margin-top: -1px
@@ -181,7 +185,8 @@
             &-new:hover &__icon
                 transform: rotate(90deg)
             &__name
-                font-size: 15px
+                font-size: 14px
+                font-weight: 400
                 margin-left: 16px
                 vertical-align: middle
                 display: inline-block
@@ -196,19 +201,19 @@
                 height: 6px
                 width: 6px
                 opacity: 0.4
-                margin-top: 8px
+                margin-top: 6px
                 transform: scale(0)
                 transition: 0.2s all ease-in-out
                 &-active
                     transform: scale(1)
             &:hover &__circle
-                margin-right: 18px
+                margin-right: 20px
             &-hide
                 opacity: 0.3
                 &:hover
                     background-color: inherit
-                    padding: 10px 16px
-                    margin: 4px 16px
+                    padding: 7px 12px
+                    margin: 2px 12px
             &-hide:hover &__icon
                 transform: none
                 
