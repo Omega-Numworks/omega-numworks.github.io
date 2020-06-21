@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import ImgSadCalculator from '../img/sad-calculator.png'
 
 export default class NotFound extends Component {
+    constructor(props) {
+        document.title = "Omega - 404"
+    }
+
     render() {
         return (
             <div className="content">

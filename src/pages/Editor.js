@@ -25,6 +25,8 @@ export default class Editor extends Component {
             simuWindow: null,
             numworksInstance: null
         }
+        
+        document.title = "Omega IDE"
 
         if (typeof navigator.usb !== 'undefined') {
             this.state.numworksInstance = new Numworks();
