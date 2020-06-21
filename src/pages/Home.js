@@ -10,6 +10,7 @@ export default class Home extends Component {
         super(props);
         
         this.getReleaseVersion = this.getReleaseVersion.bind(this);
+        document.title = "Omega"
     }
 
     getReleaseVersion(tag) {

@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
 export default class Policy extends Component {
+    constructor(props) {
+        document.title = "Omega — Policy"
+    }
+
     render() {
         return (
             <div className="content">
