@@ -75,7 +75,7 @@ export default class Footer extends Component {
                     <a className="footer__about-nw__contact" href="mailto:getomega.pro@gmail.com">
                         <FormattedMessage id="footer.contact" defaultMessage="Contact" />
                     </a></div>
-                    <select className="footer__logo" onChange={this.onChangeSelectLanguage} value={this.state.locale}>
+                    <select className="footer__locale" onChange={this.onChangeSelectLanguage} value={this.state.locale}>
                         {langs_list}
                     </select>
             </footer>
