@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl'
 
 export default class Policy extends Component {
     constructor(props) {
+        super(props);
         document.title = "Omega — Policy"
     }
 

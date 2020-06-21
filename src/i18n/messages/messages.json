@@ -160,6 +160,11 @@
     "filepath": "src/pages/Home.js"
   },
   {
+    "id": "home.head.tryit",
+    "defaultMessage": "TRY IT ONLINE",
+    "filepath": "src/pages/Home.js"
+  },
+  {
     "id": "home.head.description",
     "defaultMessage": "Omega is a fork of Numworks' Epsilon, the OS that runs on their calculator, which brings many features to it. Omega is for the people who want to add features to the calculator, but cannot because they have been rejected by Numworks (for reasons that are 100% understandable!).",
     "filepath": "src/pages/Home.js"
@@ -201,7 +206,7 @@
   },
   {
     "id": "home.features.more.description",
-    "defaultMessage": "A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames, a 32KB Python heap instead of 16KB one...",
+    "defaultMessage": "A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames...",
     "filepath": "src/pages/Home.js"
   },
   {

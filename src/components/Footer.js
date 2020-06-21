@@ -44,7 +44,8 @@ export default class Footer extends Component {
                 </div>
                 <div className="footer__separator" />
                 <div className="footer__about-nw">
-                    <FormattedMessage id="footer.trademark" defaultMessage="NumWorks is a registered trademark. Omega is not affiliated with Numworks." /> 
+                    <FormattedMessage id="footer.trademark" defaultMessage="NumWorks is a registered trademark. Omega is not affiliated with Numworks. "/>
+                    
                     <a className="footer__about-nw__contact" href="mailto:getomega.pro@gmail.com">
                         <FormattedMessage id="footer.contact" defaultMessage="Contact" />
                     </a></div>
