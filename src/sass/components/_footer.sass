@@ -12,13 +12,15 @@
         display: inline-block
 
         &__item
-            line-height: 28px
+            line-height: 26px
             list-style-type: none
-
-            &__link
-                text-decoration: none
-                color: #ffffff
-                cursor: pointer
+            border-radius: 4px
+            transition: all 0.1s
+            padding: 2px 8px
+            cursor: pointer
+            text-decoration: none
+            color: #ffffff
+            display: block
             
             &__tag
                 background-color: #2e2e2e
@@ -27,6 +29,10 @@
                 font-size: 13px
                 margin-left: 4px
                 color: #b5b5b5
+            
+            &:hover
+                background-color: #2e2e2e
+                animation: hover-feedback 0.3s
     
     &__discord
         float: right
@@ -82,3 +88,11 @@
             float: inherit
             display: block
             text-align: center
+
+@keyframes hover-feedback
+    0%
+        transform: scale(1)
+    50%
+        transform: scale(0.97)
+    100%
+        transform: scale(1)
