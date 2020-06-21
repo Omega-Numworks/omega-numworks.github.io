@@ -107,7 +107,7 @@ export default class Home extends Component {
                     <div className="feature__content feature__content-full">
                         <h3 className="feature__content__title">And more!</h3>
                         <p className="feature__content__description">
-                            A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames, a 32KB Python heap instead of 16KB one...
+                            A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames...
                         </p>
                         <div style={ {height: "24"} }></div>
                     </div>
