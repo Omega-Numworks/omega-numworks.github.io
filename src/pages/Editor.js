@@ -4,7 +4,6 @@ import MonacoEditor from 'react-monaco-editor';
 import ReactResizeDetector from 'react-resize-detector';
 import Numworks from "numworks.js";
 import firebase from "../firebase"
-import { Link } from 'react-router-dom';
 
 class Editor extends Component {
     constructor(props) {

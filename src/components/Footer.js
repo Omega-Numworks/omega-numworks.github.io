@@ -9,28 +9,35 @@ export default class Footer extends Component {
         this.changeLang = props.onChangeLanguage;
         
         this.state = {
-            locale: props.locale
+            locale: props.locale,
+            localeDropdown: false
         };
         
-        this.onChangeSelectLanguage = this.onChangeSelectLanguage.bind(this);
+        this.setLanguage = this.setLanguage.bind(this);
+        this.onClickOverlay = this.onClickOverlay.bind(this);
     }
     
-    onChangeSelectLanguage(event) {
+    setLanguage(lang) {
         this.setState({
-            locale: event.target.value
-        })
-    
-        this.changeLang(event.target.value);
+            locale: lang,
+            localeDropdown: false
+        });
+        this.changeLang(lang);
+    }
+
+    onClickOverlay() {
+        this.setState({ localeDropdown: false });
     }
 
     render() {
         var langs_list = [];
-        for(var lang in translations) {
-            langs_list.push(<option value={lang}>{translations[lang]["footer.language"]} {translations[lang]["footer.flag"]}</option>);
+        for (let lang in translations) {
+            langs_list.push(<div onClick={() => this.setLanguage(lang)} className="footer__locale__dropdown__item">{translations[lang]["footer.language"]} {translations[lang]["footer.flag"]}</div>);
         }
     
         return (
             <footer className="footer">
+                <div className={"footer__overlay" + (this.state.localeDropdown ? " footer__overlay-show" : "")} onClick={this.onClickOverlay}></div>
                 <div className="footer__links">
                     <h3 className="footer__title">
                         <FormattedMessage id="footer.projects" defaultMessage="Projects" />
@@ -75,9 +82,12 @@ export default class Footer extends Component {
                     <a className="footer__about-nw__contact" href="mailto:getomega.pro@gmail.com">
                         <FormattedMessage id="footer.contact" defaultMessage="Contact" />
                     </a></div>
-                    <select className="footer__locale" onChange={this.onChangeSelectLanguage} value={this.state.locale}>
-                        {langs_list}
-                    </select>
+                    <div className={"footer__locale " + (this.state.localeDropdown ? "footer__locale-active" : "")} onClick={() => this.setState({localeDropdown: !this.state.localeDropdown})}>
+                        {translations[this.state.locale]["footer.language"]} {translations[this.state.locale]["footer.flag"]}
+                        <div className={"footer__locale__dropdown " + (this.state.localeDropdown ? "footer__locale__dropdown-show" : "")}>
+                            {langs_list}
+                        </div>
+                    </div>
             </footer>
         )
     }

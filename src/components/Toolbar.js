@@ -39,6 +39,9 @@ export default class Toolbar extends Component {
             var email = error.email;
             var credential = error.credential;
             console.log(errorCode + "//" + errorMessage + "//" + email + "//" + credential);
+            if (errorCode === "auth/popup-closed-by-user" || errorCode === "auth/popup-blocked") {
+                firebase.auth().signInWithRedirect(provider);
+            }
         });
     }
 
