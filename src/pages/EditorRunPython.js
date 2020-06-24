@@ -27,7 +27,7 @@ export default class Simulator extends Component {
                 );
             } else {
                 return (
-                    <Calculator python={false} scripts={this.state.scripts} keyboard={true}/>
+                    <Calculator python={true} scripts={this.state.scripts} keyboard={true}/>
                 );
             }
         } else {

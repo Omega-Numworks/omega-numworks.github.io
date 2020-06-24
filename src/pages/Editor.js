@@ -498,7 +498,7 @@ class Editor extends Component {
                 </div>
                 <div className="editor__powered">Powered by Omega.</div>
                 <div class={"editor__simulator editor__simulator-" + this.state.simuState }>
-                    <iframe src="/editor/run" width="600" height="800" id="simu_frame" title="Simulator"/>
+                    <iframe src="/editor/run/python" width="600" height="800" id="simu_frame" title="Simulator"/>
                 </div>
             </div>
         );
