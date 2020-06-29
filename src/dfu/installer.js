@@ -87,7 +87,8 @@ export default class Installer {
     }
     
     async __reinstallStorage() {
-        this.calculator.installStorage(this.storage_content, this.__reinstallStorageCallback.bind(this));
+        if (this.storage_content !== null)
+            this.calculator.installStorage(this.storage_content, this.__reinstallStorageCallback.bind(this));
     }
     
     async install() {
@@ -98,14 +99,19 @@ export default class Installer {
             _this.installInstance.setProgressPercentage(done / total * 100);
         };
         
-        this.storage_content = await this.calculator.backupStorage();
-
-        // Ditch all non-python stuff, for convinience.
-        for(var i in this.storage_content.records) {
-            if (this.storage_content.records[i].type !== 'py') this.storage_content.records.splice(i, 1);
-        }
+        let pinfo = await this.calculator.getPlatformInfo();
+        console.log(pinfo);
         
-        // return;
+        if (pinfo.magik) {
+            this.storage_content = await this.calculator.backupStorage();
+
+            // Ditch all non-python stuff, for convinience.
+            for(var i in this.storage_content.records) {
+                if (this.storage_content.records[i].type !== 'py') this.storage_content.records.splice(i, 1);
+            }
+        } else {
+            this.storage_content = null;
+        }
         
         var callback = async function() {
             this.waiting_for_flash = true;
