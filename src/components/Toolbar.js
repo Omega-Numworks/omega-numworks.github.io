@@ -74,7 +74,7 @@ export default class Toolbar extends Component {
                         <FormattedMessage id="toolbar.simulator" defaultMessage="Simulator" />
                     </NavLink>
                     <a className="header__links__link" href="https://github.com/Omega-Numworks/Omega" target="_blank" rel="noopener noreferrer">
-                        <FormattedMessage id="toolbar.github" defaultMessage="Github" />
+                        <FormattedMessage id="toolbar.github" defaultMessage="GitHub" /><i className="header__links__link__icon material-icons-round">open_in_new</i>
                     </a>
                     
                     <div className="header__links__separator" />
