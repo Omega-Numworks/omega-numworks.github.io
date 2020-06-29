@@ -23,6 +23,7 @@
         &-hide
 
         &:hover
+            animation: hover-feedback 0.2s
             box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
 
     &__script
@@ -53,7 +54,7 @@
                 margin-bottom: 2px
                 margin-top: -2px
                 border-width: 0
-        
+
         &__input
             height: 32px
             font-size: 14px
@@ -73,7 +74,7 @@
             color: #4B4B4B
             vertical-align: middle
             &-new
-        
+
         &__action
             text-decoration: none
             float: right
@@ -127,7 +128,7 @@
             transition: 0.2s all
             &:hover
                 opacity: 1
-        
+
         &__delete
             float: right
             width: 22px
@@ -144,12 +145,11 @@
             &:hover
                 color: #c53431
                 opacity: 1
-    
+
         &:hover &__action
             opacity: 1
             margin-right: 12px
             padding: 8px 12px
-        
+
         &:hover &__delete
             margin-right: 0
-            

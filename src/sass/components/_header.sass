@@ -11,11 +11,14 @@
         text-decoration: none
         line-height: 60px
         margin-left: 32px
+        transition: all 0.2s
+        display: inline-block
 
         &:hover
-            color: #c53431
+            animation: hover-feedback 0.3s
+            color: #9c312f
             text-decoration: none
-    
+
     &__links
         float: right
         margin-right: 12px
@@ -43,14 +46,14 @@
                 color: #242424
                 font-weight: 900
                 background-color: rgba(0, 0, 0, 0.05)
-            
+
             &-red
                 color: #c53431
-                
-            
+
             &:hover
+                animation: hover-feedback 0.2s
                 background-color: rgba(0, 0, 0, 0.1)
-        
+
         &__separator
             vertical-align: middle
             margin: 12px
@@ -59,7 +62,6 @@
             display: inline-block
             background-color: rgba(0, 0, 0, 0.3)
 
-        
         &__profile
             cursor: pointer
             vertical-align: middle
@@ -70,8 +72,8 @@
             transition: 0.2s all
 
             &:hover
+                animation: hover-feedback 0.2s
                 background-color: rgba(0, 0, 0, 0.1)
-
 
             &-hide
                 display: none
@@ -95,7 +97,6 @@
 
                 &__link
 
-
             &__name
                 color: #484848
                 font-weight: 500
@@ -111,11 +112,10 @@
                 display: inline-block
                 border-radius: 50%
 
-
 @media screen and ( max-width: 420px )
     .header
         height: 112px
-        
+
         &__logo
             line-height: 72px
             display: block
