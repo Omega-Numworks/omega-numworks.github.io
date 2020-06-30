@@ -20,7 +20,6 @@ export default class Toolbar extends Component {
         });
 
         this.loginWithGitHub = this.loginWithGitHub.bind(this);
-        this.onProfileClick = this.onProfileClick.bind(this);
         this.onClickHamburger = this.onClickHamburger.bind(this);
         this.closeHamburger = this.closeHamburger.bind(this);
         this.logout = this.logout.bind(this);
@@ -45,10 +44,6 @@ export default class Toolbar extends Component {
                 firebase.auth().signInWithRedirect(provider);
             }
         });
-    }
-
-    onProfileClick() {
-        this.setState({ isProfileActive: !this.state.isProfileActive });
     }
 
     onClickHamburger() {
@@ -95,7 +90,7 @@ export default class Toolbar extends Component {
                     <div onClick={this.loginWithGitHub} className={"header__links__link" + (this.state.user == null ? "" : " header__links__link-hide")} activeClassName="header__links__link-active">
                         <FormattedMessage id="toolbar.login" defaultMessage="Login with Github" />
                     </div>
-                    <div className={"header__links__profile-actions" + (this.state.isProfileActive ? "" : " header__links__profile-actions-hide")}>
+                    <div className={"header__links__profile-actions" + (this.state.user == null ? " header__links__profile-actions-hide" : "")}>
                         <div onClick={this.logout} className="header__links__link header__links__link-red header__links__profile-actions__link" activeClassName="header__links__link-active">
                             <FormattedMessage id="toolbar.logout" defaultMessage="Logout" />
                         </div>
@@ -103,7 +98,7 @@ export default class Toolbar extends Component {
                             <FormattedMessage id="toolbar.myscripts" defaultMessage="My scripts" />
                         </NavLink>
                     </div>
-                    <div onClick={this.onProfileClick} className={"header__links__profile" + (this.state.user == null ? " header__links__profile-hide" : "")}>
+                    <div className={"header__links__profile" + (this.state.user == null ? " header__links__profile-hide" : "")}>
                         <div className="header__links__profile__name">{(this.state.user == null ? "undefined" : this.state.user.displayName)}</div>
                         <img className="header__links__profile__picture" alt="profile" src={(this.state.user == null ? "" : this.state.user.photoURL)} />
                     </div>

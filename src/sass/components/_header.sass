@@ -72,7 +72,6 @@
             background-color: rgba(0, 0, 0, 0.3)
 
         &__profile
-            cursor: pointer
             vertical-align: middle
             display: inline-block
             line-height: 42px
@@ -80,10 +79,6 @@
             margin-left: 4px
             border-radius: 6px
             transition: 0.2s all
-
-            &:hover
-                animation: hover-feedback 0.2s
-                background-color: rgba(0, 0, 0, 0.1)
 
             &-hide
                 display: none
@@ -138,6 +133,7 @@
             transition: all 0.2s
             display: inline-block
             color: #1d1d1d
+            cursor: pointer
             &__icon
 
         &__links
@@ -163,6 +159,8 @@
                 display: block
                 &-hide
                     display: none
+                &:hover
+                    animation: inherit
             &__separator
                 margin: 24px 26px
                 height: 24px
@@ -172,7 +170,6 @@
                 background-color: #ebebeb
             
             &__profile
-                cursor: pointer
                 display: block
                 padding: 0 8px
                 margin: 8px 26px
@@ -187,6 +184,7 @@
                     &__link
                         display: block
                     &-hide
+                        display: none
                         max-width: inherit
                         margin-right: inherit
                         opacity: inherit
