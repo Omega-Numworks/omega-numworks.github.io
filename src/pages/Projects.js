@@ -118,6 +118,7 @@ export default class Scripts extends Component {
             credentials: "same-origin"
         };
         await fetch('https://api.github.com/gists/' + id, requestOptions);
+        this.setState({ gists: this.state.gists.filter(gist => gist.id !== id) });
     }
 
     onNewProjectNameChange(event) {
