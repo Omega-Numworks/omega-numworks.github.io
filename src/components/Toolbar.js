@@ -86,9 +86,9 @@ export default class Toolbar extends Component {
                         <div onClick={this.logout} className="header__links__link header__links__link-red header__links__profile-actions__link" activeClassName="header__links__link-active">
                             <FormattedMessage id="toolbar.logout" defaultMessage="Logout" />
                         </div>
-                        <Link className="header__links__link header__links__profile-actions__link" activeClassName="header__links__link-active" to="/projects">
+                        <NavLink className="header__links__link header__links__profile-actions__link" activeClassName="header__links__link-active" to="/projects">
                             <FormattedMessage id="toolbar.myscripts" defaultMessage="My scripts" />
-                        </Link>
+                        </NavLink>
                     </div>
                     <div onClick={this.onProfileClick} className={"header__links__profile" + (this.state.user == null ? " header__links__profile-hide" : "")}>
                         <div className="header__links__profile__name">{(this.state.user == null ? "undefined" : this.state.user.displayName)}</div>

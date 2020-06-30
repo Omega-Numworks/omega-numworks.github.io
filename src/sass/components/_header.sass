@@ -47,19 +47,21 @@
                 font-weight: 900
                 background-color: rgba(0, 0, 0, 0.05)
 
+            &:hover
+                color: #2b2b2b
+                animation: hover-feedback 0.2s
+                background-color: rgba(0, 0, 0, 0.1)
+
             &-red
                 color: #c53431
+                &:hover
+                    color: #971d1b
             
             &__icon
                 font-size: 16px
                 vertical-align: middle
                 margin-left: 4px
                 margin-top: -2.5px
-
-            &:hover
-                color: #2b2b2b
-                animation: hover-feedback 0.2s
-                background-color: rgba(0, 0, 0, 0.1)
 
         &__separator
             vertical-align: middle
@@ -75,6 +77,7 @@
             display: inline-block
             line-height: 42px
             padding: 0 8px
+            margin-left: 4px
             border-radius: 4px
             transition: 0.2s all
 
