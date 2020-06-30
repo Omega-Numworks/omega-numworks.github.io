@@ -105,11 +105,11 @@ class Editor extends Component {
         this.handleKeyPressName = this.handleKeyPressName.bind(this);
         
         document.addEventListener("keydown", function(e) {
-            if(e.ctrlKey && e.key === "s"){
+            if((e.ctrlKey || e.metaKey) && e.key === "s"){
                 e.preventDefault();
                 this.save();
                 return false;
-            } else if (e.ctrlKey && e.key === "o") {
+            } else if ((e.ctrlKey || e.metaKey) && e.key === "o") {
                 e.preventDefault();
                 this.newScriptButtonClick();
                 return false;
@@ -438,7 +438,10 @@ class Editor extends Component {
                 </div>
                 <div className="editor__toolbar">
                     <a href="/projects"><i className="editor__toolbar__back material-icons-round">keyboard_backspace</i></a>
-                    <div className="editor__toolbar__logo"><FormattedMessage id="editor.title" defaultMessage="Omega IDE"/></div>
+                    <div className="editor__toolbar__logo">
+                        <FormattedMessage id="editor.title" defaultMessage="Omega IDE"/>
+                        <span className="editor__toolbar__logo__beta">BETA</span>
+                    </div>
                     <div className="editor__toolbar__item" onClick={this.save}>
                         <i className={"material-icons-round editor__toolbar__item__icon" + (this.state.isSaving ? " editor__toolbar__item__icon-hide" : "")}>save</i>
                         <div className={"editor__toolbar__item__text" + (this.state.isSaving ? " editor__toolbar__item__text-hide" : "")}><FormattedMessage id="editor.save" defaultMessage="SAVE" /></div>
