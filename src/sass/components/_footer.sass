@@ -14,7 +14,7 @@
         &__item
             line-height: 26px
             list-style-type: none
-            border-radius: 4px
+            border-radius: 6px
             transition: all 0.1s
             padding: 2px 8px
             cursor: pointer
@@ -24,10 +24,10 @@
             
             &__tag
                 background-color: #2e2e2e
-                border-radius: 4px
+                border-radius: 6px
                 padding: 2px 8px
                 font-size: 13px
-                margin-left: 4px
+                margin-left: 6px
                 color: #b5b5b5
             
             &:hover
@@ -42,11 +42,8 @@
 
     &__separator
         display: inline-block
-        //height: 1px
         width: 100%
-        //background-color: #474747
         margin: 24px 0
-
         height: 0
         border-top: 1px solid #474747
 
@@ -86,7 +83,6 @@
 
             &-show
                 max-height: 140px
-                //display: none
             
             &__item
                 width: 100%
@@ -109,6 +105,9 @@
 
         &__contact
             color: #858585
+            display: inline-block
+            &:hover
+                animation: hover-feedback 0.2s
 
     &__overlay
         position: fixed
@@ -120,7 +119,6 @@
         display: none
         &-show
             display: inherit
-
 
 @media screen and ( max-width: 900px )
     .footer

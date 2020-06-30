@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import firebase from "../firebase"
-import { Link } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
 
 export default class Toolbar extends Component {
@@ -10,7 +9,8 @@ export default class Toolbar extends Component {
         super(props);
         
         this.state = {
-            isProfileActive: false
+            isProfileActive: false,
+            isOpened: false
         };
 
         firebase.auth().onAuthStateChanged(user => {
@@ -21,6 +21,8 @@ export default class Toolbar extends Component {
 
         this.loginWithGitHub = this.loginWithGitHub.bind(this);
         this.onProfileClick = this.onProfileClick.bind(this);
+        this.onClickHamburger = this.onClickHamburger.bind(this);
+        this.closeHamburger = this.closeHamburger.bind(this);
         this.logout = this.logout.bind(this);
     }
 
@@ -49,6 +51,14 @@ export default class Toolbar extends Component {
         this.setState({ isProfileActive: !this.state.isProfileActive });
     }
 
+    onClickHamburger() {
+        this.setState({ isOpened: !this.state.isOpened }); 
+    }
+
+    closeHamburger() {
+        this.setState({ isOpened: false });
+    }
+
     logout() {
         firebase.auth().signOut();
         this.setState({
@@ -60,17 +70,20 @@ export default class Toolbar extends Component {
     render() {
         return (
             <header className="header">
+                <div onClick={this.onClickHamburger} className="header__hamburger">
+                    <i className="header__hamburger__icon material-icons-round">menu</i>
+                </div>
                 <NavLink className="header__logo" to="/">
                     <FormattedMessage id="toolbar.omega" defaultMessage="Omega" />
                 </NavLink>
-                <div className="header__links">
-                    <NavLink className="header__links__link" activeClassName="header__links__link-active" to="/install/latest" exact>
+                <div className={"header__links " + (this.state.isOpened ? "header__links-active" : "")}>
+                    <NavLink onClick={this.closeHamburger} className="header__links__link" activeClassName="header__links__link-active" to="/install/latest" exact>
                         <FormattedMessage id="toolbar.install" defaultMessage="Install" />
                     </NavLink>
-                    <NavLink className="header__links__link" activeClassName="header__links__link-active" to="/releases" exact>
+                    <NavLink onClick={this.closeHamburger} className="header__links__link" activeClassName="header__links__link-active" to="/releases" exact>
                         <FormattedMessage id="toolbar.releases" defaultMessage="Releases" />
                     </NavLink>
-                    <NavLink className="header__links__link" activeClassName="header__links__link-active" to="/simulator" exact>
+                    <NavLink onClick={this.closeHamburger} className="header__links__link" activeClassName="header__links__link-active" to="/simulator" exact>
                         <FormattedMessage id="toolbar.simulator" defaultMessage="Simulator" />
                     </NavLink>
                     <a className="header__links__link" href="https://github.com/Omega-Numworks/Omega" target="_blank" rel="noopener noreferrer">
@@ -86,7 +99,7 @@ export default class Toolbar extends Component {
                         <div onClick={this.logout} className="header__links__link header__links__link-red header__links__profile-actions__link" activeClassName="header__links__link-active">
                             <FormattedMessage id="toolbar.logout" defaultMessage="Logout" />
                         </div>
-                        <NavLink className="header__links__link header__links__profile-actions__link" activeClassName="header__links__link-active" to="/projects">
+                        <NavLink onClick={this.closeHamburger} className="header__links__link header__links__profile-actions__link" activeClassName="header__links__link-active" to="/projects">
                             <FormattedMessage id="toolbar.myscripts" defaultMessage="My scripts" />
                         </NavLink>
                     </div>

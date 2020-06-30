@@ -78,7 +78,7 @@
             line-height: 42px
             padding: 0 8px
             margin-left: 4px
-            border-radius: 4px
+            border-radius: 6px
             transition: 0.2s all
 
             &:hover
@@ -122,22 +122,71 @@
                 display: inline-block
                 border-radius: 50%
 
-@media screen and ( max-width: 420px )
-    .header
-        height: 112px
+    &__hamburger
+        display: none
 
-        &__logo
-            line-height: 72px
-            display: block
+@media screen and ( max-width: 1000px )
+    .header
+        //position: fixed
+        width: 100%
+        box-sizing: content-box
+        &__hamburger
+            float: right
+            font-size: 32px
+            line-height: 64px
+            margin-right: 32px
+            transition: all 0.2s
+            display: inline-block
+            color: #1d1d1d
+            &__icon
 
         &__links
-            float: left
-            margin-left: 22px
-            margin-top: -10px
+            z-index: 100000000
+            margin: 0
+            width: 100%
+            max-height: 0
+            overflow: hidden
+            height: 100vh
+            border-top: 1px solid transparent
+            background-color: #ffffff
+            position: fixed
+            display: block
+            padding: 0
+            transition: all 0.2s ease-in-out
+            &-active
+                border-top-color: #e4e4e4
+                padding: 12px 0
+                max-height: 100vh
 
             &__link
-                text-decoration: none
-                color: #484848
-                line-height: 40px
-                font-weight: 500
-                margin: 0 12px
+                margin: 8px 26px
+                display: block
+                &-hide
+                    display: none
+            &__separator
+                margin: 24px 26px
+                height: 24px
+                width: calc(100% - 52px)
+                height: 1px
+                display: block
+                background-color: #ebebeb
+            
+            &__profile
+                cursor: pointer
+                display: block
+                padding: 0 8px
+                margin: 8px 26px
+                margin-top: 16px
+                transition: 0.2s all
+                &-hide
+                    display: none
+                &-actions
+                    display: block
+                    max-width: inherit
+                    height: 72px
+                    &__link
+                        display: block
+                    &-hide
+                        max-width: inherit
+                        margin-right: inherit
+                        opacity: inherit
