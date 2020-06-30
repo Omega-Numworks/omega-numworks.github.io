@@ -207,6 +207,7 @@ export default class Install extends Component {
                 </div>
 
                 <div className={"installer-notcompatible " + (this.state.installerNotCompatibleWithThisBrowser ? "installer-notcompatible-active" : "")}>
+                    <span role="img" aria-label="emoji" className="installer-notcompatible__emoji">😕</span>
                     <FormattedMessage id="installer.incompatible" defaultMessage="Our installer is not compatible with your browser. Please use a browser like Chromium/Google Chrome or Edge." />
                 </div>
             </div>
