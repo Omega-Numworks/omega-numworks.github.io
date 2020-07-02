@@ -12,11 +12,11 @@ export default class NotFound extends Component {
         return (
             <div className="content">
                 <div className="notfound">
+                    <div className="notfound__title"><FormattedMessage id="notfound.title" defaultMessage="Oi, not found." /></div>
+                    <div className="notfound__subtitle"><FormattedMessage id="notfound.description" defaultMessage="Smh, the page you're looking for doesn't exist." /></div>
                     <div className="notfound__images">
                         <img className="notfound__images__image" alt="Sad numworks" src={ImgSadCalculator} />
                     </div>
-                    <div className="notfound__title"><FormattedMessage id="notfound.title" defaultMessage="Oi, not found." /></div>
-                    <div className="notfound__subtitle"><FormattedMessage id="notfound.description" defaultMessage="Smh, the page you're looking for doesn't exist." /></div>
                 </div>
             </div>
         )
