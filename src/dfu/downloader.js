@@ -21,6 +21,7 @@ export default class Downloader {
     }
     
     __downloadFirmware(model, version, fwname, callback) {
+        console.log('firmwares/' + version + '/' + model.toLowerCase() + '/' + fwname)
         this.storage.ref().child('firmwares/' + version + '/' + model.toLowerCase() + '/' + fwname).getDownloadURL().then(function(url) {
             var oReq = new XMLHttpRequest();
             oReq.responseType = 'blob';
@@ -34,7 +35,7 @@ export default class Downloader {
             oReq.open("GET", url, true);
             oReq.send();
         }).catch(function(error) {
-            console.log("[DOWNLOAD] " + error.code);
+            console.error("[DOWNLOAD] " + error.code);
         });
     }
     
@@ -51,7 +52,7 @@ export default class Downloader {
             oReq.open("GET", url, true);
             oReq.send();
         }).catch(function(error) {
-            console.log("[DOWNLOAD] " + error.code);
+            console.error("[DOWNLOAD] " + error.code);
         });
     }
     

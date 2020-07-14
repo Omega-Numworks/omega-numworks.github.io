@@ -7,6 +7,17 @@ import ImgCalculatorCable from '../img/calculator-cable.png'
 
 import Installer from '../dfu/installer'
 
+const LANG_TO_FLAGS = {
+    "en": "🇺🇸",
+    "fr": "🇫🇷",
+    "nl": "🇳🇱",
+    "pt": "🇵🇹",
+    "it": "🇮🇹",
+    "de": "🇩🇪",
+    "es": "🇪🇸",
+    "hu": "🇭🇺"
+};
+
 export default class Install extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +38,9 @@ export default class Install extends Component {
             errorMessage: "",
             installerInstance: new Installer(this),
             showPopup: false,
-            firmwareLanguage: 'FR 🇫🇷'
+            multiLangSupport: false,
+            langsList: [],
+            selectedLang: ''
         }
 
         document.title = "Omega — Install"
@@ -49,6 +62,8 @@ export default class Install extends Component {
         this.hidePopup = this.hidePopup.bind(this);
         this.install = this.install.bind(this);
         this.setFirmwareLanguage = this.setFirmwareLanguage.bind(this);
+        this.disableLanguage = this.disableLanguage.bind(this);
+        this.setLangsList = this.setLangsList.bind(this);
         this.setProgressPercentage = this.setProgressPercentage.bind(this);
         this.installationFinished = this.installationFinished.bind(this);
         
@@ -65,6 +80,14 @@ export default class Install extends Component {
 
         // Browser compatibility
         this.installerNotCompatibleWithThisBrowser = this.installerNotCompatibleWithThisBrowser.bind(this);
+    }
+    
+    disableLanguage() {
+        this.setState({langsList: [], multiLangSupport: false, selectedLang: ''});
+    }
+    
+    setLangsList(list) {
+        this.setState({langsList: list, multiLangSupport: true, selectedLang: list[0]});
     }
     
     componentDidMount() {
@@ -143,11 +166,15 @@ export default class Install extends Component {
         });
         
         this.hidePopup();
-        this.state.installerInstance.install();
+        if (this.state.multiLangSupport) {
+            this.state.installerInstance.install(this.state.selectedLang);
+        } else {
+            this.state.installerInstance.install(null);
+        }
     }
 
     setFirmwareLanguage(language) {
-        this.setState({ firmwareLanguage: language });
+        this.setState({ selectedLang: language });
     }
 
     setProgressPercentage(percentage) {
@@ -180,12 +207,12 @@ export default class Install extends Component {
 
     render() {
         var langs_list_html = [];
-        var langs_list = ['EN 🇬🇧', 'ES 🇪🇸', 'FR 🇫🇷', 'IT 🇮🇹', 'NL 🇳🇱', 'DE 🇩🇪', 'HU 🇭🇺'];
-        for (let lang in langs_list) {
+        
+        for (let lang in this.state.langsList) {
             langs_list_html.push(
-                <div onClick={() => this.setFirmwareLanguage(lang)}
-                     className={"installer__content__language__subbutton " + (lang === this.state.firmwareLanguage ? "installer__content__language__subbutton-active" : "")}>
-                     {langs_list[lang]}
+                <div onClick={() => this.setFirmwareLanguage(this.state.langsList[lang])}
+                     className={"installer__content__language__subbutton " + (this.state.langsList[lang] === this.state.selectedLang ? "installer__content__language__subbutton-active" : "")}>
+                     {this.state.langsList[lang].toUpperCase() + " " + LANG_TO_FLAGS[this.state.langsList[lang]]}
                 </div>);
         }
 
