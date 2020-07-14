@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ImgSymbolicCalculation from '../img/symbolic-calculation.png'
 import ImgAtom from '../img/atom.png'
 import ImgRpn from '../img/rpn.png'
+import Img3ds from '../img/3ds.png'
 import { releases } from '../firmware/firmwares'
 import { Link } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
@@ -119,9 +120,39 @@ export default class Home extends Component {
                         <img className="feature__images__image" alt="RPN" src={ImgRpn} />
                     </div>
                 </div>
+
+                {/* 3DS */}
+                <div className="feature feature-gray feature-desktop">
+                    <div className="feature__images">
+                        <img className="feature__images__image" alt="Atom" src={Img3ds} />
+                    </div>
+                    <div className="feature__content">
+                        <h3 className="feature__content__title">
+                            <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available for Nintendo 3DS" />
+                        </h3>
+                        <p className="feature__content__description">
+                            <FormattedMessage id="home.features.3ds.description" defaultMessage="Nintendo and Nintendo 3DS are registered trademarks of Nintendo of America Inc, 4600 150th Ave NE, Redmond, WA 98052, USA.." />
+                        </p>
+                    </div>
+                </div>
+
+                {/* 3DS */}
+                <div className="feature feature-gray feature-mobile">
+                    <div className="feature__content">
+                        <h3 className="feature__content__title">
+                            <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available for Nintendo 3DS" />
+                        </h3>
+                        <p className="feature__content__description">
+                            <FormattedMessage id="home.features.3ds.description" defaultMessage="Nintendo and Nintendo 3DS are registered trademarks of Nintendo of America Inc, 4600 150th Ave NE, Redmond, WA 98052, USA.." />
+                        </p>
+                    </div>
+                    <div className="feature__images">
+                        <img className="feature__images__image" alt="Atom" src={Img3ds} />
+                    </div>
+                </div>
                 
                 {/* And more */}
-                <div className="feature feature-gray">
+                <div className="feature feature-darkgray">
                     <div className="feature__content feature__content-full">
                         <h3 className="feature__content__title">
                             <FormattedMessage id="home.features.more.name" defaultMessage="And more!" />
