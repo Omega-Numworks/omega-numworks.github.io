@@ -26,7 +26,8 @@ export default class Install extends Component {
             error: false,
             errorMessage: "",
             installerInstance: new Installer(this),
-            showPopup: false
+            showPopup: false,
+            firmwareLanguage: 'FR 🇫🇷'
         }
 
         document.title = "Omega — Install"
@@ -47,6 +48,7 @@ export default class Install extends Component {
         this.showPopup = this.showPopup.bind(this);
         this.hidePopup = this.hidePopup.bind(this);
         this.install = this.install.bind(this);
+        this.setFirmwareLanguage = this.setFirmwareLanguage.bind(this);
         this.setProgressPercentage = this.setProgressPercentage.bind(this);
         this.installationFinished = this.installationFinished.bind(this);
         
@@ -144,6 +146,10 @@ export default class Install extends Component {
         this.state.installerInstance.install();
     }
 
+    setFirmwareLanguage(language) {
+        this.setState({ firmwareLanguage: language });
+    }
+
     setProgressPercentage(percentage) {
         this.setState({ progressPercentage: percentage });
     }
@@ -173,6 +179,16 @@ export default class Install extends Component {
     installerNotCompatibleWithThisBrowser() { this.setState({ installerNotCompatibleWithThisBrowser: true }) }
 
     render() {
+        var langs_list_html = [];
+        var langs_list = ['EN 🇬🇧', 'ES 🇪🇸', 'FR 🇫🇷', 'IT 🇮🇹', 'NL 🇳🇱', 'DE 🇩🇪', 'HU 🇭🇺'];
+        for (let lang in langs_list) {
+            langs_list_html.push(
+                <div onClick={() => this.setFirmwareLanguage(lang)}
+                     className={"installer__content__language__subbutton " + (lang === this.state.firmwareLanguage ? "installer__content__language__subbutton-active" : "")}>
+                     {langs_list[lang]}
+                </div>);
+        }
+
         return (
             <div className="content">
                 <div className={"installer " + (this.state.installerNotCompatibleWithThisBrowser ? "" : "installer-active")}>
@@ -194,6 +210,9 @@ export default class Install extends Component {
                         <div className={"installer__content__error " +  (this.state.error ? "installer__content__error-active" : "")}>{this.state.errorMessage}</div>
                         <button onClick={() => this.detectCalculator()} className={"installer__content__button " +  (!this.state.calculatorDetected ? "installer__content__button-active" : "")}><FormattedMessage id="installer.detect" defaultMessage="DETECT CALCULATOR" /></button>
                         <button onClick={this.install} className={"installer__content__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__button-active" : "") + (this.state.showPopup ? " installer__content__button-disabled" : "")}><FormattedMessage id="installer.install" defaultMessage="INSTALL OMEGA" /></button>
+                        <div  className={"installer__content__language " + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__language-active" : "")}>
+                            {langs_list_html}
+                        </div>
                     </div>
                 </div>
 
