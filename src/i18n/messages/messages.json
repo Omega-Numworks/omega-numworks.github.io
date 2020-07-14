@@ -55,11 +55,6 @@
     "filepath": "src/components/Footer.js"
   },
   {
-    "id": "footer.omega-logo",
-    "defaultMessage": "Omega",
-    "filepath": "src/components/Footer.js"
-  },
-  {
     "id": "toolbar.omega",
     "defaultMessage": "Omega",
     "filepath": "src/components/Toolbar.js"
@@ -81,7 +76,7 @@
   },
   {
     "id": "toolbar.github",
-    "defaultMessage": "Github",
+    "defaultMessage": "GitHub",
     "filepath": "src/components/Toolbar.js"
   },
   {
@@ -197,6 +192,16 @@
   {
     "id": "home.features.rpn.description",
     "defaultMessage": "Omega supports using Reverse Polish Notation to do calculations.",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.3ds.name",
+    "defaultMessage": "Now available on the Nintendo 3DS",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.3ds.description",
+    "defaultMessage": "Omega is avaliable and fully usable on the Nintendo 3DS.",
     "filepath": "src/pages/Home.js"
   },
   {

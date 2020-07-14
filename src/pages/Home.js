@@ -128,10 +128,10 @@ export default class Home extends Component {
                     </div>
                     <div className="feature__content">
                         <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available for Nintendo 3DS" />
+                            <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available on the Nintendo 3DS" />
                         </h3>
                         <p className="feature__content__description">
-                            <FormattedMessage id="home.features.3ds.description" defaultMessage="Nintendo and Nintendo 3DS are registered trademarks of Nintendo of America Inc, 4600 150th Ave NE, Redmond, WA 98052, USA.." />
+                            <FormattedMessage id="home.features.3ds.description" defaultMessage="Omega is avaliable and fully usable on the Nintendo 3DS." />
                         </p>
                     </div>
                 </div>
@@ -140,10 +140,10 @@ export default class Home extends Component {
                 <div className="feature feature-gray feature-mobile">
                     <div className="feature__content">
                         <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available for Nintendo 3DS" />
+                            <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available on the Nintendo 3DS" />
                         </h3>
                         <p className="feature__content__description">
-                            <FormattedMessage id="home.features.3ds.description" defaultMessage="Nintendo and Nintendo 3DS are registered trademarks of Nintendo of America Inc, 4600 150th Ave NE, Redmond, WA 98052, USA.." />
+                            <FormattedMessage id="home.features.3ds.description" defaultMessage="Omega is avaliable and fully usable on the Nintendo 3DS." />
                         </p>
                     </div>
                     <div className="feature__images">
