@@ -75,6 +75,18 @@ export default class Installer {
             }
         }
         
+        if ("langages" in this.firmwareInfos) {
+            // Multilang support
+            
+            if (this.calculator.getModel() in this.firmwareInfos.langages) {
+                this.installInstance.setLangsList(this.firmwareInfos.langages[this.calculator.getModel()]);
+            } else {
+                this.installInstance.disableLanguage();
+            }
+        } else {
+            this.installInstance.disableLanguage();
+        }
+        
         this.installInstance.calculatorDetected(pinfo.omega.installed ? "omega" : "epsilon");
         
     }
@@ -91,7 +103,7 @@ export default class Installer {
             this.calculator.installStorage(this.storage_content, this.__reinstallStorageCallback.bind(this));
     }
     
-    async install() {
+    async install(langage) {
         console.log("install version" + this.toInstall + "/" + this.installInstance.state.model);
         
         var _this = this;
@@ -120,9 +132,9 @@ export default class Installer {
         
         if (!DO_DRY_RUN) {
             if (this.installInstance.state.model === "N0100") {
-                await this.__installN0100(callback);
+                await this.__installN0100(callback, langage);
             } else {
-                await this.__installN0110(callback);
+                await this.__installN0110(callback, langage);
             }
         } else {
             callback();
@@ -135,10 +147,15 @@ export default class Installer {
 
     }
     
-    async __installN0100(callback) {
+    async __installN0100(callback, langage) {
         var _this = this;
+        var file_name = "epsilon.onboarding.internal.bin";
         
-        _this.downloader.downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, "epsilon.onboarding.internal.bin", async (internal_check, internal_blob) => {
+        if (langage !== null) {
+            file_name = "epsilon.onboarding.internal." + langage + ".bin";
+        }
+        
+        _this.downloader.downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, file_name, async (internal_check, internal_blob) => {
             if (!internal_check) {
                 _this.installInstance.calculatorError(true, "Download of internal seems corrupted, please retry.");
             }
@@ -151,15 +168,22 @@ export default class Installer {
         });
     }
     
-    async __installN0110(callback) {
+    async __installN0110(callback, langage) {
         var _this = this;
+        var file_name_internal = "epsilon.onboarding.internal.bin";
+        var file_name_external = "epsilon.onboarding.external.bin";
         
-        this.downloader.downloadFirmwareCheck(this.installInstance.state.model, this.toInstall, "epsilon.onboarding.external.bin", async (external_check, external_blob) => {
+        if (langage !== null) {
+            file_name_internal = "epsilon.onboarding.internal." + langage + ".bin";
+            file_name_external = "epsilon.onboarding.external." + langage + ".bin";
+        }
+        
+        this.downloader.downloadFirmwareCheck(this.installInstance.state.model, this.toInstall, file_name_external, async (external_check, external_blob) => {
             if (!external_check) {
                 _this.installInstance.calculatorError(true, "Download of external seems corrupted, please retry.");
             }
             
-            _this.downloader.downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, "epsilon.onboarding.internal.bin", async (internal_check, internal_blob) => {
+            _this.downloader.downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, file_name_internal, async (internal_check, internal_blob) => {
                 if (!internal_check) {
                     _this.installInstance.calculatorError(true, "Download of internal seems corrupted, please retry.");
                 }

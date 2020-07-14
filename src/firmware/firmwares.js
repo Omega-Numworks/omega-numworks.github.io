@@ -1,6 +1,24 @@
 export const releases = {
 	"latest": "O1.19.2-E13",
 	"firmwares": [{
+	    "name": "multilang-test",
+	    "commit": "7590e6ce317f2aecf93316f3af4ca4e8bd4ac645",
+	    "changelog": [
+	        "Test, please ignore"
+	    ],
+		"compatibility": {
+			"N0110": true,
+			"N0100": true,
+			"web": false,
+			"android": false
+		},
+		"available": true,
+		"langages": {
+		    "0100": [
+		        "en", "fr", "nl", "pt", "it", "de", "es", "hu"
+		    ]
+		}
+	}, {
 		"name": "O1.19.2-E13",
 		"commit": "651abf9c7bb0018267729dd13b1cc5c1185b6203",
 		"changelog": [
