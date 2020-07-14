@@ -60,6 +60,10 @@ export default class Releases extends Component {
                                             <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (element.compatibility.web && element.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>web</i>
                                             <div className={"releases__cards__card__actions__subbutton__text" + (element.compatibility.web && element.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}><FormattedMessage id="releases.web" defaultMessage="WEB" /></div>
                                         </a>
+                                        <a className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (element.compatibility["3ds"] && element.available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={element.compatibility["3ds"] && element.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + element.name + "/simulator.3dsx") : "#"}>
+                                            <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (element.compatibility["3ds"] && element.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>gamepad</i>
+                                            <div className={"releases__cards__card__actions__subbutton__text" + (element.compatibility["3ds"] && element.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}><FormattedMessage id="releases.3ds" defaultMessage="3DS" /></div>
+                                        </a>
                                         {/* <div className="releases__cards__card__actions__subbutton">
                                             <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">arrow_drop_down_circle</i>
                                         </div> */}
