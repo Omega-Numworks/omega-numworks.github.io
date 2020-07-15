@@ -32,7 +32,9 @@ class Editor extends Component {
             statusMessage: <FormattedMessage id="editor.loading" defaultMessage="Loading..." />,
             simuState: 'hidden',
             simuWindow: null,
-            numworksInstance: null
+            numworksInstance: null,
+            editFileName: '',
+            renameInputValue: ''
         }
         
         document.title = "Omega IDE"
@@ -98,6 +100,9 @@ class Editor extends Component {
         this.onRightClickFile = this.onRightClickFile.bind(this);
         this.onClickOverlay = this.onClickOverlay.bind(this);
         this.delete = this.delete.bind(this);
+        this.rename = this.rename.bind(this);
+        this.renameKeyPressed = this.renameKeyPressed.bind(this);
+        this.onRenameInputChange = this.onRenameInputChange.bind(this);
         
         this.runSimu = this.runSimu.bind(this);
         this.expandSimu = this.expandSimu.bind(this);
@@ -319,6 +324,50 @@ class Editor extends Component {
         });
     }
 
+    rename() {
+        this.setState({
+            showContextMenu: false,
+            editFileName: this.state.contextMenuScriptName,
+            renameInputValue: this.state.contextMenuScriptName
+        });
+        console.log(this.state);
+    }
+
+    renameKeyPressed(e) {
+        if(e.key === 'Enter'){
+            if (this.state.editFileName === this.state.renameInputValue) {
+                this.setState({
+                    editFileName: '',
+                    renameInputValue: '',
+                });
+            } else {
+                this.setState({
+                    editFileName: '',
+                    renameInputValue: '',
+                    saveState: {
+                        ...this.state.saveState,
+                        [this.state.renameInputValue]: true
+                    },
+                    localSave: {
+                        files: {
+                            ...this.state.localSave.files,
+                            [this.state.renameInputValue]: {
+                                filename: this.state.renameInputValue,
+                                content: this.state.localSave.files[this.state.editFileName].content
+                            },
+                            [this.state.editFileName]: null
+                        }
+                    },
+                    activeFile: this.state.activeFile === this.state.editFileName ? this.state.renameInputValue : this.state.activeFile
+                });
+            }
+        }
+    }
+
+    onRenameInputChange(e) {
+        this.setState({ renameInputValue: e.target.value });
+    }
+
     delete() {
         this.setState({
             showContextMenu: true,
@@ -395,9 +444,10 @@ class Editor extends Component {
             console.log(this.state.localSave);
             files = Object.entries(this.state.localSave.files).map(([key, value]) => {
                 if (value !== null) {
-                    return <div onContextMenu={(e) => this.onRightClickFile(e, key)} onClick={() => this.changeFile(key)} className={"editor__sidebar__file" + (this.state.activeFile === key ? " editor__sidebar__file-active" : "")}>
+                    return <div key={key} onContextMenu={(e) => this.onRightClickFile(e, key)} onClick={() => this.changeFile(key)} className={"editor__sidebar__file" + (this.state.activeFile === key ? " editor__sidebar__file-active" : "")}>
                         <i className="editor__sidebar__file__icon material-icons-round">insert_drive_file</i>
-                        <div className="editor__sidebar__file__name">{key}</div>
+                        <div className={"editor__sidebar__file__name " + (this.state.editFileName === key ? "editor__sidebar__file__name-hide" : "")}>{key}</div>
+                        <input className={"editor__sidebar__file__input " + (this.state.editFileName === key ? "" : "editor__sidebar__file__input-hide")} onKeyDown={this.renameKeyPressed} onChange={this.onRenameInputChange} value={this.state.renameInputValue} />
                         <div className={"editor__sidebar__file__circle" + (this.state.saveState[key] ? " editor__sidebar__file__circle-active" : "")}></div>
                     </div>;
                 }
@@ -427,7 +477,7 @@ class Editor extends Component {
             <div className="content">
                 <div className={"editor__overlay" + (this.state.showContextMenu ? " editor__overlay-show" : "")} onClick={this.onClickOverlay}></div>
                 <div className={"editor__contextmenu" + (this.state.showContextMenu ? " editor__contextmenu-show" : "")} style={{top: this.state.contextMenuPosition.y + "px", left: this.state.contextMenuPosition.x + "px" }}>
-                    <div className="editor__contextmenu__action">
+                    <div className="editor__contextmenu__action" onClick={this.rename}>
                         <i className="material-icons-round editor__contextmenu__action__icon">edit</i>
                         <div className="editor__contextmenu__action__text"><FormattedMessage id="editor.rename" defaultMessage="RENAME" /></div>
                     </div>
@@ -491,16 +541,16 @@ class Editor extends Component {
                             editorDidMount={this.editorDidMount} />
                     </ReactResizeDetector>
                 </div>
-                <div class="editor__simulator__controls">
-                    <button type="button" class="editor__simulator__controls__button" onClick={this.expandSimu}>
+                <div className="editor__simulator__controls">
+                    <button type="button" className="editor__simulator__controls__button" onClick={this.expandSimu}>
                         <i className="material-icons-round">keyboard_arrow_up</i>
                     </button>
-                    <button type="button" class="editor__simulator__controls__button" onClick={this.retractSimu}>
+                    <button type="button" className="editor__simulator__controls__button" onClick={this.retractSimu}>
                         <i className="material-icons-round">keyboard_arrow_down</i>
                     </button>
                 </div>
                 <div className="editor__powered">Powered by Omega.</div>
-                <div class={"editor__simulator editor__simulator-" + this.state.simuState }>
+                <div className={"editor__simulator editor__simulator-" + this.state.simuState }>
                     <iframe src="/editor/run/python" width="600" height="800" id="simu_frame" title="Simulator"/>
                 </div>
             </div>

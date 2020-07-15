@@ -226,6 +226,7 @@
             cursor: pointer
             box-sizing: border-box
             max-height: 100px
+            position: relative
             &-active
                 background-color: #101010
                 font-weight: 500
@@ -251,6 +252,21 @@
                 vertical-align: middle
                 display: inline-block
                 opacity: 0.93
+                &-hide
+                    display: none
+            &__input
+                position: absolute
+                left: 48px
+                border: 1px solid #2273dd
+                outline: none
+                margin-top: -1px
+                background-color: transparent
+                border-radius: 4px
+                color: #ffffff
+                display: inline-block
+                opacity: 0.93
+                &-hide
+                    display: none
             &__circle
                 display: inline-block
                 float: right
