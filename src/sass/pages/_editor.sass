@@ -1,3 +1,6 @@
+.content
+    margin-top: 0
+    
 .editor
     & .content
         height: 100vh
@@ -8,6 +11,7 @@
         height: 48px
         background-color: #101010
         border-bottom: 1px solid rgb(15, 15, 15)
+        overflow: hidden
 
         &__back
             height: 50px
@@ -349,50 +353,58 @@
     &__contextmenu
         position: fixed
         z-index: 3000
-        background-color: #000000
+        background-color: #141414
         border-radius: 6px
         box-shadow: 0 14px 14px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.12)
-        width: 200px
+        width: 180px
         max-width: 0
         max-height: 0
         color: #ffffff
         padding: 8px 0
-        transition: 0.2s max-width ease-in-out, 0.2s max-height ease-in-out
+        transition: 0.2s max-width ease-in-out, 0.2s max-height ease-in-out, 0.2s border-width ease-in-out
         overflow: hidden
+        border: 0px solid #242424
         user-select: none
         &-show
             max-width: 200px
             max-height: 150px
+            border-width: 1px
 
         &__action
-            height: 40px
-            background-color: #000000
-            transition: 0.2s all ease-in-out
+            height: 28px
+            background-color: rgba(0, 0, 0, 0)
+            transition: 0.1s all ease-in-out
             cursor: pointer
+            border-radius: 6px
+            margin-left: 8px
+            margin-right: 8px
             overflow: hidden
+            border: 1px solid transparent
 
             &:hover
-                background-color: #070707
+                background-color: rgba(0, 0, 0, 0.8)
+                border: 1px solid rgba(0, 0, 0, 0.5)
 
             &-red
-                color: #862020
+                color: #aa3434
             
             &__text
-                margin-left: 16px
-                line-height: 40px
-                height: 40px
+                margin-left: 14px
+                line-height: 28px
+                height: 28px
                 font-weight: 500
                 display: inline-block
                 vertical-align: middle
                 opacity: 0.93
-                font-size: 14px
+                font-size: 13px
             &__icon
-                margin-left: 16px
-                line-height: 40px
-                height: 40px
+                margin-left: 12px
+                line-height: 28px
+                height: 28px
                 display: inline-block
                 vertical-align: middle
                 opacity: 0.93
+                font-size: 20px
     
     &__overlay
         position: fixed
@@ -444,3 +456,14 @@
     100%
         transform: translate(-50%, -50%) rotate(360deg)
         opacity: 1
+
+@media screen and ( max-width: 1000px )
+    .editor
+        &__toolbar
+            height: 64px
+            box-sizing: border-box
+            position: fixed
+            top: 0
+            left: 0
+            right: 0
+            padding-top: 8px
