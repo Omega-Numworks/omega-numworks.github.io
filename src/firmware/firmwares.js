@@ -1,5 +1,5 @@
 export const releases = {
-	"latest": "OMTL-ETST",
+	"latest": "OMultilang.Test-E14",
 	"firmwares": [{
 	    "name": "OMultilang.Test-E14",
 	    "commit": "7590e6ce317f2aecf93316f3af4ca4e8bd4ac645",
