@@ -53,7 +53,9 @@
         line-height: 22px
 
 .feature
-    padding: 16px calc(25% - 16px)
+    overflow: hidden
+    padding-top: 16px
+    //padding: 16px calc(25% - 16px)
 
     &-mobile
         display: none
@@ -68,12 +70,13 @@
 
     &-darkgray
         background-color: #e2e2e2
+        padding-bottom: 16px
 
     &__content
         display: inline-block
         width: 50%
         vertical-align: top
-        padding: 0 16px
+        //padding: 0 16px
         box-sizing: border-box
 
         &-full
@@ -106,11 +109,11 @@
         width: 50%
         vertical-align: top
         box-sizing: border-box
+        margin-bottom: -12px
 
         &__image
             overflow: hidden
             width: 100%
-            margin-bottom: -19px
 
 .download
     background-color: #343434
@@ -157,7 +160,11 @@
 
 @media screen and ( max-width: 1100px )
     .feature
-        padding: 16px calc(15% - 16px)
+        padding: 0 calc(15% - 16px)
+        padding-top: 16px
+
+        &-darkgray
+            padding-bottom: 16px
 
     .project-description
         &__description
@@ -165,7 +172,11 @@
 
 @media screen and ( max-width: 800px )
     .feature
-        padding: 16px calc(32px - 16px)
+        padding: 0 calc(32px - 16px)
+        padding-top: 16px
+
+        &-darkgray
+            padding-bottom: 16px
 
     .project-description
         &__description
