@@ -131,130 +131,81 @@
                 &-active
                     opacity: 1
 
-        &__button
-            background-color: #3585C0
-            color: #ffffff
-            font-size: 13px
-            cursor: pointer
-            font-weight: 700
-            float: right
-            margin-bottom: 16px
-            margin-right: 32px
-            padding: 8px 18px
-            border-radius: 6px
-            transition: all 0.2s
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
-            display: none
-            border: 0
-            outline: none
-
-            &-active
-                display: inherit
-
-            &-disabled
-                cursor: not-allowed
-                background-color: #b3b3b3
-
-            &:hover
-                box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
-        
-        &__language
-            float: right
-            margin-bottom: 16px
-            margin-right: 16px
-            font-weight: 700
-            font-size: 13px
-            position: relative
-            border: 1px solid #cccccc
-            color: #4B4B4B
-            display: none
-            border-radius: 6px
-            user-select: none
-            &-active
-                display: inline-block
-
-            &__subbutton
-                display: inline-block
-                height: 30px
-                line-height: 30px
-                border-radius: 6px
-                padding: 0 8px
-                transition: all 0.2s
+        &__buttons
+            position: absolute
+            bottom: 16px
+            left: 140px
+            right: 24px
+            height: 32px
+            
+            &__button
+                background-color: #3585C0
+                color: #ffffff
+                font-size: 13px
                 cursor: pointer
-                    
-                &-active
-                    background-color: #d6d6d6
-
-                &:hover
-                    background-color: #DEDEDE
-                    animation: hover-feedback 0.3s
-                    
-
-            &__select
+                font-weight: 700
+                float: right
                 padding: 8px 18px
                 border-radius: 6px
-                background-color: #bdbdbd
-                color: #000000
-                cursor: pointer
                 transition: all 0.2s
                 box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
+                display: none
+                border: 0
+                outline: none
+
+                &-active
+                    display: inherit
+
+                &-disabled
+                    cursor: not-allowed
+                    background-color: #b3b3b3
 
                 &:hover
                     box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
             
-            &__actions
+            &__language
                 float: right
+                margin-right: 16px
                 font-weight: 700
-                display: inline-block
-                margin-top: 6px
-                line-height: 36px
-                border: 1px solid #DEDEDE
-                border-radius: 6px
-                height: 36px
-                vertical-align: middle
+                font-size: 13px
+                position: relative
+                border: 1px solid #cccccc
                 color: #4B4B4B
+                display: none
+                border-radius: 6px
+                user-select: none
+                &-active
+                    display: inline-block
 
                 &__subbutton
                     display: inline-block
-                    height: 36px
+                    height: 30px
+                    line-height: 30px
                     border-radius: 6px
-                    padding: 0 4px
+                    padding: 0 8px
                     transition: all 0.2s
-
-                    &-hide-on-mobile
-                        display: inline-block
+                    cursor: pointer
+                        
+                    &-active
+                        background-color: #d6d6d6
 
                     &:hover
-                        cursor: pointer
                         background-color: #DEDEDE
                         animation: hover-feedback 0.3s
-                    
-                    &-disabled
-                        &:hover
-                            cursor: not-allowed
-                            background-color: transparent
-                            transition: all 0.2s
+                        
+
+                &__select
+                    padding: 8px 18px
+                    border-radius: 6px
+                    background-color: #bdbdbd
+                    color: #000000
+                    cursor: pointer
+                    transition: all 0.2s
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
+
+                    &:hover
+                        box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
                 
-                    &__text
-                        display: inline-block
-                        font-size: 14px
-                        margin-right: 8px
-                        color: rgba(1, 1, 1, 0.70)
-
-                        &-disabled
-                            color: rgba(1, 1, 1, 0.20)
-                    
-                    &__icon
-                        display: inline-block
-                        margin-top: -1px
-                        vertical-align: middle
-                        margin-left: 8px
-                        margin-right: 8px
-                        color: rgba(1, 1, 1, 0.70)
-
-                        &-disabled
-                            color: rgba(1, 1, 1, 0.20)
-        
         &__error
             color: #7C7C7C
             font-size: 12px

@@ -211,7 +211,7 @@ export default class Install extends Component {
         for (let lang in this.state.langsList) {
             langs_list_html.push(
                 <div onClick={() => this.setFirmwareLanguage(this.state.langsList[lang])}
-                     className={"installer__content__language__subbutton " + (this.state.langsList[lang] === this.state.selectedLang ? "installer__content__language__subbutton-active" : "")}>
+                     className={"installer__content__buttons__language__subbutton " + (this.state.langsList[lang] === this.state.selectedLang ? "installer__content__buttons__language__subbutton-active" : "")}>
                      {this.state.langsList[lang].toUpperCase() + " " + LANG_TO_FLAGS[this.state.langsList[lang]]}
                 </div>);
         }
@@ -235,10 +235,12 @@ export default class Install extends Component {
                         </div>
                         <div className={"installer__content__progress__message " +  (this.state.install ? "installer__content__progress__message-active" : "")}><FormattedMessage id="installer.installing" defaultMessage="Installing Omega {version}. Please do not unplug your Numworks." values={{version: this.state.installerInstance.toInstall}} /></div>
                         <div className={"installer__content__error " +  (this.state.error ? "installer__content__error-active" : "")}>{this.state.errorMessage}</div>
-                        <button onClick={() => this.detectCalculator()} className={"installer__content__button " +  (!this.state.calculatorDetected ? "installer__content__button-active" : "")}><FormattedMessage id="installer.detect" defaultMessage="DETECT CALCULATOR" /></button>
-                        <button onClick={this.install} className={"installer__content__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__button-active" : "") + (this.state.showPopup ? " installer__content__button-disabled" : "")}><FormattedMessage id="installer.install" defaultMessage="INSTALL OMEGA" /></button>
-                        <div  className={"installer__content__language " + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__language-active" : "")}>
-                            {langs_list_html}
+                        <div className="installer__content__buttons">
+                            <button onClick={() => this.detectCalculator()} className={"installer__content__buttons__button " +  (!this.state.calculatorDetected ? "installer__content__buttons__button-active" : "")}><FormattedMessage id="installer.detect" defaultMessage="DETECT CALCULATOR" /></button>
+                            <button onClick={this.install} className={"installer__content__buttons__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__button-active" : "") + (this.state.showPopup ? " installer__content__buttons__button-disabled" : "")}><FormattedMessage id="installer.install" defaultMessage="INSTALL OMEGA" /></button>
+                            <div  className={"installer__content__buttons__language " + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__language-active" : "")}>
+                                {langs_list_html}
+                            </div>
                         </div>
                     </div>
                 </div>
