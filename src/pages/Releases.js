@@ -30,6 +30,9 @@ export default class Releases extends Component {
     render() {
         return (
             <div className="content">
+                <div className="releases__banner">
+                    <div className="releases__banner__title">Historique des versions d'Omega</div>
+                </div>
                 <div style={ { height: "16px" } }></div>
                 {
                     releases.firmwares.map(element => {
@@ -39,11 +42,6 @@ export default class Releases extends Component {
                                     <div className="releases__cards__card__title"><FormattedMessage id="releases.omega" defaultMessage="Omega {version}" values={{version: this.getReleaseVersion(element.name)}} /></div>
                                     <div className="releases__cards__card__subtitle"><FormattedMessage id="releases.epsilon" defaultMessage="Epsilon {version}" values={{version: this.getEpsilonVersion(element.name)}} /></div>
                                     <div className="releases__cards__card__actions">
-                                        {/* <div className="releases__cards__card__actions__subbutton">
-                                            <div className="releases__cards__card__actions__subbutton__text">ACTIONS</div>
-                                            <i className="releases__cards__card__actions__subbutton__icon material-icons md-18">more_vert</i>
-                                        </div> */}
-
                                         <a className="releases__cards__card__actions__subbutton" href={"https://github.com/Omega-Numworks/Omega/releases/tag/" + element.name} target="_blank" rel="noopener noreferrer">
                                             <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">code</i>
                                             <div className="releases__cards__card__actions__subbutton__text"><FormattedMessage id="releases.github" defaultMessage="GITHUB" /></div>
@@ -64,17 +62,31 @@ export default class Releases extends Component {
                                             <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (element.compatibility["3ds"] && element.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>gamepad</i>
                                             <div className={"releases__cards__card__actions__subbutton__text" + (element.compatibility["3ds"] && element.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}><FormattedMessage id="releases.3ds" defaultMessage="3DS" /></div>
                                         </a>
-                                        {/* <div className="releases__cards__card__actions__subbutton">
-                                            <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">arrow_drop_down_circle</i>
-                                        </div> */}
                                     </div>
 
                                     <div className="releases__cards__card__changelog">
                                         <ul className="releases__cards__card__changelog__ul">
                                         {
                                             element.changelog.map((change) => {
+                                                var tag;
+                                                var text;
+
+                                                if (change.startsWith("New")) {
+                                                    tag = <div className="releases__cards__card__changelog__ul__li__tag releases__cards__card__changelog__ul__li__tag-new">NEW</div>;
+                                                    text = <div className="releases__cards__card__changelog__ul__li__text">{change.replace("New: ", "")}</div>;
+                                                } else if (change.startsWith("Change")) {
+                                                    tag = <div className="releases__cards__card__changelog__ul__li__tag releases__cards__card__changelog__ul__li__tag-change">CHG</div>;
+                                                    text = <div className="releases__cards__card__changelog__ul__li__text">{change.replace("Change: ", "")}</div>;
+                                                } else if (change.startsWith("Fix")) {
+                                                    tag = <div className="releases__cards__card__changelog__ul__li__tag releases__cards__card__changelog__ul__li__tag-fix">FIX</div>;
+                                                    text = <div className="releases__cards__card__changelog__ul__li__text">{change.replace("Fixed: ", "")}</div>;
+                                                } else {
+                                                    tag = <div className="releases__cards__card__changelog__ul__li__tag">ERR</div>;
+                                                    text = <div className="releases__cards__card__changelog__ul__li__text">{change}</div>;
+                                                }
+
                                                 return (
-                                                    <li className="releases__cards__card__changelog__ul__li">{"• " + change}</li>
+                                                    <li className="releases__cards__card__changelog__ul__li">{tag}{text}</li>
                                                 );
                                             })
                                         }
