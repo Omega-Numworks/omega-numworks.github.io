@@ -1,6 +1,25 @@
 export const releases = {
-	"latest": "O1.19.2-E13",
+	"latest": "OMultilang.Test-E14",
 	"firmwares": [{
+	    "name": "OMultilang.Test-E14",
+	    "commit": "7590e6ce317f2aecf93316f3af4ca4e8bd4ac645",
+	    "changelog": [
+	        "Test, please ignore"
+	    ],
+		"compatibility": {
+			"N0110": true,
+			"N0100": true,
+			"web": false,
+			"android": false,
+			"3ds": true
+		},
+		"available": true,
+		"langages": {
+		    "0100": [
+		        "en", "fr", "nl", "pt", "it", "de", "es", "hu"
+		    ]
+		}
+	}, {
 		"name": "O1.19.2-E13",
 		"commit": "651abf9c7bb0018267729dd13b1cc5c1185b6203",
 		"changelog": [
@@ -11,7 +30,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -30,7 +50,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -65,7 +86,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -78,7 +100,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -91,7 +114,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -104,7 +128,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -117,7 +142,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -130,7 +156,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -157,7 +184,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -170,7 +198,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -183,7 +212,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -199,7 +229,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -212,7 +243,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -225,7 +257,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -238,7 +271,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -251,7 +285,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -264,7 +299,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -277,7 +313,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -290,7 +327,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -303,7 +341,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -316,7 +355,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -329,7 +369,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -342,7 +383,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -355,7 +397,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -368,7 +411,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -381,7 +425,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -394,7 +439,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -407,7 +453,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -420,7 +467,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -433,7 +481,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -446,7 +495,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -459,7 +509,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -472,7 +523,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -485,7 +537,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -498,7 +551,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -511,7 +565,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -524,7 +579,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -537,7 +593,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -550,7 +607,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -563,7 +621,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -576,7 +635,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -589,7 +649,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -602,7 +663,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -615,7 +677,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -628,7 +691,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -641,7 +705,8 @@ export const releases = {
 			"N0110": true,
 			"N0100": true,
 			"web": true,
-			"android": true
+			"android": true,
+			"3ds": false
 		},
 		"available": false
 	}, {
@@ -654,7 +719,8 @@ export const releases = {
 			"N0110": false,
 			"N0100": true,
 			"web": true,
-			"android": false
+			"android": false,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -667,7 +733,8 @@ export const releases = {
 			"N0110": false,
 			"N0100": true,
 			"web": true,
-			"android": false
+			"android": false,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -680,7 +747,8 @@ export const releases = {
 			"N0110": false,
 			"N0100": true,
 			"web": true,
-			"android": false
+			"android": false,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -693,7 +761,8 @@ export const releases = {
 			"N0110": false,
 			"N0100": true,
 			"web": true,
-			"android": false
+			"android": false,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -706,7 +775,8 @@ export const releases = {
 			"N0110": false,
 			"N0100": true,
 			"web": true,
-			"android": false
+			"android": false,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -719,7 +789,8 @@ export const releases = {
 			"N0110": false,
 			"N0100": true,
 			"web": true,
-			"android": false
+			"android": false,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -732,7 +803,8 @@ export const releases = {
 			"N0110": false,
 			"N0100": true,
 			"web": true,
-			"android": false
+			"android": false,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -745,7 +817,8 @@ export const releases = {
 			"N0110": false,
 			"N0100": true,
 			"web": true,
-			"android": false
+			"android": false,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -758,7 +831,8 @@ export const releases = {
 			"N0110": false,
 			"N0100": true,
 			"web": true,
-			"android": false
+			"android": false,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -771,7 +845,8 @@ export const releases = {
 			"N0110": false,
 			"N0100": true,
 			"web": true,
-			"android": false
+			"android": false,
+			"3ds": false
 		},
 		"available": true
 	}, {
@@ -785,7 +860,8 @@ export const releases = {
 			"N0110": false,
 			"N0100": true,
 			"web": true,
-			"android": false
+			"android": false,
+			"3ds": false
 		},
 		"available": true
 	}]

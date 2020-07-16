@@ -1,0 +1,149 @@
+.calculator
+    margin: 0 auto
+    position: relative
+    display: inline-block
+    text-align: left
+    
+    &__nokeyboard
+        display: inherit
+        width: 320px
+        height: 240px
+    
+    &__background
+        /* Rely on the img content to set the dimensions */
+        max-height: 80vh
+        max-width: 100%
+        display: block
+        
+        &__disabled
+            display: none
+
+    &__screen
+        position: absolute
+        top: 8.5%
+        left: 16.25%
+        width: 67.5%
+        height: 26.3%
+        border: 0 none
+        
+        &__nokeyboard
+            width: auto
+            height: auto
+            top: auto
+            left: auto
+    &__keyboard
+        position: absolute
+        top: 38.5%
+        left: 10%
+        width: 81%
+        bottom: 5%
+        
+        &__disabled
+            display: none
+        
+        &__nav
+            position: absolute
+            top: 0
+            height: 27%
+            width: 100%
+            
+            &__key
+                cursor: pointer
+                border-radius: 40%
+                display: block
+                float: left
+                &:hover
+                    background-color: rgba(0, 0, 0, 0.1)
+                &:active
+                    background-color: rgba(0, 0, 0, 0.2)
+            
+            &__left
+                position: absolute
+                top: 36%
+                left: 2%
+                width: 15%
+                height: 28%
+            &__right
+                position: absolute
+                top: 36%
+                left: 17%
+                width: 15%
+                height: 28%
+            &__top
+                position: absolute
+                top: 7%
+                left: 12%
+                width: 10%
+                height: 40%
+            &__bottom
+                position: absolute
+                top: 53%
+                left: 12%
+                width: 10%
+                height: 40%
+            &__home
+                position: absolute
+                top: 15%
+                left: 41%
+                width: 16%
+                height: 33%
+            &__power
+                position: absolute
+                top: 54%
+                left: 42%
+                width: 16%
+                height: 33%
+            &__ok
+                position: absolute
+                top: 31%
+                left: 67%
+                width: 13%
+                height: 38%
+            &__back
+                position: absolute
+                top: 31%
+                left: 84%
+                width: 13%
+                height: 38%
+                
+        
+        &__functions
+            position: absolute
+            top: 26.75%
+            left: 0.5%
+            width: 98%
+            
+            &__key
+                cursor: pointer
+                border-radius: 40%
+                display: block
+                float: left
+                margin: 1.7% 1%
+                width: 14.65%
+                height: 0
+                padding-top: 10%
+                &:hover
+                    background-color: rgba(0, 0, 0, 0.1)
+                &:active
+                    background-color: rgba(0, 0, 0, 0.2)
+        
+        &__digits
+            position: absolute
+            top: 56.5%
+            left: 0.5%
+            width: 98%
+            
+            &__key
+                cursor: pointer
+                border-radius: 40%
+                display: block
+                float: left
+                margin: 1.8% 2%
+                width: 16%
+                height: 0
+                padding-top: 11.3%
+                &:hover
+                    background-color: rgba(0, 0, 0, 0.1)
+                &:active
+                    background-color: rgba(0, 0, 0, 0.2)
+

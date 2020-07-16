@@ -14,9 +14,22 @@
     &-notcompatible
         margin: 32px 25%
         display: none
+        background-color: #EFEFEF
+        border-radius: 6px
+        overflow: hidden
+        font-weight: 400
+        padding: 18px 24px
+        line-height: 1.4
+        text-align: center
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
 
         &-active
             display: inline-block
+        
+        &__emoji
+            font-size: 48px
+            display: block
+            margin-bottom: 16px
 
     &__calculator
         margin-top: 12px
@@ -45,7 +58,7 @@
                 top: 0
 
     &__content
-        margin-left: 158px
+        margin-left: 180px
     
         &__name
             color: #4B4B4B
@@ -118,34 +131,81 @@
                 &-active
                     opacity: 1
 
-        &__button
-            background-color: #3585C0
-            color: #ffffff
-            font-size: 13px
-            cursor: pointer
-            font-weight: 700
+        &__buttons
             position: absolute
             bottom: 16px
-            right: 32px
-            padding: 8px 18px
-            border-radius: 6px
-            transition: all 0.2s
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
-            display: none
-            border: 0
-            outline: none
+            left: 140px
+            right: 24px
+            height: 32px
+            
+            &__button
+                background-color: #3585C0
+                color: #ffffff
+                font-size: 13px
+                cursor: pointer
+                font-weight: 700
+                float: right
+                padding: 8px 18px
+                border-radius: 6px
+                transition: all 0.2s
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
+                display: none
+                border: 0
+                outline: none
 
-            &-active
-                display: inherit
+                &-active
+                    display: inherit
 
-            &-disabled
-                cursor: not-allowed
-                background-color: #b3b3b3
+                &-disabled
+                    cursor: not-allowed
+                    background-color: #b3b3b3
 
-            &:hover
-                box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
+                &:hover
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
+            
+            &__language
+                float: right
+                margin-right: 16px
+                font-weight: 700
+                font-size: 13px
+                position: relative
+                border: 1px solid #cccccc
+                color: #4B4B4B
+                display: none
+                border-radius: 6px
+                user-select: none
+                &-active
+                    display: inline-block
 
-        
+                &__subbutton
+                    display: inline-block
+                    height: 30px
+                    line-height: 30px
+                    border-radius: 6px
+                    padding: 0 8px
+                    transition: all 0.2s
+                    cursor: pointer
+                        
+                    &-active
+                        background-color: #d6d6d6
+
+                    &:hover
+                        background-color: #DEDEDE
+                        animation: hover-feedback 0.3s
+                        
+
+                &__select
+                    padding: 8px 18px
+                    border-radius: 6px
+                    background-color: #bdbdbd
+                    color: #000000
+                    cursor: pointer
+                    transition: all 0.2s
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
+
+                    &:hover
+                        box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
+                
         &__error
             color: #7C7C7C
             font-size: 12px

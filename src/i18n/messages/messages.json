@@ -1,0 +1,417 @@
+[
+  {
+    "id": "footer.projects",
+    "defaultMessage": "Projects",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "footer.projects.omega",
+    "defaultMessage": "Omega",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "footer.projects.omega-themes",
+    "defaultMessage": "Omega Themes",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "footer.projects.omega-website",
+    "defaultMessage": "Omega Website",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "footer.projects.omega-cli",
+    "defaultMessage": "Omega CLI Installer",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "footer.projects.omega-rpn",
+    "defaultMessage": "Omega RPN",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "app",
+    "defaultMessage": "APP",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "footer.projects.omega-atom",
+    "defaultMessage": "Omega Atom",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "footer.projects.omega-design",
+    "defaultMessage": "Omega Design",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "footer.trademark",
+    "defaultMessage": "NumWorks is a registered trademark. Omega is not affiliated with Numworks.",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "footer.contact",
+    "defaultMessage": "Contact",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "toolbar.omega",
+    "defaultMessage": "Omega",
+    "filepath": "src/components/Toolbar.js"
+  },
+  {
+    "id": "toolbar.install",
+    "defaultMessage": "Install",
+    "filepath": "src/components/Toolbar.js"
+  },
+  {
+    "id": "toolbar.releases",
+    "defaultMessage": "Releases",
+    "filepath": "src/components/Toolbar.js"
+  },
+  {
+    "id": "toolbar.simulator",
+    "defaultMessage": "Simulator",
+    "filepath": "src/components/Toolbar.js"
+  },
+  {
+    "id": "toolbar.github",
+    "defaultMessage": "GitHub",
+    "filepath": "src/components/Toolbar.js"
+  },
+  {
+    "id": "toolbar.login",
+    "defaultMessage": "Login with Github",
+    "filepath": "src/components/Toolbar.js"
+  },
+  {
+    "id": "toolbar.logout",
+    "defaultMessage": "Logout",
+    "filepath": "src/components/Toolbar.js"
+  },
+  {
+    "id": "toolbar.myscripts",
+    "defaultMessage": "My scripts",
+    "filepath": "src/components/Toolbar.js"
+  },
+  {
+    "id": "editor.loading",
+    "defaultMessage": "Loading...",
+    "filepath": "src/pages/Editor.js"
+  },
+  {
+    "id": "editor.unsaved",
+    "defaultMessage": "You have unsaved modifications!",
+    "filepath": "src/pages/Editor.js"
+  },
+  {
+    "id": "editor.upload",
+    "defaultMessage": "UPLOAD ON DEVICE",
+    "filepath": "src/pages/Editor.js"
+  },
+  {
+    "id": "editor.rename",
+    "defaultMessage": "RENAME",
+    "filepath": "src/pages/Editor.js"
+  },
+  {
+    "id": "editor.delete",
+    "defaultMessage": "DELETE",
+    "filepath": "src/pages/Editor.js"
+  },
+  {
+    "id": "editor.title",
+    "defaultMessage": "Omega IDE",
+    "filepath": "src/pages/Editor.js"
+  },
+  {
+    "id": "editor.save",
+    "defaultMessage": "SAVE",
+    "filepath": "src/pages/Editor.js"
+  },
+  {
+    "id": "editor.simulator",
+    "defaultMessage": "SIMULATOR",
+    "filepath": "src/pages/Editor.js"
+  },
+  {
+    "id": "editor.new",
+    "defaultMessage": "New script",
+    "filepath": "src/pages/Editor.js"
+  },
+  {
+    "id": "editor.name",
+    "defaultMessage": "Name your new script",
+    "filepath": "src/pages/Editor.js"
+  },
+  {
+    "id": "home.head.title",
+    "defaultMessage": "Omega",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.head.subtitle",
+    "defaultMessage": "The next evolution of Epsilon.",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.head.tryit",
+    "defaultMessage": "TRY IT ONLINE",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.head.description",
+    "defaultMessage": "Omega is a fork of Numworks' Epsilon, the OS that runs on their calculator, which brings many features to it. Omega is for the people who want to add features to the calculator, but cannot because they have been rejected by Numworks (for reasons that are 100% understandable!).",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.symbolic.name",
+    "defaultMessage": "Symbolic computation",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.symbolic.description",
+    "defaultMessage": "Symbolic computation was removed from Epsilon in version 11.2. Omega reintroduces that feature.",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.atom.name",
+    "defaultMessage": "Periodic table",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.atom.description",
+    "defaultMessage": "Inspired by the TI83PCE's periodic table app, Omega's periodic table is clean and simple to use.",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.rpn.name",
+    "defaultMessage": "RPN",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.rpn.description",
+    "defaultMessage": "Omega supports using Reverse Polish Notation to do calculations.",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.3ds.name",
+    "defaultMessage": "Now available on the Nintendo 3DS",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.3ds.description",
+    "defaultMessage": "Omega is avaliable and fully usable on the Nintendo 3DS.",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.more.name",
+    "defaultMessage": "And more!",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.more.description",
+    "defaultMessage": "A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames...",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.download.title",
+    "defaultMessage": "Download",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.download.subtitle",
+    "defaultMessage": "Omega {version}",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.download.github",
+    "defaultMessage": "GITHUB",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.download.install",
+    "defaultMessage": "INSTALL",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.download.android",
+    "defaultMessage": "ANDROID",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.download.web",
+    "defaultMessage": "WEB",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "installer.someone",
+    "defaultMessage": "Someone",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.unknown-version",
+    "defaultMessage": "Firmware version {version} doesn't exist!",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.unpluged",
+    "defaultMessage": "The calculator has been disconnected.",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.owner",
+    "defaultMessage": "{name}'s Numworks",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.title",
+    "defaultMessage": "Omega Installer",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.installing",
+    "defaultMessage": "Installing Omega {version}. Please do not unplug your Numworks.",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.detect",
+    "defaultMessage": "DETECT CALCULATOR",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.install",
+    "defaultMessage": "INSTALL OMEGA",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.disclaimer",
+    "defaultMessage": "Omega is a redistribution of Epsilon that adds various features to it. We spend a lot of time trying to comply with exam guidelines from different countries. The software is therefore theoretically authorized for examination; however, Omega has not applied for certification by any organization. By clicking on I agree, you accept that neither Omega nor NumWorks can be held responsible in the event of a problem with this software.",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.agree",
+    "defaultMessage": "I AGREE",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.thanks",
+    "defaultMessage": "Thank you for installing Omega! Your calculator is now running Omega {version}.",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.incompatible",
+    "defaultMessage": "Our installer is not compatible with your browser. Please use a browser like Chromium/Google Chrome or Edge.",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "notfound.title",
+    "defaultMessage": "Oi, not found.",
+    "filepath": "src/pages/NotFound.js"
+  },
+  {
+    "id": "notfound.description",
+    "defaultMessage": "Smh, the page you're looking for doesn't exist.",
+    "filepath": "src/pages/NotFound.js"
+  },
+  {
+    "id": "policy.title",
+    "defaultMessage": "Protection and processing of personal data",
+    "filepath": "src/pages/Policy.js"
+  },
+  {
+    "id": "policy.compliance.title",
+    "defaultMessage": "Compliance with applicable laws",
+    "filepath": "src/pages/Policy.js"
+  },
+  {
+    "id": "policy.compliance.description",
+    "defaultMessage": "The site {url} respects the privacy of the user and strictly complies with the laws in force on the protection of privacy and individual freedoms. No personal information is collected without your knowledge. No personal information is disclosed to third parties.",
+    "filepath": "src/pages/Policy.js"
+  },
+  {
+    "id": "policy.cookies.title",
+    "defaultMessage": "Cookies",
+    "filepath": "src/pages/Policy.js"
+  },
+  {
+    "id": "policy.cookies.description",
+    "defaultMessage": "When consulting {url}, cookies are placed on your computer, mobile or tablet. Only cookies intended for audience measurement are used. These cookies do not collect personal data. Audience measurement tools are deployed to obtain information on visitor navigation. They allow in particular to understand how users arrive on a site and to reconstruct their journey.",
+    "filepath": "src/pages/Policy.js"
+  },
+  {
+    "id": "policy.cookies.description2",
+    "defaultMessage": "The data generated by cookies is transmitted and stored by audience measurement providers (Google Analytics). Audience measurement providers may communicate this data to third parties in the event of a legal obligation or when these third parties process this data on their behalf.",
+    "filepath": "src/pages/Policy.js"
+  },
+  {
+    "id": "policy.cookies.description3",
+    "defaultMessage": "Learn more about cookies at {url}.",
+    "filepath": "src/pages/Policy.js"
+  },
+  {
+    "id": "projects.loading",
+    "defaultMessage": "Loading...",
+    "filepath": "src/pages/Projects.js"
+  },
+  {
+    "id": "projects.none",
+    "defaultMessage": "Looks like you don't have any project yet.",
+    "filepath": "src/pages/Projects.js"
+  },
+  {
+    "id": "projects.open",
+    "defaultMessage": "OPEN",
+    "filepath": "src/pages/Projects.js"
+  },
+  {
+    "id": "projects.new",
+    "defaultMessage": "NEW PROJECT",
+    "filepath": "src/pages/Projects.js"
+  },
+  {
+    "id": "projects.create",
+    "defaultMessage": "CREATE",
+    "filepath": "src/pages/Projects.js"
+  },
+  {
+    "id": "projects.cancel",
+    "defaultMessage": "CANCEL",
+    "filepath": "src/pages/Projects.js"
+  },
+  {
+    "id": "releases.omega",
+    "defaultMessage": "Omega {version}",
+    "filepath": "src/pages/Releases.js"
+  },
+  {
+    "id": "releases.epsilon",
+    "defaultMessage": "Epsilon {version}",
+    "filepath": "src/pages/Releases.js"
+  },
+  {
+    "id": "releases.github",
+    "defaultMessage": "GITHUB",
+    "filepath": "src/pages/Releases.js"
+  },
+  {
+    "id": "releases.install",
+    "defaultMessage": "INSTALL",
+    "filepath": "src/pages/Releases.js"
+  },
+  {
+    "id": "releases.android",
+    "defaultMessage": "ANDROID",
+    "filepath": "src/pages/Releases.js"
+  },
+  {
+    "id": "releases.web",
+    "defaultMessage": "WEB",
+    "filepath": "src/pages/Releases.js"
+  },
+  {
+    "id": "soon",
+    "defaultMessage": "Will be avaliable soon! 😄",
+    "filepath": "src/pages/Soon.js"
+  }
+]

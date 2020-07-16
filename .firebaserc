@@ -8,6 +8,9 @@
         "omega-dev": [
           "omega-dev"
         ],
+        "omega-beta": [
+          "omega-beta"
+        ],
         "getomega": [
           "getomega"
         ]
