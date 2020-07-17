@@ -278,18 +278,20 @@
             &__circle
                 display: inline-block
                 float: right
-                margin-right: 16px
                 vertical-align: middle
                 background-color: #fff
                 border-radius: 50%
                 height: 6px
                 width: 6px
                 opacity: 0.4
-                margin-top: 6px
+                position: absolute
+                top: 50%
+                transform: translateY(-50%) scale(0)
+                right: 16px
                 transform: scale(0)
                 transition: 0.2s all ease-in-out
                 &-active
-                    transform: scale(1)
+                    transform: translateY(-50%) scale(1)
             &:hover &__circle
                 margin-right: 20px
             &-hide
