@@ -31,7 +31,9 @@ export default class Releases extends Component {
         return (
             <div className="content">
                 <div className="releases__banner">
-                    <div className="releases__banner__title">Historique des versions d'Omega</div>
+                    <div className="releases__banner__title">
+                        <FormattedMessage id="releases.title" defaultMessage="Historique des versions d'Omega" />
+                    </div>
                 </div>
                 <div style={ { height: "16px" } }></div>
                 {
