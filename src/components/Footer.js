@@ -52,9 +52,6 @@ export default class Footer extends Component {
                         <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Website">
                             <FormattedMessage id="footer.projects.omega-website" defaultMessage="Omega Website" />
                         </a>
-                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-CLI-Installer">
-                            <FormattedMessage id="footer.projects.omega-cli" defaultMessage="Omega CLI Installer" />
-                        </a>
                         <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-RPN">
                             <FormattedMessage id="footer.projects.omega-rpn" defaultMessage="Omega RPN" />
                             <span className="footer__list__item__tag">
@@ -69,6 +66,9 @@ export default class Footer extends Component {
                         </a>
                         <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Design">
                             <FormattedMessage id="footer.projects.omega-design" defaultMessage="Omega Design" />
+                        </a>
+                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/M4xi1m3/nw-external-apps/">
+                            <FormattedMessage id="footer.projects.external-apps" defaultMessage="External Apps" />
                         </a>
                     </div>
                 </div>
