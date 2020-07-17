@@ -61,8 +61,8 @@
         margin-left: 180px
     
         &__name
-            color: #4B4B4B
             font-family: $font-righteous
+            color: #292929
             font-size: 20px
             display: block
             vertical-align: top
@@ -152,6 +152,7 @@
                 display: none
                 border: 0
                 outline: none
+                user-select: none
 
                 &-active
                     display: inherit
@@ -162,6 +163,7 @@
 
                 &:hover
                     box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
+                    animation: hover-feedback 0.2s
             
             &__language
                 float: right
@@ -222,7 +224,6 @@
         background-color: #3585C0
         width: 50%
         margin: 0 25%
-        margin-bottom: 32px
         border-radius: 6px
         color: #ffffff
         box-sizing: border-box
@@ -234,9 +235,70 @@
         &-active
             padding: 16px
             max-height: 200px
+            margin-bottom: 32px
             opacity: 1
+    
+    &-external
+        background-color: #ffffff
+        border: 0 solid #ebebeb
+        margin: 0 25%
+        position: relative
+        padding: 0 16px
+        border-radius: 6px
+        height: 64px
+        max-height: 0
+        overflow: hidden
+        transition: all 0.2s
+
+        &-active
+            border-width: 2px
+            padding-top: 16px
+            padding-bottom: 16px
+            max-height: 64px
+            margin-bottom: 32px
+
+        &__icon
+            position: absolute
+            height: 64px
+            width: 64px
+        
+        &__title
+            margin-left: 80px
+            margin-top: 10px
+            font-size: 20px
+            color: #292929
+            font-family: $font-righteous
+
+        &__description
+            margin-top: 8px
+            margin-left: 80px
+            color: #505050
+            font-weight: 500
+        
+        &__button
+            position: absolute
+            top: 34px
+            right: 32px
+            padding: 8px 14px
+            border-radius: 6px
+            font-size: 13px
+            text-decoration: none
+            font-weight: 700
+            color: #000000
+            background-color: #e0e0e0
+            transition: all 0.2s
+            user-select: none
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
+
+            &:hover
+                background-color: #c4c4c4
+                box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
+                animation: hover-feedback 0.2s
 
 .popup
+    // POPUP DISABLED:
+    display: none
+    //
     background-color: #E8E8E8
     width: 50%
     margin: 32px 25%
@@ -290,8 +352,32 @@
     .installer
         margin: 32px 15%
         width: 70%
+        
+        &-thanks
+            margin: 0 15%
+
+            &-active
+                margin-bottom: 32px
+        
+        &-external
+            margin: 0 15%
+
+            &-active
+                margin-bottom: 32px
 
 @media screen and ( max-width: 900px )
     .installer
         margin: 32px 32px
         width: calc(100% - 64px)
+        
+        &-thanks
+            margin: 0 32px
+
+            &-active
+                margin-bottom: 32px
+        
+        &-external
+            margin: 0 32px
+
+            &-active
+                margin-bottom: 32px
