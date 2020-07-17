@@ -257,11 +257,15 @@ export default class Install extends Component {
 
                 <div className={"installer-external " + ((this.state.installerNotCompatibleWithThisBrowser || this.state.model !== 'N0110' || this.state.install === true) ? "" : "installer-external-active")}>
                     <img className="installer-external__icon" src={ImgExternal} alt="External" />
-                    <div className="installer-external__title">External</div>
-                    <div className="installer-external__description">
-                        Installez des applications pour votre Numworks.
+                    <div className="installer-external__title">
+                        <FormattedMessage id="installer.external" defaultMessage="External" />
                     </div>
-                    <a className="installer-external__button" href="https://m4xi1m3.github.io/nw-external-apps/" target="_blank" rel="noopener noreferrer">OUVRIR</a>
+                    <div className="installer-external__description">
+                        <FormattedMessage id="installer.external.description" defaultMessage="Installez des applications pour votre Numworks." />
+                    </div>
+                    <a className="installer-external__button" href="https://m4xi1m3.github.io/nw-external-apps/" target="_blank" rel="noopener noreferrer">
+                        <FormattedMessage id="installer.external.open" defaultMessage="OUVRIR" />
+                    </a>
                 </div>
 
                 <div className={"installer-notcompatible " + (this.state.installerNotCompatibleWithThisBrowser ? "installer-notcompatible-active" : "")}>
