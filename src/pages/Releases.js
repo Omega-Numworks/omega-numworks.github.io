@@ -79,7 +79,10 @@ export default class Releases extends Component {
                                                     text = <div className="releases__cards__card__changelog__ul__li__text">{change.replace("Change: ", "")}</div>;
                                                 } else if (change.startsWith("Fix")) {
                                                     tag = <div className="releases__cards__card__changelog__ul__li__tag releases__cards__card__changelog__ul__li__tag-fix">FIX</div>;
-                                                    text = <div className="releases__cards__card__changelog__ul__li__text">{change.replace("Fixed: ", "")}</div>;
+                                                    text = <div className="releases__cards__card__changelog__ul__li__text">{change.replace("Fix: ", "")}</div>;
+                                                } else if (change.startsWith("Update")) {
+                                                    tag = <div className="releases__cards__card__changelog__ul__li__tag releases__cards__card__changelog__ul__li__tag-update">UPD</div>;
+                                                    text = <div className="releases__cards__card__changelog__ul__li__text">{change.replace("Update: ", "")}</div>;
                                                 } else {
                                                     tag = <div className="releases__cards__card__changelog__ul__li__tag">ERR</div>;
                                                     text = <div className="releases__cards__card__changelog__ul__li__text">{change}</div>;
