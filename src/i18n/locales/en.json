@@ -80,6 +80,7 @@
   "releases.github": "GITHUB",
   "releases.install": "INSTALL",
   "releases.omega": "Omega {version}",
+  "releases.title": "Omega versions history",
   "releases.web": "WEB",
   "soon": "Will be avaliable soon! 😄",
   "toolbar.github": "GitHub",
