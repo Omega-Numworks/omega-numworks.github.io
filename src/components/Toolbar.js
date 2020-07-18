@@ -68,7 +68,7 @@ export default class Toolbar extends Component {
                 <div onClick={this.onClickHamburger} className="header__hamburger">
                     <i className="header__hamburger__icon material-icons-round">menu</i>
                 </div>
-                <NavLink className="header__logo" to="/">
+                <NavLink onClick={this.closeHamburger} className="header__logo" to="/">
                     <FormattedMessage id="toolbar.omega" defaultMessage="Omega" />
                 </NavLink>
                 <div className={"header__links " + (this.state.isOpened ? "header__links-active" : "")}>
