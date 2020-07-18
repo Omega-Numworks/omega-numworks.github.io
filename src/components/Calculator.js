@@ -11,6 +11,7 @@ export default class Calculator extends Component {
             keyboard: this.props.keyboard === undefined ? true : this.props.keyboard,
             scripts: this.props.scripts === undefined ? null : this.props.scripts,
             python: this.props.python === undefined ? false : this.props.python,
+            height: this.props.height === undefined ? "100vh" : this.props.height,
             simulator: null
         };
         
@@ -60,7 +61,7 @@ export default class Calculator extends Component {
     render() {
         return (
             <div className={"calculator" + (this.state.keyboard ? "" : " calculator__nokeyboard")} onClick={(e) => e.target.focus()}>
-                <img className={"calculator__background" + (this.state.keyboard ? "" : " calculator__background__disabled")} src={ImgSimulatorBackground} alt="Red Ultra Swagg NumWorks Calculator"></img>
+                <img style={{"max-height": this.state.height}} className={"calculator__background" + (this.state.keyboard ? "" : " calculator__background__disabled")} src={ImgSimulatorBackground} alt="Red Ultra Swagg NumWorks Calculator"></img>
                 <canvas tabIndex="1" id="canvas" className={"calculator__screen" + (this.state.keyboard ? "" : " calculator__screen__nokeyboard")} onContextMenu={function(e){e.preventDefault()}}></canvas>
                 <div className={"calculator__keyboard" + (this.state.keyboard ? "" : " calculator__keyboard__disabled")}>
                     <div className="calculator__keyboard__nav">
