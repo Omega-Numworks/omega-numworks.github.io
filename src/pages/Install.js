@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
+import Button from '../components/buttons/Button'
 import ImgCalculatorBody from '../img/calculator-body.png'
 import ImgCalculatorBodyOmega from '../img/calculator-body-omega.png'
 import ImgCalculatorBodyEpsilon from '../img/calculator-body-epsilon.png'
@@ -237,8 +238,12 @@ export default class Install extends Component {
                         <div className={"installer__content__progress__message " +  (this.state.install ? "installer__content__progress__message-active" : "")}><FormattedMessage id="installer.installing" defaultMessage="Installing Omega {version}. Please do not unplug your Numworks." values={{version: this.state.installerInstance.toInstall}} /></div>
                         <div className={"installer__content__error " +  (this.state.error ? "installer__content__error-active" : "")}>{this.state.errorMessage}</div>
                         <div className="installer__content__buttons">
-                            <button onClick={() => this.detectCalculator()} className={"installer__content__buttons__button " +  (!this.state.calculatorDetected ? "installer__content__buttons__button-active" : "")}><FormattedMessage id="installer.detect" defaultMessage="DETECT CALCULATOR" /></button>
-                            <button onClick={this.install} className={"installer__content__buttons__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__button-active" : "") + (this.state.showPopup ? " installer__content__buttons__button-disabled" : "")}><FormattedMessage id="installer.install" defaultMessage="INSTALL OMEGA" /></button>
+                            <Button color="blue" onClick={this.detectCalculator} className={"installer__content__buttons__button " +  (!this.state.calculatorDetected ? "installer__content__buttons__button-active" : "")}>
+                                <FormattedMessage id="installer.detect" defaultMessage="DETECT CALCULATOR" />
+                            </Button>
+                            <Button color="blue" onClick={this.install} className={"installer__content__buttons__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__button-active" : "")} disabled={this.state.showPopup}>
+                                <FormattedMessage id="installer.install" defaultMessage="INSTALL OMEGA" />
+                            </Button>
                             <div  className={"installer__content__buttons__language " + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__language-active" : "")}>
                                 {langs_list_html}
                             </div>
@@ -263,7 +268,7 @@ export default class Install extends Component {
                     <div className="installer-external__description">
                         <FormattedMessage id="installer.external.description" defaultMessage="Installez des applications pour votre Numworks." />
                     </div>
-                    <a className="installer-external__button" href="https://m4xi1m3.github.io/nw-external-apps/" target="_blank" rel="noopener noreferrer">
+                    <a className="button installer-external__button" href="https://m4xi1m3.github.io/nw-external-apps/" target="_blank" rel="noopener noreferrer">
                         <FormattedMessage id="installer.external.open" defaultMessage="OUVRIR" />
                     </a>
                 </div>
