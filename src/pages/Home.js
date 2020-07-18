@@ -47,7 +47,7 @@ export default class Home extends Component {
                     <h2 className="project-description__subtitle">
                         <FormattedMessage id="home.head.subtitle" defaultMessage="The next evolution of Epsilon." />
                     </h2>
-                    <Link to="/simulator" className="project-description__button">
+                    <Link to="/simulator" className="button button-outline button-big project-description__button">
                         <div className="project-description__button__text">
                             <FormattedMessage id="home.head.tryit" defaultMessage="TRY IT ONLINE" /> <i className="project-description__button__icon material-icons md-16">play_arrow</i>
                         </div>

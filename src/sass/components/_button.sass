@@ -17,13 +17,12 @@
         background-color: #c0c0c0
         animation: hover-feedback 0.2s
         box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.08)
-
-    &-hide
     
     &-blue
         background-color: #3585C0
         color: #ffffff
         box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
+
         &:hover
             background-color: #2872a7
             box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
@@ -33,6 +32,7 @@
         box-shadow: none
         background-color: rgba(0, 0, 0, 0.07)
         color: #9b9b9b
+
         &:hover
             background-color: rgba(0, 0, 0, 0.07)
             box-shadow: none
@@ -42,6 +42,18 @@
         box-shadow: none
         background-color: rgba(0, 0, 0, 0.07)
         color: #9b9b9b
+
         &:hover
             background-color: rgba(0, 0, 0, 0.07)
             box-shadow: none
+
+    &-outline
+        border: 1px solid #ffffff
+        background-color: transparent
+
+        &:hover
+            animation: hover-feedback 0.2s
+            background-color: rgba(1, 1, 1, 0.2)
+    
+    &-big
+        padding: 12px 18px
