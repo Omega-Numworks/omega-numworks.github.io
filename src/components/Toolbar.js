@@ -81,6 +81,9 @@ export default class Toolbar extends Component {
                     <NavLink onClick={this.closeHamburger} className="header__links__link" activeClassName="header__links__link-active" to="/simulator" exact>
                         <FormattedMessage id="toolbar.simulator" defaultMessage="Simulator" />
                     </NavLink>
+                    <NavLink onClick={this.closeHamburger} className="header__links__link" activeClassName="header__links__link-active" to="/wiki" exact>
+                        <FormattedMessage id="toolbar.wiki" defaultMessage="Wiki" />
+                    </NavLink>
                     <a className="header__links__link" href="https://github.com/Omega-Numworks/Omega" target="_blank" rel="noopener noreferrer">
                         <FormattedMessage id="toolbar.github" defaultMessage="GitHub" /><i className="header__links__link__icon material-icons-round">open_in_new</i>
                     </a>

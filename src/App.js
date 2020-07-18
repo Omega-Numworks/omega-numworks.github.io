@@ -16,6 +16,7 @@ import NotFound from './pages/NotFound';
 
 import { IntlProvider } from "react-intl";
 import translations from './i18n/locales'
+import Wiki from './pages/Wiki';
 
 class App extends Component {
   constructor(props) {
@@ -66,6 +67,7 @@ class App extends Component {
               <Route path="/editor/run/python" component={EditorRunPython} exact />
               <Route path="/editor/run" component={EditorRun} exact />
               <Route path="/editor/:id" component={Editor} exact />
+              <Route path="/wiki" component={Wiki} exact />
               <Route path="/" component={Home} exact />
               <Route component={NotFound} />
             </Switch>
