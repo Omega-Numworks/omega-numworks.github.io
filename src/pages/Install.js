@@ -133,7 +133,8 @@ export default class Install extends Component {
         this.setState({
             calculatorDetected: false,
             osDetected: "",
-            install: false
+            install: false,
+            model: "NXXXX"
         })
         this.hideTags();
     }

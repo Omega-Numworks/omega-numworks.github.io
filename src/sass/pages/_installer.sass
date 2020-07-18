@@ -7,6 +7,7 @@
     overflow: hidden
     display: none
     position: relative
+    transition: all 0.2s ease-in-out
 
     &-active
         display: inline-block
@@ -202,7 +203,6 @@
         text-align: center
         overflow: hidden
         background-color: #3585C0
-        width: 50%
         margin: 0 25%
         border-radius: 6px
         color: #ffffff
@@ -228,9 +228,11 @@
         height: 64px
         max-height: 0
         overflow: hidden
-        transition: all 0.2s
+        opacity: 0
+        transition: all 0.2s ease-in-out
 
         &-active
+            opacity: 1
             border-width: 2px
             padding-top: 16px
             padding-bottom: 16px
