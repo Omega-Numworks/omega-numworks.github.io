@@ -1,17 +1,36 @@
 export const releases = {
-	"latest": "OMultilang.Test-E14",
+	"latest": "O1.20.0.Beta-E14",
 	"firmwares": [{
-	    "name": "OMultilang.Test-E14",
+	    "name": "O1.20.0.Beta-E14",
 	    "commit": "7590e6ce317f2aecf93316f3af4ca4e8bd4ac645",
 	    "changelog": [
-	        "Test, please ignore"
+			"Update: Updated to Epsilon 14.4.1!",
+			"New: Added 67 constants",
+			"New: New units",
+			"New: 3DS Simulator",
+			"New: Python: open method (and derivatives)",
+			"New: Physics constants are now using the Epsilon units",
+			"New: Added message when the compilation starts",
+			"New: Undef is hidden during symbolic calculation",
+			"New: Display the scripts size",
+			"New: Community themes: Download a community theme with THEME_REPO=git-url and THEME_NAME=theme_name.",
+			"New: Compact display mode enabled by default Compact display now available on Epsilon",
+			"New: Shift + Home is now a shortcut to go to calculation (or the first app)",
+			"New: Support for RGB files without alpha channel.",
+			"New: Add root and log settings",
+			"New: \\ shortcut (with ALPHA+x10^x), @ shortcut (with ALPHA+ANS), µ and Ω",
+			"New: Docker!",
+			"New: Web simulator background",
+			"Change: Result display setting is now displayed in \"Math settings\"",
+			"Change: Simulators are renamed (Epsilon -> Omega)",
+			"Fix: ALPHA lock+arrow",
 	    ],
 		"compatibility": {
 			"N0110": true,
 			"N0100": true,
 			"web": false,
 			"android": false,
-			"3ds": true
+			"3ds": false
 		},
 		"available": true,
 		"langages": {
