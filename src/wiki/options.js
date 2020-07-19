@@ -58,6 +58,18 @@ export default {
             component: ({ children, ...props }) => (<a {...props}>{children}</a>),
             props: {className: 'wiki__content__a'}
         },
+        blockquote: {
+            component: ({ children, ...props }) => (<blockquote {...props}>{children}</blockquote>),
+            props: {className: 'wiki__content__blockquote'}
+        },
+        pre: {
+            component: ({ children, ...props }) => (<pre {...props}>{children}</pre>),
+            props: {className: 'wiki__content__pre'}
+        },
+        code: {
+            component: ({ children, ...props }) => (<code {...props}>{children}</code>),
+            props: {className: 'wiki__content__code'}
+        },
         img: {
             component: ({ children, ...props }) => (
                 <div className="wiki__content__image">
