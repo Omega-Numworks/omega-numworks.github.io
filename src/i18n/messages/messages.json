@@ -20,11 +20,6 @@
     "filepath": "src/components/Footer.js"
   },
   {
-    "id": "footer.projects.omega-cli",
-    "defaultMessage": "Omega CLI Installer",
-    "filepath": "src/components/Footer.js"
-  },
-  {
     "id": "footer.projects.omega-rpn",
     "defaultMessage": "Omega RPN",
     "filepath": "src/components/Footer.js"
@@ -42,6 +37,11 @@
   {
     "id": "footer.projects.omega-design",
     "defaultMessage": "Omega Design",
+    "filepath": "src/components/Footer.js"
+  },
+  {
+    "id": "footer.projects.external-apps",
+    "defaultMessage": "External Apps",
     "filepath": "src/components/Footer.js"
   },
   {
@@ -245,6 +245,11 @@
     "filepath": "src/pages/Home.js"
   },
   {
+    "id": "home.download.3ds",
+    "defaultMessage": "3DS",
+    "filepath": "src/pages/Home.js"
+  },
+  {
     "id": "installer.someone",
     "defaultMessage": "Someone",
     "filepath": "src/pages/Install.js"
@@ -302,6 +307,36 @@
   {
     "id": "installer.incompatible",
     "defaultMessage": "Our installer is not compatible with your browser. Please use a browser like Chromium/Google Chrome or Edge.",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.external",
+    "defaultMessage": "External",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.external.description",
+    "defaultMessage": "Installez des applications pour votre Numworks.",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.external.open",
+    "defaultMessage": "OUVRIR",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.notifications",
+    "defaultMessage": "Notifications",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.notifications.description",
+    "defaultMessage": "Get notifications for updates.",
+    "filepath": "src/pages/Install.js"
+  },
+  {
+    "id": "installer.notifications.open",
+    "defaultMessage": "ENABLE",
     "filepath": "src/pages/Install.js"
   },
   {
@@ -407,6 +442,11 @@
   {
     "id": "releases.web",
     "defaultMessage": "WEB",
+    "filepath": "src/pages/Releases.js"
+  },
+  {
+    "id": "releases.3ds",
+    "defaultMessage": "3DS",
     "filepath": "src/pages/Releases.js"
   },
   {
