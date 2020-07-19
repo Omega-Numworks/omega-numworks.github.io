@@ -62,7 +62,7 @@ export default {
             component: ({ children, ...props }) => (
                 <div className="wiki__content__image">
                     <img {...props}>{children}</img>
-                    <span className="wiki__content__image__legend">{props.alt}</span>
+                    <span className="wiki__content__image__caption">{props.alt}</span>
                 </div>
             ),
             props: {className: 'wiki__content__image__img'}

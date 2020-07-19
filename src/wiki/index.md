@@ -37,3 +37,6 @@ My favorite search engine is [Duck Duck Go](https://duckduckgo.com).
 
 ![An old rock in the desert](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/NGC_4414_%28NASA-med%29.jpg/800px-NGC_4414_%28NASA-med%29.jpg "Shiprock, New Mexico by Beau Rogers")
 
+![Bannième Omega-Dev](https://github.com/Omega-Numworks/Omega-Design/blob/master/Banners/Omega-Banner-Dev-Branch.png?raw=true "Bannième Omega-Dev")
+
+![Bannième Omega](https://github.com/Omega-Numworks/Omega-Design/blob/master/Banners/Omega-Banner.png?raw=true "Bannière Omega")
