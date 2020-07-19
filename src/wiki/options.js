@@ -74,6 +74,30 @@ export default {
             component: ({ children, ...props }) => (<code {...props}>{children}</code>),
             props: {className: 'wiki__content__code'}
         },
+        table: {
+            component: ({ children, ...props }) => (<table {...props}>{children}</table>),
+            props: {className: 'wiki__content__table'}
+        },
+        thead: {
+            component: ({ children, ...props }) => (<thead {...props}>{children}</thead>),
+            props: {className: 'wiki__content__thead'}
+        },
+        tbody: {
+            component: ({ children, ...props }) => (<tbody {...props}>{children}</tbody>),
+            props: {className: 'wiki__content__tbody'}
+        },
+        tr: {
+            component: ({ children, ...props }) => (<tr {...props}>{children}</tr>),
+            props: {className: 'wiki__content__tr'}
+        },
+        th: {
+            component: ({ children, ...props }) => (<th {...props}>{children}</th>),
+            props: {className: 'wiki__content__tr__th'}
+        },
+        td: {
+            component: ({ children, ...props }) => (<td {...props}>{children}</td>),
+            props: {className: 'wiki__content__tr__td'}
+        },
         img: {
             component: ({ children, ...props }) => (
                 <div className="wiki__content__image">
