@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
-import firebase from "../firebase"
+import firebase, { messaging } from "../firebase"
 import ImgCalculatorBody from '../img/calculator-body.png'
 import ImgCalculatorBodyOmega from '../img/calculator-body-omega.png'
 import ImgCalculatorBodyEpsilon from '../img/calculator-body-epsilon.png'
 import ImgCalculatorCable from '../img/calculator-cable.png'
 import ImgExternal from '../img/external_icon.png'
 import ImgNotifications from '../img/notification_icon.png'
-
 import Installer from '../dfu/installer'
 
 const LANG_TO_FLAGS = {
@@ -44,14 +43,11 @@ export default class Install extends Component {
             multiLangSupport: false,
             langsList: [],
             selectedLang: '',
-            hideEnableNotificationPopup: false,
-            messaging: firebase.messaging()
+            hideEnableNotificationPopup: false
         }
 
         document.title = "Omega — Install"
 
-        this.state.messaging.usePublicVapidKey("BIUahBDHm8uSYVl3WGvEl4BS2v8X0yU8bkNjQiid_5x5RzlzDR2JY0uJeBzgBey1b1AvdI_Z2Bk5gwYOZpiup4g");
-        
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.detectCalculator = this.detectCalculator.bind(this);
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
@@ -201,9 +197,9 @@ export default class Install extends Component {
     }
 
     enableNotifications() {
-        this.state.messaging.requestPermission().then(() => {
+        messaging.requestPermission().then(() => {
             console.log("Notifications permission: OK");
-            return this.state.messaging.getToken();
+            return messaging.getToken();
         }).then((token) => {
             console.log(token);
         }).catch((error) => {

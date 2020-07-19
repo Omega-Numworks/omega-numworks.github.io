@@ -13,4 +13,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+export var messaging = firebase.messaging.isSupported() ? firebase.messaging() : null;
+
 export default firebase;
