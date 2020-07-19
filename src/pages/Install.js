@@ -297,10 +297,10 @@ export default class Install extends Component {
                         <FormattedMessage id="installer.notifications" defaultMessage="Notifications" />
                     </div>
                     <div className="installer-external__description">
-                        <FormattedMessage id="installer.notifications.description" defaultMessage="Recevez des notifications lors de mises à jour." />
+                        <FormattedMessage id="installer.notifications.description" defaultMessage="Get notifications for updates." />
                     </div>
                     <div className="installer-external__button" onClick={this.enableNotifications} target="_blank" rel="noopener noreferrer">
-                        <FormattedMessage id="installer.notifications.open" defaultMessage="ACTIVER" />
+                        <FormattedMessage id="installer.notifications.open" defaultMessage="ENABLE" />
                     </div>
                 </div>
             </div>
