@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
-<<<<<<< HEAD
 import Button from '../components/buttons/Button'
-=======
 import firebase, { messaging } from "../firebase"
->>>>>>> react-hotfix
 import ImgCalculatorBody from '../img/calculator-body.png'
 import ImgCalculatorBodyOmega from '../img/calculator-body-omega.png'
 import ImgCalculatorBodyEpsilon from '../img/calculator-body-epsilon.png'
