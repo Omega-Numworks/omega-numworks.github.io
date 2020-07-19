@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "firebase": "^7.17.2",
     "jszip": "^3.5.0",
+    "markdown-to-jsx": "^6.11.4",
     "monaco-editor": "^0.20.0",
     "monaco-editor-webpack-plugin": "^1.9.0",
     "node-sass": "^4.14.1",
