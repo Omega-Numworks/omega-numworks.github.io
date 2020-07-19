@@ -304,9 +304,9 @@ export default class Install extends Component {
                     <div className="installer-external__description">
                         <FormattedMessage id="installer.notifications.description" defaultMessage="Recevez des notifications lors de mises à jour." />
                     </div>
-                    <div className="installer-external__button" onClick={this.enableNotifications} target="_blank" rel="noopener noreferrer">
+                    <Button className="installer-external__button" onClick={this.enableNotifications}>
                         <FormattedMessage id="installer.notifications.open" defaultMessage="ACTIVER" />
-                    </div>
+                    </Button>
                 </div>
             </div>
         )
