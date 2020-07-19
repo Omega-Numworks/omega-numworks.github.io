@@ -111,6 +111,20 @@
         width: calc(100% - 380px - 24px)
         border-radius: 6px
         vertical-align: top
+        position: relative
+        
+        &__loading
+            position: absolute
+            top: 4px
+            width: 30px
+            height: 6px
+            border-radius: 6px
+            background-color: #81879b
+            opacity: 0
+            transition: all 0.2s ease-in-out
+            animation: bounce 0.6s ease-in-out infinite alternate-reverse
+            &-active
+                opacity: 1
 
         &__h1
             font-weight: 900
@@ -205,3 +219,15 @@
             &:hover
                 color: #2a588d
                 border-bottom: 2px solid #2a588d
+
+@keyframes bounce
+    0%
+        left: 4px
+        width: 30px
+    50%
+        width: 120px
+    100%
+        width: 30px
+        transform: translateX(-32px)
+        left: 100%
+        right: -20px

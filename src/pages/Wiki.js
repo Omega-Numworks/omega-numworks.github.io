@@ -9,7 +9,8 @@ export default class Wiki extends Component {
         super(props);
         
         this.state = {
-            markdown: ""
+            markdown: null,
+            isLoading: true
         };
         
         document.title = "Omega - Wiki"
@@ -17,7 +18,7 @@ export default class Wiki extends Component {
     
     componentWillMount() {
         fetch(WikiPages).then((response) => response.text()).then((text) => {
-            this.setState({ markdown: text });
+            this.setState({ markdown: text, isLoading: false });
         })
     }
 
@@ -25,7 +26,7 @@ export default class Wiki extends Component {
         var content = "";
     
         if (this.state.markdown === null) {
-            content = "loading...";
+            content = "";
         } else {
             content = (
                 <Markdown options={WikiOptions} >
@@ -69,6 +70,7 @@ export default class Wiki extends Component {
                     </div>
                 </div>
                 <div className="wiki__content">
+                    <div className={"wiki__content__loading " + (this.state.isLoading ? "wiki__content__loading-active" : "")}></div>
                     {content}
                 </div>
             </div>
