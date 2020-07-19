@@ -270,7 +270,36 @@
                 bottom: 8px
                 left: 8px
                 margin-right: 8px
+        
+        &__table
+            border-collapse: collapse
+            border: 1px solid #c2c2c2
+            border-radius: 6px
+            border-collapse: separate
+            overflow: hidden
 
+            &__thread
+            &__tbody
+            &__tr
+                transition: all 0.2s ease-in-out
+
+                &__th
+                    color: #3b3b3b
+                    font-weight: 600
+                    padding: 10px 12px
+                    background-color: #e4e4e4
+                    border-right: 1px solid #d3d3d3
+                    &:last-child
+                        border-right: none
+
+                &__td
+                    padding: 10px 12px
+                    border-right: 1px solid #d3d3d3
+                    &:last-child
+                        border-right: none
+        
+        &__table &__table__tbody &__table__tr:hover
+            background-color: #ececec
 
 @keyframes bounce
     0%
