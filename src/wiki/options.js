@@ -50,6 +50,10 @@ export default {
             component: ({ children, ...props }) => (<b {...props}>{children}</b>),
             props: {className: 'wiki__content__b'}
         },
+        del: {
+            component: ({ children, ...props }) => (<del {...props}>{children}</del>),
+            props: {className: 'wiki__content__del'}
+        },
         hr: {
             component: ({ children, ...props }) => (<hr {...props}>{children}</hr>),
             props: {className: 'wiki__content__hr'}
