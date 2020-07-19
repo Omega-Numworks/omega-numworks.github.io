@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
+<<<<<<< HEAD
 import Button from '../components/buttons/Button'
+=======
+import firebase, { messaging } from "../firebase"
+>>>>>>> react-hotfix
 import ImgCalculatorBody from '../img/calculator-body.png'
 import ImgCalculatorBodyOmega from '../img/calculator-body-omega.png'
 import ImgCalculatorBodyEpsilon from '../img/calculator-body-epsilon.png'
 import ImgCalculatorCable from '../img/calculator-cable.png'
 import ImgExternal from '../img/external_icon.png'
-
+import ImgNotifications from '../img/notification_icon.png'
 import Installer from '../dfu/installer'
 
 const LANG_TO_FLAGS = {
@@ -42,11 +46,12 @@ export default class Install extends Component {
             showPopup: false,
             multiLangSupport: false,
             langsList: [],
-            selectedLang: ''
+            selectedLang: '',
+            hideEnableNotificationPopup: false
         }
 
         document.title = "Omega — Install"
-        
+
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.detectCalculator = this.detectCalculator.bind(this);
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
@@ -82,6 +87,9 @@ export default class Install extends Component {
 
         // Browser compatibility
         this.installerNotCompatibleWithThisBrowser = this.installerNotCompatibleWithThisBrowser.bind(this);
+
+        // Notifications
+        this.enableNotifications = this.enableNotifications.bind(this);
     }
     
     disableLanguage() {
@@ -192,6 +200,18 @@ export default class Install extends Component {
         });
     }
 
+    enableNotifications() {
+        messaging.requestPermission().then(() => {
+            console.log("Notifications permission: OK");
+            return messaging.getToken();
+        }).then((token) => {
+            console.log(token);
+        }).catch((error) => {
+            console.error(error);
+        });
+        this.setState({ hideEnableNotificationPopup: true });
+    }
+
     // Tags
     showPopup() { this.setState({ showPopup: true }) }
     hidePopup() { this.setState({ showPopup: false }) }
@@ -261,6 +281,11 @@ export default class Install extends Component {
                     <FormattedMessage id="installer.thanks" defaultMessage="Thank you for installing Omega! Your calculator is now running Omega {version}." values={{version: this.state.omegaVersion}} />
                 </div>
 
+                <div className={"installer-notcompatible " + (this.state.installerNotCompatibleWithThisBrowser ? "installer-notcompatible-active" : "")}>
+                    <span role="img" aria-label="emoji" className="installer-notcompatible__emoji">😕</span>
+                    <FormattedMessage id="installer.incompatible" defaultMessage="Our installer is not compatible with your browser. Please use a browser like Chromium/Google Chrome or Edge." />
+                </div>
+
                 <div className={"installer-external " + ((this.state.installerNotCompatibleWithThisBrowser || this.state.model !== 'N0110' || this.state.install === true) ? "" : "installer-external-active")}>
                     <img className="installer-external__icon" src={ImgExternal} alt="External" />
                     <div className="installer-external__title">
@@ -274,9 +299,17 @@ export default class Install extends Component {
                     </a>
                 </div>
 
-                <div className={"installer-notcompatible " + (this.state.installerNotCompatibleWithThisBrowser ? "installer-notcompatible-active" : "")}>
-                    <span role="img" aria-label="emoji" className="installer-notcompatible__emoji">😕</span>
-                    <FormattedMessage id="installer.incompatible" defaultMessage="Our installer is not compatible with your browser. Please use a browser like Chromium/Google Chrome or Edge." />
+                <div className={"installer-external " + ((this.state.installerNotCompatibleWithThisBrowser || !firebase.messaging.isSupported() || this.state.hideEnableNotificationPopup || this.state.install === true) ? "" : "installer-external-active")}>
+                    <img className="installer-external__icon" src={ImgNotifications} alt="Notifications" />
+                    <div className="installer-external__title">
+                        <FormattedMessage id="installer.notifications" defaultMessage="Notifications" />
+                    </div>
+                    <div className="installer-external__description">
+                        <FormattedMessage id="installer.notifications.description" defaultMessage="Recevez des notifications lors de mises à jour." />
+                    </div>
+                    <div className="installer-external__button" onClick={this.enableNotifications} target="_blank" rel="noopener noreferrer">
+                        <FormattedMessage id="installer.notifications.open" defaultMessage="ACTIVER" />
+                    </div>
                 </div>
             </div>
         )

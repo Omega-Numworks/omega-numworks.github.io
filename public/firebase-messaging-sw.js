@@ -1,4 +1,5 @@
-import firebase from 'firebase';
+importScripts("https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/7.16.1/firebase-messaging.js");
 
 const firebaseConfig = {
     apiKey: "AIzaSyDVGEyNqgLCCerqbqGmUQ3mMxu8M4sYZvo",
@@ -13,6 +14,4 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-export var messaging = firebase.messaging.isSupported() ? firebase.messaging() : null;
-
-export default firebase;
+const messaging = firebase.messaging.isSupported() ? firebase.messaging() : null;
