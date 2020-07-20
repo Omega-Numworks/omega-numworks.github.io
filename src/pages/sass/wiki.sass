@@ -79,23 +79,23 @@
             scrollbar-width: thin
             
             @media screen and ( max-width: 800px )
-                transition: max-height 0.5s linear, margin 0.5s linear, opacity 0.1s linear 0.4s
+                transition: max-height 0.5s ease-out, margin 0.5s ease-out, opacity 0.1s ease-out 0.4s
                 width: 100%
                 max-height: 9999px
                 overflow-y: hidden
                 padding: 0
                 margin: 0
         
-            transition: width 0.5s linear, margin 0.5s linear, opacity 0.1s linear 0.4s
+            transition: width 0.5s ease-out, margin 0.5s ease-out, opacity 0.1s ease-out 0.4s
         
             &__hide
                 margin-right: 0
                 width: 0
                 opacity: 0
-                transition: width 0.5s linear 0.1s, margin 0.5s linear 0.1s, opacity 0.1s linear 0s
+                transition: width 0.5s ease-out 0.1s, margin 0.5s ease-out 0.1s, opacity 0.1s ease-out 0s
 
                 @media screen and ( max-width: 800px )
-                    transition: max-height 0.5s linear 0.1s, margin 0.5s linear 0.1s, opacity 0.1s linear 0s
+                    transition: max-height 0.5s ease-out 0.0s, margin 0.5s ease-out 0.0s, opacity 0.1s ease-out 0s
                     width: 100%
                     max-height: 0
         
