@@ -70,6 +70,71 @@ export default class Wiki extends Component {
                             <div className="wiki__sidebar__content__category__content">
                                 <div className="wiki__sidebar__content__category__content__item">Première page</div>
                                 <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                            </div>
+                        </div>
+                        <div className="wiki__sidebar__content__category">
+                            <div className="wiki__sidebar__content__category__title">
+                                Introduction
+                                <i className="wiki__sidebar__content__category__title__arrow material-icons-round">arrow_drop_up</i>
+                            </div>
+                            <div className="wiki__sidebar__content__category__content">
+                                <div className="wiki__sidebar__content__category__content__item">Première page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                            </div>
+                        </div>
+                        <div className="wiki__sidebar__content__category">
+                            <div className="wiki__sidebar__content__category__title">
+                                Introduction
+                                <i className="wiki__sidebar__content__category__title__arrow material-icons-round">arrow_drop_up</i>
+                            </div>
+                            <div className="wiki__sidebar__content__category__content">
+                                <div className="wiki__sidebar__content__category__content__item">Première page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                            </div>
+                        </div>
+                        <div className="wiki__sidebar__content__category">
+                            <div className="wiki__sidebar__content__category__title">
+                                Introduction
+                                <i className="wiki__sidebar__content__category__title__arrow material-icons-round">arrow_drop_up</i>
+                            </div>
+                            <div className="wiki__sidebar__content__category__content">
+                                <div className="wiki__sidebar__content__category__content__item">Première page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                            </div>
+                        </div>
+                        <div className="wiki__sidebar__content__category">
+                            <div className="wiki__sidebar__content__category__title">
+                                Introduction
+                                <i className="wiki__sidebar__content__category__title__arrow material-icons-round">arrow_drop_up</i>
+                            </div>
+                            <div className="wiki__sidebar__content__category__content">
+                                <div className="wiki__sidebar__content__category__content__item">Première page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
+                                <div className="wiki__sidebar__content__category__content__item">Deuxième page</div>
                             </div>
                         </div>
                         <div className="wiki__sidebar__content__category">
