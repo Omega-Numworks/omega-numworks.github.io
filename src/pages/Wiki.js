@@ -37,39 +37,39 @@ export default class Wiki extends Component {
     
         return (
             <div className="content wiki">
-                <div className="wiki__sidebar">
-                    <div className="wiki__sidebar__supercategories">
-                        <div className="wiki__sidebar__supercategories__supercategory">
-                            <div className="wiki__sidebar__supercategories__supercategory__title">Software</div>
-                            <i className="wiki__sidebar__supercategories__supercategory__icon material-icons-round">text_snippet</i>
-                        </div>
-                        <div className="wiki__sidebar__supercategories__supercategory wiki__sidebar__supercategories__supercategory">
-                            <div className="wiki__sidebar__supercategories__supercategory__title">Hardware</div>
-                            <i className="wiki__sidebar__supercategories__supercategory__icon material-icons-round">memory</i>
-                        </div>
-                        <div className="wiki__sidebar__supercategories__supercategory wiki__sidebar__supercategories__supercategory-active">
-                            <div className="wiki__sidebar__supercategories__supercategory__title">Python</div>
-                            <i className="wiki__sidebar__supercategories__supercategory__icon material-icons-round">code</i>
-                        </div>
-                    </div>
-                    <div className="wiki__sidebar__category">
-                        <div className="wiki__sidebar__category__title">
-                            Introduction
-                            <i className="wiki__sidebar__category__title__arrow material-icons-round">arrow_drop_up</i>
-                        </div>
-                        <div className="wiki__sidebar__category__content">
-                            <div className="wiki__sidebar__category__content__item">Première page</div>
-                            <div className="wiki__sidebar__category__content__item">Deuxième page</div>
-                        </div>
-                    </div>
-                    <div className="wiki__sidebar__category">
-                        <div className="wiki__sidebar__category__title">
-                            Build system
-                            <i className="wiki__sidebar__category__title__arrow material-icons-round">arrow_drop_down</i>
-                        </div>
-                    </div>
-                </div>
                 <div className="wiki__content">
+                    <div className="wiki__sidebar">
+                        <div className="wiki__sidebar__supercategories">
+                            <div className="wiki__sidebar__supercategories__supercategory">
+                                <div className="wiki__sidebar__supercategories__supercategory__title">Software</div>
+                                <i className="wiki__sidebar__supercategories__supercategory__icon material-icons-round">text_snippet</i>
+                            </div>
+                            <div className="wiki__sidebar__supercategories__supercategory wiki__sidebar__supercategories__supercategory">
+                                <div className="wiki__sidebar__supercategories__supercategory__title">Hardware</div>
+                                <i className="wiki__sidebar__supercategories__supercategory__icon material-icons-round">memory</i>
+                            </div>
+                            <div className="wiki__sidebar__supercategories__supercategory wiki__sidebar__supercategories__supercategory-active">
+                                <div className="wiki__sidebar__supercategories__supercategory__title">Python</div>
+                                <i className="wiki__sidebar__supercategories__supercategory__icon material-icons-round">code</i>
+                            </div>
+                        </div>
+                        <div className="wiki__sidebar__category">
+                            <div className="wiki__sidebar__category__title">
+                                Introduction
+                                <i className="wiki__sidebar__category__title__arrow material-icons-round">arrow_drop_up</i>
+                            </div>
+                            <div className="wiki__sidebar__category__content">
+                                <div className="wiki__sidebar__category__content__item">Première page</div>
+                                <div className="wiki__sidebar__category__content__item">Deuxième page</div>
+                            </div>
+                        </div>
+                        <div className="wiki__sidebar__category">
+                            <div className="wiki__sidebar__category__title">
+                                Build system
+                                <i className="wiki__sidebar__category__title__arrow material-icons-round">arrow_drop_down</i>
+                            </div>
+                        </div>
+                    </div>
                     <div className={"wiki__content__loading " + (this.state.isLoading ? "wiki__content__loading-active" : "")}></div>
                     {content}
                 </div>

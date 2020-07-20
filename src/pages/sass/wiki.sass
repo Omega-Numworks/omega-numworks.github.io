@@ -2,33 +2,41 @@
 
 .wiki
     margin: 0 calc(15% - 32px)
-
+    padding-top: 12px
+    
     &__sidebar
         display: inline-block
         box-sizing: border-box
-        width: 380px
-        padding: 12px
+        width: 400px
+        float: right
+        margin-left: 12px
+        
+        @media screen and ( max-width: 1000px )
+            width: 300px
+        
+        @media screen and ( max-width: 800px )
+            width: 100%
+            margin: 0
 
         &__supercategories
             display: block
-            margin: 12px 8px
             background-color: #ebebeb
             border-radius: 6px
-            padding: 12px
+            padding: 12px 6px 0 6px
+            display: flex
+            flex-direction: row
+            flex-wrap: wrap
 
             &__supercategory
                 display: inline-block
                 border-radius: 6px
-                width: calc(32.5% - 6px)
                 text-align: center
                 padding: 16px 0
                 transition: all 0.2s ease-in-out
                 user-select: none
                 cursor: pointer
-                margin-left: 12px
-
-                &:first-child
-                    margin-left: 0
+                margin: 0 6px 12px 6px
+                flex-grow: 1
 
                 &:hover
                     background-color: #dadada
@@ -51,7 +59,7 @@
             display: block
             border-radius: 6px
             background-color: #ebebeb
-            margin: 12px 8px
+            margin: 12px 0
             padding: 6px 0
             transition: all 0.2s ease-in-out
             user-select: none
@@ -106,10 +114,10 @@
         border: 2px solid #ececec
         display: inline-block
         background-color: #FAFAFA
-        padding: 24px
-        margin: 24px 0
+        padding: 12px
+        margin-bottom: 24px
         box-sizing: border-box
-        width: calc(100% - 380px - 24px)
+        width: 100%
         border-radius: 6px
         vertical-align: top
         position: relative
