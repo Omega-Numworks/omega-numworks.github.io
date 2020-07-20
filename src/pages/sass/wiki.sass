@@ -1,119 +1,176 @@
 @import './../../sass/variables.omega.library'
 
 .wiki
-    margin: 0 32px
+    margin: 0 calc(15% - 32px)
     padding-top: 12px
     
     display: flex
     @media screen and ( max-width: 800px )
         flex-wrap: wrap
     
+    @media screen and ( max-width: 1850px )
+        margin: 0 32px
+    
     &__sidebar
+        margin-bottom: 24px
+        border-radius: 6px
+        position: sticky
+        top: 6px
+        height: calc(100vh - 12px)
         display: inline-block
         box-sizing: border-box
-        width: 400px
         margin-right: 12px
         flex-grow: 0
+        display: flex
+        background-color: #fafafa
+        border: 2px solid #ececec
+        padding: 6px
         
         @media screen and ( max-width: 1000px )
-            width: 300px
+            position: sticky
+            height: calc(100vh - 12px - 76px)
+            top: 76px
         
         @media screen and ( max-width: 800px )
+            position: relative
+            top: 0
+            height: auto
             width: 100%
             margin: 0
+            margin-bottom: 24px
             flex-grow: 1
-
-        &__supercategories
-            display: block
-            background-color: #ebebeb
-            border-radius: 6px
-            padding: 12px 6px 0 6px
-            display: flex
-            flex-direction: row
             flex-wrap: wrap
-
-            &__supercategory
-                display: inline-block
-                border-radius: 6px
-                text-align: center
-                padding: 16px 0
-                transition: all 0.2s ease-in-out
-                user-select: none
+        
+        &__toggle
+            &:hover
+                background-color: #ebebeb
                 cursor: pointer
-                margin: 0 6px 12px 6px
-                flex-grow: 1
-
-                &:hover
-                    background-color: #dadada
-                    animation: hover-feedback 0.2s
-
-                &-active
-                    background-color: #d3d3d3
-
-                &__title
-                    margin-top: 6px
-                    font-size: 15px
-                    font-weight: 700
-
-                &__icon
-                    margin-top: 6px
-                    color: #3f3f3f
-                    font-size: 32px
-
-        &__category
+            
             display: block
+            height: 100%
+            display: flex
+            align-items: center
+            background-color: #fafafa
+            color: #000000
             border-radius: 6px
-            background-color: #ebebeb
-            margin: 12px 0
-            padding: 6px 0
-            transition: all 0.2s ease-in-out
-            user-select: none
-            max-height: 2000px
+        
+        &__toggle &__arrow
+            transition: transform 0.2s
+            transform: rotate(90deg)
+        
+        &__toggle__enabled &__arrow
+            transition: transform 0.2s
+            transform: rotate(-90deg)
+        
+        &__content
+            margin-right: 6px
+            flex-shrink: 1
+            width: 400px
+            
+            @media screen and ( max-width: 1000px )
+                width: 300px
+            @media screen and ( max-width: 800px )
+                width: 100%
+        
+            transition: width 0.5s, opacity 0.1s linear 0.4s
+        
+            &__hide
+                margin-right: 0
+                width: 0
+                opacity: 0
+                transition: width 0.5s, opacity 0.1s linear 0s
+        
+            &__supercategories
+                display: block
+                background-color: #ebebeb
+                border-radius: 6px
+                padding: 12px 6px 0 6px
+                display: flex
+                flex-direction: row
+                flex-wrap: wrap
 
-            &-closed
-                max-height: 36px
-
-            &__title
-                font-weight: 700
-                padding: 10px 16px
-                position: relative
-                color: #464646
-                cursor: pointer
-                transition: all 0.2s
-
-                &__arrow
-                    color: #505050
-                    background-color: #dfdfdf
-                    border-radius: 50%
-                    position: absolute
-                    right: 12px
-                    top: 6px
-                    font-size: 24px
-                    transition: all 0.2s
-
-                &:hover &__arrow
-                    color: #363636
-                    animation: hover-feedback 0.2s
-
-                &:hover
-                    color: #353535
-
-            &__content
-                padding-top: 4px
-                padding-bottom: 4px
-
-                &__item
-                    padding: 10px 12px
-                    margin: 0 12px
+                &__supercategory
+                    display: inline-block
                     border-radius: 6px
+                    text-align: center
+                    padding: 16px 0
+                    transition: all 0.2s ease-in-out
+                    user-select: none
                     cursor: pointer
-                    text-decoration: none
-                    color: #111111
-                    transition: all 0.2s
+                    margin: 0 6px 12px 6px
+                    flex-grow: 1
 
                     &:hover
-                        background-color: #d6d6d6
-                        animation: hover-feedback 0.3s
+                        background-color: #dadada
+                        animation: hover-feedback 0.2s
+                    
+                    &-active
+                        background-color: #d3d3d3
+
+                    &__title
+                        margin-top: 6px
+                        font-size: 15px
+                        font-weight: 700
+                    
+                    &__icon
+                        margin-top: 6px
+                        color: #3f3f3f
+                        font-size: 32px
+
+            &__category
+                display: block
+                border-radius: 6px
+                background-color: #ebebeb
+                margin: 12px 0
+                padding: 6px 0
+                transition: all 0.2s ease-in-out
+                user-select: none
+                max-height: 2000px
+
+                &-closed
+                    max-height: 36px
+
+                &__title
+                    font-weight: 700
+                    padding: 10px 16px
+                    position: relative
+                    color: #464646
+                    cursor: pointer
+                    transition: all 0.2s
+                
+                    &__arrow
+                        color: #505050
+                        background-color: #dfdfdf
+                        border-radius: 50%
+                        position: absolute
+                        right: 12px
+                        top: 6px
+                        font-size: 24px
+                        transition: all 0.2s
+                    
+                    &:hover &__arrow
+                        color: #363636
+                        animation: hover-feedback 0.2s
+
+                    &:hover
+                        color: #353535
+
+                &__content
+                    padding-top: 4px
+                    padding-bottom: 4px
+                    
+                    &__item
+                        padding: 10px 12px
+                        margin: 0 12px
+                        border-radius: 6px
+                        cursor: pointer
+                        text-decoration: none
+                        color: #111111
+                        transition: all 0.2s
+
+                        &:hover
+                            background-color: #d6d6d6
+                            animation: hover-feedback 0.3s
 
     &__content
         border: 2px solid #ececec
