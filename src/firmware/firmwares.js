@@ -1,14 +1,15 @@
 export const releases = {
-	"latest": "O1.20.0.Beta-E14",
+	"latest": "O1.20.0-E14",
 	"firmwares": [{
-	    "name": "O1.20.0.Beta-E14",
-	    "commit": "7590e6ce317f2aecf93316f3af4ca4e8bd4ac645",
+	    "name": "O1.20.0-E14",
+	    "commit": "132f89923733e11b1b3ac70b5867419b355c0ea5",
 	    "changelog": [
 			"Update: Updated to Epsilon 14.4.1!",
 			"New: Added 67 constants",
 			"New: New units",
 			"New: 3DS Simulator",
-			"New: Python: open method (and derivatives)",
+			"New: External apps are now displayed on the home screen",
+			"New: Python: open function (and derivatives)",
 			"New: Physics constants are now using the Epsilon units",
 			"New: Added message when the compilation starts",
 			"New: Undef is hidden during symbolic calculation",
@@ -26,9 +27,9 @@ export const releases = {
 		"compatibility": {
 			"N0110": true,
 			"N0100": true,
-			"web": false,
-			"android": false,
-			"3ds": false
+			"web": true,
+			"android": true,
+			"3ds": true
 		},
 		"available": true,
 		"langages": {
