@@ -1,15 +1,19 @@
 @import './../../sass/variables.omega.library'
 
 .wiki
-    margin: 0 calc(15% - 32px)
+    margin: 0 32px
     padding-top: 12px
+    
+    display: flex
+    @media screen and ( max-width: 800px )
+        flex-wrap: wrap
     
     &__sidebar
         display: inline-block
         box-sizing: border-box
         width: 400px
-        float: right
-        margin-left: 12px
+        margin-right: 12px
+        flex-grow: 0
         
         @media screen and ( max-width: 1000px )
             width: 300px
@@ -17,6 +21,7 @@
         @media screen and ( max-width: 800px )
             width: 100%
             margin: 0
+            flex-grow: 1
 
         &__supercategories
             display: block
@@ -118,6 +123,7 @@
         margin-bottom: 24px
         box-sizing: border-box
         width: 100%
+        flex-shrink: 1
         border-radius: 6px
         vertical-align: top
         position: relative
