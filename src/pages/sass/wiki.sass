@@ -289,14 +289,20 @@
                     padding: 10px 12px
                     background-color: #e4e4e4
                     border-right: 1px solid #d3d3d3
+                    border-bottom: 1px solid #d3d3d3
                     &:last-child
                         border-right: none
 
                 &__td
                     padding: 10px 12px
                     border-right: 1px solid #d3d3d3
+                    border-bottom: 1px solid #d3d3d3
                     &:last-child
                         border-right: none
+            
+                &:last-child &__td
+                    border-bottom: none
+                
         
         &__table &__table__tbody &__table__tr:hover
             background-color: #ececec
