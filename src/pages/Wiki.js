@@ -53,7 +53,7 @@ export default class Wiki extends Component {
                                 <div className="wiki__sidebar__content__supercategories__supercategory__title">Software</div>
                                 <i className="wiki__sidebar__content__supercategories__supercategory__icon material-icons-round">text_snippet</i>
                             </div>
-                            <div className="wiki__sidebar__content__supercategories__supercategory wiki__sidebar__content__supercategories__supercategory">
+                            <div className="wiki__sidebar__content__supercategories__supercategory">
                                 <div className="wiki__sidebar__content__supercategories__supercategory__title">Hardware</div>
                                 <i className="wiki__sidebar__content__supercategories__supercategory__icon material-icons-round">memory</i>
                             </div>

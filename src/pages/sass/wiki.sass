@@ -1,19 +1,13 @@
 @import './../../sass/variables.omega.library'
 
 .wiki
-    margin: 0 calc(15% - 32px)
-    padding-top: 12px
-    
     display: flex
+    background-color: #f5f5f5
+
     @media screen and ( max-width: 800px )
         flex-wrap: wrap
     
-    @media screen and ( max-width: 1850px )
-        margin: 0 32px
-    
     &__sidebar
-        margin-bottom: 24px
-        border-radius: 6px
         position: sticky
         top: 6px
         height: calc(100vh - 12px)
@@ -22,9 +16,8 @@
         margin-right: 12px
         flex-grow: 0
         display: flex
-        background-color: #fafafa
-        border: 2px solid #ececec
-        padding: 6px
+        border-right: 1px solid #d8d8d8
+        padding: 12px
         
         @media screen and ( max-width: 1000px )
             position: sticky
@@ -53,13 +46,15 @@
             background-color: #fafafa
             color: #000000
             border-radius: 6px
+
+            display: none
         
         &__toggle &__arrow
-            transition: transform 0.2s
+            transition: transform 0.2s ease-in-out
             transform: rotate(90deg)
         
         &__toggle__enabled &__arrow
-            transition: transform 0.2s
+            transition: transform 0.2s ease-in-out
             transform: rotate(-90deg)
         
         &__content
@@ -72,22 +67,21 @@
             @media screen and ( max-width: 800px )
                 width: 100%
         
-            transition: width 0.5s, opacity 0.1s linear 0.4s
+            transition: width 0.3s ease-in-out, opacity 0.1s ease-in-out 0.4s
         
             &__hide
                 margin-right: 0
                 width: 0
                 opacity: 0
-                transition: width 0.5s, opacity 0.1s linear 0s
+                transition: width 0.3s ease-in-out, opacity 0.1s ease-in-out 0s
         
             &__supercategories
-                display: block
-                background-color: #ebebeb
-                border-radius: 6px
-                padding: 12px 6px 0 6px
                 display: flex
+                justify-content: space-between
                 flex-direction: row
                 flex-wrap: wrap
+                border-bottom: 1px solid #dbdbdb
+                padding-bottom: 12px
 
                 &__supercategory
                     display: inline-block
@@ -97,8 +91,11 @@
                     transition: all 0.2s ease-in-out
                     user-select: none
                     cursor: pointer
-                    margin: 0 6px 12px 6px
                     flex-grow: 1
+                    margin-right: 12px
+
+                    &:last-child
+                        margin-right: 0
 
                     &:hover
                         background-color: #dadada
@@ -120,7 +117,7 @@
             &__category
                 display: block
                 border-radius: 6px
-                background-color: #ebebeb
+                background-color: #e2e2e2
                 margin: 12px 0
                 padding: 6px 0
                 transition: all 0.2s ease-in-out
@@ -175,9 +172,10 @@
     &__content
         border: 2px solid #ececec
         display: inline-block
-        background-color: #FAFAFA
-        padding: 12px
-        margin-bottom: 24px
+        background-color: #ffffff
+        padding: 20px
+        margin: 24px 48px
+        margin-left: 32px
         box-sizing: border-box
         width: 100%
         flex-shrink: 1
