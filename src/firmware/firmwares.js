@@ -1,6 +1,27 @@
 export const releases = {
-	"latest": "O1.20.0-E14",
+	"latest": "O1.20.1-E14",
 	"firmwares": [{
+	    "name": "O1.20.1-E14",
+	    "commit": "4af76cc3ae3798cfb3e85c4106ca1006262f32e1",
+	    "changelog": [
+			"New: Python os module (uname, listdir, remove, rename)",
+			"Fix: Crash on append on new file",
+			"Change: Color of fractal in mandelbrot.py",
+	    ],
+		"compatibility": {
+			"N0110": true,
+			"N0100": true,
+			"web": true,
+			"android": true,
+			"3ds": true
+		},
+		"available": true,
+		"langages": {
+		    "0100": [
+		        "en", "fr", "nl", "pt", "it", "de", "es", "hu"
+		    ]
+		}
+	}, {
 	    "name": "O1.20.0-E14",
 	    "commit": "132f89923733e11b1b3ac70b5867419b355c0ea5",
 	    "changelog": [
