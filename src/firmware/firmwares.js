@@ -1,6 +1,27 @@
 export const releases = {
-	"latest": "O1.20.1-E14",
+	"latest": "O1.20.2-E14",
 	"firmwares": [{
+	    "name": "O1.20.2-E14",
+	    "commit": "0235de80101785c6dedf0b7f4651584cfd56cbad",
+	    "changelog": [
+			"New: Persistent Simulator storage",
+			"New: Document os",
+			"Change: Clean useless files in os",
+	    ],
+		"compatibility": {
+			"N0110": true,
+			"N0100": true,
+			"web": true,
+			"android": true,
+			"3ds": true
+		},
+		"available": true,
+		"langages": {
+		    "0100": [
+		        "en", "fr", "nl", "pt", "it", "de", "es", "hu"
+		    ]
+		}
+	}, {
 	    "name": "O1.20.1-E14",
 	    "commit": "4af76cc3ae3798cfb3e85c4106ca1006262f32e1",
 	    "changelog": [
@@ -39,7 +60,10 @@ export const releases = {
 			"New: Shift + Home is now a shortcut to go to calculation (or the first app)",
 			"New: Support for RGB files without alpha channel.",
 			"New: Add root and log settings",
-			"New: \\ shortcut (with ALPHA+x10^x), @ shortcut (with ALPHA+ANS), µ and Ω",
+			"New: \\ shortcut (with ALPHA+x10^x)",
+			"New: @ shortcut (with ALPHA+ANS)",
+			"New: µ shortcut (with SHIFT+7)",
+			"New: Ω shortcut (with SHIFT+9)",
 			"New: Docker!",
 			"New: Web simulator background",
 			"Change: Simulators are renamed (Epsilon -> Omega)",
