@@ -286,7 +286,7 @@ export default class Install extends Component {
                     <div className="installer-external__description">
                         <FormattedMessage id="installer.external.description" defaultMessage="Installez des applications pour votre Numworks." />
                     </div>
-                    <a className="installer-external__button" href="https://m4xi1m3.github.io/nw-external-apps/" target="_blank" rel="noopener noreferrer">
+                    <a className="installer-external__button" href="https://m4xi1m3.github.io/nw-external-apps/" rel="noopener noreferrer">
                         <FormattedMessage id="installer.external.open" defaultMessage="OUVRIR" />
                     </a>
                 </div>
