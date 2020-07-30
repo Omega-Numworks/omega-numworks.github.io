@@ -5,13 +5,12 @@ import Toolbar from './components/Toolbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Simulator from './pages/Simulator';
+import FullSimulator from './pages/simulator/FullSimulator';
 import Releases from './pages/Releases';
 import Policy from './pages/Policy';
 import Install from './pages/Install';
 import Projects from './pages/Projects';
-import Editor from './pages/Editor';
-import EditorRun from './pages/EditorRun';
-import EditorRunPython from './pages/EditorRunPython'
+import IDEMain from './pages/IDE/Main';
 import NotFound from './pages/NotFound';
 
 import { IntlProvider } from "react-intl";
@@ -55,23 +54,27 @@ class App extends Component {
       <IntlProvider locale={this.state.locale} messages={this.state.messages}>
         <Router>
           <div className="body" style={window.location.pathname.includes("/editor") ? { overflow: "hidden", height: "100vh" } : {}}>
-            {!window.location.pathname.includes("/editor") && <Toolbar />}
+            {!window.location.pathname.includes("/editor") && !window.location.pathname.includes("/simulator/run") && <Toolbar />}
             <Switch>
               <Route path="/simulator" component={Simulator} exact />
+              <Route path="/simulator/run/full" component={FullSimulator} exact />
               <Route path="/releases" component={Releases} exact />
               <Route path="/install" component={Install} exact />
               <Route path="/install/:version" component={Install} />
               <Route path="/policy" component={Policy} exact />
+              <Route path="/ide" component={IDEMain} exact />
+              {/*
               <Route path="/projects" component={Projects} exact />
               <Route path="/editor/run/python/:id" component={EditorRunPython} exact />
               <Route path="/editor/run/python" component={EditorRunPython} exact />
               <Route path="/editor/run" component={EditorRun} exact />
               <Route path="/editor/:id" component={Editor} exact />
+              */}
               <Route path="/wiki" component={Wiki} exact />
               <Route path="/" component={Home} exact />
               <Route component={NotFound} />
             </Switch>
-            {!window.location.pathname.includes("/editor") && <Footer onChangeLanguage={this.onChangeLanguage} locale={this.state.locale} />}
+            {!window.location.pathname.includes("/editor") && !window.location.pathname.includes("/simulator/run") && <Footer onChangeLanguage={this.onChangeLanguage} locale={this.state.locale} />}
           </div>
         </Router>
       </IntlProvider>
