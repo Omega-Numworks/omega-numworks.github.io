@@ -11,6 +11,7 @@ import Policy from './pages/Policy';
 import Install from './pages/Install';
 import Projects from './pages/Projects';
 import IDEMain from './pages/IDE/Main';
+import IDEEditor from './pages/IDE/Editor';
 import NotFound from './pages/NotFound';
 
 import { IntlProvider } from "react-intl";
@@ -54,7 +55,7 @@ class App extends Component {
       <IntlProvider locale={this.state.locale} messages={this.state.messages}>
         <Router>
           <div className="body" style={window.location.pathname.includes("/editor") ? { overflow: "hidden", height: "100vh" } : {}}>
-            {!window.location.pathname.includes("/editor") && !window.location.pathname.includes("/simulator/run") && <Toolbar />}
+            {!window.location.pathname.includes("/simulator/run") && <Toolbar />}
             <Switch>
               <Route path="/simulator" component={Simulator} exact />
               <Route path="/simulator/run/full" component={FullSimulator} exact />
@@ -63,6 +64,7 @@ class App extends Component {
               <Route path="/install/:version" component={Install} />
               <Route path="/policy" component={Policy} exact />
               <Route path="/ide" component={IDEMain} exact />
+              <Route path="/ide/editor" component={IDEEditor} exact />
               {/*
               <Route path="/projects" component={Projects} exact />
               <Route path="/editor/run/python/:id" component={EditorRunPython} exact />
@@ -74,7 +76,7 @@ class App extends Component {
               <Route path="/" component={Home} exact />
               <Route component={NotFound} />
             </Switch>
-            {!window.location.pathname.includes("/editor") && !window.location.pathname.includes("/simulator/run") && <Footer onChangeLanguage={this.onChangeLanguage} locale={this.state.locale} />}
+            {!window.location.pathname.includes("/simulator/run") && <Footer onChangeLanguage={this.onChangeLanguage} locale={this.state.locale} />}
           </div>
         </Router>
       </IntlProvider>

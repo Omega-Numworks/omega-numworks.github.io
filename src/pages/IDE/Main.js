@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import GithubConnector from "../../ide/GithubConnector";
+import GithubConnector from "../../GithubConnector";
 
 export default class IDEMain extends Component {
     constructor(props) {
@@ -9,7 +9,7 @@ export default class IDEMain extends Component {
         document.title = "Omega - IDE";
         
         this.state = {
-            connector: new GithubConnector(this)
+            connector: GithubConnector.getInstance()
         };
         
         this.onAuthStateChanged = this.onAuthStateChanged.bind(this);

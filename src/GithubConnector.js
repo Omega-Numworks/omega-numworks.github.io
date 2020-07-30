@@ -1,5 +1,5 @@
 
-import firebase from "../firebase"
+import firebase from "firebase"
 
 /**
  * Github connector class. Makes link between the firebase API and the frontend
