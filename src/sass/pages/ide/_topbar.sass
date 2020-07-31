@@ -1,0 +1,110 @@
+
+
+&__topbar
+    background-color: #252526
+    width: 100%
+    font-size: 12px
+
+    &__more
+        width: 35px
+        height: 35px
+        position: absolute
+        top: 0
+        right: 0
+        color: white
+
+        &:hover
+            cursor: pointer
+
+        &__icon
+            position: absolute
+            display: inline-block
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+
+    &__tabs
+        overflow-x: auto
+        scrollbar-width: none
+        height: 35px
+        width: calc(100% - 35px)
+
+        &__container
+            display: flex
+            height: 35px
+
+
+    &__tab
+        position: relative
+        top: 0
+        height: 35px
+        background-color: #2d2d2d
+        border-right: 1px solid #252526
+        color: #8f8f8f
+        display: inline-block
+
+        &-selected
+            background-color: #1e1e1e
+            color: white
+
+        &:hover
+            cursor: pointer
+
+        &__name
+            display: inline-block
+            position: relative
+            top: 50%
+            transform: translateY(-50%)
+            overflow-wrap: nowrap
+            margin-left: 12px
+            margin-right: 24px
+
+        &__close
+            display: inline-block
+            position: absolute
+            top: 50%
+            transform: translateY(-50%)
+            float: right
+            right: 0
+            margin-right: 6px
+            font-size: 16px
+
+            &-unsaved
+                background-color: #8f8f8f
+                border-radius: 4px
+                color: transparent
+                width: 8px
+                height: 8px
+                margin-right: 10px
+
+            &:hover
+                width: auto
+                height: auto
+                color: inherit
+                background-color: transparent
+                margin-right: 6px
+
+            &:active
+                font-size: 18px
+                margin-right: 5px
+
+
+        &-selected > &__close-unsaved
+            background-color: #ffffff
+            &:hover
+                background-color: transparent
+
+    &__filename
+        height: 22px
+        font-size: 12px
+        background-color: #1e1e1e
+        color: #8f8f8f
+
+        &__content
+            display: inline-block
+            position: relative
+            top: 50%
+            transform: translateY(-50%)
+            margin-left: 6px
+
+

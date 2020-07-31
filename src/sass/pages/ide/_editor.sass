@@ -1,0 +1,20 @@
+.content
+    margin-top: 0
+
+.editor
+    width: 100vw
+    height: 100vh
+    overflow: hidden
+
+    &__monaco
+        height: calc(100vh - 35px)
+
+    @import '_loading.sass'
+    @import '_topbar.sass'
+
+@keyframes spinner
+    from
+        transform: rotate(0)
+    to
+        transform: rotate(360deg)
+

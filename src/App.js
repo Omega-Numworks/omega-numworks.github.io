@@ -54,7 +54,7 @@ class App extends Component {
     return (
       <IntlProvider locale={this.state.locale} messages={this.state.messages}>
         <Router>
-          <div className="body" style={window.location.pathname.includes("/editor") ? { overflow: "hidden", height: "100vh" } : {}}>
+          <div className="body">
             {!window.location.pathname.includes("/simulator/run") && <Toolbar />}
             <Switch>
               <Route path="/simulator" component={Simulator} exact />
