@@ -32,6 +32,19 @@ export default class IDEEditor extends Component {
     }
     
     componentDidMount() {
+        // Hide the cookies think
+        var headers = document.getElementsByClassName("cc-revoke");
+        
+        for(var i = 0; i < headers.length; i++) {
+            headers[i].style.display = "none"
+        }
+        
+        var headers = document.getElementsByClassName("cc-grower");
+        
+        for(var i = 0; i < headers.length; i++) {
+            headers[i].style.display = "none"
+        }
+        
         // Hide the header and footer
         var headers = document.getElementsByClassName("header");
         
@@ -49,6 +62,19 @@ export default class IDEEditor extends Component {
     }
     
     componentWillUnmount() {
+        // Show the cookies think
+        var headers = document.getElementsByClassName("cc-revoke");
+        
+        for(var i = 0; i < headers.length; i++) {
+            headers[i].style.display = "flex"
+        }
+        
+        var headers = document.getElementsByClassName("cc-grower");
+        
+        for(var i = 0; i < headers.length; i++) {
+            headers[i].style.display = "inherit"
+        }
+        
         // Show the header and footer again
         var headers = document.getElementsByClassName("header");
         
