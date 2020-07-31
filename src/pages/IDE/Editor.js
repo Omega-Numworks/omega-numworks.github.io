@@ -68,6 +68,7 @@ export default class IDEEditor extends Component {
     renderEditor() {
         return (
             <div className="editor">
+                {/* Loading */}
                 <div className="editor__loading editor__loading__hidden">
                     <div className="editor__loading__content">
                         <p className="editor__loading__content__title">
@@ -77,57 +78,10 @@ export default class IDEEditor extends Component {
                     </div>
                 </div>
                 
+                {/* Top Bar */}
                 <div className="editor__topbar">
                     <div className="editor__topbar__tabs">
                         <div className="editor__topbar__tabs__container">
-                            <div className="editor__topbar__tab">
-                                <span className="editor__topbar__tab__name">
-                                    lorem.py
-                                </span>
-                                <i className="editor__topbar__tab__close editor__topbar__tab__close-unsaved material-icons">close</i>
-                            </div>
-                            <div className="editor__topbar__tab">
-                                <span className="editor__topbar__tab__name">
-                                    ipsum.py
-                                </span>
-                                <i className="editor__topbar__tab__close material-icons">close</i>
-                            </div>
-                            <div className="editor__topbar__tab editor__topbar__tab-selected">
-                                <span className="editor__topbar__tab__name">
-                                    dolor.py
-                                </span>
-                                <i className="editor__topbar__tab__close editor__topbar__tab__close-unsaved material-icons">close</i>
-                            </div>
-                            <div className="editor__topbar__tab">
-                                <span className="editor__topbar__tab__name">
-                                    sit_amet_aaa.py
-                                </span>
-                                <i className="editor__topbar__tab__close material-icons">close</i>
-                            </div>
-                            <div className="editor__topbar__tab">
-                                <span className="editor__topbar__tab__name">
-                                    lorem.py
-                                </span>
-                                <i className="editor__topbar__tab__close editor__topbar__tab__close-unsaved material-icons">close</i>
-                            </div>
-                            <div className="editor__topbar__tab">
-                                <span className="editor__topbar__tab__name">
-                                    ipsum.py
-                                </span>
-                                <i className="editor__topbar__tab__close material-icons">close</i>
-                            </div>
-                            <div className="editor__topbar__tab editor__topbar__tab-selected">
-                                <span className="editor__topbar__tab__name">
-                                    dolor.py
-                                </span>
-                                <i className="editor__topbar__tab__close editor__topbar__tab__close-unsaved material-icons">close</i>
-                            </div>
-                            <div className="editor__topbar__tab">
-                                <span className="editor__topbar__tab__name">
-                                    sit_amet_aaa.py
-                                </span>
-                                <i className="editor__topbar__tab__close material-icons">close</i>
-                            </div>
                             <div className="editor__topbar__tab">
                                 <span className="editor__topbar__tab__name">
                                     lorem.py
@@ -164,8 +118,8 @@ export default class IDEEditor extends Component {
                         </span>
                     </div>
                 </div>
-                
 
+                {/* Monaco */}
                 <div className="editor__monaco">
                     <ReactResizeDetector handleWidth handleHeight>
                         <MonacoEditor
@@ -181,6 +135,25 @@ export default class IDEEditor extends Component {
                             onChange={(nv, e) => this.onChange(nv, e)}
                             editorDidMount={this.editorDidMount}*/}
                     </ReactResizeDetector>
+                </div>
+
+                {/* Bottom Bar */}
+                <div className="editor__bottombar">
+                    <div className="editor__bottombar__content editor__bottombar__content-hoverable">
+                        <i className="editor__bottombar__content__icon material-icons">play_arrow</i>
+                        <div className="editor__bottombar__content__text">Simulator</div>
+                    </div>
+                    <div className="editor__bottombar__content editor__bottombar__content-hoverable">
+                        <i className="editor__bottombar__content__icon material-icons">usb</i>
+                        <div className="editor__bottombar__content__text">Device</div>
+                    </div>
+                    <div className="editor__bottombar__content editor__bottombar__content-hoverable">
+                        <i className="editor__bottombar__content__icon material-icons">error</i>
+                        <div className="editor__bottombar__content__text">0</div>
+                    </div>
+                    <div className="editor__bottombar__content editor__bottombar__content-right">
+                        <span className="editor__bottombar__content__text">Powered by Omega</span>
+                    </div>
                 </div>
             </div>
         );
