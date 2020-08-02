@@ -4,5 +4,137 @@
     flex-basis: 256px
     flex-grow: 0
     flex-shrink: 0
+    color: white
     background-color: #252526
+    position: relative
+    height: 100%
+
+    &__content
+        overflow-y: auto
+        height: calc(100% - 35px)
+        scrollbar-color: #464647 transparent
+        scrollbar-width: thin
+
+    &__title
+        width: 100%
+        height: 35px
+        display: block
+        font-size: 12px
+        color: #a3a3a3
+
+        &__content
+            position: relative
+            display: inline-block
+            left: 21px
+            top: 50%
+            transform: translateY(-50%)
+
+    &__actions
+        position: absolute
+        top: 0
+        right: 0
+        &__icon
+            color: #cccccc
+            font-size: 24px
+            width: 35px
+            height: 35px
+            line-height: 35px
+            vertical-align: middle
+            text-align: center
+            &:hover
+                cursor: pointer
+                color: white
+
+    &__dropdown
+        &__content
+            &__element
+                width: 100%
+                position: relative
+                height: 22px
+                &__name
+                    position: absolute
+                    top: 50%
+                    transform: translateY(-50%)
+                    left: 42px
+                    display: inline-block
+                &__icon
+                    font-size: 14px
+                    position: absolute
+                    top: 50%
+                    left: 21px
+                    transform: translateY(-50%)
+                &__actions
+                    display: none
+                    position: absolute
+                    top: 0
+                    right: 0
+                    &__content
+                        position: relative
+                    &__icon
+                        width: 22px
+                        height: 22px
+                        font-size: 16px
+                        line-height: 22px
+                        vertical-align: middle
+                        text-align: center
+                        &:hover
+                            color: white
+                &:hover
+                    cursor: pointer
+                    background-color: #2a2d2e
+                &:hover &__actions
+                    display: block
+
+
+        &-selected &__title
+            background-color: #37373d !important
+        &-selected &__title__chevron
+            transform: translateY(-50%) rotate(90deg)
+
+        &:first-child
+            border-top: none !important
+
+        border-top: 1px solid #474747
+        color: #cccccc
+        font-size: 12px
+        &__title
+            &:hover
+                cursor: pointer
+                background-color: #2a2d2e
+
+            position: relative
+            height: 21px
+
+            &__content
+                position: absolute
+                top: 50%
+                transform: translateY(-50%)
+                left: 21px
+                display: inline-block
+
+            &__chevron
+                font-size: 16px
+                position: absolute
+                top: 50%
+                left: 0
+                transform: translateY(-50%)
+
+            &__actions
+                display: none
+                position: absolute
+                top: 0
+                right: 0
+                &__content
+                    position: relative
+                &__icon
+                    width: 22px
+                    height: 22px
+                    font-size: 16px
+                    line-height: 22px
+                    vertical-align: middle
+                    text-align: center
+                    &:hover
+                        color: white
+            &:hover &__actions
+                display: block
 
