@@ -33,28 +33,28 @@ export default class IDEEditor extends Component {
     
     componentDidMount() {
         // Hide the cookies think
-        var headers = document.getElementsByClassName("cc-revoke");
+        let ccrevokes = document.getElementsByClassName("cc-revoke");
         
-        for(var i = 0; i < headers.length; i++) {
-            headers[i].style.display = "none"
+        for(let i = 0; i < ccrevokes.length; i++) {
+            ccrevokes[i].style.display = "none"
         }
         
-        var headers = document.getElementsByClassName("cc-grower");
+        let ccgrowers = document.getElementsByClassName("cc-grower");
         
-        for(var i = 0; i < headers.length; i++) {
-            headers[i].style.display = "none"
+        for(let i = 0; i < ccgrowers.length; i++) {
+            ccgrowers[i].style.display = "none"
         }
         
         // Hide the header and footer
-        var headers = document.getElementsByClassName("header");
+        let headers = document.getElementsByClassName("header");
         
-        for(var i = 0; i < headers.length; i++) {
+        for(let i = 0; i < headers.length; i++) {
             headers[i].classList.add("header__hidden");
         }
         
-        var footers = document.getElementsByClassName("footer");
+        let footers = document.getElementsByClassName("footer");
         
-        for(var i = 0; i < footers.length; i++) {
+        for(let i = 0; i < footers.length; i++) {
             footers[i].classList.add("footer__hidden");
         }
         
@@ -63,28 +63,28 @@ export default class IDEEditor extends Component {
     
     componentWillUnmount() {
         // Show the cookies think
-        var headers = document.getElementsByClassName("cc-revoke");
+        let ccrevokes = document.getElementsByClassName("cc-revoke");
         
-        for(var i = 0; i < headers.length; i++) {
-            headers[i].style.display = "flex"
+        for(let i = 0; i < ccrevokes.length; i++) {
+            ccrevokes[i].style.display = "flex"
         }
         
-        var headers = document.getElementsByClassName("cc-grower");
+        let ccgrowers = document.getElementsByClassName("cc-grower");
         
-        for(var i = 0; i < headers.length; i++) {
-            headers[i].style.display = "inherit"
+        for(let i = 0; i < ccgrowers.length; i++) {
+            ccgrowers[i].style.display = "inherit"
         }
         
         // Show the header and footer again
-        var headers = document.getElementsByClassName("header");
+        let headers = document.getElementsByClassName("header");
         
-        for(var i = 0; i < headers.length; i++) {
+        for(let i = 0; i < headers.length; i++) {
             headers[i].classList.remove("header__hidden");
         }
         
-        var footers = document.getElementsByClassName("footer");
+        let footers = document.getElementsByClassName("footer");
         
-        for(var i = 0; i < footers.length; i++) {
+        for(let i = 0; i < footers.length; i++) {
             footers[i].classList.remove("footer__hidden");
         }
         
@@ -104,63 +104,81 @@ export default class IDEEditor extends Component {
                     </div>
                 </div>
                 
-                {/* Top Bar */}
-                <div className="editor__topbar">
-                    <div className="editor__topbar__tabs">
-                        <div className="editor__topbar__tabs__container">
-                            <div className="editor__topbar__tab">
-                                <span className="editor__topbar__tab__name">
-                                    lorem.py
-                                </span>
-                                <i className="editor__topbar__tab__close editor__topbar__tab__close-unsaved material-icons">close</i>
-                            </div>
-                            <div className="editor__topbar__tab">
-                                <span className="editor__topbar__tab__name">
-                                    ipsum.py
-                                </span>
-                                <i className="editor__topbar__tab__close material-icons">close</i>
-                            </div>
-                            <div className="editor__topbar__tab editor__topbar__tab-selected">
-                                <span className="editor__topbar__tab__name">
-                                    dolor.py
-                                </span>
-                                <i className="editor__topbar__tab__close editor__topbar__tab__close-unsaved material-icons">close</i>
-                            </div>
-                            <div className="editor__topbar__tab">
-                                <span className="editor__topbar__tab__name">
-                                    sit_amet_aaa.py
-                                </span>
-                                <i className="editor__topbar__tab__close material-icons">close</i>
-                            </div>
+                <div className="editor__panels">
+                    <div className="editor__leftbar">
+                        <div className="editor__leftbar__icon">
+                            <i className="editor__leftbar__icon__icon material-icons">insert_drive_file</i>
+                        </div>
+                        <div className="editor__leftbar__icon editor__leftbar__icon-selected">
+                            <i className="editor__leftbar__icon__icon material-icons">play_arrow</i>
+                        </div>
+                        <div className="editor__leftbar__icon">
+                            <i className="editor__leftbar__icon__icon material-icons">show_chart</i>
+                        </div>
+                        <div className="editor__leftbar__icon">
+                            <i className="editor__leftbar__icon__icon material-icons">error</i>
                         </div>
                     </div>
-                    <div className="editor__topbar__more">
-                        <i className="editor__topbar__more__icon material-icons">more_horiz</i>
-                    </div>
-                    
-                    <div className="editor__topbar__filename">
-                        <span className="editor__topbar__filename__content">
-                            Projet > fichier.py
-                        </span>
-                    </div>
-                </div>
+                    <div className="editor__panel">
+                        {/* Top Bar */}
+                        <div className="editor__panel__topbar">
+                            <div className="editor__panel__topbar__tabs">
+                                <div className="editor__panel__topbar__tabs__container">
+                                    <div className="editor__panel__topbar__tab">
+                                        <span className="editor__panel__topbar__tab__name">
+                                            lorem.py
+                                        </span>
+                                        <i className="editor__panel__topbar__tab__close editor__panel__topbar__tab__close-unsaved material-icons">close</i>
+                                    </div>
+                                    <div className="editor__panel__topbar__tab">
+                                        <span className="editor__panel__topbar__tab__name">
+                                            ipsum.py
+                                        </span>
+                                        <i className="editor__panel__topbar__tab__close material-icons">close</i>
+                                    </div>
+                                    <div className="editor__panel__topbar__tab editor__panel__topbar__tab-selected">
+                                        <span className="editor__panel__topbar__tab__name">
+                                            dolor.py
+                                        </span>
+                                        <i className="editor__panel__topbar__tab__close editor__panel__topbar__tab__close-unsaved material-icons">close</i>
+                                    </div>
+                                    <div className="editor__panel__topbar__tab">
+                                        <span className="editor__panel__topbar__tab__name">
+                     let                       sit_amet_aaa.py
+                                        </span>
+                                        <i className="editor__panel__topbar__tab__close material-icons">close</i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="editor__panel__topbar__more">
+                                <i className="editor__panel__topbar__more__icon material-icons">more_horiz</i>
+                            </div>
+                            
+                            <div className="editor__panel__topbar__filename">
+                                <span className="editor__panel__topbar__filename__content">
+                                    Projet > fichier.py
+                                </span>
+                            </div>
+                        </div>
 
-                {/* Monaco */}
-                <div className="editor__monaco">
-                    <ReactResizeDetector handleWidth handleHeight>
-                        <MonacoEditor
-                            ref="monaco"
-                            width="100%"
-                            height="100%"
-                            language="python"
-                            theme="vs-dark"
-                            value={""}
-                        />
-                            {/*value={code}
-                            options={options}
-                            onChange={(nv, e) => this.onChange(nv, e)}
-                            editorDidMount={this.editorDidMount}*/}
-                    </ReactResizeDetector>
+                        {/* Monaco */}
+                        <div className="editor__panel__monaco">
+                            <ReactResizeDetector handleWidth handleHeight>
+                                <MonacoEditor
+                                    ref="monaco"
+                                    width="100%"
+                                    height="100%"
+                                    language="python"
+                                    theme="vs-dark"
+                                    value={""}
+                                />
+                                    {/*value={code}
+                                    options={options}
+                                    onChange={(nv, e) => this.onChange(nv, e)}
+                                    editorDidMount={this.editorDidMount}*/}
+                            </ReactResizeDetector>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Bottom Bar */}

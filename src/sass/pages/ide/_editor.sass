@@ -6,11 +6,24 @@
     height: 100vh
     overflow: hidden
 
-    &__monaco
-        height: calc(100vh - 35px)
-
     @import '_loading.sass'
-    @import '_topbar.sass'
+
+    &__panel
+        display: inline-block
+        width: 100%
+        &__monaco
+            width: calc(100vw - 48px)
+            height: calc(100vh - 35px - 22px)
+        @import '_topbar.sass'
+    
+    &__panels
+        width: calc(100vw)
+        height: calc(100vh - 22px)
+        display: flex
+        
+
+
+    @import '_leftbar.sass'
     @import '_bottombar.sass'
 
 @keyframes spinner
