@@ -6,6 +6,9 @@ import MonacoEditor from 'react-monaco-editor';
 import ReactResizeDetector from 'react-resize-detector';
 import OmegaLogo from '../../img/logo-ide.svg'
 
+import File from './components/File';
+import Project from './components/Project';
+
 export default class IDEEditor extends Component {
     constructor(props) {
         super(props);
@@ -143,26 +146,10 @@ export default class IDEEditor extends Component {
                             </span>
                         </div>
                         <div className="editor__leftmenu__content">
-                            <div class="editor__leftmenu__dropdown editor__leftmenu__dropdown-selected">
-                                <div class="editor__leftmenu__dropdown__title">
-                                    <i className="editor__leftmenu__dropdown__title__chevron material-icons">keyboard_arrow_right</i>
-                                    <span className="editor__leftmenu__dropdown__title__content">PROJET 1</span>
-                                    <div className="editor__leftmenu__dropdown__title__actions">
-                                        <i className="editor__leftmenu__dropdown__title__actions__icon material-icons">create</i>
-                                        <i className="editor__leftmenu__dropdown__title__actions__icon material-icons">delete</i>
-                                    </div>
-                                </div>
-                                <ul className="editor__leftmenu__dropdown__content">
-                                    <li className="editor__leftmenu__dropdown__content__element">
-                                        <i className="editor__leftmenu__dropdown__content__element__icon material-icons">insert_drive_file</i>
-                                        <span className="editor__leftmenu__dropdown__content__element__name">test.py</span>
-                                        <div className="editor__leftmenu__dropdown__content__element__actions">
-                                            <i className="editor__leftmenu__dropdown__content__element__actions__icon material-icons">create</i>
-                                            <i className="editor__leftmenu__dropdown__content__element__actions__icon material-icons">delete</i>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            <Project name="test">
+                                <File name="jaaj.py"/>
+                                <File name="test.py"/>
+                            </Project>
                         </div>
                     </div>
                     <div className="editor__panel">

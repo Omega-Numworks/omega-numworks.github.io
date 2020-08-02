@@ -47,6 +47,7 @@
 
     &__dropdown
         &__content
+            display: none
             &__element
                 width: 100%
                 position: relative
@@ -57,6 +58,21 @@
                     transform: translateY(-50%)
                     left: 42px
                     display: inline-block
+                    text-overflow: ellipsis
+                    overflow: hidden
+                    width: 210px
+                &__input
+                    display: none
+                    width: 190px
+                    position: absolute
+                    top: 50%
+                    transform: translateY(-50%)
+                    left: 40px
+                    background-color: transparent
+                    color: white
+                    border: none
+                    font-size: 12px
+                    border: 1px solid #007acc
                 &__icon
                     font-size: 14px
                     position: absolute
@@ -82,8 +98,19 @@
                 &:hover
                     cursor: pointer
                     background-color: #2a2d2e
-                &:hover &__actions
+                &:hover:not(&-rename) &__actions__normal
                     display: block
+                &:hover:not(&-rename) &__name
+                    width: 166px
+
+                &-rename &__name
+                    display: none
+                &-rename &__actions__rename
+                    display: block
+                &-rename &__input
+                    display: inline-block
+        &-selected &__content
+            display: block
 
 
         &-selected &__title
@@ -111,6 +138,9 @@
                 transform: translateY(-50%)
                 left: 21px
                 display: inline-block
+                text-overflow: ellipsis
+                overflow: hidden
+                width: 232px
 
             &__chevron
                 font-size: 16px
@@ -135,6 +165,31 @@
                     text-align: center
                     &:hover
                         color: white
-            &:hover &__actions
+
+            &__input
+                display: none
+                width: 211px
+                position: absolute
+                top: 50%
+                transform: translateY(-50%)
+                left: 19px
+                background-color: transparent
+                color: white
+                border: none
+                font-size: 12px
+                border: 1px solid #007acc
+
+            &-rename &__input
+                display: inline-block
+            &-rename &__content
+                display: none
+
+            &:hover:not(&-rename) &__content
+                width: 188px
+
+            &:hover:not(&-rename) &__actions__normal
+                display: block
+
+            &-rename &__actions__rename
                 display: block
 
