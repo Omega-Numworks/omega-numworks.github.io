@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import GithubConnector from "../../GithubConnector";
 import MonacoEditor from 'react-monaco-editor';
 import ReactResizeDetector from 'react-resize-detector';
+import OmegaLogo from '../../img/logo-ide.svg'
 
 export default class IDEEditor extends Component {
     constructor(props) {
@@ -106,21 +107,75 @@ export default class IDEEditor extends Component {
                 
                 <div className="editor__panels">
                     <div className="editor__leftbar">
-                        <div className="editor__leftbar__icon">
-                            <i className="editor__leftbar__icon__icon material-icons">insert_drive_file</i>
+                        <div className="editor__leftbar__container editor__leftbar__container-top">
+                            <div className="editor__leftbar__icon">
+                                <i className="editor__leftbar__icon__icon material-icons">insert_drive_file</i>
+                            </div>
+                            <div className="editor__leftbar__icon editor__leftbar__icon-selected">
+                                <i className="editor__leftbar__icon__icon material-icons">play_arrow</i>
+                            </div>
+                            <div className="editor__leftbar__icon">
+                                <i className="editor__leftbar__icon__icon material-icons">show_chart</i>
+                            </div>
+                            <div className="editor__leftbar__icon">
+                                <i className="editor__leftbar__icon__icon material-icons">error</i>
+                            </div>
                         </div>
-                        <div className="editor__leftbar__icon editor__leftbar__icon-selected">
-                            <i className="editor__leftbar__icon__icon material-icons">play_arrow</i>
-                        </div>
-                        <div className="editor__leftbar__icon">
-                            <i className="editor__leftbar__icon__icon material-icons">show_chart</i>
-                        </div>
-                        <div className="editor__leftbar__icon">
-                            <i className="editor__leftbar__icon__icon material-icons">error</i>
+                        <div className="editor__leftbar__container editor__leftbar__container-bottom">
+                            <div className="editor__leftbar__icon">
+                                <i className="editor__leftbar__icon__icon material-icons">account_circle</i>
+                            </div>
+                            <div className="editor__leftbar__icon">
+                                <i className="editor__leftbar__icon__icon material-icons">exit_to_app</i>
+                            </div>
                         </div>
                     </div>
+                    {/*
+                    <div className="editor__leftmenu">
+                        
+                    </div>
+                    */}
                     <div className="editor__panel">
-                        {/* Top Bar */}
+                        <div className="editor__panel__greeting">
+                            <div className="editor__panel__greeting__content">
+                                <img className="editor__panel__greeting__content__logo" src={OmegaLogo} alt="Omega Logo"/>
+                                <h1 className="editor__panel__greeting__content__title">
+                                    Omega IDE
+                                </h1>
+                                <div className="editor__panel__greeting__content__help">
+                                    <div className="editor__panel__greeting__content__help__line">
+                                        <div className="editor__panel__greeting__content__help__left">
+                                            Create a new project
+                                        </div>
+                                        <div className="editor__panel__greeting__content__help__right">
+                                        <span className="editor__panel__greeting__content__help__key">Ctrl</span>
+                                        +
+                                        <span className="editor__panel__greeting__content__help__key">N</span>
+                                        </div>
+                                    </div>
+                                    <div className="editor__panel__greeting__content__help__line">
+                                        <div className="editor__panel__greeting__content__help__left">
+                                            Run in simulator
+                                        </div>
+                                        <div className="editor__panel__greeting__content__help__right">
+                                        <span className="editor__panel__greeting__content__help__key">F5</span>
+                                        </div>
+                                    </div>
+                                    <div className="editor__panel__greeting__content__help__line">
+                                        <div className="editor__panel__greeting__content__help__left">
+                                            Send on calculator
+                                        </div>
+                                        <div className="editor__panel__greeting__content__help__right">
+                                        <span className="editor__panel__greeting__content__help__key">F6</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/*
+                        {
+                        // Top Bar
+                        }
                         <div className="editor__panel__topbar">
                             <div className="editor__panel__topbar__tabs">
                                 <div className="editor__panel__topbar__tabs__container">
@@ -144,7 +199,7 @@ export default class IDEEditor extends Component {
                                     </div>
                                     <div className="editor__panel__topbar__tab">
                                         <span className="editor__panel__topbar__tab__name">
-                     let                       sit_amet_aaa.py
+                                            sit_amet_aaa.py
                                         </span>
                                         <i className="editor__panel__topbar__tab__close material-icons">close</i>
                                     </div>
@@ -161,7 +216,9 @@ export default class IDEEditor extends Component {
                             </div>
                         </div>
 
-                        {/* Monaco */}
+                        {
+                        // Monaco
+                        }
                         <div className="editor__panel__monaco">
                             <ReactResizeDetector handleWidth handleHeight>
                                 <MonacoEditor
@@ -172,12 +229,15 @@ export default class IDEEditor extends Component {
                                     theme="vs-dark"
                                     value={""}
                                 />
-                                    {/*value={code}
-                                    options={options}
-                                    onChange={(nv, e) => this.onChange(nv, e)}
-                                    editorDidMount={this.editorDidMount}*/}
+                                    {
+                                    //value={code}
+                                    //options={options}
+                                    //onChange={(nv, e) => this.onChange(nv, e)}
+                                    //editorDidMount={this.editorDidMount}
+                                    }
                             </ReactResizeDetector>
                         </div>
+                        */}
                     </div>
                 </div>
 

@@ -12,9 +12,10 @@
         display: inline-block
         width: 100%
         &__monaco
-            width: calc(100vw - 48px)
+            width: inherit
             height: calc(100vh - 35px - 22px)
         @import '_topbar.sass'
+        @import '_greeting.sass'
     
     &__panels
         width: calc(100vw)
@@ -24,6 +25,7 @@
 
 
     @import '_leftbar.sass'
+    @import '_leftmenu.sass'
     @import '_bottombar.sass'
 
 @keyframes spinner
