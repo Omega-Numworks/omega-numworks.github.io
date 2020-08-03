@@ -65,6 +65,8 @@
 
         &:hover > &__close:not(&__close-unsaved)
             color: #8f8f8f
+        &-selected:hover > &__close:not(&__close-unsaved)
+            color: white
 
         &__close
             display: inline-block
@@ -101,6 +103,10 @@
             background-color: #ffffff
             &:hover
                 background-color: transparent
+
+        &-selected > &__close:not(&__close-unsaved)
+            background-color: transparent
+            color: white
 
     &__filename
         height: 22px
