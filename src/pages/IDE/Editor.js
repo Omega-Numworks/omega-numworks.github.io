@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
+import React, {Component} from 'react';
+import {Link, Redirect} from "react-router-dom";
 import GithubConnector from "../../GithubConnector";
 
 import File from './components/File';
@@ -19,7 +19,31 @@ export default class IDEEditor extends Component {
 
         this.state = {
             connector: GithubConnector.getInstance(),
-            logged: null
+            logged: null,
+            tabs: [{
+                "project": "test",
+                "file": "aaa.py",
+                "content": "juhytgfrd\n",
+                "unsaved": false
+            }],
+            selected_tab: 0,
+            files: [{
+                "name": "test",
+                "files": [{
+                    "name": "aaa.py",
+                    "content": "from math import *\n"
+                }, {
+                    "name": "bbb.py",
+                    "content": "ikjuyhtgfr\n"
+                }]
+            }],
+            selected_left_menu: null,
+            left_menues: {
+                "explorer": {
+                    "icon": "insert_drive_file",
+                    "render": this.renderExplorer.bind(this)
+                }
+            }
         };
 
         this.componentDidMount = this.componentDidMount.bind(this);
@@ -27,7 +51,11 @@ export default class IDEEditor extends Component {
         this.onAuthStateChanged = this.onAuthStateChanged.bind(this);
 
         this.renderEditor = this.renderEditor.bind(this);
+        this.renderGreeting = this.renderGreeting.bind(this);
         this.renderLoading = this.renderLoading.bind(this);
+        this.renderLeftBar = this.renderLeftBar.bind(this);
+        
+        this.handleLeftBarClick = this.handleLeftBarClick.bind(this);
 
         if (this.state.connector.isLogged()) {
             this.state.logged = true;
@@ -97,6 +125,83 @@ export default class IDEEditor extends Component {
 
         this.state.connector.removeAuthStateChanged(this.onAuthStateChanged);
     }
+    
+    renderExplorer() {
+        let content = [];
+
+        for (let i in this.state.files) {
+            let project = this.state.files[i];
+
+            var files = [];
+
+            for (let j in project.files) {
+                let file = project.files[j];
+
+                files.push(<File name={file.name} userdata={{"project": project.name, "file": file.name}} />)
+            }
+
+            content.push(<Project name={project.name}>{files}</Project>);
+        }
+        
+        return (
+            <LeftMenu>
+                <LeftMenuActions>
+                    <LeftMenuAction icon="create_new_folder"/>
+                    <LeftMenuAction icon="more_horiz"/>
+                </LeftMenuActions>
+                <LeftMenuTitle>
+                    EXPLORER
+                </LeftMenuTitle>
+                <LeftMenuContent>
+                    {content}
+                </LeftMenuContent>
+            </LeftMenu>
+        );
+    }
+    
+    handleLeftBarClick(userdata) {
+        if (userdata === this.state.selected_left_menu) {
+            this.setState({
+                selected_left_menu: null
+            });
+        } else {
+            this.setState({
+                selected_left_menu: userdata
+            });
+        }
+    }
+    
+    renderLeftBar() {
+        let actions = [];
+        let menu_render = null;
+        
+        for(let menu_name in this.state.left_menues) {
+            let left_menu = this.state.left_menues[menu_name];
+            let selected = (menu_name === this.state.selected_left_menu);
+            
+            if (selected)
+                menu_render = left_menu.render;
+            
+            actions.push(<LeftBarAction onClick={this.handleLeftBarClick} userdata={menu_name} selected={selected} icon={left_menu.icon} />);
+        }
+        
+        return (
+            <>
+                <LeftBar>
+                    <LeftBarTop>
+                        {actions}
+                    </LeftBarTop>
+                    <LeftBarBottom>
+                        <LeftBarAction img={this.state.connector.getUserPhotoURL()} icon="account_circle" />
+                        <Link to="/ide">
+                            <LeftBarAction icon="exit_to_app" />
+                        </Link>
+                    </LeftBarBottom>
+                </LeftBar>
+                {menu_render !== null ? menu_render() : ""}
+            </>
+        );
+    }
 
     renderGreeting() {
         return (
@@ -127,6 +232,34 @@ export default class IDEEditor extends Component {
             </Greeting>
         );
     }
+    
+    renderCentralPane() {
+        let tabs = [];
+    
+        for (let i in this.state.tabs) {
+            let tab = this.state.tabs[i];
+            
+            tabs.push(<TopBarTab selected={this.state.selected_tab == i} unsaved={tab.unsaved} userdata={{tab}}>{tab.file}</TopBarTab>)
+        }
+    
+        return (
+            <div className="editor__panel">
+                {/* Top Bar */}
+                <TopBar>
+                    <TopBarTabs>
+                        {tabs}
+                    </TopBarTabs>
+                    <TopBarMore />
+                    <TopBarFileName>
+                        {this.state.tabs[this.state.selected_tab].project} > {this.state.tabs[this.state.selected_tab].file}
+                    </TopBarFileName>
+                </TopBar>
+
+                {/* Monaco */}
+                <Monaco value={this.state.tabs[this.state.selected_tab].content}/>
+            </div>
+        )
+    }
 
     renderEditor() {
         return (
@@ -136,54 +269,11 @@ export default class IDEEditor extends Component {
 
                 <div className="editor__panels">
                     {/* Left bar */}
-                    <LeftBar>
-                        <LeftBarTop>
-                            <LeftBarAction icon="insert_drive_file" selected={true} />
-                            <LeftBarAction icon="play_arrow" />
-                            <LeftBarAction icon="show_chart" />
-                            <LeftBarAction icon="error" />
-                        </LeftBarTop>
-                        <LeftBarBottom>
-                            <LeftBarAction icon="account_circle" />
-                            <LeftBarAction icon="exit_to_app" />
-                        </LeftBarBottom>
-                    </LeftBar>
+                    {this.renderLeftBar()}
 
                     {/* Left menu */}
-                    <LeftMenu>
-                        <LeftMenuActions>
-                            <LeftMenuAction icon="create_new_folder"/>
-                            <LeftMenuAction icon="more_horiz"/>
-                        </LeftMenuActions>
-                        <LeftMenuTitle>
-                            EXPLORER
-                        </LeftMenuTitle>
-                        <LeftMenuContent>
-                            <Project name="test">
-                                <File name="jaaj.py"/>
-                                <File name="test.py"/>
-                            </Project>
-                        </LeftMenuContent>
-                    </LeftMenu>
-
-                    <div className="editor__panel">
-                        {/* Top Bar */}
-                        <TopBar>
-                            <TopBarTabs>
-                                <TopBarTab>aaa.py</TopBarTab>
-                                <TopBarTab selected={true}>aaa.py</TopBarTab>
-                                <TopBarTab unsaved={true}>aaa.py</TopBarTab>
-                                <TopBarTab selected={true} unsaved={true}>aaa.py</TopBarTab>
-                            </TopBarTabs>
-                            <TopBarMore />
-                            <TopBarFileName>
-                                Projet > fichier.py
-                            </TopBarFileName>
-                        </TopBar>
-
-                        {/* Monaco */}
-                        <Monaco />
-                    </div>
+                    
+                    {this.state.tabs.length === 0 ? this.renderGreeting() : this.renderCentralPane()}
                 </div>
 
                 {/* Bottom Bar */}
@@ -207,7 +297,6 @@ export default class IDEEditor extends Component {
     }
 
     render() {
-
         if (this.state.logged === true) {
             return this.renderEditor();
         } else if (this.state.logged === false) {

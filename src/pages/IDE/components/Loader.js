@@ -14,8 +14,14 @@ const funny_phrases = [
     "Checkout r/numworksmeme",
     "Want some icecream?",
     "I like trains",
-    "Dab on them, haters!"
-]
+    "Dab on them, haters!",
+    "CC-BY-SA-NC is a preftect license for code...",
+    "Courant janvier...",
+    "Comming soon™",
+    "<INSERT TEXT>",
+    "Ever wrote code drunk on a first on january?",
+    "Tester, c'est douter...'"
+];
 
 export default class Loader extends Component {
     constructor(props) {

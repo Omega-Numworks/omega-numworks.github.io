@@ -58,12 +58,12 @@ class TopBarTab extends Component {
         event.stopPropagation();
         
         if (this.props.onClick)
-            this.props.onClick();
+            this.props.onClick(this.props.userdata);
     }
     
     handleClose(event) {
         if (this.props.onClose)
-            this.props.onClose();
+            this.props.onClose(this.props.userdata);
     }
     
     render() {

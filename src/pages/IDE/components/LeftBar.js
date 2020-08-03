@@ -45,9 +45,16 @@ class LeftBarAction extends Component {
     }
 
     render() {
+        
+        let content = <i className="editor__leftbar__icon__icon material-icons">{this.props.icon}</i>;
+        
+        if (this.props.img) {
+            content = <img className="editor__leftbar__icon__image" src={this.props.img} alt="Image" />
+        }
+        
         return (
             <div onClick={this.handleClick} className={"editor__leftbar__icon" + (this.props.selected ? " editor__leftbar__icon-selected" : "")}>
-                <i className="editor__leftbar__icon__icon material-icons">{this.props.icon}</i>
+                {content}
             </div>
         );
     }
