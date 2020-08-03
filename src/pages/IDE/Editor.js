@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { Redirect } from "react-router-dom";
 import GithubConnector from "../../GithubConnector";
 import MonacoEditor from 'react-monaco-editor';
 import ReactResizeDetector from 'react-resize-detector';
-import OmegaLogo from '../../img/logo-ide.svg'
 
 import File from './components/File';
 import Project from './components/Project';
+import {LeftMenu, LeftMenuTitle, LeftMenuContent, LeftMenuActions, LeftMenuAction} from './components/LeftMenu';
+import {LeftBar, LeftBarTop, LeftBarBottom, LeftBarAction} from './components/LeftBar';
+import {BottomBar, BottomBarElement} from './components/BottomBar';
+import Loader from './components/Loader';
 
 export default class IDEEditor extends Component {
     constructor(props) {
@@ -99,59 +101,40 @@ export default class IDEEditor extends Component {
         return (
             <div className="editor">
                 {/* Loading */}
-                <div className="editor__loading editor__loading__hidden">
-                    <div className="editor__loading__content">
-                        <p className="editor__loading__content__title">
-                            Omega IDE
-                        </p>
-                        <i className="editor__loading__content__spinner material-icons">hourglass_empty</i>
-                    </div>
-                </div>
+                <Loader hidden={true}/>
 
                 <div className="editor__panels">
                     {/* Left bar */}
-                    <div className="editor__leftbar">
-                        <div className="editor__leftbar__container editor__leftbar__container-top">
-                            <div className="editor__leftbar__icon">
-                                <i className="editor__leftbar__icon__icon material-icons">insert_drive_file</i>
-                            </div>
-                            <div className="editor__leftbar__icon editor__leftbar__icon-selected">
-                                <i className="editor__leftbar__icon__icon material-icons">play_arrow</i>
-                            </div>
-                            <div className="editor__leftbar__icon">
-                                <i className="editor__leftbar__icon__icon material-icons">show_chart</i>
-                            </div>
-                            <div className="editor__leftbar__icon">
-                                <i className="editor__leftbar__icon__icon material-icons">error</i>
-                            </div>
-                        </div>
-                        <div className="editor__leftbar__container editor__leftbar__container-bottom">
-                            <div className="editor__leftbar__icon">
-                                <i className="editor__leftbar__icon__icon material-icons">account_circle</i>
-                            </div>
-                            <div className="editor__leftbar__icon">
-                                <i className="editor__leftbar__icon__icon material-icons">exit_to_app</i>
-                            </div>
-                        </div>
-                    </div>
+                    <LeftBar>
+                        <LeftBarTop>
+                            <LeftBarAction icon="insert_drive_file" selected={true} />
+                            <LeftBarAction icon="play_arrow" />
+                            <LeftBarAction icon="show_chart" />
+                            <LeftBarAction icon="error" />
+                        </LeftBarTop>
+                        <LeftBarBottom>
+                            <LeftBarAction icon="account_circle" />
+                            <LeftBarAction icon="exit_to_app" />
+                        </LeftBarBottom>
+                    </LeftBar>
+
                     {/* Left menu */}
-                    <div className="editor__leftmenu">
-                        <div class="editor__leftmenu__actions">
-                            <i className="editor__leftmenu__actions__icon material-icons">create_new_folder</i>
-                            <i className="editor__leftmenu__actions__icon material-icons">more_horiz</i>
-                        </div>
-                        <div class="editor__leftmenu__title">
-                            <span className="editor__leftmenu__title__content">
-                                EXPLORER
-                            </span>
-                        </div>
-                        <div className="editor__leftmenu__content">
+                    <LeftMenu>
+                        <LeftMenuActions>
+                            <LeftMenuAction icon="create_new_folder"/>
+                            <LeftMenuAction icon="more_horiz"/>
+                        </LeftMenuActions>
+                        <LeftMenuTitle>
+                            EXPLORER
+                        </LeftMenuTitle>
+                        <LeftMenuContent>
                             <Project name="test">
                                 <File name="jaaj.py"/>
                                 <File name="test.py"/>
                             </Project>
-                        </div>
-                    </div>
+                        </LeftMenuContent>
+                    </LeftMenu>
+
                     <div className="editor__panel">
                         {/* Greeting */}
                         {/*
@@ -259,23 +242,13 @@ export default class IDEEditor extends Component {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="editor__bottombar">
-                    <div className="editor__bottombar__content editor__bottombar__content-hoverable">
-                        <i className="editor__bottombar__content__icon material-icons">play_arrow</i>
-                        <div className="editor__bottombar__content__text">Simulator</div>
-                    </div>
-                    <div className="editor__bottombar__content editor__bottombar__content-hoverable">
-                        <i className="editor__bottombar__content__icon material-icons">usb</i>
-                        <div className="editor__bottombar__content__text">Device</div>
-                    </div>
-                    <div className="editor__bottombar__content editor__bottombar__content-hoverable">
-                        <i className="editor__bottombar__content__icon material-icons">error</i>
-                        <div className="editor__bottombar__content__text">0</div>
-                    </div>
-                    <div className="editor__bottombar__content editor__bottombar__content-right">
-                        <span className="editor__bottombar__content__text">Powered by Omega</span>
-                    </div>
-                </div>
+
+                <BottomBar>
+                    <BottomBarElement icon="play_arrow" hoverable={true}>Simulator</BottomBarElement>
+                    <BottomBarElement icon="usb" hoverable={true}>Device</BottomBarElement>
+                    <BottomBarElement icon="error" hoverable={true}>0</BottomBarElement>
+                    <BottomBarElement right={true}>Powered by Omega</BottomBarElement>
+                </BottomBar>
             </div>
         );
     }
@@ -283,14 +256,7 @@ export default class IDEEditor extends Component {
     renderLoading() {
         return (
             <div class="editor">
-                <div className="editor__loading">
-                    <div className="editor__loading__content">
-                        <p className="editor__loading__content__title">
-                            Omega IDE
-                        </p>
-                        <i class="editor__loading__content__spinner material-icons md-16">hourglass_empty</i>
-                    </div>
-                </div>
+                <Loader />
             </div>
         );
     }

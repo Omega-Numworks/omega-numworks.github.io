@@ -25,9 +25,12 @@
             position: absolute
             right: 0
 
-        &-hoverable:hover
-            background-color: #1f8ad2
-            cursor: pointer
+        &-hoverable
+            &:hover
+                background-color: #1f8ad2
+                cursor: pointer
+            &:active
+                background-color: #2e92d5
 
         &__icon
             display: inline-block

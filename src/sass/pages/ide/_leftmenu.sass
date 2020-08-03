@@ -63,7 +63,7 @@
                     width: 210px
                 &__input
                     display: none
-                    width: 190px
+                    width: 168px
                     position: absolute
                     top: 50%
                     transform: translateY(-50%)
@@ -102,13 +102,30 @@
                     display: block
                 &:hover:not(&-rename) &__name
                     width: 166px
+                &:active
+                    background-color: #094771
 
                 &-rename &__name
                     display: none
                 &-rename &__actions__rename
+                    z-index: 999999
                     display: block
                 &-rename &__input
                     display: inline-block
+                    z-index: 999999
+                &__renamediv
+                    display: none
+                &-rename &__renamediv
+                    position: fixed
+                    width: 100vw
+                    height: 100vh
+                    background-color: rgba(0,0,0,0.4)
+                    z-index: 99999
+                    display: block
+                    left: 0
+                    top: 0
+                    &:hover
+                        cursor: default
         &-selected &__content
             display: block
 
@@ -168,7 +185,7 @@
 
             &__input
                 display: none
-                width: 211px
+                width: 189px
                 position: absolute
                 top: 50%
                 transform: translateY(-50%)
@@ -181,15 +198,33 @@
 
             &-rename &__input
                 display: inline-block
+                z-index: 999999
+            &__renamediv
+                display: none
+            &-rename &__renamediv
+                position: fixed
+                width: 100vw
+                height: 100vh
+                background-color: rgba(0,0,0,0.4)
+                z-index: 99999
+                display: block
+                left: 0
+                top: 0
+                &:hover
+                    cursor: default
             &-rename &__content
                 display: none
 
             &:hover:not(&-rename) &__content
-                width: 188px
+                width: 166px
 
             &:hover:not(&-rename) &__actions__normal
                 display: block
 
             &-rename &__actions__rename
+                z-index: 999999
                 display: block
+
+            &:active
+                background-color: #094771
 
