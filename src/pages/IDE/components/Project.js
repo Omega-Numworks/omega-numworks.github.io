@@ -88,7 +88,7 @@ export default class File extends Component {
             <div onClick={this.handleClick} class={"editor__leftmenu__dropdown" + (this.state.isSelected ? " editor__leftmenu__dropdown-selected" : "")}>
                 <div class={"editor__leftmenu__dropdown__title" + (this.state.isRenaming ? " editor__leftmenu__dropdown__title-rename" : "")}>
                     <i className="editor__leftmenu__dropdown__title__chevron material-icons">keyboard_arrow_right</i>
-                    <span className="editor__leftmenu__dropdown__title__content">{this.state.name}</span>
+                    <span className="editor__leftmenu__dropdown__title__content">{this.state.name.toUpperCase()}</span>
                     <input onClick={this.stopBubble} onKeyDown={this.handleKeyDown} value={this.state.name} onChange={this.handleChange} type="text" className="editor__leftmenu__dropdown__title__input"/>
                     <div className="editor__leftmenu__dropdown__title__actions editor__leftmenu__dropdown__title__actions__normal">
                         <i onClick={this.handleNewFile} className="editor__leftmenu__dropdown__title__actions__icon material-icons">note_add</i>

@@ -491,7 +491,7 @@ export default class IDEEditor extends Component {
                 <BottomBar>
                     <BottomBarElement icon="play_arrow" hoverable={true}>Simulator</BottomBarElement>
                     <BottomBarElement icon="usb" hoverable={true}>Device</BottomBarElement>
-                    <BottomBarElement icon="error" hoverable={true}>0</BottomBarElement>
+                    <BottomBarElement icon="highlight_off" hoverable={true}>0</BottomBarElement>
                     <BottomBarElement right={true}>Powered by Omega</BottomBarElement>
                 </BottomBar>
                 

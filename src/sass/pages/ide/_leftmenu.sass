@@ -1,5 +1,5 @@
-
 &__leftmenu
+    user-select: none
     width: 256px
     flex-basis: 256px
     flex-grow: 0
@@ -34,16 +34,16 @@
         top: 0
         right: 0
         &__icon
-            color: #cccccc
-            font-size: 24px
+            color: #b9b9b9
+            font-size: 20px
             width: 35px
             height: 35px
             line-height: 35px
             vertical-align: middle
             text-align: center
+            cursor: pointer
             &:hover
-                cursor: pointer
-                color: white
+                color: #dbdbdb
 
     &__dropdown
         &__content
@@ -148,6 +148,7 @@
 
             position: relative
             height: 21px
+            font-weight: 700
 
             &__content
                 position: absolute

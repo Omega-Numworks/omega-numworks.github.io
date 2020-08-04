@@ -1,6 +1,5 @@
-
-
 &__topbar
+    user-select: none
     background-color: #252526
     width: 100%
     font-size: 12px
@@ -18,14 +17,15 @@
             cursor: pointer
 
         &__icon
+            color: #b9b9b9
+            font-size: 20px
             position: absolute
             display: inline-block
             top: 50%
             left: 50%
             transform: translate(-50%, -50%)
-            color: #cccccc
             &:hover
-                color: white
+                color: #dbdbdb
 
     &__tabs
         overflow-x: auto
@@ -109,6 +109,7 @@
             color: white
 
     &__filename
+        padding-left: 6px
         height: 22px
         font-size: 12px
         background-color: #1e1e1e
