@@ -12,10 +12,13 @@
         display: inline-block
         width: 100%
         &__monaco
-            width: inherit
+            width: calc(100vw - 48px)
             height: calc(100vh - 35px - 22px)
         @import '_topbar.sass'
         @import '_greeting.sass'
+
+    &__leftmenu + &__panel &__panel__monaco
+        width: calc(100vw - 48px - 256px)
 
     &__panels
         width: calc(100vw)
