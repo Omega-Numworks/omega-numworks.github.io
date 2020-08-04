@@ -23,7 +23,7 @@ export default class Monaco extends Component {
     
     handleChange(newValue, e) {
         if (this.props.onChange)
-            this.props.onChange(newValue);
+            this.props.onChange(this.props.userdata, newValue);
     }
 
     render() {

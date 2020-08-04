@@ -28,7 +28,7 @@ class TopBarMore extends Component {
     render() {
         return (
             <div onClick={this.handleClick} className="editor__panel__topbar__more">
-                <i className="editor__panel__topbar__more__icon material-icons">more_horiz</i>
+                <i className="editor__panel__topbar__more__icon material-icons">save</i>
             </div>
         )
     }
@@ -62,6 +62,7 @@ class TopBarTab extends Component {
     }
     
     handleClose(event) {
+        event.stopPropagation();
         if (this.props.onClose)
             this.props.onClose(this.props.userdata);
     }

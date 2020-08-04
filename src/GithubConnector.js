@@ -89,5 +89,35 @@ export default class GithubConnector {
     logout() {
         firebase.auth().signOut();
     }
+    
+    getProjects(callback) {
+        // TODO: IMPLEMENT
+        
+        callback([
+            {
+                "name": "test",
+                "files": [{
+                    "name": "aaa.py",
+                    "content": "from math import *\n"
+                }, {
+                    "name": "bbb.py",
+                    "content": "ikjuyhtgfr\n"
+                }]
+            }, {
+                "name": "test2",
+                "files": [{
+                    "name": "aaa.py",
+                    "content": "from math import *\n"
+                }, {
+                    "name": "bbb.py",
+                    "content": "ikjuyhtgfr\n"
+                }]
+            }
+        ]);
+    }
+    
+    saveProject(project) {
+        // TODO: IMPLEMENT
+    }
 }
 

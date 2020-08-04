@@ -20,7 +20,9 @@ const funny_phrases = [
     "Comming soon™",
     "<INSERT TEXT>",
     "Ever wrote code drunk on a first on january?",
-    "Tester, c'est douter...'"
+    "Tester c'est douter...",
+    "Corriger c'est abdiquer...",
+    "Did you clean?"
 ];
 
 export default class Loader extends Component {

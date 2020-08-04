@@ -9,6 +9,7 @@ import {LeftBar, LeftBarTop, LeftBarBottom, LeftBarAction} from './components/Le
 import {BottomBar, BottomBarElement} from './components/BottomBar';
 import {Greeting, GreetingLogo, GreetingTitle, GreetingVersion, Help, HelpLine, HelpLeft, HelpRight, HelpKey} from './components/Greeting';
 import {TopBarTabs, TopBarMore, TopBarFileName, TopBarTab, TopBar} from './components/TopBar';
+import {PopUp, PopUpContent, PopUpButtons, PopUpButton, PopUpBar, PopUpTitle, PopUpClose} from './components/PopUp';
 import Monaco from './components/Monaco';
 import Loader from './components/Loader';
 
@@ -20,30 +21,17 @@ export default class IDEEditor extends Component {
         this.state = {
             connector: GithubConnector.getInstance(),
             logged: null,
-            tabs: [{
-                "project": "test",
-                "file": "aaa.py",
-                "content": "juhytgfrd\n",
-                "unsaved": false
-            }],
+            tabs: [],
             selected_tab: 0,
-            files: [{
-                "name": "test",
-                "files": [{
-                    "name": "aaa.py",
-                    "content": "from math import *\n"
-                }, {
-                    "name": "bbb.py",
-                    "content": "ikjuyhtgfr\n"
-                }]
-            }],
+            projects: null,
             selected_left_menu: null,
             left_menues: {
                 "explorer": {
                     "icon": "insert_drive_file",
                     "render": this.renderExplorer.bind(this)
                 }
-            }
+            },
+            confirm_popup_file: null
         };
 
         this.componentDidMount = this.componentDidMount.bind(this);
@@ -56,6 +44,14 @@ export default class IDEEditor extends Component {
         this.renderLeftBar = this.renderLeftBar.bind(this);
         
         this.handleLeftBarClick = this.handleLeftBarClick.bind(this);
+        this.handleFileClick = this.handleFileClick.bind(this);
+        this.handleTabClick = this.handleTabClick.bind(this);
+        this.handleMonacoChange = this.handleMonacoChange.bind(this);
+        this.handleSave = this.handleSave.bind(this);
+        this.handleTabClose = this.handleTabClose.bind(this);
+        this.closeTab = this.closeTab.bind(this);
+        this.closePopUp = this.closePopUp.bind(this);
+        this.handlePopUpSave = this.handlePopUpSave.bind(this);
 
         if (this.state.connector.isLogged()) {
             this.state.logged = true;
@@ -64,6 +60,14 @@ export default class IDEEditor extends Component {
 
     onAuthStateChanged() {
         this.setState({logged: this.state.connector.isLogged()});
+        
+        if (this.state.projects === null && this.state.connector.isLogged()) {
+            this.state.connector.getProjects(function (projects) {
+                this.setState({
+                    projects: projects
+                });
+            }.bind(this));
+        }
     }
 
     componentDidMount() {
@@ -126,18 +130,200 @@ export default class IDEEditor extends Component {
         this.state.connector.removeAuthStateChanged(this.onAuthStateChanged);
     }
     
+    getFileContent(project, file) {
+        for (let i = 0; i < this.state.projects.length; i++) {
+            let cur_project = this.state.projects[i];
+            
+            if (cur_project.name === project) {
+                for (let j = 0; j < cur_project.files.length; j++) {
+                    let cur_file = cur_project.files[j];
+                    
+                    if (cur_file.name === file) {
+                        return cur_file.content;
+                    }
+                }
+            }
+        }
+        
+        return null;
+    }
+    
+    getFileID(project, file) {
+        for (let i = 0; i < this.state.projects.length; i++) {
+            let cur_project = this.state.projects[i];
+            
+            if (cur_project.name === project) {
+                for (let j = 0; j < cur_project.files.length; j++) {
+                    let cur_file = cur_project.files[j];
+                    
+                    if (cur_file.name === file) {
+                        return {"project": i, "file": j};
+                    }
+                }
+            }
+        }
+        
+        return null;
+    }
+    
+    getTabID(project, file) {
+        for (let i = 0; i < this.state.tabs.length; i++) {
+            let tab = this.state.tabs[i]
+            if (tab.project === project && tab.file === file) {
+                return i;
+            }
+        }
+        
+        return -1;
+    }
+    
+    handleMonacoChange(userdata, new_content) {
+        let tab_id = this.getTabID(userdata.project, userdata.file);
+        
+        if (tab_id === -1) {
+            return;
+        }
+        
+        let tabs = this.state.tabs;
+        let tab = tabs[tab_id];
+        
+        tab.content = new_content;
+        tab.unsaved = true;
+        
+        tabs[tab_id] = tab;
+        
+        this.setState({
+            tabs: tabs
+        });
+    }
+    
+    closePopUp() {
+        this.setState({
+            confirm_popup_file: null
+        });
+    }
+    
+    handlePopUpSave(userdata) {
+        this.handleSave();
+        this.closeTab(userdata);
+    }
+    
+    handleSave() {
+        let tabs = this.state.tabs;
+        let tab_id = this.state.selected_tab;
+        let tab = tabs[tab_id];
+        
+        let file_id = this.getFileID(tab.project, tab.file);
+        
+        if (file_id === null) {
+            return;
+        }
+        
+        let projects = this.state.projects;
+        
+        projects[file_id.project].files[file_id.file].content = tab.content;
+        
+        tab.unsaved = false;
+        
+        this.state.connector.saveProject(projects[file_id.project]);
+        
+        this.setState({
+            tabs: tabs,
+            projects: projects
+        });
+    }
+
+    handleFileClick(userdata) {
+        let tab_id = this.getTabID(userdata.project, userdata.file);
+        
+        if (tab_id !== -1) {
+            this.setState({selected_tab: tab_id});
+            return;
+        }
+        
+        let tabs = this.state.tabs;
+        let content = this.getFileContent(userdata.project, userdata.file);
+        
+        if (content === null) {
+            return;
+        }
+
+        let new_tab = {
+            "project": userdata.project,
+            "file": userdata.file,
+            "content": content,
+            "unsaved": false
+        };
+        
+        tabs.push(new_tab);
+        
+        this.setState({
+            tabs: tabs,
+            selected_tab: tabs.length - 1
+        });
+    }
+    
+    closeTab(userdata) {
+        let tab_id = this.getTabID(userdata.project, userdata.file);
+        
+        if (tab_id === -1) {
+            return;
+        }
+        
+        let tabs = this.state.tabs
+        tabs.splice(tab_id, 1);
+        let selected_tab = this.state.selected_tab;
+        
+        if (this.state.selected_tab >= tab_id) {
+            selected_tab = selected_tab > 0 ? selected_tab - 1 : 0;
+        }
+        
+        this.setState({
+            selected_tab: selected_tab,
+            tabs: tabs
+        });
+        
+        this.closePopUp();
+    }
+
+    handleTabClose(userdata) {
+        let tab_id = this.getTabID(userdata.project, userdata.file);
+        
+        if (tab_id === -1) {
+            return;
+        }
+        
+        let tab = this.state.tabs[tab_id];
+        
+        if (tab.unsaved) {
+            this.setState({
+                confirm_popup_file: userdata
+            });
+        } else {
+            this.closeTab(userdata);
+        }
+    }
+
+    handleTabClick(userdata) {
+        let tab_id = this.getTabID(userdata.project, userdata.file);
+        
+        if (tab_id !== -1) {
+            this.setState({selected_tab: tab_id});
+        }
+    }
+
     renderExplorer() {
         let content = [];
 
-        for (let i in this.state.files) {
-            let project = this.state.files[i];
+        for (let i = 0; i < this.state.projects.length; i++) {
+            let project = this.state.projects[i];
 
             var files = [];
 
-            for (let j in project.files) {
+            for (let j = 0; j < project.files.length; j++) {
                 let file = project.files[j];
 
-                files.push(<File name={file.name} userdata={{"project": project.name, "file": file.name}} />)
+                files.push(<File onClick={this.handleFileClick} name={file.name} userdata={{"project": project.name, "file": file.name}} />)
             }
 
             content.push(<Project name={project.name}>{files}</Project>);
@@ -239,8 +425,10 @@ export default class IDEEditor extends Component {
         for (let i in this.state.tabs) {
             let tab = this.state.tabs[i];
             
-            tabs.push(<TopBarTab selected={this.state.selected_tab == i} unsaved={tab.unsaved} userdata={{tab}}>{tab.file}</TopBarTab>)
+            tabs.push(<TopBarTab onClose={this.handleTabClose} onClick={this.handleTabClick} selected={this.state.selected_tab == i} unsaved={tab.unsaved}  userdata={{"project": tab.project, "file": tab.file}}>{tab.file}</TopBarTab>)
         }
+        
+        let curr_tab = this.state.tabs[this.state.selected_tab];
     
         return (
             <div className="editor__panel">
@@ -249,16 +437,38 @@ export default class IDEEditor extends Component {
                     <TopBarTabs>
                         {tabs}
                     </TopBarTabs>
-                    <TopBarMore />
+                    <TopBarMore onClick={this.handleSave} />
                     <TopBarFileName>
-                        {this.state.tabs[this.state.selected_tab].project} > {this.state.tabs[this.state.selected_tab].file}
+                        {curr_tab.project} > {curr_tab.file}
                     </TopBarFileName>
                 </TopBar>
 
                 {/* Monaco */}
-                <Monaco value={this.state.tabs[this.state.selected_tab].content}/>
+                <Monaco onChange={this.handleMonacoChange} value={curr_tab.content} userdata={{project: curr_tab.project, file: curr_tab.file}}/>
             </div>
         )
+    }
+
+    renderConfirmPopUp() {
+        return (
+            <PopUp>
+                <PopUpBar>
+                    <PopUpTitle>
+                        You have unsaved changes
+                    </PopUpTitle>
+                    <PopUpClose userdata={this.state.confirm_popup_file} onClick={this.closePopUp} />
+                </PopUpBar>
+                <PopUpContent>
+                    <p>Do you want to save the changes you made to {this.state.confirm_popup_file.file} ?</p>
+                    <p>Your changes will be lost if you don't save them.</p>
+                </PopUpContent>
+                <PopUpButtons>
+                    <PopUpButton userdata={this.state.confirm_popup_file} onClick={this.closePopUp}>Cancel</PopUpButton>
+                    <PopUpButton userdata={this.state.confirm_popup_file} onClick={this.closeTab}>Don't save</PopUpButton>
+                    <PopUpButton userdata={this.state.confirm_popup_file} onClick={this.handlePopUpSave} autofocus={true}>Save</PopUpButton>
+                </PopUpButtons>
+            </PopUp>
+        );
     }
 
     renderEditor() {
@@ -284,6 +494,8 @@ export default class IDEEditor extends Component {
                     <BottomBarElement icon="error" hoverable={true}>0</BottomBarElement>
                     <BottomBarElement right={true}>Powered by Omega</BottomBarElement>
                 </BottomBar>
+                
+                {this.state.confirm_popup_file !== null ? this.renderConfirmPopUp() : ""}
             </div>
         );
     }
@@ -298,7 +510,11 @@ export default class IDEEditor extends Component {
 
     render() {
         if (this.state.logged === true) {
-            return this.renderEditor();
+            if (this.state.projects === null) {
+                return this.renderLoading();
+            } else {
+                return this.renderEditor();
+            }
         } else if (this.state.logged === false) {
             return (<Redirect to="/ide" />);
         } else {
