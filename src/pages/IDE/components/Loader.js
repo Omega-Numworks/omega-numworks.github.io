@@ -22,7 +22,18 @@ const funny_phrases = [
     "Ever wrote code drunk on a first on january?",
     "Tester c'est douter...",
     "Corriger c'est abdiquer...",
-    "Did you clean?"
+    "Did you clean?",
+    "I'd just like to interject for a moment.",
+    "I use Arch BTW",
+    "Lorem ipsum dolor sit amet",
+    "Risitas, yatengaki!",
+    "Omega does what Epsilon't",
+    "Why not go on TiPlanet?",
+    "Linux > Windows",
+    "Write clean code or draw 25...",
+    "\"Regression testing\"? What is that? If it compiles it's cool, if it boots up it's perfect.",
+    "Kernel panic: tried to kill init",
+    "Signal SIGSEGV: Segmentation fault"
 ];
 
 export default class Loader extends Component {
