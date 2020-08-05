@@ -24,6 +24,7 @@ export default class IDEEditor extends Component {
             tabs: [],
             selected_tab: 0,
             projects: null,
+            creating_file_in: null,
             selected_left_menu: null,
             left_menues: {
                 "explorer": {
@@ -52,6 +53,11 @@ export default class IDEEditor extends Component {
         this.closeTab = this.closeTab.bind(this);
         this.closePopUp = this.closePopUp.bind(this);
         this.handlePopUpSave = this.handlePopUpSave.bind(this);
+        this.handleFileRename = this.handleFileRename.bind(this);
+        this.handleFileRemove = this.handleFileRemove.bind(this);
+        this.handleFileCreate = this.handleFileCreate.bind(this);
+        this.handleNewFileCancel = this.handleNewFileCancel.bind(this);
+        this.handleNewFileValidate = this.handleNewFileValidate.bind(this);
 
         if (this.state.connector.isLogged()) {
             this.state.logged = true;
@@ -166,6 +172,18 @@ export default class IDEEditor extends Component {
         return null;
     }
     
+    getProjectID(project) {
+        for (let i = 0; i < this.state.projects.length; i++) {
+            let cur_project = this.state.projects[i];
+            
+            if (cur_project.name === project) {
+                return i;
+            }
+        }
+        
+        return -1;
+    }
+    
     getTabID(project, file) {
         for (let i = 0; i < this.state.tabs.length; i++) {
             let tab = this.state.tabs[i]
@@ -263,6 +281,113 @@ export default class IDEEditor extends Component {
         });
     }
     
+    handleFileRename(userdata, oldname, newname) {
+        let file_id = this.getFileID(userdata.project, userdata.file);
+        
+        if (file_id === null) {
+            return false;
+        }
+        
+        if (this.getFileID(userdata.project, newname) !== null) {
+            // File exists !
+            return false;
+        }
+        
+        let projects = this.state.projects
+        
+        projects[file_id.project].files[file_id.file].name = newname;
+        
+        let tab_id = this.getTabID(userdata.project, userdata.file);
+        
+        let tabs = this.state.tabs;
+        
+        if (tab_id !== -1) {
+            tabs[tab_id].file = newname;
+        }
+        
+        this.setState({
+            tabs: tabs,
+            projects: projects
+        });
+        
+        this.state.connector.saveProject(projects[file_id.project]);
+        
+        return true;
+    }
+    
+    handleFileRemove(userdata) {
+        let file_id = this.getFileID(userdata.project, userdata.file);
+        
+        if (file_id === null) {
+            return false;
+        }
+        
+        let projects = this.state.projects;
+        
+        projects[file_id.project].files.splice(file_id.file, 1);
+        
+        this.handleTabClose(userdata, true);
+        
+        this.setState({
+            projects: projects
+        });
+        
+        this.state.connector.saveProject(projects[file_id.project]);
+    }
+    
+    handleFileCreate(userdata) {
+        if (this.state.creating_file_in !== null)
+            return;
+        
+        this.setState({
+            creating_file_in: userdata,
+        });
+    }
+
+    handleNewFileCancel(userdata) {
+        this.setState({
+            creating_file_in: null,
+        });
+    }
+
+    handleNewFileValidate(userdata, oldname, newname) {
+        let file_id = this.getFileID(userdata, newname);
+        
+        if (file_id !== null) {
+            // File exists
+            this.setState({
+                creating_file_in: null
+            });
+            return;
+        }
+        
+        let project_id = this.getProjectID(userdata);
+        
+        if (project_id === -1) {
+            // Weird shit happens
+            this.setState({
+                creating_file_in: null
+            });
+            return;
+        }
+        
+        let projects = this.state.projects;
+        
+        let newfile = {
+            "name": newname,
+            "content": "\n"
+        };
+        
+        projects[project_id].files.push(newfile);
+        
+        this.setState({
+            creating_file_in: null,
+            projects: projects
+        });
+        
+        this.state.connector.saveProject(projects[project_id]);
+    }
+
     closeTab(userdata) {
         let tab_id = this.getTabID(userdata.project, userdata.file);
         
@@ -286,7 +411,7 @@ export default class IDEEditor extends Component {
         this.closePopUp();
     }
 
-    handleTabClose(userdata) {
+    handleTabClose(userdata, force) {
         let tab_id = this.getTabID(userdata.project, userdata.file);
         
         if (tab_id === -1) {
@@ -295,7 +420,7 @@ export default class IDEEditor extends Component {
         
         let tab = this.state.tabs[tab_id];
         
-        if (tab.unsaved) {
+        if (tab.unsaved && force !== true) {
             this.setState({
                 confirm_popup_file: userdata
             });
@@ -323,17 +448,20 @@ export default class IDEEditor extends Component {
             for (let j = 0; j < project.files.length; j++) {
                 let file = project.files[j];
 
-                files.push(<File onClick={this.handleFileClick} name={file.name} userdata={{"project": project.name, "file": file.name}} />)
+                files.push(<File onRemove={this.handleFileRemove} onRename={this.handleFileRename} onClick={this.handleFileClick} name={file.name} userdata={{"project": project.name, "file": file.name}} />)
+            }
+            
+            if (this.state.creating_file_in === project.name) {
+                files.push(<File userdata={project.name} onRename={this.handleNewFileValidate} onCancel={this.handleNewFileCancel} name={".py"} renaming={true} />)
             }
 
-            content.push(<Project name={project.name}>{files}</Project>);
+            content.push(<Project onNewFile={this.handleFileCreate} userdata={project.name} name={project.name}>{files}</Project>);
         }
         
         return (
             <LeftMenu>
                 <LeftMenuActions>
                     <LeftMenuAction icon="create_new_folder"/>
-                    <LeftMenuAction icon="more_horiz"/>
                 </LeftMenuActions>
                 <LeftMenuTitle>
                     EXPLORER
