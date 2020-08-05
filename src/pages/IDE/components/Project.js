@@ -9,8 +9,7 @@ export default class File extends Component {
             "name": props.name,
             "oldName": "",
             
-            "isRenaming": props.renaming === true,
-            "isSelected": false
+            "isRenaming": props.renaming === true
         };
         
         this.handleChange       = this.handleChange.bind(this);
@@ -22,7 +21,6 @@ export default class File extends Component {
         this.handleCancel       = this.handleCancel.bind(this);
         this.handleKeyDown      = this.handleKeyDown.bind(this);
         this.stopBubble         = this.stopBubble.bind(this);
-        this.componentDidUpdate = this.componentDidUpdate.bind(this);
     }
     
     handleChange(event) {
@@ -44,9 +42,8 @@ export default class File extends Component {
     
     handleClick(event) {
         this.stopBubble(event);
-        this.setState({isSelected: !this.state.isSelected});
         if (this.props.onSelect)
-            this.props.onSelect(this.props.userdata, !this.state.isSelected);
+            this.props.onSelect(this.props.userdata);
     }
     
     handleValidate(event) {
@@ -86,17 +83,9 @@ export default class File extends Component {
         event.stopPropagation();
     }
     
-    componentDidUpdate() {
-        if (this.props.selected && !this.state.isSelected) {
-            this.setState({
-                isSelected: true
-            });
-        }
-    }
-    
     render() {
         return (
-            <div onClick={this.handleClick} className={"editor__leftmenu__dropdown" + ((this.state.isSelected || this.props.selected) ? " editor__leftmenu__dropdown-selected" : "") + (this.props.loading ? " editor__leftmenu__dropdown-loading" : "")}>
+            <div onClick={this.handleClick} className={"editor__leftmenu__dropdown" + (this.props.selected ? " editor__leftmenu__dropdown-selected" : "") + (this.props.loading ? " editor__leftmenu__dropdown-loading" : "")}>
                 <div className={"editor__leftmenu__dropdown__title" + (this.state.isRenaming ? " editor__leftmenu__dropdown__title-rename" : "")}>
                     <i className="editor__leftmenu__dropdown__title__chevron material-icons">keyboard_arrow_right</i>
                     <span className="editor__leftmenu__dropdown__title__content">{this.props.name.toUpperCase()}</span>

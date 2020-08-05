@@ -9,7 +9,6 @@ import FullSimulator from './pages/simulator/FullSimulator';
 import Releases from './pages/Releases';
 import Policy from './pages/Policy';
 import Install from './pages/Install';
-import Projects from './pages/Projects';
 import IDEMain from './pages/IDE/Main';
 import IDEEditor from './pages/IDE/Editor';
 import NotFound from './pages/NotFound';

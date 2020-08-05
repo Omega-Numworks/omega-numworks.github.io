@@ -9,10 +9,13 @@ import firebase from "firebase"
  */
 export default class GithubConnector {
     static __instance = null;
+    static __allowed_chars_file = "abcdefghijklmnopqrstuvwxyz1234567890_";
+    static __init_file_content = "from math import *\n";
 
     constructor() {
         this.onAuthStateChangedHandler = [];
         this.user = null;
+        this.gists = null;
         
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
@@ -89,78 +92,290 @@ export default class GithubConnector {
     logout() {
         firebase.auth().signOut();
     }
+    
+    getGistID(name) {
+        for(let i = 0; i < this.gists.length; i++) {
+            if (this.gists[i].name === name) {
+                return this.gists[i].id;
+            }
+        }
+        
+        return null;
+    }
+    
+    getGistInternalID(name) {
+        for(let i = 0; i < this.gists.length; i++) {
+            if (this.gists[i].name === name) {
+                return i;
+            }
+        }
+        
+        return -1;
+    }
+    
+    getDefaultFileName(name) {
+        var init_file_name = "";
+        
+        for(let i in name.toLowerCase()) {
+            let char = name.toLowerCase()[i];
+            if (GithubConnector.__allowed_chars_file.includes(char)) {
+                init_file_name += char;
+            }
+        }
+        
+        if (init_file_name.length === 0) {
+            init_file_name = "main";
+        }
+        
+        init_file_name += ".py";
+        
+        return init_file_name;
+    }
+    
+    getDefaultFiles(name) {
+        let files = {};
+        
+        files[this.getDefaultFileName(name)] = {
+            "content": GithubConnector.__init_file_content
+        };
+        
+        return files;
+    }
 
     getProjects(callback) {
-        // TODO: IMPLEMENT
-        setTimeout(function() {
-            callback([
-                {
-                    "name": "test",
+        const requestOptions = {
+            headers: {
+                "Authorization": "token " + localStorage.getItem('accessToken'),
+            },
+            credentials: "same-origin",
+            cache: "no-store"
+        };
+        
+        fetch("https://api.github.com/gists", requestOptions).then(res => res.json()).then(function(result) {
+            var output = [];
+            this.gists = [];
+
+            for(let i = 0; i < result.length; i++) {
+                output.push({
+                    "name": result[i].description,
                     "files": [],
                     "loaded": false,
-                    "loading": false
-                }, {
-                    "name": "test2",
-                    "files": [],
-                    "loaded": false,
-                    "loading": false
-                }
-            ]);
-        }, 1000);
+                    "loading": false,
+                    "selected": false
+                });
+
+                this.gists.push({
+                    "name": result[i].description,
+                    "id": result[i].id,
+                    "current_files": []
+                });
+            }
+
+            callback(output);
+        }.bind(this));
     }
 
     loadProject(name, callback) {
-        // TODO: IMPLEMENT
-
-        setTimeout(function() {
-            if (name === "test") {
-                callback({
-                    "name": "test",
-                    "files": [{
-                        "name": "aaa.py",
-                        "content": "from math import *\n"
-                    }, {
-                        "name": "bbb.py",
-                        "content": "ikjuyhtgfr\n"
-                    }],
-                    "loaded": true,
-                    "loading": false
-                })
-            } else if (name === "test2") {
-                callback({
-                    "name": "test2",
-                    "files": [{
-                        "name": "aaa.py",
-                        "content": "from math import *\n"
-                    }, {
-                        "name": "bbb.py",
-                        "content": "ikjuyhtgfr\n"
-                    }],
-                    "loaded": true,
-                    "loading": false
-                })
+        let id = this.getGistID(name);
+        
+        if (id === null) {
+            callback(null);
+            return;
+        }
+        
+        const requestOptions = {
+            headers: {
+                "Authorization": "token " + localStorage.getItem('accessToken'),
+            },
+            credentials: "same-origin",
+            cache: "no-store"
+        };
+        
+        fetch("https://api.github.com/gists/" + id, requestOptions).then(res => res.json()).then(function(result) {
+            let files = result.files;
+            var output = [];
+            this.gists[this.getGistInternalID(name)].current_files = [];
+            
+            for (let key in files) {
+                this.gists[this.getGistInternalID(name)].current_files.push({
+                    "name": files[key].filename,
+                    "content": files[key].content
+                });
+                
+                output.push({
+                    "name": files[key].filename,
+                    "content": files[key].content
+                });
             }
-        }, 1000);
+            
+            callback({
+                "name": result.description,
+                "files": output,
+                "loaded": true,
+                "loading": false,
+                "selected": true
+            });
+        }.bind(this));
     }
 
     createProject(name, callback) {
-        setTimeout(function() {
-            callback();
-        }, 1000);
+        let id = this.getGistID(name);
         
-        // TODO: IMPLEMENT
+        if (id !== null) {
+            callback(null);
+            return;
+        }
+        
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                "Authorization": "token " + localStorage.getItem('accessToken'),
+            },
+            credentials: "same-origin",
+            cache: "no-store",
+            body: JSON.stringify({
+                "description": name,
+                "public": true,
+                "files": this.getDefaultFiles(name)
+            })
+        };
+        
+        fetch("https://api.github.com/gists", requestOptions).then(res => res.json()).then(function(result) {
+            this.gists.push({
+                "name": result.description,
+                "id": result.id,
+                "current_files": this.getDefaultFiles(name)
+            });
+            
+            callback({
+                "name": name,
+                "files": [{
+                    "name": this.getDefaultFileName(name),
+                    "content": GithubConnector.__init_file_content
+                }],
+                "loading": false,
+                "loaded": true,
+                "selected": true
+            });
+        }.bind(this));
     }
 
-    renameProject(oldname, newname) {
-        // TODO: IMPLEMENT
+    renameProject(oldname, newname, callback) {
+        let gist_id = this.getGistID(oldname);
+        
+        if (gist_id === null) {
+            callback(null, null);
+            return;
+        }
+        
+        const requestOptions = {
+            method: 'PATCH',
+            headers: {
+                "Authorization": "token " + localStorage.getItem('accessToken'),
+            },
+            credentials: "same-origin",
+            cache: "no-store",
+            body: JSON.stringify({
+                "description": newname
+            })
+        };
+        
+        fetch("https://api.github.com/gists/" + gist_id, requestOptions).then(res => res.json()).then(function(result) {
+            let gid = this.getGistInternalID(oldname);
+            
+            this.gists[gid].name = newname;
+            callback(oldname, newname);
+        }.bind(this));
     }
 
-    removeProject(name) {
-        // TODO: IMPLEMENT
+    removeProject(name, callback) {
+        let gist_id = this.getGistID(name);
+        
+        if (gist_id === null) {
+            callback(null);
+            return;
+        }
+        
+        const requestOptions = {
+            method: 'DELETE',
+            headers: {
+                "Authorization": "token " + localStorage.getItem('accessToken'),
+            },
+            credentials: "same-origin",
+            cache: "no-store"
+        };
+        
+        fetch("https://api.github.com/gists/" + gist_id, requestOptions).then(res => res.text()).then(function(result) {
+            let gid = this.getGistInternalID(name);
+            
+            callback(name);
+            
+            this.gists.splice(gid, 1);
+        }.bind(this));
+    }
+    
+    calcDiff(old_files, new_files) {
+        let names_list = [];
+        let old_dict = {};
+        let new_dict = {};
+        let final_files = {};
+        
+        for(let i = 0; i < old_files.length; i++) {
+            names_list.push(old_files[i].name);
+            old_dict[old_files[i].name] = old_files[i].content
+        }
+        
+        for(let i = 0; i < new_files.length; i++) {
+            if (!names_list.includes(new_files[i].name))
+                names_list.push(new_files[i].name);
+            new_dict[new_files[i].name] = new_files[i].content
+        }
+        
+        for(let i = 0; i < names_list.length; i++) {
+            let curr_name = names_list[i];
+            
+            if (curr_name in new_dict) {
+                final_files[curr_name] = {
+                    "content": new_dict[curr_name]
+                };
+            } else if (curr_name in old_dict) {
+                final_files[curr_name] = {
+                    "content": ""
+                };
+            }
+        }
+        
+        return final_files;
     }
 
-    saveProject(project) {
-        // TODO: IMPLEMENT
+    saveProject(project, callback) {
+        let gid = this.getGistInternalID(project.name);
+        let gist_id = this.getGistID(project.name);
+        
+        if (gid === -1 || gist_id === null) {
+            callback(null);
+            return;
+        }
+        
+        const requestOptions = {
+            method: 'PATCH',
+            headers: {
+                "Authorization": "token " + localStorage.getItem('accessToken'),
+            },
+            credentials: "same-origin",
+            cache: "no-store",
+            body: JSON.stringify({
+                "files": this.calcDiff(this.gists[gid].current_files, project.files)
+            })
+        };
+        
+        fetch("https://api.github.com/gists/" + gist_id, requestOptions).then(res => res.json()).then(function(result) {
+            let gid = this.getGistInternalID(project.name);
+            
+            this.gists[gid].current_files = project.files;
+            callback(project);
+        }.bind(this));
     }
 }
 
