@@ -30,6 +30,7 @@
             transform: translateY(-50%)
 
     &__actions
+        animation: appear 0.1s ease;
         position: absolute
         top: 0
         right: 0
@@ -61,6 +62,7 @@
                     text-overflow: ellipsis
                     overflow: hidden
                     width: 210px
+                    line-height: 22px
                 &__input
                     display: none
                     width: 168px
@@ -155,6 +157,7 @@
             position: relative
             height: 21px
             font-weight: 700
+            line-height: 21px
 
             &__content
                 position: absolute
@@ -174,10 +177,12 @@
                 transform: translateY(-50%)
 
             &__actions
+                animation: appear 0.1s ease;
                 display: none
                 position: absolute
                 top: 0
                 right: 0
+                z-index: 10
                 &__content
                     position: relative
                 &__icon
@@ -192,10 +197,10 @@
 
             &__loading
                 opacity: 0
-                transition: opacity 0.3s
+                transition: opacity 0.1s
                 position: absolute
                 top: 0
-                right: 0
+                right: 22px
                 width: 22px
                 height: 22px
                 font-size: 16px

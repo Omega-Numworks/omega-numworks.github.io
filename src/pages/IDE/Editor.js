@@ -560,18 +560,32 @@ export default class IDEEditor extends Component {
         }
         
         let projects = this.state.projects;
-        
         projects.push({
             "name": name,
-            "files": []
+            "files": [],
+            "loading": true,
+            "loaded": true
         });
         
         this.setState({
-            creating_project: false,
-            projects: projects
+            creating_project: false
         });
-        
-        this.state.connector.createProject(name);
+
+        this.state.connector.createProject(name, function() {
+            let projects = this.state.projects;
+            let project_id = this.getProjectID(name);
+            
+            projects[project_id] = {
+                "name": name,
+                "files": [],
+                "loading": false,
+                "loaded": true
+            };
+            
+            this.setState({
+                projects: projects
+            });
+        }.bind(this));
     }
 
     closeTab(userdata) {

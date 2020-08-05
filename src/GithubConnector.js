@@ -143,7 +143,11 @@ export default class GithubConnector {
         }, 1000);
     }
 
-    createProject(name) {
+    createProject(name, callback) {
+        setTimeout(function() {
+            callback();
+        }, 1000);
+        
         // TODO: IMPLEMENT
     }
 
