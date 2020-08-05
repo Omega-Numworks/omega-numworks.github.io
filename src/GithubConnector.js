@@ -26,7 +26,7 @@ export default class GithubConnector {
             }
         }.bind(this));
     }
-    
+
     /**
      * @returns {GithubConnector}
      */
@@ -37,7 +37,7 @@ export default class GithubConnector {
 
         return this.__instance;
     }
-    
+
     getUserName() {
         if (this.user !== null) {
             return this.user.displayName;
@@ -45,7 +45,7 @@ export default class GithubConnector {
             return null;
         }
     }
-    
+
     getUserPhotoURL() {
         if (this.user !== null) {
             return this.user.photoURL;
@@ -53,19 +53,19 @@ export default class GithubConnector {
             return null;
         }
     }
-    
+
     onAuthStateChanged(changed_func) {
         this.onAuthStateChangedHandler.push(changed_func);
     }
-    
+
     removeAuthStateChanged(changed_func) {
         this.onAuthStateChangedHandler = this.onAuthStateChangedHandler.filter(element => element !== changed_func);
     }
-    
+
     isLogged() {
         return this.user !== null;
     }
-    
+
     login(function_good, function_error) {
         var provider = new firebase.auth.GithubAuthProvider();
         provider.addScope("gist");
@@ -89,37 +89,64 @@ export default class GithubConnector {
     logout() {
         firebase.auth().signOut();
     }
-    
+
     getProjects(callback) {
         // TODO: IMPLEMENT
-        
-        callback([
-            {
-                "name": "test",
-                "files": [{
-                    "name": "aaa.py",
-                    "content": "from math import *\n"
+        setTimeout(function() {
+            callback([
+                {
+                    "name": "test",
+                    "files": [],
+                    "loaded": false,
+                    "loading": false
                 }, {
-                    "name": "bbb.py",
-                    "content": "ikjuyhtgfr\n"
-                }]
-            }, {
-                "name": "test2",
-                "files": [{
-                    "name": "aaa.py",
-                    "content": "from math import *\n"
-                }, {
-                    "name": "bbb.py",
-                    "content": "ikjuyhtgfr\n"
-                }]
-            }
-        ]);
+                    "name": "test2",
+                    "files": [],
+                    "loaded": false,
+                    "loading": false
+                }
+            ]);
+        }, 1000);
     }
-    
+
+    loadProject(name, callback) {
+        // TODO: IMPLEMENT
+
+        setTimeout(function() {
+            if (name === "test") {
+                callback({
+                    "name": "test",
+                    "files": [{
+                        "name": "aaa.py",
+                        "content": "from math import *\n"
+                    }, {
+                        "name": "bbb.py",
+                        "content": "ikjuyhtgfr\n"
+                    }],
+                    "loaded": true,
+                    "loading": false
+                })
+            } else if (name === "test2") {
+                callback({
+                    "name": "test2",
+                    "files": [{
+                        "name": "aaa.py",
+                        "content": "from math import *\n"
+                    }, {
+                        "name": "bbb.py",
+                        "content": "ikjuyhtgfr\n"
+                    }],
+                    "loaded": true,
+                    "loading": false
+                })
+            }
+        }, 1000);
+    }
+
     createProject(name) {
         // TODO: IMPLEMENT
     }
-    
+
     renameProject(oldname, newname) {
         // TODO: IMPLEMENT
     }

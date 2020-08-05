@@ -135,6 +135,12 @@
         &-selected &__title__chevron
             transform: translateY(-50%) rotate(90deg)
 
+        &-loading &__title__actions
+            display: none !important
+        &-loading &__title__loading
+            opacity: 1 !important
+            
+
         &:first-child
             border-top: none !important
 
@@ -183,6 +189,23 @@
                     text-align: center
                     &:hover
                         color: white
+
+            &__loading
+                opacity: 0
+                transition: opacity 0.3s
+                position: absolute
+                top: 0
+                right: 0
+                width: 22px
+                height: 22px
+                font-size: 16px
+                line-height: 22px
+                vertical-align: middle
+                text-align: center
+                animation-name: spinner
+                animation-iteration-count: infinite
+                animation-duration: 2s
+                animation-timing-function: ease-in-out
 
             &__input
                 display: none

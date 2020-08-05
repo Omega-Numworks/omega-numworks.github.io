@@ -54,7 +54,7 @@ export default class Loader extends Component {
                     <p className="editor__loading__content__title">
                         Omega IDE
                     </p>
-                    <i class="editor__loading__content__spinner material-icons md-16">hourglass_empty</i>
+                    <i className="editor__loading__content__spinner material-icons md-16">hourglass_empty</i>
                     <p className="editor__loading__content__funny">
                         {this.state.funny}
                     </p>

@@ -14,7 +14,7 @@ class LeftMenu extends Component {
 class LeftMenuTitle extends Component {
     render() {
         return (
-            <div class="editor__leftmenu__title">
+            <div className="editor__leftmenu__title">
                 <span className="editor__leftmenu__title__content">
                     {this.props.children}
                 </span>
@@ -36,7 +36,7 @@ class LeftMenuContent extends Component {
 class LeftMenuActions extends Component {
     render() {
         return (
-            <div class="editor__leftmenu__actions">
+            <div className="editor__leftmenu__actions">
                 {this.props.children}
             </div>
         );

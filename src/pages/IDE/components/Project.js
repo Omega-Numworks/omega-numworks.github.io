@@ -13,15 +13,16 @@ export default class File extends Component {
             "isSelected": false
         };
         
-        this.handleChange   = this.handleChange.bind(this);
-        this.handleRename   = this.handleRename.bind(this);
-        this.handleRemove   = this.handleRemove.bind(this);
-        this.handleNewFile  = this.handleNewFile.bind(this);
-        this.handleClick    = this.handleClick.bind(this);
-        this.handleValidate = this.handleValidate.bind(this);
-        this.handleCancel   = this.handleCancel.bind(this);
-        this.handleKeyDown  = this.handleKeyDown.bind(this);
-        this.stopBubble     = this.stopBubble.bind(this);
+        this.handleChange       = this.handleChange.bind(this);
+        this.handleRename       = this.handleRename.bind(this);
+        this.handleRemove       = this.handleRemove.bind(this);
+        this.handleNewFile      = this.handleNewFile.bind(this);
+        this.handleClick        = this.handleClick.bind(this);
+        this.handleValidate     = this.handleValidate.bind(this);
+        this.handleCancel       = this.handleCancel.bind(this);
+        this.handleKeyDown      = this.handleKeyDown.bind(this);
+        this.stopBubble         = this.stopBubble.bind(this);
+        this.componentDidUpdate = this.componentDidUpdate.bind(this);
     }
     
     handleChange(event) {
@@ -45,7 +46,7 @@ export default class File extends Component {
         this.stopBubble(event);
         this.setState({isSelected: !this.state.isSelected});
         if (this.props.onSelect)
-            this.props.onSelect(this.props.userdata, this.state.isSelected);
+            this.props.onSelect(this.props.userdata, !this.state.isSelected);
     }
     
     handleValidate(event) {
@@ -85,10 +86,18 @@ export default class File extends Component {
         event.stopPropagation();
     }
     
+    componentDidUpdate() {
+        if (this.props.selected && !this.state.isSelected) {
+            this.setState({
+                isSelected: true
+            });
+        }
+    }
+    
     render() {
         return (
-            <div onClick={this.handleClick} class={"editor__leftmenu__dropdown" + (this.state.isSelected ? " editor__leftmenu__dropdown-selected" : "")}>
-                <div class={"editor__leftmenu__dropdown__title" + (this.state.isRenaming ? " editor__leftmenu__dropdown__title-rename" : "")}>
+            <div onClick={this.handleClick} className={"editor__leftmenu__dropdown" + ((this.state.isSelected || this.props.selected) ? " editor__leftmenu__dropdown-selected" : "") + (this.props.loading ? " editor__leftmenu__dropdown-loading" : "")}>
+                <div className={"editor__leftmenu__dropdown__title" + (this.state.isRenaming ? " editor__leftmenu__dropdown__title-rename" : "")}>
                     <i className="editor__leftmenu__dropdown__title__chevron material-icons">keyboard_arrow_right</i>
                     <span className="editor__leftmenu__dropdown__title__content">{this.props.name.toUpperCase()}</span>
                     <input ref={(ref) => {if (this.state.isRenaming && ref !== null){ref.focus()}}} onClick={this.stopBubble} onKeyDown={this.handleKeyDown} value={this.state.name} onChange={this.handleChange} type="text" className="editor__leftmenu__dropdown__title__input"/>
@@ -101,6 +110,9 @@ export default class File extends Component {
                         <i onClick={this.handleValidate} className="editor__leftmenu__dropdown__title__actions__icon material-icons">done</i>
                         <i onClick={this.handleCancel} className="editor__leftmenu__dropdown__title__actions__icon material-icons">clear</i>
                     </div>
+                    <i className="editor__leftmenu__dropdown__title__loading material-icons" >
+                        hourglass_empty
+                    </i>
                     <div onClick={this.handleCancel} className="editor__leftmenu__dropdown__title__renamediv"></div>
                 </div>
                 <ul className="editor__leftmenu__dropdown__content">
