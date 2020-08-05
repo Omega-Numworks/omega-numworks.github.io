@@ -25,6 +25,7 @@ export default class IDEEditor extends Component {
             selected_tab: 0,
             projects: null,
             creating_file_in: null,
+            creating_project: false,
             selected_left_menu: null,
             left_menues: {
                 "explorer": {
@@ -58,6 +59,11 @@ export default class IDEEditor extends Component {
         this.handleFileCreate = this.handleFileCreate.bind(this);
         this.handleNewFileCancel = this.handleNewFileCancel.bind(this);
         this.handleNewFileValidate = this.handleNewFileValidate.bind(this);
+        this.handleProjectRemove = this.handleProjectRemove.bind(this);
+        this.handleNewProjectCancel = this.handleNewProjectCancel.bind(this);
+        this.handleNewProjectValidate = this.handleNewProjectValidate.bind(this);
+        this.handleCreateProject = this.handleCreateProject.bind(this);
+        this.handleProjectRename = this.handleProjectRename.bind(this);
 
         if (this.state.connector.isLogged()) {
             this.state.logged = true;
@@ -387,6 +393,105 @@ export default class IDEEditor extends Component {
         
         this.state.connector.saveProject(projects[project_id]);
     }
+    
+    handleProjectRemove(userdata) {
+        let project_id = this.getProjectID(userdata);
+        
+        if (project_id === -1) {
+            return;
+        }
+        
+        let projects = this.state.projects;
+        
+        let project = projects[project_id];
+        
+        let tabs = this.state.tabs;
+        let newtabs = [];
+        let selected_tab = this.state.selected_tab;
+        
+        for(let i = 0; i < tabs.length; i++) {
+            if (tabs[i].project !== userdata) {
+                newtabs.push(tabs[i]);
+            } else if (this.state.selected_tab >= i) {
+                selected_tab = selected_tab > 0 ? selected_tab - 1 : 0;
+            }
+        }
+        
+        projects.splice(project_id, 1);
+        
+        this.setState({
+            projects: projects,
+            tabs: newtabs,
+            selected_tab: selected_tab
+        });
+        
+        this.state.connector.removeProject(userdata);
+    }
+    
+    handleCreateProject(userdata) {
+        this.setState({
+            creating_project: true
+        });
+    }
+    
+    handleProjectRename(userdata, newname) {
+        let project_id = this.getProjectID(userdata);
+        
+        if (project_id === -1) {
+            return;
+        }
+        
+        let projects = this.state.projects;
+        
+        projects[project_id].name = newname;
+        
+        let tabs = this.state.tabs;
+        
+        for(let i = 0; i < tabs.length; i++) {
+            if (tabs[i].project === userdata) {
+                tabs[i].project = newname;
+            }
+        }
+        
+        this.setState({
+            projects: projects,
+            tabs: tabs
+        });
+        
+        this.state.connector.renameProject(userdata, newname);
+    }
+    
+    handleNewProjectCancel(userdata) {
+        this.setState({
+            creating_project: false
+        });
+    }
+    
+    handleNewProjectValidate(userdata, name) {
+        let project_id = this.getProjectID(name);
+        
+        if (project_id !== -1) {
+            // File exists!
+            this.setState({
+                creating_project: false
+            });
+            return;
+        }
+        
+        let projects = this.state.projects;
+        
+        projects.push({
+            "name": name,
+            "files": []
+        });
+        
+        this.setState({
+            creating_project: false,
+            projects: projects
+        });
+        
+        this.state.connector.createProject(name);
+    }
 
     closeTab(userdata) {
         let tab_id = this.getTabID(userdata.project, userdata.file);
@@ -455,13 +560,17 @@ export default class IDEEditor extends Component {
                 files.push(<File userdata={project.name} onRename={this.handleNewFileValidate} onCancel={this.handleNewFileCancel} name={".py"} renaming={true} />)
             }
 
-            content.push(<Project onNewFile={this.handleFileCreate} userdata={project.name} name={project.name}>{files}</Project>);
+            content.push(<Project onRename={this.handleProjectRename} onRemove={this.handleProjectRemove} onNewFile={this.handleFileCreate} userdata={project.name} name={project.name}>{files}</Project>);
+        }
+        
+        if (this.state.creating_project === true) {
+            content.push(<Project onRename={this.handleNewProjectValidate} onCancel={this.handleNewProjectCancel} renaming={true} name={""}>{files}</Project>);
         }
         
         return (
             <LeftMenu>
                 <LeftMenuActions>
-                    <LeftMenuAction icon="create_new_folder"/>
+                    <LeftMenuAction icon="create_new_folder" onClick={this.handleCreateProject}/>
                 </LeftMenuActions>
                 <LeftMenuTitle>
                     EXPLORER
@@ -550,10 +659,10 @@ export default class IDEEditor extends Component {
     renderCentralPane() {
         let tabs = [];
     
-        for (let i in this.state.tabs) {
+        for (let i = 0; i < this.state.tabs.length; i++) {
             let tab = this.state.tabs[i];
             
-            tabs.push(<TopBarTab onClose={this.handleTabClose} onClick={this.handleTabClick} selected={this.state.selected_tab == i} unsaved={tab.unsaved}  userdata={{"project": tab.project, "file": tab.file}}>{tab.file}</TopBarTab>)
+            tabs.push(<TopBarTab onClose={this.handleTabClose} onClick={this.handleTabClick} selected={this.state.selected_tab === i} unsaved={tab.unsaved}  userdata={{"project": tab.project, "file": tab.file}}>{tab.file}</TopBarTab>)
         }
         
         let curr_tab = this.state.tabs[this.state.selected_tab];

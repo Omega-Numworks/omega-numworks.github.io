@@ -62,7 +62,7 @@ export default class File extends Component {
         this.stopBubble(event);
         if (this.state.isRenaming) {
             this.setState({isRenaming: false, name: this.state.oldName});
-            if (this.props.onCancel && this.state.isRenaming)
+            if (this.props.onCancel)
                 this.props.onCancel(this.props.userdata);
         }
     }

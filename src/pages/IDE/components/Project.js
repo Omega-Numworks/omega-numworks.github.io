@@ -9,7 +9,7 @@ export default class File extends Component {
             "name": props.name,
             "oldName": "",
             
-            "isRenaming": false,
+            "isRenaming": props.renaming === true,
             "isSelected": false
         };
         
@@ -61,6 +61,8 @@ export default class File extends Component {
         this.stopBubble(event);
         if (this.state.isRenaming) {
             this.setState({isRenaming: false, name: this.state.oldName});
+            if (this.props.onCancel)
+                this.props.onCancel(this.props.userdata);
         }
     }
     
@@ -88,8 +90,8 @@ export default class File extends Component {
             <div onClick={this.handleClick} class={"editor__leftmenu__dropdown" + (this.state.isSelected ? " editor__leftmenu__dropdown-selected" : "")}>
                 <div class={"editor__leftmenu__dropdown__title" + (this.state.isRenaming ? " editor__leftmenu__dropdown__title-rename" : "")}>
                     <i className="editor__leftmenu__dropdown__title__chevron material-icons">keyboard_arrow_right</i>
-                    <span className="editor__leftmenu__dropdown__title__content">{this.state.name.toUpperCase()}</span>
-                    <input onClick={this.stopBubble} onKeyDown={this.handleKeyDown} value={this.state.name} onChange={this.handleChange} type="text" className="editor__leftmenu__dropdown__title__input"/>
+                    <span className="editor__leftmenu__dropdown__title__content">{this.props.name.toUpperCase()}</span>
+                    <input ref={(ref) => {if (this.state.isRenaming && ref !== null){ref.focus()}}} onClick={this.stopBubble} onKeyDown={this.handleKeyDown} value={this.state.name} onChange={this.handleChange} type="text" className="editor__leftmenu__dropdown__title__input"/>
                     <div className="editor__leftmenu__dropdown__title__actions editor__leftmenu__dropdown__title__actions__normal">
                         <i onClick={this.handleNewFile} className="editor__leftmenu__dropdown__title__actions__icon material-icons">note_add</i>
                         <i onClick={this.handleRename} className="editor__leftmenu__dropdown__title__actions__icon material-icons">create</i>

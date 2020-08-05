@@ -49,7 +49,7 @@ class LeftBarAction extends Component {
         let content = <i className="editor__leftbar__icon__icon material-icons">{this.props.icon}</i>;
         
         if (this.props.img) {
-            content = <img className="editor__leftbar__icon__image" src={this.props.img} alt="Image" />
+            content = <img className="editor__leftbar__icon__image" src={this.props.img} alt="Profile" />
         }
         
         return (

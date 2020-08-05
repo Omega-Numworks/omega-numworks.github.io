@@ -116,6 +116,18 @@ export default class GithubConnector {
         ]);
     }
     
+    createProject(name) {
+        // TODO: IMPLEMENT
+    }
+    
+    renameProject(oldname, newname) {
+        // TODO: IMPLEMENT
+    }
+
+    removeProject(name) {
+        // TODO: IMPLEMENT
+    }
+
     saveProject(project) {
         // TODO: IMPLEMENT
     }
