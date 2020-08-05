@@ -42,9 +42,13 @@
             line-height: 35px
             vertical-align: middle
             text-align: center
-            cursor: pointer
             &:hover
                 color: #dbdbdb
+                cursor: pointer
+
+            .editor_locked &
+                cursor: not-allowed !important
+                color: #696969
 
     &__dropdown
         &__content
@@ -97,6 +101,11 @@
                         text-align: center
                         &:hover
                             color: white
+                        .editor_locked &:hover
+                            color: #696969
+                    .editor_locked &
+                        color: #696969
+                        cursor: not-allowed !important
                 &:hover
                     cursor: pointer
                     background-color: #2a2d2e
@@ -194,6 +203,9 @@
                     text-align: center
                     &:hover
                         color: white
+                    .editor_locked &
+                        cursor: not-allowed !important
+                        color: #696969
 
             &__loading
                 opacity: 0

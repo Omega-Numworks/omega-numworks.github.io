@@ -23,6 +23,9 @@ export default class File extends Component {
     }
 
     handleChange(event) {
+        if (this.props.locked === true)
+            return;
+
         if (this.state.isRenaming) {
             this.setState({name: event.target.value});
         }
@@ -30,11 +33,19 @@ export default class File extends Component {
 
     handleRename(event) {
         this.stopBubble(event);
+
+        if (this.props.locked === true)
+            return;
+
         this.setState({isRenaming: true, oldName: this.props.name, name: this.props.name});
     }
 
     handleRemove(event) {
         this.stopBubble(event);
+
+        if (this.props.locked === true)
+            return;
+
         if (this.props.onRemove)
             this.props.onRemove(this.props.userdata);
     }
@@ -47,6 +58,10 @@ export default class File extends Component {
 
     handleValidate(event) {
         this.stopBubble(event);
+
+        if (this.props.locked === true)
+            return;
+
         if (this.state.isRenaming) {
             let ret = true;
             if (this.props.onRename)

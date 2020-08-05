@@ -33,7 +33,8 @@ export default class IDEEditor extends Component {
                     "render": this.renderExplorer.bind(this)
                 }
             },
-            confirm_popup_file: null
+            confirm_popup_file: null,
+            locked: false
         };
 
         this.componentDidMount = this.componentDidMount.bind(this);
@@ -256,6 +257,10 @@ export default class IDEEditor extends Component {
     }
     
     handleSave() {
+        if (this.state.locked) {
+            return;
+        }
+
         let tab = this.state.tabs[this.state.selected_tab];
         
         var file_id = this.getFileID(tab.project, tab.file);
@@ -268,7 +273,8 @@ export default class IDEEditor extends Component {
         projects[file_id.project].loading = true;
         
         this.setState({
-            projects: projects
+            projects: projects,
+            locked: true
         });
         
         let project = this.state.projects[file_id.project];
@@ -288,7 +294,8 @@ export default class IDEEditor extends Component {
             
             this.setState({
                 tabs: tabs,
-                projects: projects
+                projects: projects,
+                locked: false
             });
         }.bind(this));
     }
@@ -324,6 +331,10 @@ export default class IDEEditor extends Component {
     }
     
     handleFileRename(userdata, oldname, newname) {
+        if (this.state.locked) {
+            return;
+        }
+
         let file_id = this.getFileID(userdata.project, userdata.file);
         
         if (file_id === null) {
@@ -341,7 +352,8 @@ export default class IDEEditor extends Component {
         projects[file_id.project].loading = true;
         
         this.setState({
-            projects: projects
+            projects: projects,
+            locked: true
         });
         
         let project = projects[file_id.project];
@@ -362,7 +374,8 @@ export default class IDEEditor extends Component {
             
             this.setState({
                 tabs: tabs,
-                projects: projects
+                projects: projects,
+                locked: false
             });
         }.bind(this));
         
@@ -370,6 +383,10 @@ export default class IDEEditor extends Component {
     }
     
     handleFileRemove(userdata) {
+        if (this.state.locked) {
+            return;
+        }
+
         let file_id = this.getFileID(userdata.project, userdata.file);
         
         if (file_id === null) {
@@ -381,7 +398,8 @@ export default class IDEEditor extends Component {
         projects[file_id.project].loading = true;
         
         this.setState({
-            projects: projects
+            projects: projects,
+            locked: true
         });
 
         let project = JSON.parse(JSON.stringify(projects[file_id.project]));
@@ -395,12 +413,17 @@ export default class IDEEditor extends Component {
             projects[file_id.project].loading = false;
             
             this.setState({
-                projects: projects
+                projects: projects,
+                locked: false
             });
         }.bind(this));
     }
     
     handleFileCreate(userdata) {
+        if (this.state.locked) {
+            return;
+        }
+
         if (this.state.creating_file_in !== null)
             return;
         
@@ -413,6 +436,7 @@ export default class IDEEditor extends Component {
         if (this.state.projects[project_id].loaded) {
             this.setState({
                 creating_file_in: userdata,
+                locked: true
             });
         } else {
             this.state.connector.loadProject(userdata, function(files) {
@@ -428,12 +452,11 @@ export default class IDEEditor extends Component {
                 
                 this.setState({
                     projects: projects,
-                    creating_file_in: files.name
+                    creating_file_in: files.name,
+                    locked: false
                 });
             }.bind(this));
         }
-        
-
     }
 
     handleNewFileCancel(userdata) {
@@ -443,6 +466,10 @@ export default class IDEEditor extends Component {
     }
 
     handleNewFileValidate(userdata, oldname, newname) {
+        if (this.state.locked) {
+            return;
+        }
+
         if (newname === "") {
             this.setState({
                 creating_file_in: null,
@@ -482,19 +509,25 @@ export default class IDEEditor extends Component {
         project.files.push(newfile);
         
         this.setState({
-            creating_file_in: null
+            creating_file_in: null,
+            locked: true
         });
         
         this.state.connector.saveProject(project, function(project) {
             let projects = this.state.projects;
             projects[project_id] = project;
             this.setState({
-                projects: projects
+                projects: projects,
+                locked: false
             });
         }.bind(this));
     }
     
     handleProjectRemove(userdata) {
+        if (this.state.locked) {
+            return;
+        }
+
         let project_id = this.getProjectID(userdata);
         
         if (project_id === -1) {
@@ -506,7 +539,8 @@ export default class IDEEditor extends Component {
         projects[project_id].loading = true;
         
         this.setState({
-            projects: projects
+            projects: projects,
+            locked: true
         });
         
         this.state.connector.removeProject(userdata, function(name) {
@@ -535,18 +569,27 @@ export default class IDEEditor extends Component {
             this.setState({
                 projects: projects,
                 tabs: newtabs,
-                selected_tab: selected_tab
+                selected_tab: selected_tab,
+                locked: false
             });
         }.bind(this));
     }
     
     handleCreateProject(userdata) {
+        if (this.state.locked) {
+            return;
+        }
+
         this.setState({
             creating_project: true
         });
     }
     
     handleProjectRename(userdata, newname) {
+        if (this.state.locked) {
+            return;
+        }
+
         let project_id = this.getProjectID(userdata);
         
         if (project_id === -1) {
@@ -558,7 +601,8 @@ export default class IDEEditor extends Component {
         projects[project_id].loading = true;
         
         this.setState({
-            projects: projects
+            projects: projects,
+            locked: true
         });
         
         this.state.connector.renameProject(userdata, newname, function(oldname, newname) {
@@ -583,7 +627,8 @@ export default class IDEEditor extends Component {
             
             this.setState({
                 projects: projects,
-                tabs: tabs
+                tabs: tabs,
+                locked: false
             });
         }.bind(this));
     }
@@ -597,12 +642,17 @@ export default class IDEEditor extends Component {
 
         if (!this.state.projects[project_id].selected) {
             if (!this.state.projects[project_id].loaded) {
+                if (this.state.locked) {
+                    return;
+                }
+
                 let projects = this.state.projects;
 
                 projects[project_id].loading = true;
                 
                 this.setState({
-                    projects: projects
+                    projects: projects,
+                    locked: true
                 });
 
                 this.state.connector.loadProject(userdata, function(files) {
@@ -617,7 +667,8 @@ export default class IDEEditor extends Component {
                     projects[project_id] = files;
                     
                     this.setState({
-                        projects: projects
+                        projects: projects,
+                        locked: false
                     });
                 }.bind(this));
             } else {
@@ -643,6 +694,10 @@ export default class IDEEditor extends Component {
     }
     
     handleNewProjectValidate(userdata, name) {
+        if (this.state.locked) {
+            return;
+        }
+
         if (name === "") {
             this.setState({
                 creating_project: null,
@@ -669,7 +724,8 @@ export default class IDEEditor extends Component {
         });
         
         this.setState({
-            creating_project: false
+            creating_project: false,
+            locked: true
         });
 
         this.state.connector.createProject(name, function(files) {
@@ -679,7 +735,8 @@ export default class IDEEditor extends Component {
             projects[project_id] = files;
             
             this.setState({
-                projects: projects
+                projects: projects,
+                locked: false
             });
         }.bind(this));
     }
@@ -744,21 +801,21 @@ export default class IDEEditor extends Component {
             for (let j = 0; j < project.files.length; j++) {
                 let file = project.files[j];
 
-                files.push(<File onRemove={this.handleFileRemove} onRename={this.handleFileRename} onClick={this.handleFileClick} name={file.name} userdata={{"project": project.name, "file": file.name}} />)
+                files.push(<File locked={this.state.locked} onRemove={this.handleFileRemove} onRename={this.handleFileRename} onClick={this.handleFileClick} name={file.name} userdata={{"project": project.name, "file": file.name}} />)
             }
             
             var selected = project.selected;
             
             if (this.state.creating_file_in === project.name) {
                 selected = true;
-                files.push(<File userdata={project.name} onRename={this.handleNewFileValidate} onCancel={this.handleNewFileCancel} name={".py"} renaming={true} />)
+                files.push(<File locked={this.state.locked} userdata={project.name} onRename={this.handleNewFileValidate} onCancel={this.handleNewFileCancel} name={".py"} renaming={true} />)
             }
 
-            content.push(<Project loading={project.loading} onSelect={this.handleProjectSelect} selected={selected} onRename={this.handleProjectRename} onRemove={this.handleProjectRemove} onNewFile={this.handleFileCreate} userdata={project.name} name={project.name}>{files}</Project>);
+            content.push(<Project locked={this.state.locked} loading={project.loading} onSelect={this.handleProjectSelect} selected={selected} onRename={this.handleProjectRename} onRemove={this.handleProjectRemove} onNewFile={this.handleFileCreate} userdata={project.name} name={project.name}>{files}</Project>);
         }
         
         if (this.state.creating_project === true) {
-            content.push(<Project selected={false} onRename={this.handleNewProjectValidate} onCancel={this.handleNewProjectCancel} renaming={true} name={""}>{files}</Project>);
+            content.push(<Project locked={this.state.locked} selected={false} onRename={this.handleNewProjectValidate} onCancel={this.handleNewProjectCancel} renaming={true} name={""}>{files}</Project>);
         }
         
         return (
@@ -905,7 +962,7 @@ export default class IDEEditor extends Component {
 
     renderEditor() {
         return (
-            <div className="editor">
+            <div className={"editor "+ (this.state.locked ? " editor_locked" : "")}>
                 {/* Loading */}
                 <Loader hidden={true}/>
 
