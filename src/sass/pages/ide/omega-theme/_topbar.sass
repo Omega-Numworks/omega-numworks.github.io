@@ -1,0 +1,107 @@
+&__topbar
+    margin-top: 12px
+    margin-left: 12px
+    width: calc(100% - 24px)
+    font-size: 13px
+    background-color: transparent
+    position: relative
+
+    &__more
+        width: 32px
+        height: 32px
+        top: 6px
+        right: 42px
+        background-color: transparent
+        border-radius: 6px
+        transition: all 0.15s ease-in-out
+        text-shadow: 0 1px 12px rgba(0,0,0,0.1), 0 1px 8px rgba(0,0,0,0.15)
+
+        &:hover
+            background-color: #181818
+
+        &:hover &__icon
+            color: white
+        
+        .editor_locked &
+
+        &__icon
+            color: #b9b9b9
+            font-size: 20px
+            &:hover
+                color: #b9b9b9
+            .editor_locked &
+                color: #696969
+
+    &__tabs
+        height: 44px
+        border-radius: 6px
+        overflow: hidden
+        width: calc(100% - 35px)
+        background-color: #252526
+
+        &__container
+            height: 36px
+
+    &__tab
+        height: 32px
+        background-color: transparent
+        margin-top: 6px
+        margin-left: 6px
+        border-radius: 4px
+        transition: all 0.15s ease-in-out
+
+        &-selected
+            background-color: #1e1e1e
+            color: white
+
+        &:hover
+            background-color: #181818
+
+        &__name
+            margin-left: 12px
+            margin-right: 32px
+            text-shadow: 0 1px 12px rgba(0,0,0,0.1), 0 1px 8px rgba(0,0,0,0.15)
+
+        &:hover > &__close:not(&__close-unsaved)
+            color: #8f8f8f
+        &-selected:hover > &__close:not(&__close-unsaved)
+            color: white
+
+        &__close
+            margin-right: 8px
+            font-size: 16px
+
+            &-unsaved
+                background-color: #8f8f8f
+                border-radius: 4px
+                color: transparent
+                width: 8px
+                height: 8px
+                margin-right: 10px
+
+            &:hover
+                margin-right: 8px
+
+            .editor_locked &
+
+            &:active
+                font-size: 17px
+                margin-right: 8px
+
+
+        &-selected > &__close-unsaved
+            &:hover
+
+        &-selected > &__close:not(&__close-unsaved)
+
+    &__filename
+        padding-left: 6px
+        height: 28px
+        font-size: 12px
+        background-color: #1e1e1e
+        color: #8f8f8f
+
+        &__content
+            display: inline-block
+            position: relative
+            margin-left: 6px

@@ -1,0 +1,26 @@
+&__bottombar
+    height: 32px
+    font-size: 13px
+
+    &__content
+        border-radius: 6px
+        padding-left: 8px
+        padding-right: 10px
+        top: 4px
+        height: 24px
+        transition: all 0.2s
+        text-shadow: 0 1px 12px rgba(0,0,0,0.1), 0 1px 8px rgba(0,0,0,0.15)
+
+        &-hoverable
+            &:hover
+                background-color: #2897e0
+            &:active
+                background-color: #449eda
+
+        &-locked
+            color: #449eda
+            text-shadow: none
+            &:hover
+                background-color: inherit
+            &:active
+                background-color: interit

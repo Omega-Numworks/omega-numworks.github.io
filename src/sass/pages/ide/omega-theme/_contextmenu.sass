@@ -1,0 +1,35 @@
+&__menu
+    border: 1px solid #3d3d3f
+    background-color: #37373d93
+    width: 150px
+    padding: 6px
+    border-radius: 6px
+    overflow: hidden
+    backdrop-filter: blur(30px)
+    
+    &__closer
+    &-open + &__closer
+    &-open
+    &__element
+        border-radius: 4px
+        height: 22px
+        padding: 2px 8px
+        &-separator
+            margin-top: 12px
+            &::before
+                opacity: 0.3
+                border-top: 1px solid #757577
+                margin-bottom: -2px
+                top: -8px
+        &:hover
+            background-color: #1d5a83
+        &__icon
+            width: 22px
+            height: 22px
+            font-size: 16px
+            line-height: 22px
+        &__name
+            margin-left: 6px
+            height: 22px
+            font-size: 13px
+            line-height: 22px
