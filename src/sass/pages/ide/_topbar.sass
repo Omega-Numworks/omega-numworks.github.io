@@ -71,6 +71,12 @@
             color: #8f8f8f
         &-selected:hover > &__close:not(&__close-unsaved)
             color: white
+        .editor_locked &:hover > &__close:not(&__close-unsaved)
+            color: #696969
+            cursor: not-allowed !important
+        .editor_locked &-selected:hover > &__close:not(&__close-unsaved)
+            color: #696969
+            cursor: not-allowed !important
 
         &__close
             display: inline-block
@@ -97,10 +103,8 @@
                 color: inherit
                 background-color: transparent
                 margin-right: 6px
-
-            .editor_locked &
-                color: #696969 !important
-                cursor: not-allowed !important
+            .editor_locked &:hover
+                color: #696969
 
             &:active
                 font-size: 18px
@@ -115,6 +119,9 @@
         &-selected > &__close:not(&__close-unsaved)
             background-color: transparent
             color: white
+        .editor_locked &-selected > &__close:not(&__close-unsaved)
+            background-color: transparent
+            color: #696969
 
     &__filename
         padding-left: 6px

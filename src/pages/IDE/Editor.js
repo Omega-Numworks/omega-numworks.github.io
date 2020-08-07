@@ -825,6 +825,10 @@ export default class IDEEditor extends Component {
     }
 
     handleTabClose(userdata, force) {
+        if (this.state.locked) {
+            return;
+        }
+
         let tab_id = this.getTabID(userdata.project, userdata.file);
         
         if (tab_id === -1) {
