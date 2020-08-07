@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class LeftMenu extends Component {
     render() {
         return (
-            <div className="editor__leftmenu">
+            <div className={"editor__leftmenu" + (this.props.shown ? " editor__leftmenu__shown" : "")}>
                 {this.props.children}
             </div>
         );

@@ -17,7 +17,7 @@
         @import '_topbar.sass'
         @import '_greeting.sass'
 
-    &__leftmenu + &__panel &__panel__monaco
+    &__leftmenu__shown ~ &__panel &__panel__monaco
         width: calc(100vw - 48px - 256px)
 
     &__panels
@@ -29,6 +29,7 @@
     @import '_leftbar.sass'
     @import '_leftmenu.sass'
     @import '_bottombar.sass'
+    @import '_simulator.sass'
 
 @keyframes spinner
     from

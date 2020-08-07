@@ -10,6 +10,7 @@ import {BottomBar, BottomBarElement} from './components/BottomBar';
 import {Greeting, GreetingLogo, GreetingTitle, GreetingVersion, Help, HelpLine, HelpLeft, HelpRight, HelpKey} from './components/Greeting';
 import {TopBarTabs, TopBarMore, TopBarFileName, TopBarTab, TopBar} from './components/TopBar';
 import {PopUp, PopUpContent, PopUpButtons, PopUpButton, PopUpBar, PopUpTitle, PopUpClose} from './components/PopUp';
+import {SimulatorScreen, SimulatorKeyboard} from './components/Simulator';
 import Monaco from './components/Monaco';
 import Loader from './components/Loader';
 
@@ -31,11 +32,19 @@ export default class IDEEditor extends Component {
                 "explorer": {
                     "icon": "insert_drive_file",
                     "render": this.renderExplorer.bind(this)
+                },
+                "simulator": {
+                    "icon": "play_arrow",
+                    "render": this.renderSimulator.bind(this)
                 }
             },
             confirm_popup_file: null,
-            locked: false
+            locked: false,
+            simulator: null
         };
+
+        this.simulator = <iframe title="Simulator" src="/ide/simulator" ref={(ref) => this.simulatorRef = ref} width="256px" height="192px" />;
+        this.simulatorRef = null;
 
         this.componentDidMount = this.componentDidMount.bind(this);
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
@@ -66,6 +75,57 @@ export default class IDEEditor extends Component {
         this.handleCreateProject = this.handleCreateProject.bind(this);
         this.handleProjectRename = this.handleProjectRename.bind(this);
         this.handleProjectSelect = this.handleProjectSelect.bind(this);
+        
+        this.handleSimuKeyDown = this.handleSimuKeyDown.bind(this);
+        this.handleSimuKeyUp = this.handleSimuKeyUp.bind(this);
+        this.handleSimuScreen = this.handleSimuScreen.bind(this);
+        this.handleSimuReload = this.handleSimuReload.bind(this);
+    }
+    
+    handleSimuReload() {
+        if (this.simulatorRef) {
+            
+            if (this.state.tabs.length === 0)
+                return;
+            
+            let project_id = this.getProjectID(this.state.tabs[this.state.selected_tab].project);
+            
+            if (project_id === -1)
+                return;
+            
+            let project = this.state.projects[project_id];
+            
+            if (!project.loaded)
+                return;
+            
+            var event = new CustomEvent("reload-simu", {'detail': {'scripts': project.files}});
+            this.simulatorRef.contentWindow.document.dispatchEvent(event);
+            
+            this.setState({
+                selected_left_menu: "simulator"
+            });
+        }
+    }
+    
+    handleSimuScreen() {
+        if (this.simulatorRef) {
+            var event = new CustomEvent("screenshot", {'detail': {}});
+            this.simulatorRef.contentWindow.document.dispatchEvent(event);
+        }
+    }
+
+    handleSimuKeyDown(num) {
+        if (this.simulatorRef) {
+            var event = new CustomEvent("key-down", {'detail': {'keynum': num}});
+            this.simulatorRef.contentWindow.document.dispatchEvent(event);
+        }
+    }
+
+    handleSimuKeyUp(num) {
+        if (this.simulatorRef) {
+            var event = new CustomEvent("key-up", {'detail': {'keynum': num}});
+            this.simulatorRef.contentWindow.document.dispatchEvent(event);
+        }
     }
 
     normalizeContent(content) {
@@ -788,9 +848,25 @@ export default class IDEEditor extends Component {
         if (tab_id !== -1) {
             this.setState({selected_tab: tab_id});
         }
+    }onScreen
+    
+    renderSimulator(shown) {
+        return (
+            <LeftMenu shown={shown}>
+                <LeftMenuTitle>
+                    SIMULATOR
+                </LeftMenuTitle>
+                <LeftMenuContent>
+                    <SimulatorScreen onScreen={this.handleSimuScreen}>
+                         {this.simulator}
+                    </SimulatorScreen>
+                    <SimulatorKeyboard onKeyDown={this.handleSimuKeyDown} onKeyUp={this.handleSimuKeyUp} />
+                </LeftMenuContent>
+            </LeftMenu>
+        );
     }
 
-    renderExplorer() {
+    renderExplorer(shown) {
         let content = [];
 
         for (let i = 0; i < this.state.projects.length; i++) {
@@ -819,7 +895,7 @@ export default class IDEEditor extends Component {
         }
         
         return (
-            <LeftMenu>
+            <LeftMenu shown={shown}>
                 <LeftMenuActions>
                     <LeftMenuAction icon="create_new_folder" onClick={this.handleCreateProject}/>
                 </LeftMenuActions>
@@ -847,14 +923,13 @@ export default class IDEEditor extends Component {
     
     renderLeftBar() {
         let actions = [];
-        let menu_render = null;
+        let menues = [];
         
         for(let menu_name in this.state.left_menues) {
             let left_menu = this.state.left_menues[menu_name];
             let selected = (menu_name === this.state.selected_left_menu);
             
-            if (selected)
-                menu_render = left_menu.render;
+            menues.push(left_menu.render(selected));
             
             actions.push(<LeftBarAction onClick={this.handleLeftBarClick} userdata={menu_name} selected={selected} icon={left_menu.icon} />);
         }
@@ -872,7 +947,7 @@ export default class IDEEditor extends Component {
                         </Link>
                     </LeftBarBottom>
                 </LeftBar>
-                {menu_render !== null ? menu_render() : ""}
+                {menues}
             </>
         );
     }
@@ -978,7 +1053,7 @@ export default class IDEEditor extends Component {
                 {/* Bottom Bar */}
 
                 <BottomBar>
-                    <BottomBarElement icon="play_arrow" hoverable={true}>Simulator</BottomBarElement>
+                    <BottomBarElement icon="play_arrow" hoverable={true} onClick={this.handleSimuReload}>Simulator</BottomBarElement>
                     <BottomBarElement icon="usb" hoverable={true}>Device</BottomBarElement>
                     <BottomBarElement icon="highlight_off" hoverable={true}>0</BottomBarElement>
                     <BottomBarElement right={true}>Powered by Omega</BottomBarElement>

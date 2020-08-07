@@ -11,6 +11,7 @@ import Policy from './pages/Policy';
 import Install from './pages/Install';
 import IDEMain from './pages/IDE/Main';
 import IDEEditor from './pages/IDE/Editor';
+import IDESimulator from './pages/IDE/Simulator';
 import NotFound from './pages/NotFound';
 
 import { IntlProvider } from "react-intl";
@@ -64,6 +65,7 @@ class App extends Component {
               <Route path="/policy" component={Policy} exact />
               <Route path="/ide" component={IDEMain} exact />
               <Route path="/ide/editor" component={IDEEditor} exact />
+              <Route path="/ide/simulator" component={IDESimulator} exact />
               {/*
               <Route path="/projects" component={Projects} exact />
               <Route path="/editor/run/python/:id" component={EditorRunPython} exact />
