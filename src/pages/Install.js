@@ -172,7 +172,14 @@ export default class Install extends Component {
             progressPercentage: 0,
             installationFinished: false
         });
-        
+
+        firebase.analytics().logEvent('omega_install', {
+            model: this.state.model,
+            omega_version: this.state.omegaVersion,
+            epsilon_version: this.state.epsilonVersion,
+            lang: this.state.selectedLang
+        })
+
         this.hidePopup();
         if (this.state.multiLangSupport) {
             this.state.installerInstance.install(this.state.selectedLang);
@@ -291,7 +298,7 @@ export default class Install extends Component {
                     <div className="installer-external__description">
                         <FormattedMessage id="installer.external.description" defaultMessage="Installez des applications pour votre Numworks." />
                     </div>
-                    <a className="button installer-external__button" href="https://m4xi1m3.github.io/nw-external-apps/" target="_blank" rel="noopener noreferrer">
+                    <a className="button installer-external__button" href="https://m4xi1m3.github.io/nw-external-apps/" rel="noopener noreferrer">
                         <FormattedMessage id="installer.external.open" defaultMessage="OUVRIR" />
                     </a>
                 </div>
