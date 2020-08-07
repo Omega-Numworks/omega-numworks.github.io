@@ -171,7 +171,14 @@ export default class Install extends Component {
             progressPercentage: 0,
             installationFinished: false
         });
-        
+
+        firebase.analytics().logEvent('omega_install', {
+            model: this.state.model,
+            omega_version: this.state.omegaVersion,
+            epsilon_version: this.state.epsilonVersion,
+            lang: this.state.selectedLang
+        })
+
         this.hidePopup();
         if (this.state.multiLangSupport) {
             this.state.installerInstance.install(this.state.selectedLang);
