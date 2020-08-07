@@ -456,18 +456,18 @@ export default class IDEEditor extends Component {
         let projects = this.state.projects;
         
         projects[file_id.project].loading = true;
+        this.handleTabClose(userdata, true);
+
+        let project = JSON.parse(JSON.stringify(projects[file_id.project]));
+        project.files.splice(file_id.file, 1);
+        projects[file_id.project].files.splice(file_id.file, 1);
         
         this.setState({
             projects: projects,
             locked: true
         });
 
-        let project = JSON.parse(JSON.stringify(projects[file_id.project]));
-        project.files.splice(file_id.file, 1);
-        
         this.state.connector.saveProject(project, function(project) {
-            this.handleTabClose(userdata, true);
-            
             let projects = this.state.projects;
             projects[file_id.project] = project;
             projects[file_id.project].loading = false;
@@ -495,10 +495,12 @@ export default class IDEEditor extends Component {
         
         if (this.state.projects[project_id].loaded) {
             this.setState({
-                creating_file_in: userdata,
-                locked: true
+                creating_file_in: userdata
             });
         } else {
+            this.setState({
+                locked: true
+            });
             this.state.connector.loadProject(userdata, function(files) {
                 let project_id = this.getProjectID(files.name);
                 
@@ -567,8 +569,11 @@ export default class IDEEditor extends Component {
         let project = JSON.parse(JSON.stringify(projects[project_id]));
         
         project.files.push(newfile);
+        projects[project_id].files.push(newfile);
+        projects[project_id].loading = true;
         
         this.setState({
+            projects: projects,
             creating_file_in: null,
             locked: true
         });
@@ -578,6 +583,7 @@ export default class IDEEditor extends Component {
             projects[project_id] = project;
             this.setState({
                 projects: projects,
+                creating_file_in: null,
                 locked: false
             });
         }.bind(this));

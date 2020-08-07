@@ -10,6 +10,7 @@ export default class File extends Component {
             "oldName": "",
             
             "isRenaming": props.renaming === true,
+            "validName": true
         };
 
         this.handleChange   = this.handleChange.bind(this);
@@ -27,7 +28,10 @@ export default class File extends Component {
             return;
 
         if (this.state.isRenaming) {
-            this.setState({name: event.target.value});
+            this.setState({
+                name: event.target.value,
+                validName: event.target.value.match(/^([a-z0-9_]+\.[a-z0-9_]+)$/)
+            });
         }
     }
 
@@ -37,7 +41,7 @@ export default class File extends Component {
         if (this.props.locked === true)
             return;
 
-        this.setState({isRenaming: true, oldName: this.props.name, name: this.props.name});
+        this.setState({isRenaming: true, oldName: this.props.name, name: this.props.name, validName: this.props.name.match(/^([a-z0-9_]+\.[a-z0-9_]+)$/)});
     }
 
     handleRemove(event) {
@@ -60,6 +64,9 @@ export default class File extends Component {
         this.stopBubble(event);
 
         if (this.props.locked === true)
+            return;
+
+        if (!this.state.validName)
             return;
 
         if (this.state.isRenaming) {
@@ -100,7 +107,7 @@ export default class File extends Component {
             <li onClick={this.handleClick} className={"editor__leftmenu__dropdown__content__element" + (this.state.isRenaming ? " editor__leftmenu__dropdown__content__element-rename" : "")}>
                 <i className="editor__leftmenu__dropdown__content__element__icon material-icons">insert_drive_file</i>
                 <span className="editor__leftmenu__dropdown__content__element__name">{this.props.name}</span>
-                <input ref={(ref) => {if (this.state.isRenaming && ref !== null){ref.focus()}}} onClick={this.stopBubble} onKeyDown={this.handleKeyDown} value={this.state.name} onChange={this.handleChange} type="text" className="editor__leftmenu__dropdown__content__element__input"/>
+                <input ref={(ref) => {if (this.state.isRenaming && ref !== null){ref.focus()}}} onClick={this.stopBubble} onKeyDown={this.handleKeyDown} value={this.state.name} onChange={this.handleChange} type="text" className={"editor__leftmenu__dropdown__content__element__input" + (!this.state.validName ? " editor__leftmenu__dropdown__content__element__input-invalid" : "")}/>
                 <div className="editor__leftmenu__dropdown__content__element__actions editor__leftmenu__dropdown__content__element__actions__normal">
                     <i onClick={this.handleRename} className="editor__leftmenu__dropdown__content__element__actions__icon material-icons">create</i>
                     <i onClick={this.handleRemove} className="editor__leftmenu__dropdown__content__element__actions__icon material-icons">delete</i>
