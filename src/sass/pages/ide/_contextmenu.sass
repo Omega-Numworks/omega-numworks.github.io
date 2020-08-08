@@ -1,0 +1,46 @@
+
+
+&__menu
+    position: fixed
+    z-index: 99
+    border: 1px solid #252526
+    background-color: #37373d
+    width: 150px
+    display: none
+    
+    &__closer
+        display: none
+    
+    &-open + &__closer
+        z-index: 98
+        display: block
+        position: fixed
+        top: 0
+        left: 0
+        background-color: rgba(0,0,0,0.1)
+        width: 100vw
+        height: 100vh
+        cursor: default
+    
+    &-open
+        display: block
+    
+    &__element
+        height: 22px
+        &:hover
+            background-color: #2a2d2e
+            cursor: pointer
+        &__icon
+            width: 22px
+            height: 22px
+            font-size: 16px
+            line-height: 22px
+            vertical-align: middle
+            text-align: center
+        &__name
+            height: 22px
+            font-size: 12px
+            vertical-align: middle
+            line-height: 22px
+            
+

@@ -13,6 +13,7 @@ import {PopUp, PopUpContent, PopUpButtons, PopUpButton, PopUpBar, PopUpTitle, Po
 import {SimulatorScreen, SimulatorKeyboard} from './components/Simulator';
 import Monaco from './components/Monaco';
 import Loader from './components/Loader';
+import JSZip from 'jszip';
 
 export default class IDEEditor extends Component {
     constructor(props) {
@@ -36,6 +37,10 @@ export default class IDEEditor extends Component {
                 "simulator": {
                     "icon": "play_arrow",
                     "render": this.renderSimulator.bind(this)
+                },
+                "calcultaor": {
+                    "icon": "usb",
+                    "render": this.renderCalculator.bind(this)
                 }
             },
             confirm_popup_file: null,
@@ -75,11 +80,138 @@ export default class IDEEditor extends Component {
         this.handleCreateProject = this.handleCreateProject.bind(this);
         this.handleProjectRename = this.handleProjectRename.bind(this);
         this.handleProjectSelect = this.handleProjectSelect.bind(this);
+        this.handleProjectRunSimu = this.handleProjectRunSimu.bind(this);
+        this.handleProjectZip = this.handleProjectZip.bind(this);
         
         this.handleSimuKeyDown = this.handleSimuKeyDown.bind(this);
         this.handleSimuKeyUp = this.handleSimuKeyUp.bind(this);
         this.handleSimuScreen = this.handleSimuScreen.bind(this);
         this.handleSimuReload = this.handleSimuReload.bind(this);
+    }
+
+    handleProjectZip(userdata) {
+        if (this.state.locked) {
+            return;
+        }
+
+        if (!this.simulatorRef) {
+            return;
+        }
+
+        let project_id = this.getProjectID(userdata);
+
+        if (project_id === -1) {
+            return;
+        }
+
+        if (this.state.projects[project_id].loaded) {
+            var zip = new JSZip();
+            
+            for(let i = 0; i < this.state.projects[project_id].files.length; i++) {
+                let file = this.state.projects[project_id].files[i];
+                zip.file(file.name, file.content);
+            }
+
+            zip.generateAsync({type:"base64"}).then(function (base64) {
+                var link = document.createElement('a');
+                link.download = this.state.projects[project_id].name + '.zip';
+
+                link.href = "data:application/zip;base64," + base64;
+                link.click();
+                
+            }.bind(this));
+        } else {
+            let projects = this.state.projects;
+            projects[project_id].loading = true;
+            this.setState({
+                locked: true,
+                projects: projects
+            });
+            this.state.connector.loadProject(userdata, function(files) {
+                let project_id = this.getProjectID(files.name);
+                
+                if (project_id === -1) {
+                    return;
+                }
+                
+                let projects = this.state.projects;
+                
+                projects[project_id] = files;
+                
+                var zip = new JSZip();
+                
+                for(let i = 0; i < projects[project_id].files.length; i++) {
+                    let file = projects[project_id].files[i];
+                    zip.file(file.name, file.content);
+                }
+
+                zip.generateAsync({type:"base64"}).then(function (base64) {
+                    var link = document.createElement('a');
+                    link.download = projects[project_id].name + '.zip';
+
+                    link.href = "data:application/zip;base64," + base64;
+                    link.click();
+                    
+                }.bind(this));
+                    
+                this.setState({
+                    projects: projects,
+                    locked: false
+                });
+            }.bind(this));
+        }
+    }
+
+    handleProjectRunSimu(userdata) {
+        if (this.state.locked) {
+            return;
+        }
+
+        if (!this.simulatorRef) {
+            return;
+        }
+
+        let project_id = this.getProjectID(userdata);
+
+        if (project_id === -1) {
+            return;
+        }
+
+        if (this.state.projects[project_id].loaded) {
+            var event = new CustomEvent("reload-simu", {'detail': {'scripts': this.state.projects[project_id].files}});
+            this.simulatorRef.contentWindow.document.dispatchEvent(event);
+
+            this.setState({
+                selected_left_menu: "simulator"
+            });
+        } else {
+            let projects = this.state.projects;
+            projects[project_id].loading = true;
+            this.setState({
+                locked: true,
+                projects: projects
+            });
+            this.state.connector.loadProject(userdata, function(files) {
+                let project_id = this.getProjectID(files.name);
+                
+                if (project_id === -1) {
+                    return;
+                }
+                
+                let projects = this.state.projects;
+                
+                projects[project_id] = files;
+                
+                var event = new CustomEvent("reload-simu", {'detail': {'scripts': projects[project_id].files}});
+                this.simulatorRef.contentWindow.document.dispatchEvent(event);
+                
+                this.setState({
+                    projects: projects,
+                    selected_left_menu: "simulator",
+                    locked: false
+                });
+            }.bind(this));
+        }
     }
     
     handleSimuReload() {
@@ -498,8 +630,11 @@ export default class IDEEditor extends Component {
                 creating_file_in: userdata
             });
         } else {
+            let projects = this.state.projects;
+            projects[project_id].loading = true;
             this.setState({
-                locked: true
+                locked: true,
+                projects: projects
             });
             this.state.connector.loadProject(userdata, function(files) {
                 let project_id = this.getProjectID(files.name);
@@ -858,7 +993,20 @@ export default class IDEEditor extends Component {
         if (tab_id !== -1) {
             this.setState({selected_tab: tab_id});
         }
-    }onScreen
+    }
+    
+    renderCalculator(shown) {
+        return (
+            <LeftMenu shown={shown}>
+                <LeftMenuTitle>
+                    CALCULATOR
+                </LeftMenuTitle>
+                <LeftMenuContent>
+                    
+                </LeftMenuContent>
+            </LeftMenu>
+        );
+    }
     
     renderSimulator(shown) {
         return (
@@ -897,7 +1045,7 @@ export default class IDEEditor extends Component {
                 files.push(<File locked={this.state.locked} userdata={project.name} onRename={this.handleNewFileValidate} onCancel={this.handleNewFileCancel} name={".py"} renaming={true} />)
             }
 
-            content.push(<Project locked={this.state.locked} loading={project.loading} onSelect={this.handleProjectSelect} selected={selected} onRename={this.handleProjectRename} onRemove={this.handleProjectRemove} onNewFile={this.handleFileCreate} userdata={project.name} name={project.name}>{files}</Project>);
+            content.push(<Project locked={this.state.locked} loading={project.loading} onZip={this.handleProjectZip} onRunSimu={this.handleProjectRunSimu} onSelect={this.handleProjectSelect} selected={selected} onRename={this.handleProjectRename} onRemove={this.handleProjectRemove} onNewFile={this.handleFileCreate} userdata={project.name} name={project.name}>{files}</Project>);
         }
         
         if (this.state.creating_project === true) {
@@ -1047,7 +1195,7 @@ export default class IDEEditor extends Component {
 
     renderEditor() {
         return (
-            <div className={"editor "+ (this.state.locked ? " editor_locked" : "")}>
+            <div onContextMenu={(e) => {e.preventDefault(); e.stopPropagation()}} className={"editor "+ (this.state.locked ? " editor_locked" : "")}>
                 {/* Loading */}
                 <Loader hidden={true}/>
 
@@ -1076,7 +1224,7 @@ export default class IDEEditor extends Component {
 
     renderLoading() {
         return (
-            <div className="editor">
+            <div onContextMenu={(e) => {e.preventDefault(); e.stopPropagation()}} className="editor">
                 <Loader />
             </div>
         );

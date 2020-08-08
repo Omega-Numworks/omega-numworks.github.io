@@ -55,7 +55,10 @@ export default class PythonSimulator {
     }
     
     stop() {
-        if (this.module) this.module._IonSimulatorEventsPushEvent(217);
+        if (this.module) 
+            if(this.module.asm)
+                this.module._IonSimulatorEventsPushEvent(217);
+        delete this.module;
         this.module = undefined;
     }
     
