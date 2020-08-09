@@ -19,6 +19,9 @@ class BottomBarElement extends Component {
     }
     
     handleClick() {
+        if (this.props.locked)
+            return;
+        
         if (this.props.onClick) {
             this.props.onClick(this.props.userdata);
         }
@@ -29,7 +32,7 @@ class BottomBarElement extends Component {
         let icon = this.props.icon ? (<i className="editor__bottombar__content__icon material-icons">{this.props.icon}</i>) : "";
         
         return (
-            <div onClick={this.handleClick} className={"editor__bottombar__content" + (this.props.hoverable ? " editor__bottombar__content-hoverable" : "") + (this.props.right ? " editor__bottombar__content-right" : "")}>
+            <div onClick={this.handleClick} className={"editor__bottombar__content" + (this.props.hoverable ? " editor__bottombar__content-hoverable" : "") + (this.props.locked ? " editor__bottombar__content-locked" : "") + (this.props.right ? " editor__bottombar__content-right" : "")}>
                 {icon}
                 <div className="editor__bottombar__content__text">{this.props.children}</div>
             </div>

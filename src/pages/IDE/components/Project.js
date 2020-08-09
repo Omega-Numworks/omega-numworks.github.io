@@ -186,7 +186,7 @@ export default class Project extends Component {
                         <i className="editor__menu__element__icon material-icons">delete</i>
                         <span className="editor__menu__element__name">Remove project</span>
                     </div>
-                    <div onClick={this.handleRunSimu} className="editor__menu__element">
+                    <div onClick={this.handleRunSimu} className="editor__menu__element editor__menu__element-separator">
                         <i className="editor__menu__element__icon material-icons">play_arrow</i>
                         <span className="editor__menu__element__name">Run in simulator</span>
                     </div>
@@ -194,7 +194,7 @@ export default class Project extends Component {
                         <i className="editor__menu__element__icon material-icons">usb</i>
                         <span className="editor__menu__element__name">Send to device</span>
                     </div>
-                    <div onClick={this.handleZip} className="editor__menu__element">
+                    <div onClick={this.handleZip} className="editor__menu__element editor__menu__element-separator">
                         <i className="editor__menu__element__icon material-icons">get_app</i>
                         <span className="editor__menu__element__name">Download as zip</span>
                     </div>

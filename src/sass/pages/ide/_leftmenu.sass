@@ -71,6 +71,7 @@
                     overflow: hidden
                     width: 210px
                     line-height: 22px
+                    white-space: nowrap
                 &__input
                     display: none
                     width: 168px
@@ -156,6 +157,8 @@
             display: none !important
         &-loading &__title__loading
             opacity: 1 !important
+        &-loading &__title__content
+            width: 144px
             
 
         &:first-child
@@ -183,6 +186,7 @@
                 text-overflow: ellipsis
                 overflow: hidden
                 width: 232px
+                white-space: nowrap
 
             &__chevron
                 font-size: 16px

@@ -152,6 +152,16 @@ export default class GithubConnector {
         };
         
         fetch("https://api.github.com/gists", requestOptions).then(res => res.json()).then(function(result) {
+            
+            if (result.message !== undefined) {
+                if (result.message === "Bad credentials") {
+                    this.logout();
+                    this.login(function() {
+                        this.getProjects(callback);
+                    }.bind(this), null);
+                }
+            }
+            
             var output = [];
             this.gists = [];
 

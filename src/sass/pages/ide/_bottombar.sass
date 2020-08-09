@@ -6,6 +6,7 @@
     height: 22px
     font-size: 12px
     color: white
+    user-select: none
 
     &__content
         padding-left: 4px
@@ -30,6 +31,13 @@
                 cursor: pointer
             &:active
                 background-color: #2e92d5
+        &-locked
+            color: #aaaaaa
+            &:hover
+                background-color: #007acc
+                cursor: not-allowed
+            &:active
+                background-color: #007acc
 
         &__icon
             display: inline-block

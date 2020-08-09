@@ -39,6 +39,9 @@ class LeftBarAction extends Component {
     }
     
     handleClick() {
+        if (this.props.locked)
+            return;
+
         if (this.props.onClick) {
             this.props.onClick(this.props.userdata);
         }
@@ -53,7 +56,7 @@ class LeftBarAction extends Component {
         }
         
         return (
-            <div onClick={this.handleClick} className={"editor__leftbar__icon" + (this.props.selected ? " editor__leftbar__icon-selected" : "")}>
+            <div onClick={this.handleClick} className={"editor__leftbar__icon" + (this.props.selected ? " editor__leftbar__icon-selected" : "") + (this.props.locked ? " editor__leftbar__icon-locked" : "")}>
                 {content}
             </div>
         );

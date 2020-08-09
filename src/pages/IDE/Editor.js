@@ -14,6 +14,7 @@ import {SimulatorScreen, SimulatorKeyboard} from './components/Simulator';
 import Monaco from './components/Monaco';
 import Loader from './components/Loader';
 import JSZip from 'jszip';
+import Numworks from 'numworks.js';
 
 export default class IDEEditor extends Component {
     constructor(props) {
@@ -32,20 +33,24 @@ export default class IDEEditor extends Component {
             left_menues: {
                 "explorer": {
                     "icon": "insert_drive_file",
-                    "render": this.renderExplorer.bind(this)
+                    "render": this.renderExplorer.bind(this),
+                    "locked": false
                 },
                 "simulator": {
                     "icon": "play_arrow",
-                    "render": this.renderSimulator.bind(this)
+                    "render": this.renderSimulator.bind(this),
+                    "locked": false
                 },
                 "calcultaor": {
                     "icon": "usb",
-                    "render": this.renderCalculator.bind(this)
+                    "render": this.renderCalculator.bind(this),
+                    "locked": false
                 }
             },
             confirm_popup_file: null,
             locked: false,
-            simulator: null
+            simulator: null,
+            calculator_connected: false
         };
 
         this.simulator = <iframe title="Simulator" src="/ide/simulator" ref={(ref) => this.simulatorRef = ref} width="256px" height="192px" />;
@@ -87,6 +92,43 @@ export default class IDEEditor extends Component {
         this.handleSimuKeyUp = this.handleSimuKeyUp.bind(this);
         this.handleSimuScreen = this.handleSimuScreen.bind(this);
         this.handleSimuReload = this.handleSimuReload.bind(this);
+        
+        this.handleCalculatorConnect = this.handleCalculatorConnect.bind(this);
+        this.handleCalculatorConnected = this.handleCalculatorConnected.bind(this);
+        this.handleCalculatorDisconnected = this.handleCalculatorDisconnected.bind(this);
+
+        this.calculator = null;
+        if (navigator.usb !== undefined) {
+            this.calculator = new Numworks();
+            navigator.usb.addEventListener("disconnect", this.handleCalculatorDisconnected);
+            this.calculator.autoConnect(this.handleCalculatorConnected);
+        } else {
+            this.state.left_menues.calcultaor.locked = true;
+        }
+    }
+    
+    handleCalculatorConnected() {
+        this.calculator.stopAutoConnect();
+        
+        this.setState({
+            calculator_connected: true
+        });
+        
+        
+    }
+    
+    handleCalculatorDisconnected(e) {
+        this.setState({
+            calculator_connected: false
+        });
+        
+        this.calculator.autoConnect(this.handleCalculatorConnected);
+    }
+    
+    handleCalculatorConnect() {
+        this.calculator.detect(this.handleCalculatorConnected, function(error) {
+            console.error(error);
+        });
     }
 
     handleProjectZip(userdata) {
@@ -788,7 +830,7 @@ export default class IDEEditor extends Component {
     
     handleProjectRename(userdata, newname) {
         if (this.state.locked) {
-            return;
+            return;﻿
         }
 
         let project_id = this.getProjectID(userdata);
@@ -998,6 +1040,9 @@ export default class IDEEditor extends Component {
     renderCalculator(shown) {
         return (
             <LeftMenu shown={shown}>
+                <LeftMenuActions>
+                    <LeftMenuAction icon="search" onClick={this.handleCalculatorConnect}/>
+                </LeftMenuActions>
                 <LeftMenuTitle>
                     CALCULATOR
                 </LeftMenuTitle>
@@ -1089,7 +1134,7 @@ export default class IDEEditor extends Component {
             
             menues.push(left_menu.render(selected));
             
-            actions.push(<LeftBarAction onClick={this.handleLeftBarClick} userdata={menu_name} selected={selected} icon={left_menu.icon} />);
+            actions.push(<LeftBarAction onClick={this.handleLeftBarClick} userdata={menu_name} locked={left_menu.locked} selected={selected} icon={left_menu.icon} />);
         }
         
         return (
@@ -1212,11 +1257,11 @@ export default class IDEEditor extends Component {
 
                 <BottomBar>
                     <BottomBarElement icon="play_arrow" hoverable={true} onClick={this.handleSimuReload}>Simulator</BottomBarElement>
-                    <BottomBarElement icon="usb" hoverable={true}>Device</BottomBarElement>
+                    <BottomBarElement icon="usb" hoverable={true} locked={this.state.calculator === null}>Device</BottomBarElement>
                     <BottomBarElement icon="highlight_off" hoverable={true}>0</BottomBarElement>
                     <BottomBarElement right={true}>Powered by Omega</BottomBarElement>
                 </BottomBar>
-                
+
                 {this.state.confirm_popup_file !== null ? this.renderConfirmPopUp() : ""}
             </div>
         );
