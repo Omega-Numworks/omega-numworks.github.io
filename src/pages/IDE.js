@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import GithubConnector from "../../GithubConnector";
+import GithubConnector from "../GithubConnector";
 
 export default class IDEMain extends Component {
     constructor(props) {
@@ -43,7 +42,7 @@ export default class IDEMain extends Component {
             accessButton = (
                 <Link to="/ide/editor" className="button button-outline button-big project-description__button">
                     <div className="project-description__button__text">
-                        <FormattedMessage id="ide.head.launch" defaultMessage="LAUNCH" /> <i className="project-description__button__icon material-icons md-16">play_arrow</i>
+                        LAUNCH <i className="project-description__button__icon material-icons md-16">play_arrow</i>
                     </div>
                 </Link>
             );
@@ -51,7 +50,7 @@ export default class IDEMain extends Component {
             accessButton = (
                 <div onClick={this.login} className="button button-outline button-big project-description__button">
                     <div className="project-description__button__text">
-                        <FormattedMessage id="ide.head.connect" defaultMessage="LOGIN WITH GITHUB" /> <i className="project-description__button__icon material-icons md-16">play_arrow</i>
+                        LOGIN WITH GITHUB <i className="project-description__button__icon material-icons md-16">play_arrow</i>
                     </div>
                 </div>
             );
@@ -61,14 +60,14 @@ export default class IDEMain extends Component {
             <div className="content">
                 <div className="project-description">
                     <h1 className="project-description__title">
-                        <FormattedMessage id="ide.head.title" defaultMessage="Python IDE" />
+                        Python IDE
                     </h1>
                     <h2 className="project-description__subtitle">
-                        <FormattedMessage id="ide.head.subtitle" defaultMessage="An online Python IDE." />
+                        An online Python IDE.
                     </h2>
                     {accessButton}
                     <p className="project-description__description">
-                        <FormattedMessage id="ide.head.description" defaultMessage="DESCRIPTION HERE" />
+                        DESCRIPTION HERE
                     </p>
                     
                     {/* <h2 className="mb-3">A whole new set of features</h2> */}

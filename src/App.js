@@ -9,10 +9,11 @@ import FullSimulator from './pages/simulator/FullSimulator';
 import Releases from './pages/Releases';
 import Policy from './pages/Policy';
 import Install from './pages/Install';
-import IDEMain from './pages/IDE/Main';
-import IDEEditor from './pages/IDE/Editor';
-import IDESimulator from './pages/IDE/Simulator';
+import IDEMain from './pages/IDE.js';
+import IDEEditor from './pages/omega-ide/src/ide/Editor';
+import IDESimulator from './pages/omega-ide/src/ide/Simulator';
 import NotFound from './pages/NotFound';
+import GithubConnector from './GithubConnector';
 
 import { IntlProvider } from "react-intl";
 import translations from './i18n/locales'
@@ -63,8 +64,8 @@ class App extends Component {
               <Route path="/install" component={Install} exact />
               <Route path="/install/:version" component={Install} />
               <Route path="/policy" component={Policy} exact />
-              <Route path="/ide" component={IDEMain} exact />
-              <Route path="/ide/editor" component={IDEEditor} exact />
+              <Route path="/ide/" component={IDEMain} exact />
+              <Route path="/ide/editor" component={() => <IDEEditor base="/ide/" connector={GithubConnector} />} exact />
               <Route path="/ide/simulator" component={IDESimulator} exact />
               {/*
               <Route path="/projects" component={Projects} exact />
