@@ -11,6 +11,7 @@ import {Greeting, GreetingLogo, GreetingTitle, GreetingVersion, Help, HelpLine, 
 import {TopBarTabs, TopBarMore, TopBarFileName, TopBarTab, TopBar} from './components/TopBar';
 import {PopUp, PopUpContent, PopUpButtons, PopUpButton, PopUpBar, PopUpTitle, PopUpClose} from './components/PopUp';
 import {SimulatorScreen, SimulatorKeyboard} from './components/Simulator';
+import {CalculatorSearch, CalculatorConnected, CalculatorError, CalculatorInfoList, CalculatorInfo, CalculatorStorage, CalculatorFile} from './components/Calculator';
 import Monaco from './components/Monaco';
 import Loader from './components/Loader';
 import JSZip from 'jszip';
@@ -41,7 +42,7 @@ export default class IDEEditor extends Component {
                     "render": this.renderSimulator.bind(this),
                     "locked": false
                 },
-                "calcultaor": {
+                "calculator": {
                     "icon": "usb",
                     "render": this.renderCalculator.bind(this),
                     "locked": false
@@ -50,7 +51,7 @@ export default class IDEEditor extends Component {
             confirm_popup_file: null,
             locked: false,
             simulator: null,
-            calculator_connected: false
+            calculator: null
         };
 
         this.simulator = <iframe title="Simulator" src="/ide/simulator" ref={(ref) => this.simulatorRef = ref} width="256px" height="192px" />;
@@ -86,6 +87,7 @@ export default class IDEEditor extends Component {
         this.handleProjectRename = this.handleProjectRename.bind(this);
         this.handleProjectSelect = this.handleProjectSelect.bind(this);
         this.handleProjectRunSimu = this.handleProjectRunSimu.bind(this);
+        this.handleProjectSendDevice = this.handleProjectSendDevice.bind(this);
         this.handleProjectZip = this.handleProjectZip.bind(this);
         
         this.handleSimuKeyDown = this.handleSimuKeyDown.bind(this);
@@ -96,6 +98,9 @@ export default class IDEEditor extends Component {
         this.handleCalculatorConnect = this.handleCalculatorConnect.bind(this);
         this.handleCalculatorConnected = this.handleCalculatorConnected.bind(this);
         this.handleCalculatorDisconnected = this.handleCalculatorDisconnected.bind(this);
+        this.handleCalculatorDelete = this.handleCalculatorDelete.bind(this);
+        this.handleCalculatorZipDownload = this.handleCalculatorZipDownload.bind(this);
+        this.handleClaculatorSend = this.handleClaculatorSend.bind(this);
 
         this.calculator = null;
         if (navigator.usb !== undefined) {
@@ -103,23 +108,160 @@ export default class IDEEditor extends Component {
             navigator.usb.addEventListener("disconnect", this.handleCalculatorDisconnected);
             this.calculator.autoConnect(this.handleCalculatorConnected);
         } else {
-            this.state.left_menues.calcultaor.locked = true;
+            this.state.left_menues.calculator.locked = true;
         }
+    }
+    
+    handleClaculatorSend(the_project = null) {
+        if (this.state.calculator === null)
+            return;
+        if (this.state.calculator.storage === null)
+            return;
+        if (!this.state.calculator.storage.magik)
+            return;
+
+        var project = the_project;
+        if (project === null) {
+            if (this.state.tabs.length === 0)
+                return;
+            let project_id = this.getProjectID(this.state.tabs[this.state.selected_tab].project);
+
+            if (project_id === -1)
+                return;
+
+            project = this.state.projects[project_id];
+        }
+
+        if (!project.loaded)
+            return;
+
+        for (let i = 0; i < project.files.length; i++) {
+            var content = project.files[i].content;
+            var period = project.files[i].name.lastIndexOf('.');
+            var fileName = project.files[i].name.substring(0, period);
+            var fileExtension = project.files[i].name.substring(period + 1);
+            var id = null;
+
+            for(var j = 0; j < this.state.calculator.storage.records.length; j++) {
+                var currentRecord = this.state.calculator.storage.records[j];
+                if (currentRecord.name === fileName && currentRecord.type === fileExtension) {
+                    id = j;
+                    break;
+                }
+            }
+
+            var newRecord = {};
+
+            if (fileExtension === "py") {
+                newRecord = {
+                    name: fileName,
+                    type: fileExtension,
+                    autoImport: true,
+                    code: content
+                };
+            } else {
+                newRecord = {
+                    name: fileName,
+                    type: fileExtension,
+                    data: new Blob(content)
+                };
+            }
+            
+            var newcalc = this.state.calculator;
+            
+            if (id === null)
+                newcalc.storage.records.push(newRecord);
+            else
+                newcalc.storage.records[id] = newRecord;
+        }
+
+        this.setState({
+            calculator: newcalc
+        });
+
+        this.calculator.installStorage(newcalc.storage, function() {});
+    }
+    
+    handleCalculatorDelete(userdata) {
+        if (this.state.calculator === null)
+            return;
+        if (this.state.calculator.storage === null)
+            return;
+        if (!this.state.calculator.storage.magik)
+            return;
+        
+        this.state.calculator.storage.records.splice(userdata, 1);
+        
+        this.calculator.installStorage(this.state.calculator.storage, function() {});
+        
+        this.setState({
+            calculator: this.state.calculator
+        });
+    }
+    
+    handleCalculatorZipDownload() {
+        if (this.state.calculator === null)
+            return;
+        if (this.state.calculator.storage === null)
+            return;
+        if (!this.state.calculator.storage.magik)
+            return;
+        
+        var zip = new JSZip();
+        
+        for(let i = 0; i < this.state.calculator.storage.records.length; i++) {
+            let record = this.state.calculator.storage.records[i];
+            let name = record.name + (record.type !== "" ? "." + record.type : "");
+            let content = "";
+            if (record.type === "py") {
+                content = record.code;
+            } else {
+                content = record.data;
+            }
+            
+            zip.file(name, content);
+        }
+
+        zip.generateAsync({type:"base64"}).then(function (base64) {
+            var link = document.createElement('a');
+            link.download = 'storage.zip';
+
+            link.href = "data:application/zip;base64," + base64;
+            link.click();
+        });
     }
     
     handleCalculatorConnected() {
         this.calculator.stopAutoConnect();
         
-        this.setState({
-            calculator_connected: true
-        });
-        
-        
+        var model = this.calculator.getModel(false);
+        this.calculator.getPlatformInfo().then(function(pinfo) {
+            if (pinfo.magik) {
+                console.log(pinfo);
+                this.calculator.backupStorage().then(function(storage) {
+                    this.setState({
+                        calculator: {
+                            model: model,
+                            storage: storage,
+                            pinfo: pinfo
+                        }
+                    });
+                }.bind(this));
+            } else {
+                this.setState({
+                    calculator: {
+                        model: model,
+                        storage: null,
+                        pinfo: null
+                    }
+                });
+            }
+        }.bind(this));
     }
     
     handleCalculatorDisconnected(e) {
         this.setState({
-            calculator_connected: false
+            calculator: null
         });
         
         this.calculator.autoConnect(this.handleCalculatorConnected);
@@ -193,9 +335,53 @@ export default class IDEEditor extends Component {
 
                     link.href = "data:application/zip;base64," + base64;
                     link.click();
+                });
                     
-                }.bind(this));
-                    
+                this.setState({
+                    projects: projects,
+                    locked: false
+                });
+            }.bind(this));
+        }
+    }
+    
+    handleProjectSendDevice(userdata) {
+        if (this.state.locked) {
+            return;
+        }
+
+        if (!this.simulatorRef) {
+            return;
+        }
+
+        let project_id = this.getProjectID(userdata);
+
+        if (project_id === -1) {
+            return;
+        }
+
+        if (this.state.projects[project_id].loaded) {
+            this.handleClaculatorSend(this.state.projects[project_id]);
+        } else {
+            let projects = this.state.projects;
+            projects[project_id].loading = true;
+            this.setState({
+                locked: true,
+                projects: projects
+            });
+            this.state.connector.loadProject(userdata, function(files) {
+                let project_id = this.getProjectID(files.name);
+                
+                if (project_id === -1) {
+                    return;
+                }
+                
+                let projects = this.state.projects;
+                
+                projects[project_id] = files;
+
+                this.handleClaculatorSend(projects[project_id]);
+                
                 this.setState({
                     projects: projects,
                     locked: false
@@ -1037,17 +1223,51 @@ export default class IDEEditor extends Component {
         }
     }
     
+    renderCalculatorContent() {
+        if (this.state.calculator === null) {
+            return (
+                <CalculatorSearch onClick={this.handleCalculatorConnect}/>
+            );
+        } else {
+            if (this.state.calculator.pinfo === null) {
+                return (
+                    <CalculatorError/>
+                );
+            }
+            
+            let files = [];
+            
+            if (this.state.calculator.storage !== null && this.state.calculator.storage.magik) {
+                for(let i = 0; i < this.state.calculator.storage.records.length; i++) {
+                    files.push(<CalculatorFile userdata={i} onDelete={this.handleCalculatorDelete} name={this.state.calculator.storage.records[i].name + "." + this.state.calculator.storage.records[i].type} />);
+                }
+            }
+            
+            return (
+                <>
+                    <CalculatorConnected/>
+                    <CalculatorInfoList>
+                        <CalculatorInfo name="Model" value={"N" + this.state.calculator.model} />
+                        <CalculatorInfo name="Epsilon version" value={this.state.calculator.pinfo.version} />
+                        <CalculatorInfo name="Epsilon commit" value={this.state.calculator.pinfo.commit} />
+                        <CalculatorInfo name="Omega version" value={this.state.calculator.pinfo.omega.installed ? this.state.calculator.pinfo.omega.version : "Not installed"} />
+                    </CalculatorInfoList>
+                    <CalculatorStorage onZipDownload={this.handleCalculatorZipDownload} locked={this.state.locked}>
+                        {files}
+                    </CalculatorStorage>
+                </>
+            )
+        }
+    }
+    
     renderCalculator(shown) {
         return (
             <LeftMenu shown={shown}>
-                <LeftMenuActions>
-                    <LeftMenuAction icon="search" onClick={this.handleCalculatorConnect}/>
-                </LeftMenuActions>
                 <LeftMenuTitle>
                     CALCULATOR
                 </LeftMenuTitle>
                 <LeftMenuContent>
-                    
+                    {this.renderCalculatorContent()}
                 </LeftMenuContent>
             </LeftMenu>
         );
@@ -1090,11 +1310,11 @@ export default class IDEEditor extends Component {
                 files.push(<File locked={this.state.locked} userdata={project.name} onRename={this.handleNewFileValidate} onCancel={this.handleNewFileCancel} name={".py"} renaming={true} />)
             }
 
-            content.push(<Project locked={this.state.locked} loading={project.loading} onZip={this.handleProjectZip} onRunSimu={this.handleProjectRunSimu} onSelect={this.handleProjectSelect} selected={selected} onRename={this.handleProjectRename} onRemove={this.handleProjectRemove} onNewFile={this.handleFileCreate} userdata={project.name} name={project.name}>{files}</Project>);
+            content.push(<Project nousb={this.state.calculator === null} locked={this.state.locked} loading={project.loading} onZip={this.handleProjectZip} onSendDevice={this.handleProjectSendDevice} onRunSimu={this.handleProjectRunSimu} onSelect={this.handleProjectSelect} selected={selected} onRename={this.handleProjectRename} onRemove={this.handleProjectRemove} onNewFile={this.handleFileCreate} userdata={project.name} name={project.name}>{files}</Project>);
         }
         
         if (this.state.creating_project === true) {
-            content.push(<Project locked={this.state.locked} selected={false} onRename={this.handleNewProjectValidate} onCancel={this.handleNewProjectCancel} renaming={true} name={""}>{files}</Project>);
+            content.push(<Project nousb={this.state.calculator === null} locked={this.state.locked} selected={false} onRename={this.handleNewProjectValidate} onCancel={this.handleNewProjectCancel} renaming={true} name={""}>{files}</Project>);
         }
         
         return (
@@ -1257,7 +1477,7 @@ export default class IDEEditor extends Component {
 
                 <BottomBar>
                     <BottomBarElement icon="play_arrow" hoverable={true} onClick={this.handleSimuReload}>Simulator</BottomBarElement>
-                    <BottomBarElement icon="usb" hoverable={true} locked={this.state.calculator === null}>Device</BottomBarElement>
+                    <BottomBarElement icon="usb" hoverable={true} locked={this.calculator === null} onClick={this.handleClaculatorSend}>Device</BottomBarElement>
                     <BottomBarElement icon="highlight_off" hoverable={true}>0</BottomBarElement>
                     <BottomBarElement right={true}>Powered by Omega</BottomBarElement>
                 </BottomBar>

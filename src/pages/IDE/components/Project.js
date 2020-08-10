@@ -27,6 +27,7 @@ export default class Project extends Component {
         this.handleContextMenu  = this.handleContextMenu.bind(this);
         this.handleContextClose = this.handleContextClose.bind(this);
         this.handleRunSimu      = this.handleRunSimu.bind(this);
+        this.handleSaveDevice   = this.handleSaveDevice.bind(this);
         this.handleZip          = this.handleZip.bind(this);
     }
 
@@ -130,6 +131,16 @@ export default class Project extends Component {
     stopBubble(event) {
         event.stopPropagation();
     }
+    
+    handleSaveDevice(event) {
+        this.stopBubble(event);
+        this.handleContextClose(event);
+
+        if (this.props.locked === true || this.props.nousb === true)
+            return;
+
+        this.props.onSendDevice(this.props.userdata);
+    }
 
     handleRunSimu(event) {
         this.stopBubble(event);
@@ -190,7 +201,7 @@ export default class Project extends Component {
                         <i className="editor__menu__element__icon material-icons">play_arrow</i>
                         <span className="editor__menu__element__name">Run in simulator</span>
                     </div>
-                    <div className="editor__menu__element">
+                    <div onClick={this.handleSaveDevice} className={"editor__menu__element" + (this.props.nousb ? " editor__menu__element-locked" : "")}>
                         <i className="editor__menu__element__icon material-icons">usb</i>
                         <span className="editor__menu__element__name">Send to device</span>
                     </div>
