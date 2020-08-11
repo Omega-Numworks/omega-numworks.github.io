@@ -116,7 +116,11 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
+    if (window.location.hostname != "localhost") {
+      firebase.analytics();
+    } else {
+      console.log("GA Disabled with localhost");
+    }
   </script>
   
 </html>
