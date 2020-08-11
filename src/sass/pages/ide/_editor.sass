@@ -1,0 +1,41 @@
+.content
+    margin-top: 0
+
+.editor
+    width: 100vw
+    height: 100vh
+    overflow: hidden
+
+    @import '_loading.sass'
+
+    &__panel
+        display: inline-block
+        width: 100%
+        &__monaco
+            width: calc(100vw - 48px)
+            height: calc(100vh - 35px - 22px)
+        @import '_topbar.sass'
+        @import '_greeting.sass'
+
+    &__leftmenu__shown ~ &__panel &__panel__monaco
+        width: calc(100vw - 48px - 256px)
+
+    &__panels
+        width: calc(100vw)
+        height: calc(100vh - 22px)
+        display: flex
+
+    @import '_popup.sass'
+    @import '_leftbar.sass'
+    @import '_leftmenu.sass'
+    @import '_bottombar.sass'
+    @import '_simulator.sass'
+    @import '_calculator.sass'
+    @import '_contextmenu.sass'
+
+@keyframes spinner
+    from
+        transform: rotate(0)
+    to
+        transform: rotate(360deg)
+

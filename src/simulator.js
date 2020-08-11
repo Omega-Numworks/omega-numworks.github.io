@@ -29,7 +29,7 @@ export default class PythonSimulator {
             for(var i in scripts_list) {
                 var script = scripts_list[i];
                 this.module.arguments.push("--code-script");
-                this.module.arguments.push(script.name + ":" + script.code);
+                this.module.arguments.push(script.name + ":" + script.content);
             }
         }
         
@@ -37,8 +37,6 @@ export default class PythonSimulator {
             this.module.arguments.push("--code-lock-on-console");
         
         Epsilon(this.module);
-        
-        console.log(this.module);
         
         if (keyboard) {
             var spans = calculator_element.querySelectorAll(".calculator__keyboard__nav__key,.calculator__keyboard__functions__key,.calculator__keyboard__digits__key");
@@ -57,7 +55,10 @@ export default class PythonSimulator {
     }
     
     stop() {
-        if (this.module) this.module._IonSimulatorEventsPushEvent(217);
+        if (this.module) 
+            if(this.module.asm)
+                this.module._IonSimulatorEventsPushEvent(217);
+        delete this.module;
         this.module = undefined;
     }
     

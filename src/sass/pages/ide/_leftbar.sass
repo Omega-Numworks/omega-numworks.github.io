@@ -1,0 +1,59 @@
+&__leftbar
+    user-select: none
+    display: inline-block
+    width: 48px
+    flex-basis: 48px
+    flex-shrink: 0
+    flex-grow: 0
+    height: calc(100vh - 22px)
+    background-color: #333333
+    position: relative
+    top: 0
+
+    &__container
+        position: absolute
+        &-top
+            top: 0
+        &-bottom
+            bottom: 0
+
+    &__icon
+        display: block
+        position: relative
+        width: 48px
+        height: 48px
+        color: #808080
+
+        &:hover
+            cursor: pointer
+            color: white
+
+        &__image
+            width: 30px
+            height: 30px
+            border-radius: 15px
+            display: inline-block
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+
+        &__icon
+            display: inline-block
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+            font-size: 24px
+
+        &-selected
+            color: white
+            width: 44px
+            border-left: 2px solid white
+        
+        &-locked
+            color: #555555
+            &:hover
+                color: #555555
+                cursor: not-allowed
+

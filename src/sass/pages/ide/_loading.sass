@@ -1,0 +1,49 @@
+
+&__loading
+    user-select: none
+    cursor: default
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 999
+    opacity: 1
+    transition: opacity 1s, width 1s step-end, height 1s step-end, top 1s step-end, left 1s step-end
+    width: 100%
+    height: 100%
+    background-color: #101010
+
+    &__content
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        color: #ffffff
+        text-align: center
+
+        &__spinner
+            font-size: 48px
+
+            animation-name: spinner
+            animation-iteration-count: infinite
+            animation-duration: 2s
+            animation-timing-function: ease-in-out
+
+        &__title
+            margin-bottom: 24px
+            font-size: 32px
+            font-family: $font-righteous
+            color: #fff
+        
+        &__funny
+            margin-top: 20px
+            font-style: italic
+            font-size: 12px
+            opacity: 0.7
+
+    &__hidden
+        opacity: 0
+        width: 0
+        top: -5000px
+        left: -5000px
+        height: 0
+

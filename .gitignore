@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 .firebase/**/*
 build
+pnpm-lock.yaml
+yarn.lock

@@ -11,7 +11,8 @@ export default class Calculator extends Component {
             keyboard: this.props.keyboard === undefined ? true : this.props.keyboard,
             scripts: this.props.scripts === undefined ? null : this.props.scripts,
             python: this.props.python === undefined ? false : this.props.python,
-            height: this.props.height === undefined ? "100vh" : this.props.height,
+            width: this.props.width,
+            height: (this.props.height === undefined && this.props.width === undefined) ? "100vh" : this.props.height,
             simulator: null
         };
         
@@ -22,6 +23,18 @@ export default class Calculator extends Component {
         
         document.addEventListener("reload-simu", function(e) {
             this.reloadScripts(e.detail.scripts);
+        }.bind(this), false);
+        
+        document.addEventListener("key-down", function(e) {
+            this.keyDown(e.detail.keynum);
+        }.bind(this), false);
+        
+        document.addEventListener("key-up", function(e) {
+            this.keyUp(e.detail.keynum);
+        }.bind(this), false);
+        
+        document.addEventListener("screenshot", function(e) {
+            this.screenshot();
         }.bind(this), false);
     }
     
@@ -49,6 +62,37 @@ export default class Calculator extends Component {
         }
     }
     
+    screenshot() {
+        var canvas = document.getElementById("canvas");
+        if (canvas && this.state.simulator.isLoaded) {
+            this.state.simulator.module._IonDisplayForceRefresh();
+
+            var link = document.createElement('a');
+
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
+            var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+            var dateTime = date + '--' + time;
+            
+            link.download = 'screenshot-' + dateTime + '.png';
+
+            link.href = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+            link.click();
+        }
+    }
+    
+    keyDown(num) {
+        if (this.state.simulator.isLoaded) {
+            this.state.simulator.module._IonSimulatorKeyboardKeyDown(num);
+        }
+    }
+    
+    keyUp(num) {
+        if (this.state.simulator.isLoaded) {
+            this.state.simulator.module._IonSimulatorKeyboardKeyUp(num);
+        }
+    }
+    
     componentWillUnmount() {
         this.state.simulator.stop();
         this.state.simulator.unload();
@@ -59,10 +103,25 @@ export default class Calculator extends Component {
     }
     
     render() {
+        
+        let style = {};
+        
+        if (this.state.height !== undefined) {
+            if (this.state.width !== undefined) {
+                style = {"maxWidth": this.state.width, "maxHeight": this.state.height};
+            } else {
+                style = {"maxHeight": this.state.height};
+            }
+        } else {
+            if (this.state.width !== undefined) {
+                style = {"maxWidth": this.state.width};
+            }
+        }
+        
         return (
-            <div className={"calculator" + (this.state.keyboard ? "" : " calculator__nokeyboard")} onClick={(e) => e.target.focus()}>
-                <img style={{"max-height": this.state.height}} className={"calculator__background" + (this.state.keyboard ? "" : " calculator__background__disabled")} src={ImgSimulatorBackground} alt="Red Ultra Swagg NumWorks Calculator"></img>
-                <canvas tabIndex="1" id="canvas" className={"calculator__screen" + (this.state.keyboard ? "" : " calculator__screen__nokeyboard")} onContextMenu={function(e){e.preventDefault()}}></canvas>
+            <div className={"calculator" + (this.state.keyboard ? "" : " calculator__nokeyboard")} onClick={(e) => e.target.focus()} style={(this.state.keyboard ? {} : style)} >
+                <img style={style} className={"calculator__background" + (this.state.keyboard ? "" : " calculator__background__disabled")} src={ImgSimulatorBackground} alt="Red Ultra Swagg NumWorks Calculator"></img>
+                <canvas tabIndex="1" id="canvas" style={(this.state.keyboard ? {} : style)} className={"calculator__screen" + (this.state.keyboard ? "" : " calculator__screen__nokeyboard")} onContextMenu={function(e){e.preventDefault()}}></canvas>
                 <div className={"calculator__keyboard" + (this.state.keyboard ? "" : " calculator__keyboard__disabled")}>
                     <div className="calculator__keyboard__nav">
                         <span className="calculator__keyboard__nav__key calculator__keyboard__nav__left" data-key="0"></span>
