@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import GithubConnector from "../GithubConnector";
 import { Button } from '@quentinguidee/react-jade-ui';
 
@@ -41,18 +40,14 @@ export default class IDEMain extends Component {
         
         if (this.state.connector.isLogged()) {
             accessButton = (
-                <Button to="/ide/editor" className="project-description__button" outline big>
-                    <div className="project-description__button__text">
-                        LAUNCH <i className="project-description__button__icon material-icons md-16">play_arrow</i>
-                    </div>
+                <Button to="/ide/editor" className="project-description__button" rightIcon='play_arrow' outline big>
+                    LAUNCH 
                 </Button>
             );
         } else {
             accessButton = (
-                <Button onClick={this.login} className="project-description__button" outline big>
-                    <div className="project-description__button__text">
-                        LOGIN WITH GITHUB <i className="project-description__button__icon material-icons md-16">play_arrow</i>
-                    </div>
+                <Button onClick={this.login} className="project-description__button" rightIcon='play_arrow' outline big>
+                        LOGIN WITH GITHUB
                 </Button>
             );
         }

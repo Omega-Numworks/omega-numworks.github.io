@@ -4,8 +4,7 @@ import ImgAtom from '../img/atom.png'
 import ImgRpn from '../img/rpn.png'
 import Img3ds from '../img/3ds.png'
 import { releases } from '../firmware/firmwares'
-import { Link } from 'react-router-dom'
-import { Button } from '@quentinguidee/react-jade-ui'
+import { Button, ButtonsGroup } from '@quentinguidee/react-jade-ui'
 import { FormattedMessage } from 'react-intl'
 
 export default class Home extends Component {
@@ -24,7 +23,6 @@ export default class Home extends Component {
     }
 
     render() {
-        
         var latest_id = 0
         for(var i = 0; i < releases.firmwares.length; i++) {
             if (releases.firmwares[i].name === releases.latest) {
@@ -48,10 +46,8 @@ export default class Home extends Component {
                     <h2 className="project-description__subtitle">
                         <FormattedMessage id="home.head.subtitle" defaultMessage="The next evolution of Epsilon." />
                     </h2>
-                    <Button to="/simulator" className="project-description__button" outline big>
-                        <div className="project-description__button__text">
-                            <FormattedMessage id="home.head.tryit" defaultMessage="TRY IT ONLINE" /> <i className="project-description__button__icon material-icons md-16">play_arrow</i>
-                        </div>
+                    <Button to="/simulator" className="project-description__button" rightIcon='play_arrow' outline big>
+                        <FormattedMessage id="home.head.tryit" defaultMessage="TRY IT ONLINE" />
                     </Button>
                     <p className="project-description__description">
                         <FormattedMessage id="home.head.description" defaultMessage="Omega is a fork of Numworks' Epsilon, the OS that runs on their calculator, which brings many features to it. Omega is for the people who want to add features to the calculator, but cannot because they have been rejected by Numworks (for reasons that are 100% understandable!)." />
@@ -177,31 +173,47 @@ export default class Home extends Component {
                 </div>
 
                 {/* Download */}
+                
                 <div className="download">
                     <div className="download__title"><FormattedMessage id="home.download.title" defaultMessage="Download" /></div>
                     <div className="download__version"><FormattedMessage id="home.download.subtitle" defaultMessage="Omega {version}" values={{version: this.getReleaseVersion(latest_version.name)}}/></div>
-                    <div className="releases__cards__card__actions">
-                        <a className="releases__cards__card__actions__subbutton" href={"https://github.com/Omega-Numworks/Omega/releases/tag/" + latest_version.name}>
-                            <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">code</i>
-                            <div className="releases__cards__card__actions__subbutton__text"><FormattedMessage id="home.download.github" defaultMessage="GITHUB" /></div>
-                        </a>
-                        <Link className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (latest_version.available && (latest_version.compatibility.N0110 || latest_version.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton-disabled")} to={"/install/" + latest_version.name}>
-                            <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (latest_version.available && (latest_version.compatibility.N0110 || latest_version.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>system_update_alt</i>
-                            <div className={"releases__cards__card__actions__subbutton__text" + (latest_version.available && (latest_version.compatibility.N0110 || latest_version.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton__text-disabled")}><FormattedMessage id="home.download.install" defaultMessage="INSTALL" /></div>
-                        </Link>
-                        <a className={"releases__cards__card__actions__subbutton" + (latest_version.compatibility.android && latest_version.available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.apk") : "#"}>
-                            <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (latest_version.compatibility.android && latest_version.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>android</i>
-                            <div className={"releases__cards__card__actions__subbutton__text" + (latest_version.compatibility.android && latest_version.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}><FormattedMessage id="home.download.android" defaultMessage="ANDROID" /></div>
-                        </a>
-                        <a className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (latest_version.compatibility.web && latest_version.available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={latest_version.compatibility.web && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.zip") : "#"}>
-                            <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (latest_version.compatibility.web && latest_version.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>web</i>
-                            <div className={"releases__cards__card__actions__subbutton__text" + (latest_version.compatibility.web && latest_version.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}><FormattedMessage id="home.download.web" defaultMessage="WEB" /></div>
-                        </a>
-                        <a className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (latest_version.compatibility["3ds"] && latest_version.available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={latest_version.compatibility["3ds"] && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.3dsx") : "#"}>
-                            <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (latest_version.compatibility["3ds"] && latest_version.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>gamepad</i>
-                            <div className={"releases__cards__card__actions__subbutton__text" + (latest_version.compatibility["3ds"] && latest_version.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}><FormattedMessage id="home.download.3ds" defaultMessage="3DS" /></div>
-                        </a>
-                    </div>
+                    
+                    <ButtonsGroup className="releases__cards__card__actions">
+                        <Button
+                            className="releases__cards__card__actions__subbutton"
+                            href={"https://github.com/Omega-Numworks/Omega/releases/tag/" + latest_version.name}
+                            leftIcon="code"
+                            isExternalLink>
+                            <FormattedMessage id="releases.github" defaultMessage="GITHUB" /></Button>
+                        <Button
+                            className="releases__cards__card__actions__subbutton"
+                            to={"/install/" + latest_version.name}
+                            leftIcon="system_update_alt"
+                            disabled={!(latest_version.available && (latest_version.compatibility.N0110 || latest_version.compatibility.N0100))}>
+                            <FormattedMessage id="releases.install" defaultMessage="INSTALL" />
+                        </Button>
+                        <Button
+                            className="releases__cards__card__actions__subbutton"
+                            href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.apk") : "#"}
+                            leftIcon="android"
+                            disabled={!(latest_version.compatibility.android && latest_version.available)}>
+                            <FormattedMessage id="releases.android" defaultMessage="ANDROID" />
+                        </Button>
+                        <Button
+                            className="releases__cards__card__actions__subbutton"
+                            href={latest_version.compatibility.web && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.zip") : "#"}
+                            leftIcon="web"
+                            disabled={!(latest_version.compatibility.web && latest_version.available)}>
+                            <FormattedMessage id="releases.web" defaultMessage="WEB" />
+                        </Button>
+                        <Button
+                            className="releases__cards__card__actions__subbutton"
+                            href={latest_version.compatibility["3ds"] && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.3dsx") : "#"}
+                            leftIcon="gamepad"
+                            disabled={!(latest_version.compatibility["3ds"] && latest_version.available)}>
+                            <FormattedMessage id="releases.3ds" defaultMessage="3DS" />
+                        </Button>
+                    </ButtonsGroup>
                 </div>
             </div>
         )
