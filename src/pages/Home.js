@@ -5,6 +5,7 @@ import ImgRpn from '../img/rpn.png'
 import Img3ds from '../img/3ds.png'
 import { releases } from '../firmware/firmwares'
 import { Link } from 'react-router-dom'
+import { Button } from '@quentinguidee/react-jade-ui'
 import { FormattedMessage } from 'react-intl'
 
 export default class Home extends Component {
@@ -47,11 +48,11 @@ export default class Home extends Component {
                     <h2 className="project-description__subtitle">
                         <FormattedMessage id="home.head.subtitle" defaultMessage="The next evolution of Epsilon." />
                     </h2>
-                    <Link to="/simulator" className="button button-outline button-big project-description__button">
+                    <Button to="/simulator" className="project-description__button" outline big>
                         <div className="project-description__button__text">
                             <FormattedMessage id="home.head.tryit" defaultMessage="TRY IT ONLINE" /> <i className="project-description__button__icon material-icons md-16">play_arrow</i>
                         </div>
-                    </Link>
+                    </Button>
                     <p className="project-description__description">
                         <FormattedMessage id="home.head.description" defaultMessage="Omega is a fork of Numworks' Epsilon, the OS that runs on their calculator, which brings many features to it. Omega is for the people who want to add features to the calculator, but cannot because they have been rejected by Numworks (for reasons that are 100% understandable!)." />
                     </p>
