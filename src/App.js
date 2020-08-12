@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import '@quentinguidee/react-jade-ui/dist/index.css'
 import './sass/omega.library.sass'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Toolbar from './components/Toolbar';
+import Header from './components/header/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Simulator from './pages/Simulator';
@@ -56,7 +57,7 @@ class App extends Component {
       <IntlProvider locale={this.state.locale} messages={this.state.messages}>
         <Router>
           <div className="body">
-            {!window.location.pathname.includes("/simulator/run") && <Toolbar />}
+            {!window.location.pathname.includes("/simulator/run") && <Header />}
             <Switch>
               <Route path="/simulator" component={Simulator} exact />
               <Route path="/simulator/run/full" component={FullSimulator} exact />
