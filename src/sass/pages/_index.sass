@@ -46,34 +46,100 @@
     background-repeat: no-repeat
     background-position: center
     background-color: rgb(73, 98, 114)
-    padding: 48px 0
+    padding: 32px
+    padding-top: 8px
+    padding-bottom: 64px
     text-align: center
-    color: white
+    color: #ffffff
 
     &__title
-        font-size: 32px
-        font-weight: 700
-        margin-bottom: 12px
-
-    &__version
-        font-size: 18px
         font-family: $font-righteous
-        margin-bottom: 24px
+        margin: 32px 0
+        margin-top: 64px
+        font-size: 24px
+        font-weight: 700
 
-    & .releases__cards__card__actions
+    &__cards
         display: inline-block
-        float: inherit
-        border: 1px solid #b3b3b3
-        user-select: none
-
-        &:hover
-            background-color: rgba(0, 0, 0, 0.2)
-
-        &__subbutton
-            color: #e7e7e7
-
+        &__card
+            margin-left: 16px
+            display: inline-block
+            cursor: pointer
+            padding: 12px 24px
+            border-radius: 6px
+            border: 1px solid #ffffff
+            transition: all 0.2s
+            line-height: 32px
+            text-shadow: 0 1px 12px rgba(0,0,0,0.13), 0 1px 8px rgba(0,0,0,0.2)
+            text-align: left
             &:hover
-                background-color: rgba(0, 0, 0, 0.4)
+                background-color: rgba(0, 0, 0, 0.2)
+            &__icon
+                display: inline-block
+                text-align: center
+                width: 40px
+                height: 40px
+                border-radius: 50%
+                background-color: rgba(255, 255, 255, 0.2)
+                vertical-align: middle
+                box-shadow: 0 1px 12px rgba(0,0,0,0.05), 0 1px 8px rgba(0,0,0,0.07)
+
+                & .material-icons
+                    font-size: 20px
+                    vertical-align: middle
+                    margin-top: 4px
+
+            &__content
+                margin-left: 20px
+                display: inline-block
+                vertical-align: middle
+                line-height: 1.4
+                &__text
+                    display: block
+                    font-weight: 500
+                &__description
+                    font-size: 13px
+                    display: block
+    
+    &__list
+        text-align: left
+        display: inline-block
+        border-radius: 6px
+        border: 1px solid #ffffff
+        margin: 0 16px
+        text-shadow: 0 1px 12px rgba(0,0,0,0.07), 0 1px 8px rgba(0,0,0,0.13)
+
+        &__item
+            cursor: pointer
+            height: 36px
+            line-height: 36px
+            transition: all 0.2s
+            border-radius: 5px
+            margin: 6px
+            &:hover
+                background-color: rgba(0, 0, 0, 0.2)
+            &__icon
+                margin: 0 6px
+                display: inline-block
+                text-align: center
+                width: 36px
+                height: 36px
+                line-height: 34px
+                border-radius: 50%
+                vertical-align: middle
+
+                & .material-icons
+                    font-size: 20px
+                    vertical-align: middle
+
+            &__text
+                vertical-align: middle
+                margin-right: 24px
+
+                &__extension
+                    font-family: $font-code
+                    float: right
+                    margin-right: 12px
 
 @media screen and ( max-width: 1100px )
     .feature
