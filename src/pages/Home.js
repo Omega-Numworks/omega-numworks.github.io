@@ -9,6 +9,7 @@ import { Button, ButtonsGroup } from '@quentinguidee/react-jade-ui'
 import { FormattedMessage } from 'react-intl'
 import Fade from "react-reveal";
 import { FeatureCard, FeatureCardTitle, FeatureCardRow, FeatureCardColumn, FeatureCardDescription, FeatureCardImage } from '../components/featurecard/FeatureCard'
+import { Link } from 'react-router-dom'
 
 export default class Home extends Component {
     constructor(props) {
@@ -167,7 +168,7 @@ export default class Home extends Component {
                 <div className="download" style={{backgroundImage: `url(${ImgBanner})`}}>
                     <h2 className="download__title">Installation d'Omega {this.getReleaseVersion(latest_version.name)}</h2>
                     <div className="download__cards">
-                        <div className="download__cards__card">
+                        <Link to="/install" className="download__cards__card">
                             <span className="download__cards__card__icon">
                                 <i className="material-icons">system_update_alt</i>
                             </span>
@@ -175,8 +176,8 @@ export default class Home extends Component {
                                 <span className="download__cards__card__content__text">Installation automatique</span>
                                 <span className="download__cards__card__content__description">Pour Numworks, via USB</span>
                             </div>
-                        </div>
-                        <div className="download__cards__card">
+                        </Link>
+                        <a href="https://play.google.com/store/apps/details?id=io.github.omega.simulator" target="_blank" rel="noopener noreferrer" className="download__cards__card">
                             <span className="download__cards__card__icon">
                                 <i className="material-icons">android</i>
                             </span>
@@ -184,75 +185,31 @@ export default class Home extends Component {
                                 <span className="download__cards__card__content__text">Simulateur Android</span>
                                 <span className="download__cards__card__content__description">Depuis Google Play</span>
                             </div>
-                        </div>
-                    </div>     
+                        </a>
+                    </div>
                     <div className="download__title">Téléchargement d'Omega {this.getReleaseVersion(latest_version.name)}</div>
                     <div className="download__list">
-                        <div className="download__list__item">
+                        <a href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/binpack-n0100.tgz") : "#"} className="download__list__item">
                             <span className="download__list__item__icon"><i className="material-icons">get_app</i></span>
                             <span className="download__list__item__text">Binpack n0100 <span className="download__list__item__text__extension">.tgz</span></span>
-                        </div>
-                        <div className="download__list__item">
+                        </a>
+                        <a href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/binpack-n0110.tgz") : "#"} className="download__list__item">
                             <span className="download__list__item__icon"><i className="material-icons">get_app</i></span>
                             <span className="download__list__item__text">Binpack n0110 <span className="download__list__item__text__extension">.tgz</span></span>
-                        </div>
-                        <div className="download__list__item">
+                        </a>
+                        <a href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.apk") : "#"} className="download__list__item">
                             <span className="download__list__item__icon"><i className="material-icons">android</i></span>
                             <span className="download__list__item__text">Simulateur Android <span className="download__list__item__text__extension">.apk</span></span>
-                        </div>
-                        <div className="download__list__item">
+                        </a>
+                        <a href={latest_version.compatibility.web && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.zip") : "#"} className="download__list__item">
                             <span className="download__list__item__icon"><i className="material-icons">web</i></span>
                             <span className="download__list__item__text">Simulateur Web <span className="download__list__item__text__extension">.zip</span></span>
-                        </div>
-                        <div className="download__list__item">
+                        </a>
+                        <a href={latest_version.compatibility["3ds"] && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.3dsx") : "#"} className="download__list__item">
                             <span className="download__list__item__icon"><i className="material-icons">gamepad</i></span>
                             <span className="download__list__item__text">Simulateur 3DS <span className="download__list__item__text__extension">.3dsx</span></span>
-                        </div>
+                        </a>
                     </div>
-                </div>
-
-                {/* Download */}
-                
-                <div className="download" style={{display: "none", backgroundImage: `url(${ImgBanner})`}}>
-                    <div className="download__title"><FormattedMessage id="home.download.title" defaultMessage="Download" /></div>
-                    <div className="download__version"><FormattedMessage id="home.download.subtitle" defaultMessage="Omega {version}" values={{version: this.getReleaseVersion(latest_version.name)}}/></div>
-                    
-                    <ButtonsGroup className="releases__cards__card__actions">
-                        <Button
-                            className="releases__cards__card__actions__subbutton"
-                            href={"https://github.com/Omega-Numworks/Omega/releases/tag/" + latest_version.name}
-                            leftIcon="code"
-                            isExternalLink>
-                            <FormattedMessage id="releases.github" defaultMessage="GITHUB" /></Button>
-                        <Button
-                            className="releases__cards__card__actions__subbutton"
-                            to={"/install/" + latest_version.name}
-                            leftIcon="system_update_alt"
-                            disabled={!(latest_version.available && (latest_version.compatibility.N0110 || latest_version.compatibility.N0100))}>
-                            <FormattedMessage id="releases.install" defaultMessage="INSTALL" />
-                        </Button>
-                        <Button
-                            className="releases__cards__card__actions__subbutton"
-                            href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.apk") : "#"}
-                            leftIcon="android"
-                            disabled={!(latest_version.compatibility.android && latest_version.available)}>
-                            <FormattedMessage id="releases.android" defaultMessage="ANDROID" />
-                        </Button>
-                        <Button
-                            className="releases__cards__card__actions__subbutton"
-                            href={latest_version.compatibility.web && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.zip") : "#"}
-                            leftIcon="web"
-                            disabled={!(latest_version.compatibility.web && latest_version.available)}>
-                            <FormattedMessage id="releases.web" defaultMessage="WEB" />
-                        </Button>
-                        <Button
-                            className="releases__cards__card__actions__subbutton"
-                            href={latest_version.compatibility["3ds"] && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.3dsx") : "#"}
-                            leftIcon="gamepad"
-                            disabled={!(latest_version.compatibility["3ds"] && latest_version.available)}>
-                            <FormattedMessage id="releases.3ds" defaultMessage="3DS" />
-                        </Button>
-                    </ButtonsGroup>
                 </div>
             </div>
         )
