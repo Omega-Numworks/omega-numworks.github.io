@@ -37,7 +37,7 @@ export default class Home extends Component {
         var latest_version = releases.firmwares[latest_id];
         
         return (
-            <div className="content">
+            <div className="content content-home">
                 {/* Parallax */}
                 {/*<div className="parallax"></div>*/}
 

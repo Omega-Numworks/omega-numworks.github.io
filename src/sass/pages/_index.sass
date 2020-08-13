@@ -107,6 +107,7 @@
         border-radius: 6px
         border: 1px solid #ffffff
         margin: 0 16px
+        padding: 6px 0
         text-shadow: 0 1px 12px rgba(0,0,0,0.07), 0 1px 8px rgba(0,0,0,0.13)
 
         &__item
@@ -114,8 +115,8 @@
             height: 36px
             line-height: 36px
             transition: all 0.2s
-            border-radius: 5px
-            margin: 6px
+            border-radius: 4px
+            margin: 0 6px
             &:hover
                 background-color: rgba(0, 0, 0, 0.2)
             &__icon
@@ -141,29 +142,39 @@
                     float: right
                     margin-right: 12px
 
-@media screen and ( max-width: 1100px )
-    .feature
-        padding: 0 calc(15% - 16px)
-        padding-top: 16px
-
-        &-darkgray
-            padding-bottom: 16px
-
+@media screen and ( min-width: 1400px )
     .project-description
         &__description
             padding: 32px 15%
 
+    .content-home .featurecard-row
+        padding: 0 calc(15% - 16px)
+@media screen and ( max-width: 1000px )
+    .content-home .featurecard__imagewrapper__image
+        height: 240px
+
 @media screen and ( max-width: 800px )
-    .feature
-        padding: 0 calc(32px - 16px)
-        padding-top: 16px
-
-        &-darkgray
-            padding-bottom: 16px
-
     .project-description
         &__description
             padding: 32px 32px
+    
+    .content-home .featurecard
+        &-row
+            flex-direction: column
+
+        &-column
+            padding-right: 0
+            padding-bottom: 24px
+            &:last-child
+                padding-bottom: 0
+
+@media screen and ( max-width: 700px )
+    .content-home .download__cards__card
+        display: block
+        margin-bottom: 16px
+        margin-left: 0
+        &:last-child
+            margin-bottom: 0
 
 @media screen and ( max-width: 680px )
     .project-description
@@ -175,34 +186,3 @@
         &__description
             font-size: 16px
             margin-top: 64px
-
-    .feature
-        &-mobile
-            display: inline-block
-        &-desktop
-            display: none
-
-        &__content
-            width: 100%
-            &__title
-                padding-top: 16px
-            &__description
-                padding-bottom: 0
-
-        &__images
-            margin-left: 5%
-            width: 90%
-            text-align: center
-            display: block
-
-            &__image
-                width: 90%
-
-@media screen and ( max-width: 500px )
-    .feature
-        &__images
-            margin-left: 0
-            width: 100%
-            &__image
-                margin-top: 8px
-                margin-bottom: 8px
