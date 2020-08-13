@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GithubConnector from "../GithubConnector";
+import ImgBanner from '../img/banner.png'
 import { Button } from '@quentinguidee/react-jade-ui';
 
 export default class IDEMain extends Component {
@@ -54,7 +55,7 @@ export default class IDEMain extends Component {
         
         return (
             <div className="content">
-                <div className="project-description">
+                <div className="project-description" style={{backgroundImage: `url(${ImgBanner})`}}>
                     <h1 className="project-description__title">
                         Python IDE
                     </h1>

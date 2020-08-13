@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ImgBanner from '../img/banner.png'
 import ImgSymbolicCalculation from '../img/symbolic-calculation.png'
 import ImgAtom from '../img/atom.png'
 import ImgRpn from '../img/rpn.png'
@@ -6,6 +7,7 @@ import Img3ds from '../img/3ds.png'
 import { releases } from '../firmware/firmwares'
 import { Button, ButtonsGroup } from '@quentinguidee/react-jade-ui'
 import { FormattedMessage } from 'react-intl'
+import { FeatureCard, FeatureCardTitle, FeatureCardRow, FeatureCardColumn, FeatureCardDescription, FeatureCardImage } from '../components/featurecard/FeatureCard'
 
 export default class Home extends Component {
     constructor(props) {
@@ -39,7 +41,8 @@ export default class Home extends Component {
                 {/*<div className="parallax"></div>*/}
 
                 {/* Project description */}
-                <div className="project-description">
+                <div className="project-description" style={{backgroundImage: `url(${ImgBanner})`}}>
+                    {/* Photo by https://unsplash.com/@eberhardgross?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText eberhard grossgasteiger on https://unsplash.com/s/photos/abstract?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText Unsplash */}
                     <h1 className="project-description__title">
                         <FormattedMessage id="home.head.title" defaultMessage="Omega" />
                     </h1>
@@ -55,126 +58,108 @@ export default class Home extends Component {
                     {/* <h2 className="mb-3">A whole new set of features</h2> */}
                 </div>
 
-                {/* Symbolic computation */}
-                <div className="feature feature-white">
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.symbolic.name" defaultMessage="Symbolic computation" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.symbolic.description" defaultMessage="Symbolic computation was removed from Epsilon in version 11.2. Omega reintroduces that feature." />
-                        </p>
-                    </div>
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="Symbolic Calculation" src={ImgSymbolicCalculation} />
-                    </div>
-                </div>
+                <div style={ { height: "16px" } }></div>
 
-                {/* Periodic table */}
-                <div className="feature feature-gray feature-desktop">
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="Atom" src={ImgAtom} />
-                    </div>
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.atom.name" defaultMessage="Periodic table" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.atom.description" defaultMessage="Inspired by the TI83PCE's periodic table app, Omega's periodic table is clean and simple to use." />
-                        </p>
-                    </div>
-                </div>
+                <FeatureCardRow>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                Moteur de thème
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <ul>
+                                    <li>Thème Omega clair</li>
+                                    <li>Thème Omega sombre</li>
+                                    <li>Thème Epsilon clair</li>
+                                    <li>Thème Epsilon sombre</li>
+                                    <li>Thèmes communautaires</li>
+                                </ul>
+                            </FeatureCardDescription>
+                        </FeatureCard>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                Applications externes
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                Installez des applications communautaires au vol grâce à External. Comprends aussi KhiCAS et différents émulateurs.
+                            </FeatureCardDescription>
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                <FormattedMessage id="home.features.symbolic.name" defaultMessage="Symbolic computation" />
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <FormattedMessage id="home.features.symbolic.description" defaultMessage="Symbolic computation was removed from Epsilon in version 11.2. Omega reintroduces that feature." />
+                            </FeatureCardDescription>
+                            <FeatureCardImage src={ImgSymbolicCalculation} alt="Symbolic Calculation" />
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                </FeatureCardRow>
 
-                {/* Periodic table */}
-                <div className="feature feature-gray feature-mobile">
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.atom.name" defaultMessage="Periodic table" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.atom.description" defaultMessage="Inspired by the TI83PCE's periodic table app, Omega's periodic table is clean and simple to use." />
-                        </p>
-                    </div>
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="Atom" src={ImgAtom} />
-                    </div>
-                </div>
+                <FeatureCardRow>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                <FormattedMessage id="home.features.atom.name" defaultMessage="Periodic table" />
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <FormattedMessage id="home.features.atom.description" defaultMessage="Inspired by the TI83PCE's periodic table app, Omega's periodic table is clean and simple to use." />
+                            </FeatureCardDescription>
+                            <FeatureCardImage src={ImgAtom} alt="Atom" />
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                <FormattedMessage id="home.features.rpn.name" defaultMessage="RPN" />
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <FormattedMessage id="home.features.rpn.description" defaultMessage="Omega supports using Reverse Polish Notation to do calculations." />
+                            </FeatureCardDescription>
+                            <FeatureCardImage src={ImgRpn} alt="RPN" />
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                </FeatureCardRow>
 
-                {/* KhiCAS */}
-                {/* <div className="feature feature-white">
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">Support of KhiCAS and external apps</h3>
-                        <p className="feature__content__description">
-                            Delta, another forked firmware which supports external apps, is fully integrated into Omega. This mean you can run KhiCAS or Nofrendo on your Numworks calculator.
-                        </p>
-                        <p className="feature__content__small">Due to hardware limitations, this is only possible on n0110.</p>
-                    </div>
-                    <div className="feature__images">
-                        <img className="feature__images__image" src="img/giac.png"/>
-                    </div>
-                </div> */}
-                
-                {/* RPN */}
-                <div className="feature feature-white">
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.rpn.name" defaultMessage="RPN" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.rpn.description" defaultMessage="Omega supports using Reverse Polish Notation to do calculations." />
-                        </p>
-                    </div>
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="RPN" src={ImgRpn} />
-                    </div>
-                </div>
+                <FeatureCardRow>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available on the Nintendo 3DS" />
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <FormattedMessage id="home.features.3ds.description" defaultMessage="Omega is avaliable and fully usable on the Nintendo 3DS." />
+                            </FeatureCardDescription>
+                            <FeatureCardImage src={Img3ds} alt="3ds" />
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                Et bien plus !
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <ul>
+                                    <li>Constantes physiques et chimiques</li>
+                                    <li>Méthode open et module os</li>
+                                    <li>Simulateur Android avec sauvegarde des scripts</li>
+                                    <li>Support du Hongrois</li>
+                                    <li>Paramètres d'accessibilité</li>
+                                    <li>Choix du symbole de multiplication</li>
+                                    <li>…</li>
+                                </ul>
+                            </FeatureCardDescription>
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                </FeatureCardRow>
 
-                {/* 3DS */}
-                <div className="feature feature-gray feature-desktop">
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="Atom" src={Img3ds} />
-                    </div>
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available on the Nintendo 3DS" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.3ds.description" defaultMessage="Omega is avaliable and fully usable on the Nintendo 3DS." />
-                        </p>
-                    </div>
-                </div>
-
-                {/* 3DS */}
-                <div className="feature feature-gray feature-mobile">
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available on the Nintendo 3DS" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.3ds.description" defaultMessage="Omega is avaliable and fully usable on the Nintendo 3DS." />
-                        </p>
-                    </div>
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="Atom" src={Img3ds} />
-                    </div>
-                </div>
-                
-                {/* And more */}
-                <div className="feature feature-darkgray">
-                    <div className="feature__content feature__content-full">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.more.name" defaultMessage="And more!" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.more.description" defaultMessage="A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames..." />
-                        </p>
-                        <div style={ {height: "24"} }></div>
-                    </div>
-                </div>
+                <div style={ { height: "16px" } }></div>
 
                 {/* Download */}
                 
-                <div className="download">
+                <div className="download" style={{backgroundImage: `url(${ImgBanner})`}}>
                     <div className="download__title"><FormattedMessage id="home.download.title" defaultMessage="Download" /></div>
                     <div className="download__version"><FormattedMessage id="home.download.subtitle" defaultMessage="Omega {version}" values={{version: this.getReleaseVersion(latest_version.name)}}/></div>
                     

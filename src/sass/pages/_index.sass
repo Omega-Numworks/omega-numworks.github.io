@@ -1,7 +1,20 @@
 .project-description
-    background-color: #c53431
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
     padding-top: 64px
     text-align: center
+    overflow: hidden
+    position: relative
+    
+    // PARALLAX
+    // background-attachment: fixed
+
+    &__img
+        z-index: -2
+        position: absolute
+        top: 0
+        left: 0
 
     &__title
         padding-top: 48px
@@ -24,106 +37,43 @@
         color: #656565
         background-color: #F4F4F4
         text-align: justify
-        padding: 32px 25%
+        padding: 32px 64px
         margin-top: 96px
         line-height: 22px
 
-.feature
-    overflow: hidden
-    padding: 0 calc(25% - 16px)
-    padding-top: 16px
-    vertical-align: middle
-
-    &-mobile
-        display: none
-    &-desktop
-        display: inline-block
-
-    &-white
-        background-color: #ffffff
-
-    &-gray
-        background-color: #F4F4F4
-
-    &-darkgray
-        background-color: #e2e2e2
-        padding-bottom: 16px
-
-    &__content
-        display: inline-block
-        width: 50%
-        vertical-align: top
-        //padding: 0 16px
-        box-sizing: border-box
-
-        &-full
-            width: 100%
-
-        &__title
-            font-size: 22px
-            font-weight: 700
-            text-align: left
-            padding-top: 48px
-            color: #747474
-
-        &__description
-            font-style: 16px
-            text-align: left
-            margin-top: 16px
-            line-height: 20px
-            margin-bottom: 12px
-            padding-bottom: 32px
-            color: #707070
-
-        &__small
-            margin-top: 12px
-            margin-bottom: 42px
-            font-size: 12px
-            color: rgb(150, 150, 150)
-
-    &__images
-        display: inline-block
-        width: 50%
-        vertical-align: top
-        box-sizing: border-box
-        margin-bottom: -12px
-
-        &__image
-            overflow: hidden
-            width: 100%
-
 .download
-    background-color: #343434
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+    background-color: rgb(73, 98, 114)
     padding: 48px 0
     text-align: center
+    color: white
 
     &__title
         font-size: 32px
         font-weight: 700
-        color: #A8A8A8
         margin-bottom: 12px
 
     &__version
         font-size: 18px
         font-family: $font-righteous
-        color: #A8A8A8
         margin-bottom: 24px
 
     & .releases__cards__card__actions
         display: inline-block
         float: inherit
-        border: 1px solid #9e9e9e
-        color: #BABABA
+        border: 1px solid #b3b3b3
         user-select: none
 
         &:hover
-            background-color: #2e2e2e
+            background-color: rgba(0, 0, 0, 0.2)
 
         &__subbutton
-            color: #BABABA
+            color: #e7e7e7
 
             &:hover
-                background-color: #202020
+                background-color: rgba(0, 0, 0, 0.4)
 
 @media screen and ( max-width: 1100px )
     .feature
