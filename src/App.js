@@ -15,6 +15,7 @@ import IDEEditor from './pages/omega-ide/src/ide/Editor';
 import IDESimulator from './pages/omega-ide/src/ide/Simulator';
 import NotFound from './pages/NotFound';
 import GithubConnector from './GithubConnector';
+import { CookiesConsent } from '@quentinguidee/react-jade-ui'
 
 import { IntlProvider } from "react-intl";
 import translations from './i18n/locales'
@@ -57,7 +58,11 @@ class App extends Component {
       <IntlProvider locale={this.state.locale} messages={this.state.messages}>
         <Router>
           <div className="body">
-            {!window.location.pathname.includes("/simulator/run") && <Header />}
+            {!window.location.pathname.includes("/simulator/run") && <>
+              <CookiesConsent toPolicy="/policy" />
+              {/* // TRANSLATIONS : <CookiesConsent toPolicy="/policy" text="Oui" learnMore="Test" gotIt="GotIt" /> */}
+              <Header />
+            </>}
             <Switch>
               <Route path="/simulator" component={Simulator} exact />
               <Route path="/simulator/run/full" component={FullSimulator} exact />

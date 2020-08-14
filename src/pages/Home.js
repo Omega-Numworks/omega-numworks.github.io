@@ -5,7 +5,7 @@ import ImgAtom from '../img/atom.png'
 import ImgRpn from '../img/rpn.png'
 import Img3ds from '../img/3ds.png'
 import { releases } from '../firmware/firmwares'
-import { Button, ButtonsGroup } from '@quentinguidee/react-jade-ui'
+import { Button } from '@quentinguidee/react-jade-ui'
 import { FormattedMessage } from 'react-intl'
 import Fade from "react-reveal";
 import { FeatureCard, FeatureCardTitle, FeatureCardRow, FeatureCardColumn, FeatureCardDescription, FeatureCardImage } from '../components/featurecard/FeatureCard'
@@ -187,7 +187,7 @@ export default class Home extends Component {
                             </div>
                         </a>
                     </div>
-                    <div className="download__title">Téléchargement d'Omega {this.getReleaseVersion(latest_version.name)}</div>
+                    <div className="download__title">Autres téléchargements</div>
                     <div className="download__list">
                         <a href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/binpack-n0100.tgz") : "#"} className="download__list__item">
                             <span className="download__list__item__icon"><i className="material-icons">get_app</i></span>

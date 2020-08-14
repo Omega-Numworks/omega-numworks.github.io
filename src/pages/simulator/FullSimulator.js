@@ -17,8 +17,7 @@ export default class Simulator extends Component {
     }
 
     render() {
-        document.getElementsByClassName("cc-bottom")[0].style.display = "none";
-        document.getElementsByClassName("cc-grower")[0].style.display = "none";
+        if (document.getElementsByClassName("cookiesconsent").length > 0)   document.getElementsByClassName("cookiesconsent")[0].style.display = "none";
 
         if (this.state.loaded) {
             if (this.state.error) {
