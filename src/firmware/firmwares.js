@@ -1,6 +1,27 @@
 export const releases = {
-	"latest": "O1.20.2-E14",
+	"latest": "O1.20.3-E14",
 	"firmwares": [{
+	    "name": "O1.20.3-E14",
+	    "commit": "46658f7077045b28906e257f544414e41f62381a",
+	    "changelog": [
+			"Change: Constants based on the CODATA 2018",
+			"Change: Visual keyboard only change state on keydown",
+			"Change: USERNAME to OMEGA_USERNAME",
+	    ],
+		"compatibility": {
+			"N0110": true,
+			"N0100": true,
+			"web": true,
+			"android": true,
+			"3ds": true
+		},
+		"available": true,
+		"langages": {
+		    "0100": [
+		        "en", "fr", "nl", "pt", "it", "de", "es", "hu"
+		    ]
+		}
+	}, {
 	    "name": "O1.20.2-E14",
 	    "commit": "0235de80101785c6dedf0b7f4651584cfd56cbad",
 	    "changelog": [
