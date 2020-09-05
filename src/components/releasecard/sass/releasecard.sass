@@ -87,14 +87,7 @@
     .card
         margin: 16px 0
 
-@media screen and ( max-width: 700px )
-    .card
-        &__actions
-            &__subbutton
-                &-hide-on-mobile
-                    display: none
-
-@media screen and ( max-width: 600px )
+@media screen and ( max-width: 820px )
     .card
         &__title
             display: block
@@ -103,16 +96,24 @@
             opacity: 1
             padding: 0 12px
         &__actions
+            // Comment this line to get a scrollable row:
+            display: table
             float: inherit
-            &__subbutton
-                &-hide-on-mobile
-        &__changelog
-            font-size: 13px
+            max-width: max-content
             &__ul
                 &__li
                     margin: 16px 8px
 
+@media screen and ( max-width: 600px )
+    .card
+        &__actions
+            font-size: 13px
+        &__changelog
+            font-size: 15px
+
 @media screen and ( max-width: 400px )
     .card
         &__actions
+            font-size: 13px
+        &__changelog
             font-size: 13px

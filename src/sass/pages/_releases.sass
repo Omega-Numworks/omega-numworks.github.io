@@ -29,42 +29,23 @@
 .md-16
     font-size: 16px
 
-@media screen and ( max-width: 900px )
-    .releases__cards
-        margin: 0 32px
-        &__card
-            margin: 16px 0
+@media screen and ( max-width: 1080px )
+    .releases
+        &__banner
+            padding: 48px 100px
+        &__cards
+            margin: 0 100px
 
-@media screen and ( max-width: 700px )
-    .releases__cards
-        &__card
-            &__actions
-                &__subbutton
-                    &-hide-on-mobile
-                        display: none
-
-@media screen and ( max-width: 600px )
-    .releases__cards
-        &__card
-            &__title
-                display: block
-            &__subtitle
-                right: 24px
-                opacity: 1
-                padding: 0 12px
-            &__actions
-                float: inherit
-                &__subbutton
-                    &-hide-on-mobile
-            &__changelog
-                font-size: 13px
-                &__ul
-                    &__li
-                        margin: 16px 8px
+@media screen and ( max-width: 975px )
+    .releases
+        &__banner
+            padding: 48px 32px
+        &__cards
+            margin: 0 32px
 
 @media screen and ( max-width: 400px )
-    .releases__cards
-        margin: 0 16px
-        &__card
-            &__actions
-                font-size: 13px
+    .releases
+        &__banner
+            padding: 48px 16px
+        &__cards
+            margin: 0 16px
