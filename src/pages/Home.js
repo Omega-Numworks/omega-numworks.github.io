@@ -103,7 +103,8 @@ export default class Home extends Component {
                 </FeatureCardRow>
                 </Fade>
 
-                <Fade bottom>
+                {/* <Fade bottom> */}
+                <Fade>
                 <FeatureCardRow>
                     <FeatureCardColumn>
                         <FeatureCard>
@@ -130,7 +131,7 @@ export default class Home extends Component {
                 </FeatureCardRow>
                 </Fade>
 
-                <Fade bottom>
+                <Fade>
                 <FeatureCardRow>
                     <FeatureCardColumn>
                         <FeatureCard>
