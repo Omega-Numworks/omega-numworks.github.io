@@ -10,8 +10,8 @@ export default class Beta extends Component {
                     <div className="releases__banner__title">Omega 1.21</div>
                     <div className="releases__banner__description">Bienvenue dans le programme bêta d'Omega.</div>
                     <ButtonsGroup style={{ display: "inline-block" }}>
-                        <Button leftIcon="mail">REPORT A BUG BY MAIL</Button>
-                        <Button leftIcon="web">REPORT A BUG ON DISCORD</Button>
+                        <Button href="mailto:getomega.pro@gmail.com" leftIcon="mail">REPORT A BUG BY MAIL</Button>
+                        <Button href="https://discord.gg/X2TWhh9" leftIcon="web">REPORT A BUG ON DISCORD</Button>
                     </ButtonsGroup>
                 </div>
                 <div style={ { height: "16px" } }></div>
