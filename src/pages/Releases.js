@@ -3,6 +3,7 @@ import { releases } from '../firmware/firmwares'
 import { FormattedMessage } from 'react-intl'
 import { Button, ButtonsGroup } from '@quentinguidee/react-jade-ui';
 import ReleaseCard from '../components/releasecard/ReleaseCard';
+import './sass/releases.sass'
 
 export default class Releases extends Component {
     constructor(props) {

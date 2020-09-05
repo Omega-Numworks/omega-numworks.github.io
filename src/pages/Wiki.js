@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './sass/wiki.sass'
 
 export default class Wiki extends Component {
     render() {

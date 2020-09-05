@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ImgSadCalculator from '../img/sad-calculator.png'
 import { FormattedMessage } from 'react-intl'
+import './sass/notfound.sass'
 
 export default class NotFound extends Component {
     constructor(props) {

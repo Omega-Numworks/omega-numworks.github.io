@@ -10,6 +10,7 @@ import { FormattedMessage } from 'react-intl'
 import Fade from "react-reveal";
 import { FeatureCard, FeatureCardTitle, FeatureCardRow, FeatureCardColumn, FeatureCardDescription, FeatureCardImage } from '../components/featurecard/FeatureCard'
 import { Link } from 'react-router-dom'
+import './sass/home.sass'
 
 export default class Home extends Component {
     constructor(props) {

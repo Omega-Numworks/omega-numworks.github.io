@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './sass/simulator.sass'
 
 export default class Simulator extends Component {
     constructor(props) {

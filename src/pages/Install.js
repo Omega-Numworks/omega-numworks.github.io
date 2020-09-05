@@ -9,6 +9,7 @@ import ImgCalculatorCable from '../img/calculator-cable.png'
 import ImgExternal from '../img/external_icon.png'
 import ImgNotifications from '../img/notification_icon.png'
 import Installer from '../dfu/installer'
+import './sass/installer.sass'
 
 const LANG_TO_FLAGS = {
     "en": "🇺🇸",

@@ -3,7 +3,7 @@ import '@quentinguidee/react-jade-ui/dist/index.css'
 import './sass/omega.library.sass'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/header/Header';
-import Footer from './components/Footer';
+import Footer from './components/footer/Footer';
 import Home from './pages/Home';
 import Simulator from './pages/Simulator';
 import FullSimulator from './pages/simulator/FullSimulator';

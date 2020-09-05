@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
-import translations from '../i18n/locales'
+import translations from '../../i18n/locales'
+import './sass/footer.sass'
 
 export default class Footer extends Component {
     constructor(props) {
