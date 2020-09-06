@@ -4,18 +4,7 @@
 @import '_fonts.sass'
 @import '_animations.sass'
 
-@import 'components/_header.sass'
-@import 'components/_footer.sass'
-@import 'components/_calculator.sass'
-@import 'components/_button.sass'
-
-@import 'pages/_index.sass'
-@import 'pages/_policy.sass'
-@import 'pages/_releases.sass'
-@import 'pages/_installer.sass'
-@import 'pages/_simulator.sass'
-@import 'pages/_notfound.sass'
-@import 'pages/_wiki.sass'
+@import 'variables.omega.library'
 
 body, .body
     display: flex
@@ -28,4 +17,5 @@ body, .body
 
 @media screen and ( max-width: 1000px )
     .content
-        margin-top: 64px
+        // TODO: Remove @media from omega-ide
+        margin-top: 0 !important

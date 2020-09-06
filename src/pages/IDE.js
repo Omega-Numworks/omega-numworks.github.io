@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import GithubConnector from "../GithubConnector";
+import ImgBanner from '../img/banner.png';
+import ImgIDE from '../img/ide.png';
+import { Button } from '@quentinguidee/react-jade-ui';
+import { Fade } from 'react-reveal';
+import { FeatureCardRow, FeatureCardColumn, FeatureCard, FeatureCardTitle, FeatureCardDescription, FeatureCardImage } from '../components/featurecard/FeatureCard';
 
 export default class IDEMain extends Component {
     constructor(props) {
@@ -40,38 +44,88 @@ export default class IDEMain extends Component {
         
         if (this.state.connector.isLogged()) {
             accessButton = (
-                <Link to="/ide/editor" className="button button-outline button-big project-description__button">
-                    <div className="project-description__button__text">
-                        LAUNCH <i className="project-description__button__icon material-icons md-16">play_arrow</i>
-                    </div>
-                </Link>
+                <Button to="/ide/editor" className="project-description__button" rightIcon='play_arrow' outline big>
+                    LAUNCH 
+                </Button>
             );
         } else {
             accessButton = (
-                <div onClick={this.login} className="button button-outline button-big project-description__button">
-                    <div className="project-description__button__text">
-                        LOGIN WITH GITHUB <i className="project-description__button__icon material-icons md-16">play_arrow</i>
-                    </div>
-                </div>
+                <Button onClick={this.login} className="project-description__button" rightIcon='play_arrow' outline big>
+                        LOGIN WITH GITHUB
+                </Button>
             );
         }
         
         return (
-            <div className="content">
-                <div className="project-description">
+            <div className="content content-home">
+                <div className="project-description" style={{backgroundImage: `url(${ImgBanner})`}}>
                     <h1 className="project-description__title">
-                        Python IDE
+                        Omega IDE
                     </h1>
                     <h2 className="project-description__subtitle">
                         An online Python IDE.
                     </h2>
                     {accessButton}
                     <p className="project-description__description">
-                        DESCRIPTION HERE
+                        Omega IDE est un éditeur de scripts python rendant la programmation Python pour Numworks plus facile que jamais.
+                        Cet IDE fonctionne aussi bien avec ou sans Omega installé.
                     </p>
-                    
-                    {/* <h2 className="mb-3">A whole new set of features</h2> */}
                 </div>
+
+                <div style={ { height: "16px" } }></div>
+
+                <Fade>
+                <FeatureCardRow>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                Interface 
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                L'interface est facile d'utilisation et dispose de deux thèmes : un thème Omega et un thème VSCode.
+                            </FeatureCardDescription>
+                            <FeatureCardImage src={ImgIDE} />
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                Testez en toute simplicité
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                Avec Omega IDE, vous pouvez tester vos scripts Python directement dans le simulateur Omega, ou en les installant en quelques secondes sur la calculatrice.
+                            </FeatureCardDescription>
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                </FeatureCardRow>
+                </Fade>
+
+                <Fade>
+                <FeatureCardRow>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                Projets multi-fichiers
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                L'éditeur d'Omega est capable de gérer des projets composés de plusieurs fichiers.
+                            </FeatureCardDescription>
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                Sauvegarde sur Gist
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                Tous les scripts sont sauvegardés sur votre propre compte GitHub Gist.
+                            </FeatureCardDescription>
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                </FeatureCardRow>
+                </Fade>
+
+                <div style={ { height: "16px" } }></div>
             </div>
         )
     }

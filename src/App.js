@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import '@quentinguidee/react-jade-ui/dist/index.css'
 import './sass/omega.library.sass'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Toolbar from './components/Toolbar';
-import Footer from './components/Footer';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import Home from './pages/Home';
 import Simulator from './pages/Simulator';
 import FullSimulator from './pages/simulator/FullSimulator';
@@ -14,10 +15,12 @@ import IDEEditor from './pages/omega-ide/src/ide/Editor';
 import IDESimulator from './pages/omega-ide/src/ide/Simulator';
 import NotFound from './pages/NotFound';
 import GithubConnector from './GithubConnector';
+import { CookiesConsent } from '@quentinguidee/react-jade-ui'
 
 import { IntlProvider } from "react-intl";
 import translations from './i18n/locales'
 import Wiki from './pages/Wiki';
+import Beta from './pages/Beta';
 
 class App extends Component {
   constructor(props) {
@@ -56,11 +59,16 @@ class App extends Component {
       <IntlProvider locale={this.state.locale} messages={this.state.messages}>
         <Router>
           <div className="body">
-            {!window.location.pathname.includes("/simulator/run") && <Toolbar />}
+            {!window.location.pathname.includes("/simulator/run") && <>
+              <CookiesConsent toPolicy="/policy" />
+              {/* // TRANSLATIONS : <CookiesConsent toPolicy="/policy" text="Oui" learnMore="Test" gotIt="GotIt" /> */}
+              <Header />
+            </>}
             <Switch>
               <Route path="/simulator" component={Simulator} exact />
               <Route path="/simulator/run/full" component={FullSimulator} exact />
               <Route path="/releases" component={Releases} exact />
+              <Route path="/beta" component={Beta} exact />
               <Route path="/install" component={Install} exact />
               <Route path="/install/:version" component={Install} />
               <Route path="/policy" component={Policy} exact />

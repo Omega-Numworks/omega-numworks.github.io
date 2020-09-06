@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
-import PythonSimulator from '../simulator'
-import ImgSimulatorBackground from '../img/simulator-background.png'
+import PythonSimulator from '../../simulator'
+import ImgSimulatorBackground from '../../img/simulator-background.png'
+import './sass/calculator.sass'
 
 export default class Calculator extends Component {
     constructor(props) {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
-import translations from '../i18n/locales'
+import translations from '../../i18n/locales'
+import './sass/footer.sass'
 
 export default class Footer extends Component {
     constructor(props) {
@@ -44,30 +45,37 @@ export default class Footer extends Component {
                     </h3>
                     <div className="footer__list">
                         <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega">
+                            <i className="material-icons material-icons-round">alt_route</i>
                             <FormattedMessage id="footer.projects.omega" defaultMessage="Omega" />
                         </a>
                         <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Themes">
+                            <i className="material-icons material-icons-round">dns</i>
                             <FormattedMessage id="footer.projects.omega-themes" defaultMessage="Omega Themes" />
                         </a>
                         <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Website">
+                            <i className="material-icons material-icons-round">dns</i>
                             <FormattedMessage id="footer.projects.omega-website" defaultMessage="Omega Website" />
                         </a>
                         <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-RPN">
+                            <i className="material-icons material-icons-round">apps</i>
                             <FormattedMessage id="footer.projects.omega-rpn" defaultMessage="Omega RPN" />
-                            <span className="footer__list__item__tag">
+                            {/* <span className="footer__list__item__tag">
                                 <FormattedMessage id="app" defaultMessage="APP" />
-                            </span>
+                            </span> */}
                         </a>
                         <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Atom">
+                            <i className="material-icons material-icons-round">apps</i>
                             <FormattedMessage id="footer.projects.omega-atom" defaultMessage="Omega Atom" />
-                            <span className="footer__list__item__tag">
+                            {/* <span className="footer__list__item__tag">
                                 <FormattedMessage id="app" defaultMessage="APP" />
-                            </span>
+                            </span> */}
                         </a>
                         <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Design">
+                            <i className="material-icons material-icons-round">dns</i>
                             <FormattedMessage id="footer.projects.omega-design" defaultMessage="Omega Design" />
                         </a>
                         <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/M4xi1m3/nw-external-apps/">
+                            <i className="material-icons material-icons-round">alt_route</i>
                             <FormattedMessage id="footer.projects.external-apps" defaultMessage="External Apps" />
                         </a>
                     </div>

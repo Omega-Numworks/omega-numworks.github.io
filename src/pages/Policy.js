@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
+import './sass/policy.sass'
 
 export default class Policy extends Component {
     constructor(props) {
