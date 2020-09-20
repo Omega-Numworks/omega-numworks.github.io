@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GithubConnector from "../GithubConnector";
 import ImgBanner from '../img/banner.png';
 import ImgIDE from '../img/ide.png';
+import ImgIDESimu from '../img/ide-simu.png';
 import { Button } from '@quentinguidee/react-jade-ui';
 import { Fade } from 'react-reveal';
 import { FeatureCardRow, FeatureCardColumn, FeatureCard, FeatureCardTitle, FeatureCardDescription, FeatureCardImage } from '../components/featurecard/FeatureCard';
@@ -95,6 +96,7 @@ export default class IDEMain extends Component {
                             <FeatureCardDescription>
                                 Avec Omega IDE, vous pouvez tester vos scripts Python directement dans le simulateur Omega, ou en les installant en quelques secondes sur la calculatrice.
                             </FeatureCardDescription>
+                            <FeatureCardImage src={ImgIDESimu} />
                         </FeatureCard>
                     </FeatureCardColumn>
                 </FeatureCardRow>
