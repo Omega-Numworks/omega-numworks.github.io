@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReleaseCard from '../components/releasecard/ReleaseCard'
 import { Button, ButtonsGroup } from '@quentinguidee/react-jade-ui'
+import { FormattedMessage } from 'react-intl'
 
 export default class Beta extends Component {
     render() {
@@ -8,15 +9,17 @@ export default class Beta extends Component {
             <div className="content">
                 <div className="releases__banner">
                     <div className="releases__banner__title">Omega 1.21</div>
-                    <div className="releases__banner__description">Bienvenue dans le programme bêta d'Omega.</div>
+                    <div className="releases__banner__description">
+						<FormattedMessage defaultMessage="Welcome to the Omega beta program." id="beta.welcome" />
+					</div>
                     <ButtonsGroup style={{ display: "inline-block" }}>
-                        <Button href="mailto:getomega.pro@gmail.com" leftIcon="mail">REPORT A BUG BY MAIL</Button>
-                        <Button href="https://discord.gg/X2TWhh9" leftIcon="web">REPORT A BUG ON DISCORD</Button>
+                        <Button href="mailto:getomega.pro@gmail.com" leftIcon="mail"><FormattedMessage defaultMessage="REPORT A BUG BY MAIL" id="beta.report.mail"/></Button>
+                        <Button href="https://discord.gg/X2TWhh9" leftIcon="web"><FormattedMessage defaultMessage="REPORT A BUG ON DISCORD" id="beta.report.discord"/></Button>
                     </ButtonsGroup>
                 </div>
                 <div style={ { height: "16px" } }></div>
                 <div className="releases__cards">
-                    <div className="releases__warning">Attention: Les bêtas ne disposent pas du mode examen Omega.</div>
+                    <div className="releases__warning"><FormattedMessage defaultMessage="Please note: Betas do not have Omega exam mode." id="beta.report.exammode"/></div>
                     <ReleaseCard version={releases.firmwares[0]} name="Beta 1" />
                 </div>
                 <div style={ { height: "16px" } }></div>

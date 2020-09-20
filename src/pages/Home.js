@@ -68,24 +68,24 @@ export default class Home extends Component {
                     <FeatureCardColumn>
                         <FeatureCard>
                             <FeatureCardTitle>
-                                Moteur de thème
+                                <FormattedMessage defaultMessage="Theme engine" id="home.features.theme-engine"/>
                             </FeatureCardTitle>
                             <FeatureCardDescription>
                                 <ul>
-                                    <li>Thème Omega clair</li>
-                                    <li>Thème Omega sombre</li>
-                                    <li>Thème Epsilon clair</li>
-                                    <li>Thème Epsilon sombre</li>
-                                    <li>Thèmes communautaires</li>
+                                    <li><FormattedMessage defaultMessage="Omega light theme" id="home.features.theme-engine-omega-light"/></li>
+                                    <li><FormattedMessage defaultMessage="Omega dark theme" id="home.features.theme-engine-omega-dark"/></li>
+                                    <li><FormattedMessage defaultMessage="Epsilon light theme" id="home.features.theme-engine-epsilon-light"/></li>
+                                    <li><FormattedMessage defaultMessage="Epsilon dark theme" id="home.features.theme-engine-epsilon-dark"/></li>
+                                    <li><FormattedMessage defaultMessage="Community themes" id="home.features.theme-engine-community-themes"/></li>
                                 </ul>
                             </FeatureCardDescription>
                         </FeatureCard>
                         <FeatureCard>
                             <FeatureCardTitle>
-                                Applications externes
+                                <FormattedMessage defaultMessage="External apps" description="" id="home.features.external-apps"/>
                             </FeatureCardTitle>
                             <FeatureCardDescription>
-                                Installez des applications communautaires au vol grâce à External. Comprends aussi KhiCAS et différents émulateurs.
+                                <FormattedMessage defaultMessage="Install community apps on the fly with External. Also includes KhiCAS and various emulators." description="" id="home.features.external-apps-community"/>
                             </FeatureCardDescription>
                         </FeatureCard>
                     </FeatureCardColumn>
@@ -147,16 +147,16 @@ export default class Home extends Component {
                     <FeatureCardColumn>
                         <FeatureCard>
                             <FeatureCardTitle>
-                                Et bien plus !
+                                <FormattedMessage defaultMessage="And more!" description="" id="home.features.and-more"/>
                             </FeatureCardTitle>
                             <FeatureCardDescription>
                                 <ul>
-                                    <li>Constantes physiques et chimiques</li>
-                                    <li>Méthode open et module os</li>
-                                    <li>Simulateur Android avec sauvegarde des scripts</li>
-                                    <li>Support du Hongrois</li>
-                                    <li>Paramètres d'accessibilité</li>
-                                    <li>Choix du symbole de multiplication</li>
+                                    <li><FormattedMessage defaultMessage="Physical and chemical constants" id="home.features.and-more.constants"/></li>
+                                    <li><FormattedMessage defaultMessage="Open method and os module" id="home.features.and-more.os"/></li>
+                                    <li><FormattedMessage defaultMessage="Android simulator with script backup" id="home.features.and-more.android"/></li>
+                                    <li><FormattedMessage defaultMessage="Hungarian support" id="home.features.and-more.hungarian"/></li>
+                                    <li><FormattedMessage defaultMessage="Accessibility settings" id="home.features.and-more.accessibility"/></li>
+                                    <li><FormattedMessage defaultMessage="Choice of multiplication symbol" id="home.features.and-more.mult-symbol"/></li>
                                     <li>…</li>
                                 </ul>
                             </FeatureCardDescription>
@@ -168,15 +168,15 @@ export default class Home extends Component {
                 <div style={ { height: "16px" } }></div>
 
                 <div className="download" style={{backgroundImage: `url(${ImgBanner})`}}>
-                    <h2 className="download__title">Installation d'Omega {this.getReleaseVersion(latest_version.name)}</h2>
+                    <h2 className="download__title"><FormattedMessage defaultMessage="Installation d'Omega" description="" id="home.install"/> {this.getReleaseVersion(latest_version.name)}</h2>
                     <div className="download__cards">
                         <Link to="/install" className="download__cards__card">
                             <span className="download__cards__card__icon">
                                 <i className="material-icons">system_update_alt</i>
                             </span>
                             <div className="download__cards__card__content">
-                                <span className="download__cards__card__content__text">Installation automatique</span>
-                                <span className="download__cards__card__content__description">Pour Numworks, via USB</span>
+                                <span className="download__cards__card__content__text"><FormattedMessage defaultMessage="Installation automatique" id="home.install.auto"/></span>
+                                <span className="download__cards__card__content__description"><FormattedMessage defaultMessage="For Numworks, via USB" id="home.install.auto.fornumworks"/></span>
                             </div>
                         </Link>
                         <a href="https://play.google.com/store/apps/details?id=io.github.omega.simulator" target="_blank" rel="noopener noreferrer" className="download__cards__card">
@@ -184,32 +184,32 @@ export default class Home extends Component {
                                 <i className="material-icons">android</i>
                             </span>
                             <div className="download__cards__card__content">
-                                <span className="download__cards__card__content__text">Simulateur Android</span>
-                                <span className="download__cards__card__content__description">Depuis Google Play</span>
+                                <span className="download__cards__card__content__text"><FormattedMessage defaultMessage="Android simulator" id="home.install.android"/></span>
+                                <span className="download__cards__card__content__description"><FormattedMessage defaultMessage="From Google Play" id="home.install.android.from-google-play"/></span>
                             </div>
                         </a>
                     </div>
-                    <div className="download__title">Autres téléchargements</div>
+                    <div className="download__title"><FormattedMessage defaultMessage="Other downloads" description="" id="home.install.dl.others"/></div>
                     <div className="download__list">
                         <a href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/binpack-n0100.tgz") : "#"} className="download__list__item">
                             <span className="download__list__item__icon"><i className="material-icons">get_app</i></span>
-                            <span className="download__list__item__text">Binpack n0100 <span className="download__list__item__text__extension">.tgz</span></span>
+                            <span className="download__list__item__text"><FormattedMessage defaultMessage="Binpack n0100" id="home.install.dl.binpack-n0100"/> <span className="download__list__item__text__extension">.tgz</span></span>
                         </a>
                         <a href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/binpack-n0110.tgz") : "#"} className="download__list__item">
                             <span className="download__list__item__icon"><i className="material-icons">get_app</i></span>
-                            <span className="download__list__item__text">Binpack n0110 <span className="download__list__item__text__extension">.tgz</span></span>
+                            <span className="download__list__item__text"><FormattedMessage defaultMessage="Binpack n0110" id="home.install.dl.binpack-n0110"/> <span className="download__list__item__text__extension">.tgz</span></span>
                         </a>
                         <a href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.apk") : "#"} className="download__list__item">
                             <span className="download__list__item__icon"><i className="material-icons">android</i></span>
-                            <span className="download__list__item__text">Simulateur Android <span className="download__list__item__text__extension">.apk</span></span>
+                            <span className="download__list__item__text"><FormattedMessage defaultMessage="Android simulator" id="home.install.dl.android"/> <span className="download__list__item__text__extension">.apk</span></span>
                         </a>
                         <a href={latest_version.compatibility.web && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.zip") : "#"} className="download__list__item">
                             <span className="download__list__item__icon"><i className="material-icons">web</i></span>
-                            <span className="download__list__item__text">Simulateur Web <span className="download__list__item__text__extension">.zip</span></span>
+                            <span className="download__list__item__text"><FormattedMessage defaultMessage="Web simulator" id="home.install.dl.web"/> <span className="download__list__item__text__extension">.zip</span></span>
                         </a>
                         <a href={latest_version.compatibility["3ds"] && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.3dsx") : "#"} className="download__list__item">
                             <span className="download__list__item__icon"><i className="material-icons">gamepad</i></span>
-                            <span className="download__list__item__text">Simulateur 3DS <span className="download__list__item__text__extension">.3dsx</span></span>
+                            <span className="download__list__item__text"><FormattedMessage defaultMessage="3DS simulator" id="home.install.dl.3ds"/> <span className="download__list__item__text__extension">.3dsx</span></span>
                         </a>
                     </div>
                 </div>

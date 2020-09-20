@@ -6,6 +6,7 @@ import ImgIDESimu from '../img/ide-simu.png';
 import { Button } from '@quentinguidee/react-jade-ui';
 import { Fade } from 'react-reveal';
 import { FeatureCardRow, FeatureCardColumn, FeatureCard, FeatureCardTitle, FeatureCardDescription, FeatureCardImage } from '../components/featurecard/FeatureCard';
+import { FormattedMessage } from 'react-intl';
 
 export default class IDEMain extends Component {
     constructor(props) {
@@ -46,13 +47,13 @@ export default class IDEMain extends Component {
         if (this.state.connector.isLogged()) {
             accessButton = (
                 <Button to="/ide/editor" className="project-description__button" rightIcon='play_arrow' outline big>
-                    LAUNCH 
+                    <FormattedMessage defaultMessage="LAUNCH" id="ide.launch"/> 
                 </Button>
             );
         } else {
             accessButton = (
                 <Button onClick={this.login} className="project-description__button" rightIcon='play_arrow' outline big>
-                        LOGIN WITH GITHUB
+                    <FormattedMessage defaultMessage="LOGIN WITH GITHUB" description="" id="ide.login"/>
                 </Button>
             );
         }
@@ -61,15 +62,14 @@ export default class IDEMain extends Component {
             <div className="content content-home">
                 <div className="project-description" style={{backgroundImage: `url(${ImgBanner})`}}>
                     <h1 className="project-description__title">
-                        Omega IDE
+                        <FormattedMessage defaultMessage="Omega IDE" description="" id="ide.title"/>
                     </h1>
                     <h2 className="project-description__subtitle">
-                        An online Python IDE.
+                        <FormattedMessage defaultMessage="An online Python IDE." description="" id="ide.subtitle"/>
                     </h2>
                     {accessButton}
                     <p className="project-description__description">
-                        Omega IDE est un éditeur de scripts python rendant la programmation Python pour Numworks plus facile que jamais.
-                        Cet IDE fonctionne aussi bien avec ou sans Omega installé.
+                        <FormattedMessage defaultMessage="Omega IDE is a python script editor making Python programming for Numworks easier than ever. This IDE works equally well with or without Omega installed." id="ide.description"/>
                     </p>
                 </div>
 
@@ -80,10 +80,10 @@ export default class IDEMain extends Component {
                     <FeatureCardColumn>
                         <FeatureCard>
                             <FeatureCardTitle>
-                                Interface 
+                                <FormattedMessage defaultMessage="Interface" id="ide.interface"/> 
                             </FeatureCardTitle>
                             <FeatureCardDescription>
-                                L'interface est facile d'utilisation et dispose de deux thèmes : un thème Omega et un thème VSCode.
+                                <FormattedMessage defaultMessage="The interface is easy to use and has two themes: an Omega theme and a VSCode theme." id="ide.interface.description"/>
                             </FeatureCardDescription>
                             <FeatureCardImage src={ImgIDE} />
                         </FeatureCard>
@@ -91,10 +91,10 @@ export default class IDEMain extends Component {
                     <FeatureCardColumn>
                         <FeatureCard>
                             <FeatureCardTitle>
-                                Testez en toute simplicité
+                                <FormattedMessage defaultMessage="Test with ease" id="ide.test"/>
                             </FeatureCardTitle>
                             <FeatureCardDescription>
-                                Avec Omega IDE, vous pouvez tester vos scripts Python directement dans le simulateur Omega, ou en les installant en quelques secondes sur la calculatrice.
+                                <FormattedMessage defaultMessage="With Omega IDE, you can test your Python scripts directly in the Omega simulator, or by installing them in seconds on the calculator." id="ide.test.description"/>
                             </FeatureCardDescription>
                             <FeatureCardImage src={ImgIDESimu} />
                         </FeatureCard>
@@ -107,20 +107,20 @@ export default class IDEMain extends Component {
                     <FeatureCardColumn>
                         <FeatureCard>
                             <FeatureCardTitle>
-                                Projets multi-fichiers
+                                <FormattedMessage defaultMessage="Multi-file projects" id="ide.multifile"/>
                             </FeatureCardTitle>
                             <FeatureCardDescription>
-                                L'éditeur d'Omega est capable de gérer des projets composés de plusieurs fichiers.
+                                <FormattedMessage defaultMessage="The Omega editor is able to manage projects made up of several files." id="ide.multifile.description" />
                             </FeatureCardDescription>
                         </FeatureCard>
                     </FeatureCardColumn>
                     <FeatureCardColumn>
                         <FeatureCard>
                             <FeatureCardTitle>
-                                Sauvegarde sur Gist
+                                <FormattedMessage defaultMessage="Sauvegarde sur Gist" id="ide.save"/>
                             </FeatureCardTitle>
                             <FeatureCardDescription>
-                                Tous les scripts sont sauvegardés sur votre propre compte GitHub Gist.
+                                <FormattedMessage defaultMessage="All scripts are saved to your own GitHub Gist account." id="ide.save.description" />
                             </FeatureCardDescription>
                         </FeatureCard>
                     </FeatureCardColumn>
