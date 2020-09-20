@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
 import translations from '../../i18n/locales'
+import Vercel from '../../img/powered-by-vercel.svg'
+
 import './sass/footer.sass'
 
 export default class Footer extends Component {
@@ -83,19 +85,24 @@ export default class Footer extends Component {
                 <div className="footer__discord">
                     <iframe title="Discord" src="https://discordapp.com/widget?id=663420259851567114&theme=dark" width="300" height="300" allowtransparency="true" frameborder="0"></iframe>
                 </div>
+                <div className="footer__separator" style={{borderColor: "transparent", marginBottom: "0"}} />
+                <a href="https://vercel.com/?utm_source=getomegaweb&utm_campaign=oss" target="_blank" rel="noopener noreferrer">
+                    <img style={{display: "block", borderRadius: "8px", border: "1px solid #333333"}} src={Vercel} alt="Vercel" />
+                </a>
                 <div className="footer__separator" />
                 <div className="footer__about-nw">
                     <FormattedMessage id="footer.trademark" defaultMessage="NumWorks is a registered trademark. Omega is not affiliated with Numworks. " values={{ br: <br />  }}/>
                     
                     <a className="footer__about-nw__contact" href="mailto:getomega.pro@gmail.com">
                         <FormattedMessage id="footer.contact" defaultMessage="Contact" />
-                    </a></div>
-                    <div className={"footer__locale " + (this.state.localeDropdown ? "footer__locale-active" : "")} onClick={() => this.setState({localeDropdown: !this.state.localeDropdown})}>
-                        {translations[this.state.locale]["footer.language"]} {translations[this.state.locale]["footer.flag"]}
-                        <div className={"footer__locale__dropdown " + (this.state.localeDropdown ? "footer__locale__dropdown-show" : "")}>
-                            {langs_list}
-                        </div>
+                    </a>
+                </div>
+                <div className={"footer__locale " + (this.state.localeDropdown ? "footer__locale-active" : "")} onClick={() => this.setState({localeDropdown: !this.state.localeDropdown})}>
+                    {translations[this.state.locale]["footer.language"]} {translations[this.state.locale]["footer.flag"]}
+                    <div className={"footer__locale__dropdown " + (this.state.localeDropdown ? "footer__locale__dropdown-show" : "")}>
+                        {langs_list}
                     </div>
+                </div>
             </footer>
         )
     }
