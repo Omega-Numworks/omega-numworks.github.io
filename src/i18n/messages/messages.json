@@ -2,147 +2,142 @@
   {
     "id": "footer.projects",
     "defaultMessage": "Projects",
-    "filepath": "src/components/Footer.js"
+    "filepath": "src/components/footer/Footer.js"
   },
   {
     "id": "footer.projects.omega",
     "defaultMessage": "Omega",
-    "filepath": "src/components/Footer.js"
+    "filepath": "src/components/footer/Footer.js"
   },
   {
     "id": "footer.projects.omega-themes",
     "defaultMessage": "Omega Themes",
-    "filepath": "src/components/Footer.js"
+    "filepath": "src/components/footer/Footer.js"
   },
   {
     "id": "footer.projects.omega-website",
     "defaultMessage": "Omega Website",
-    "filepath": "src/components/Footer.js"
+    "filepath": "src/components/footer/Footer.js"
   },
   {
     "id": "footer.projects.omega-rpn",
     "defaultMessage": "Omega RPN",
-    "filepath": "src/components/Footer.js"
-  },
-  {
-    "id": "app",
-    "defaultMessage": "APP",
-    "filepath": "src/components/Footer.js"
+    "filepath": "src/components/footer/Footer.js"
   },
   {
     "id": "footer.projects.omega-atom",
     "defaultMessage": "Omega Atom",
-    "filepath": "src/components/Footer.js"
+    "filepath": "src/components/footer/Footer.js"
   },
   {
     "id": "footer.projects.omega-design",
     "defaultMessage": "Omega Design",
-    "filepath": "src/components/Footer.js"
+    "filepath": "src/components/footer/Footer.js"
   },
   {
     "id": "footer.projects.external-apps",
     "defaultMessage": "External Apps",
-    "filepath": "src/components/Footer.js"
+    "filepath": "src/components/footer/Footer.js"
   },
   {
     "id": "footer.trademark",
     "defaultMessage": "NumWorks is a registered trademark. Omega is not affiliated with Numworks.",
-    "filepath": "src/components/Footer.js"
+    "filepath": "src/components/footer/Footer.js"
   },
   {
     "id": "footer.contact",
     "defaultMessage": "Contact",
-    "filepath": "src/components/Footer.js"
+    "filepath": "src/components/footer/Footer.js"
   },
   {
     "id": "toolbar.omega",
     "defaultMessage": "Omega",
-    "filepath": "src/components/Toolbar.js"
+    "filepath": "src/components/header/Header.js"
   },
   {
     "id": "toolbar.install",
     "defaultMessage": "Install",
-    "filepath": "src/components/Toolbar.js"
+    "filepath": "src/components/header/Header.js"
   },
   {
     "id": "toolbar.releases",
     "defaultMessage": "Releases",
-    "filepath": "src/components/Toolbar.js"
+    "filepath": "src/components/header/Header.js"
   },
   {
     "id": "toolbar.simulator",
     "defaultMessage": "Simulator",
-    "filepath": "src/components/Toolbar.js"
+    "filepath": "src/components/header/Header.js"
+  },
+  {
+    "id": "toolbar.wiki",
+    "defaultMessage": "Wiki",
+    "filepath": "src/components/header/Header.js"
+  },
+  {
+    "id": "toolbar.ide",
+    "defaultMessage": "Python IDE",
+    "filepath": "src/components/header/Header.js"
   },
   {
     "id": "toolbar.github",
     "defaultMessage": "GitHub",
-    "filepath": "src/components/Toolbar.js"
+    "filepath": "src/components/header/Header.js"
   },
   {
     "id": "toolbar.login",
     "defaultMessage": "Login with Github",
-    "filepath": "src/components/Toolbar.js"
+    "filepath": "src/components/header/Header.js"
   },
   {
     "id": "toolbar.logout",
     "defaultMessage": "Logout",
-    "filepath": "src/components/Toolbar.js"
+    "filepath": "src/components/header/Header.js"
   },
   {
-    "id": "toolbar.myscripts",
-    "defaultMessage": "My scripts",
-    "filepath": "src/components/Toolbar.js"
+    "id": "releases.github",
+    "defaultMessage": "GITHUB",
+    "filepath": "src/components/releasecard/ReleaseCard.js"
   },
   {
-    "id": "editor.loading",
-    "defaultMessage": "Loading...",
-    "filepath": "src/pages/Editor.js"
+    "id": "releases.install",
+    "defaultMessage": "INSTALL",
+    "filepath": "src/components/releasecard/ReleaseCard.js"
   },
   {
-    "id": "editor.unsaved",
-    "defaultMessage": "You have unsaved modifications!",
-    "filepath": "src/pages/Editor.js"
+    "id": "releases.android",
+    "defaultMessage": "ANDROID",
+    "filepath": "src/components/releasecard/ReleaseCard.js"
   },
   {
-    "id": "editor.upload",
-    "defaultMessage": "UPLOAD ON DEVICE",
-    "filepath": "src/pages/Editor.js"
+    "id": "releases.web",
+    "defaultMessage": "WEB",
+    "filepath": "src/components/releasecard/ReleaseCard.js"
   },
   {
-    "id": "editor.rename",
-    "defaultMessage": "RENAME",
-    "filepath": "src/pages/Editor.js"
+    "id": "releases.3ds",
+    "defaultMessage": "3DS",
+    "filepath": "src/components/releasecard/ReleaseCard.js"
   },
   {
-    "id": "editor.delete",
-    "defaultMessage": "DELETE",
-    "filepath": "src/pages/Editor.js"
+    "id": "beta.welcome",
+    "defaultMessage": "Welcome to the Omega beta program.",
+    "filepath": "src/pages/Beta.js"
   },
   {
-    "id": "editor.title",
-    "defaultMessage": "Omega IDE",
-    "filepath": "src/pages/Editor.js"
+    "id": "beta.report.mail",
+    "defaultMessage": "REPORT A BUG BY MAIL",
+    "filepath": "src/pages/Beta.js"
   },
   {
-    "id": "editor.save",
-    "defaultMessage": "SAVE",
-    "filepath": "src/pages/Editor.js"
+    "id": "beta.report.discord",
+    "defaultMessage": "REPORT A BUG ON DISCORD",
+    "filepath": "src/pages/Beta.js"
   },
   {
-    "id": "editor.simulator",
-    "defaultMessage": "SIMULATOR",
-    "filepath": "src/pages/Editor.js"
-  },
-  {
-    "id": "editor.new",
-    "defaultMessage": "New script",
-    "filepath": "src/pages/Editor.js"
-  },
-  {
-    "id": "editor.name",
-    "defaultMessage": "Name your new script",
-    "filepath": "src/pages/Editor.js"
+    "id": "beta.report.exammode",
+    "defaultMessage": "Please note: Betas do not have Omega exam mode.",
+    "filepath": "src/pages/Beta.js"
   },
   {
     "id": "home.head.title",
@@ -162,6 +157,48 @@
   {
     "id": "home.head.description",
     "defaultMessage": "Omega is a fork of Numworks' Epsilon, the OS that runs on their calculator, which brings many features to it. Omega is for the people who want to add features to the calculator, but cannot because they have been rejected by Numworks (for reasons that are 100% understandable!).",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.theme-engine",
+    "defaultMessage": "Theme engine",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.theme-engine-omega-light",
+    "defaultMessage": "Omega light theme",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.theme-engine-omega-dark",
+    "defaultMessage": "Omega dark theme",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.theme-engine-epsilon-light",
+    "defaultMessage": "Epsilon light theme",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.theme-engine-epsilon-dark",
+    "defaultMessage": "Epsilon dark theme",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.theme-engine-community-themes",
+    "defaultMessage": "Community themes",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.external-apps",
+    "description": "",
+    "defaultMessage": "External apps",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.features.external-apps-community",
+    "description": "",
+    "defaultMessage": "Install community apps on the fly with External. Also includes KhiCAS and various emulators.",
     "filepath": "src/pages/Home.js"
   },
   {
@@ -205,49 +242,165 @@
     "filepath": "src/pages/Home.js"
   },
   {
-    "id": "home.features.more.name",
+    "id": "home.features.and-more",
+    "description": "",
     "defaultMessage": "And more!",
     "filepath": "src/pages/Home.js"
   },
   {
-    "id": "home.features.more.description",
-    "defaultMessage": "A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames...",
+    "id": "home.features.and-more.constants",
+    "defaultMessage": "Physical and chemical constants",
     "filepath": "src/pages/Home.js"
   },
   {
-    "id": "home.download.title",
-    "defaultMessage": "Download",
+    "id": "home.features.and-more.os",
+    "defaultMessage": "Open method and os module",
     "filepath": "src/pages/Home.js"
   },
   {
-    "id": "home.download.subtitle",
-    "defaultMessage": "Omega {version}",
+    "id": "home.features.and-more.android",
+    "defaultMessage": "Android simulator with script backup",
     "filepath": "src/pages/Home.js"
   },
   {
-    "id": "home.download.github",
-    "defaultMessage": "GITHUB",
+    "id": "home.features.and-more.hungarian",
+    "defaultMessage": "Hungarian support",
     "filepath": "src/pages/Home.js"
   },
   {
-    "id": "home.download.install",
-    "defaultMessage": "INSTALL",
+    "id": "home.features.and-more.accessibility",
+    "defaultMessage": "Accessibility settings",
     "filepath": "src/pages/Home.js"
   },
   {
-    "id": "home.download.android",
-    "defaultMessage": "ANDROID",
+    "id": "home.features.and-more.mult-symbol",
+    "defaultMessage": "Choice of multiplication symbol",
     "filepath": "src/pages/Home.js"
   },
   {
-    "id": "home.download.web",
-    "defaultMessage": "WEB",
+    "id": "home.install",
+    "description": "",
+    "defaultMessage": "Installation d'Omega",
     "filepath": "src/pages/Home.js"
   },
   {
-    "id": "home.download.3ds",
-    "defaultMessage": "3DS",
+    "id": "home.install.auto",
+    "defaultMessage": "Installation automatique",
     "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.install.auto.fornumworks",
+    "defaultMessage": "For Numworks, via USB",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.install.android",
+    "defaultMessage": "Android simulator",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.install.android.from-google-play",
+    "defaultMessage": "From Google Play",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.install.dl.others",
+    "description": "",
+    "defaultMessage": "Other downloads",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.install.dl.binpack-n0100",
+    "defaultMessage": "Binpack n0100",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.install.dl.binpack-n0110",
+    "defaultMessage": "Binpack n0110",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.install.dl.android",
+    "defaultMessage": "Android simulator",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.install.dl.web",
+    "defaultMessage": "Web simulator",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "home.install.dl.3ds",
+    "defaultMessage": "3DS simulator",
+    "filepath": "src/pages/Home.js"
+  },
+  {
+    "id": "ide.launch",
+    "defaultMessage": "LAUNCH",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.login",
+    "description": "",
+    "defaultMessage": "LOGIN WITH GITHUB",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.title",
+    "description": "",
+    "defaultMessage": "Omega IDE",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.subtitle",
+    "description": "",
+    "defaultMessage": "An online Python IDE.",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.description",
+    "defaultMessage": "Omega IDE is a python script editor making Python programming for Numworks easier than ever. This IDE works equally well with or without Omega installed.",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.interface",
+    "defaultMessage": "Interface",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.interface.description",
+    "defaultMessage": "The interface is easy to use and has two themes: an Omega theme and a VSCode theme.",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.test",
+    "defaultMessage": "Test with ease",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.test.description",
+    "defaultMessage": "With Omega IDE, you can test your Python scripts directly in the Omega simulator, or by installing them in seconds on the calculator.",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.multifile",
+    "defaultMessage": "Multi-file projects",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.multifile.description",
+    "defaultMessage": "The Omega editor is able to manage projects made up of several files.",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.save",
+    "defaultMessage": "Sauvegarde sur Gist",
+    "filepath": "src/pages/IDE.js"
+  },
+  {
+    "id": "ide.save.description",
+    "defaultMessage": "All scripts are saved to your own GitHub Gist account.",
+    "filepath": "src/pages/IDE.js"
   },
   {
     "id": "installer.someone",
@@ -385,68 +538,8 @@
     "filepath": "src/pages/Policy.js"
   },
   {
-    "id": "projects.loading",
-    "defaultMessage": "Loading...",
-    "filepath": "src/pages/Projects.js"
-  },
-  {
-    "id": "projects.none",
-    "defaultMessage": "Looks like you don't have any project yet.",
-    "filepath": "src/pages/Projects.js"
-  },
-  {
-    "id": "projects.open",
-    "defaultMessage": "OPEN",
-    "filepath": "src/pages/Projects.js"
-  },
-  {
-    "id": "projects.new",
-    "defaultMessage": "NEW PROJECT",
-    "filepath": "src/pages/Projects.js"
-  },
-  {
-    "id": "projects.create",
-    "defaultMessage": "CREATE",
-    "filepath": "src/pages/Projects.js"
-  },
-  {
-    "id": "projects.cancel",
-    "defaultMessage": "CANCEL",
-    "filepath": "src/pages/Projects.js"
-  },
-  {
-    "id": "releases.omega",
-    "defaultMessage": "Omega {version}",
-    "filepath": "src/pages/Releases.js"
-  },
-  {
-    "id": "releases.epsilon",
-    "defaultMessage": "Epsilon {version}",
-    "filepath": "src/pages/Releases.js"
-  },
-  {
-    "id": "releases.github",
-    "defaultMessage": "GITHUB",
-    "filepath": "src/pages/Releases.js"
-  },
-  {
-    "id": "releases.install",
-    "defaultMessage": "INSTALL",
-    "filepath": "src/pages/Releases.js"
-  },
-  {
-    "id": "releases.android",
-    "defaultMessage": "ANDROID",
-    "filepath": "src/pages/Releases.js"
-  },
-  {
-    "id": "releases.web",
-    "defaultMessage": "WEB",
-    "filepath": "src/pages/Releases.js"
-  },
-  {
-    "id": "releases.3ds",
-    "defaultMessage": "3DS",
+    "id": "releases.title",
+    "defaultMessage": "Omega version history",
     "filepath": "src/pages/Releases.js"
   },
   {

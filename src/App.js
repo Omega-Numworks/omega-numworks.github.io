@@ -59,11 +59,11 @@ class App extends Component {
       <IntlProvider locale={this.state.locale} messages={this.state.messages}>
         <Router>
           <div className="body">
-            {!window.location.pathname.includes("/simulator/run") && <>
-              <CookiesConsent toPolicy="/policy" />
-              {/* // TRANSLATIONS : <CookiesConsent toPolicy="/policy" text="Oui" learnMore="Test" gotIt="GotIt" /> */}
+            {!window.location.pathname.includes("/simulator/run") && <React.Fragment>
+              {/* <CookiesConsent toPolicy="/policy" /> */}
+              <CookiesConsent toPolicy="/policy" text="Oui" learnMore="Test" gotIt="GotIt" />
               <Header />
-            </>}
+            </React.Fragment>}
             <Switch>
               <Route path="/simulator" component={Simulator} exact />
               <Route path="/simulator/run/full" component={FullSimulator} exact />
