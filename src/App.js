@@ -60,8 +60,8 @@ class App extends Component {
         <Router>
           <div className="body">
             {!window.location.pathname.includes("/simulator/run") && <React.Fragment>
-              {/* <CookiesConsent toPolicy="/policy" /> */}
-              <CookiesConsent toPolicy="/policy" text="Oui" learnMore="Test" gotIt="GotIt" />
+              <CookiesConsent toPolicy="/policy" />
+              {/* <CookiesConsent toPolicy="/policy" text="Oui" learnMore="Test" gotIt="GotIt" /> */}
               <Header />
             </React.Fragment>}
             <Switch>
