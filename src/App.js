@@ -68,14 +68,14 @@ class App extends Component {
               <Route path="/simulator" component={Simulator} exact />
               <Route path="/simulator/run/full" component={FullSimulator} exact />
               <Route path="/releases" component={Releases} exact />
-              <Route path="/beta" component={Beta} exact />
+              {/* <Route path="/beta" component={Beta} exact /> */}
               <Route path="/install" component={Install} exact />
               <Route path="/install/:version" component={Install} />
               <Route path="/policy" component={Policy} exact />
               <Route path="/ide/" component={IDEMain} exact />
               <Route path="/ide/editor" component={() => <IDEEditor base="/ide/" connector={GithubConnector} />} exact />
               <Route path="/ide/simulator" component={IDESimulator} exact />
-              <Route path="/wiki" component={Wiki} exact />
+              {/* <Route path="/wiki" component={Wiki} exact /> */}
               <Route path="/" component={Home} exact />
               <Route component={NotFound} />
             </Switch>

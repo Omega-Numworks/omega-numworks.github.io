@@ -76,7 +76,7 @@ export default class Header extends Component {
                     <HeaderLink onClick={this.closeHamburger} to='/install/latest'>{messages.install}</HeaderLink>
                     <HeaderLink onClick={this.closeHamburger} to='/releases'>{messages.releases}</HeaderLink>
                     <HeaderLink onClick={this.closeHamburger} to='/simulator'>{messages.simulator}</HeaderLink>
-                    <HeaderLink onClick={this.closeHamburger}  to='/wiki'>{messages.wiki}</HeaderLink>
+                    {/* <HeaderLink onClick={this.closeHamburger}  to='/wiki'>{messages.wiki}</HeaderLink> */}
                     <HeaderLink onClick={this.closeHamburger} to='/ide'>{messages.IDE}</HeaderLink>
                     <HeaderLink href='https://github.com/Omega-Numworks/Omega' icon='open_in_new' isExternalLink>{messages.gitHub}</HeaderLink>
                     <HeaderSeparator />
