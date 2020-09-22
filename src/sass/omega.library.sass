@@ -4,22 +4,11 @@
 @import '_fonts.sass'
 @import '_animations.sass'
 
-@import 'components/_header.sass'
-@import 'components/_footer.sass'
-@import 'components/_calculator.sass'
-
-@import 'pages/_index.sass'
-@import 'pages/_policy.sass'
-@import 'pages/_releases.sass'
-@import 'pages/_installer.sass'
-@import 'pages/_projects.sass'
-@import 'pages/_editor.sass'
-@import 'pages/_simulator.sass'
-@import 'pages/_notfound.sass'
+@import 'variables.omega.library'
 
 body, .body
     display: flex
-    font-family: 'Fira Sans', sans-serif
+    font-family: $font-fira-sans
     flex-direction: column
     min-height: 100vh
 
@@ -28,4 +17,5 @@ body, .body
 
 @media screen and ( max-width: 1000px )
     .content
-        margin-top: 64px
+        // TODO: Remove @media from omega-ide
+        margin-top: 0 !important

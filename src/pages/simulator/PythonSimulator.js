@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Calculator from '../components/Calculator'
+import Calculator from '../components/calculator/Calculator'
 
 export default class Simulator extends Component {
     constructor(props) {
@@ -17,8 +17,7 @@ export default class Simulator extends Component {
     }
 
     render() {
-        document.getElementsByClassName("cc-bottom")[0].style.display = "none";
-        document.getElementsByClassName("cc-grower")[0].style.display = "none";
+        if (document.getElementsByClassName("cookiesconsent").length > 0)   document.getElementsByClassName("cookiesconsent")[0].style.display = "none";
 
         if (this.state.loaded) {
             if (this.state.error) {
@@ -27,7 +26,7 @@ export default class Simulator extends Component {
                 );
             } else {
                 return (
-                    <Calculator height={"100vh"} python={false} scripts={this.state.scripts} keyboard={true}/>
+                    <Calculator height={"80vh"} python={true} scripts={this.state.scripts} keyboard={true}/>
                 );
             }
         } else {

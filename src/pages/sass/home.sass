@@ -1,0 +1,196 @@
+@import './../../sass/variables.omega.library'
+
+.project-description
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+    padding-top: 64px
+    text-align: center
+    overflow: hidden
+    position: relative
+
+    // PARALLAX
+    // background-attachment: fixed
+
+    &__img
+        z-index: -2
+        position: absolute
+        top: 0
+        left: 0
+
+    &__title
+        padding-top: 48px
+        font-size: 64px
+        font-family: $font-righteous
+        color: #fff
+
+    &__subtitle
+        font-size: 20px
+        font-weight: 500
+        margin-top: 24px
+        color: #fafafa
+
+    &__button
+        margin-top: 32px
+        color: #ffffff
+
+    &__description
+        font-size: 16px
+        color: #656565
+        background-color: #F4F4F4
+        text-align: justify
+        padding: 32px 64px
+        margin-top: 96px
+        line-height: 22px
+
+.download
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+    background-color: rgb(73, 98, 114)
+    padding: 32px
+    padding-top: 8px
+    padding-bottom: 64px
+    text-align: center
+    color: #ffffff
+
+    &__title
+        font-family: $font-righteous
+        margin: 32px 0
+        margin-top: 64px
+        font-size: 24px
+        font-weight: 700
+
+    &__cards
+        display: inline-block
+        &__card
+            text-decoration: none
+            color: #ffffff
+            margin-left: 16px
+            display: inline-block
+            cursor: pointer
+            padding: 12px 24px
+            border-radius: 6px
+            border: 1px solid #ffffff
+            transition: all 0.2s
+            line-height: 32px
+            text-shadow: 0 1px 12px rgba(0,0,0,0.13), 0 1px 8px rgba(0,0,0,0.2)
+            text-align: left
+            &:hover
+                background-color: rgba(0, 0, 0, 0.2)
+            &__icon
+                display: inline-block
+                text-align: center
+                width: 40px
+                height: 40px
+                border-radius: 50%
+                background-color: rgba(255, 255, 255, 0.2)
+                vertical-align: middle
+                box-shadow: 0 1px 12px rgba(0,0,0,0.05), 0 1px 8px rgba(0,0,0,0.07)
+
+                & .material-icons
+                    font-size: 20px
+                    vertical-align: middle
+                    margin-top: 4px
+
+            &__content
+                margin-left: 20px
+                display: inline-block
+                vertical-align: middle
+                line-height: 1.4
+                &__text
+                    display: block
+                    font-weight: 500
+                &__description
+                    font-size: 13px
+                    display: block
+
+    &__list
+        text-align: left
+        display: inline-block
+        border-radius: 6px
+        border: 1px solid #ffffff
+        margin: 0 16px
+        padding: 6px 0
+        text-shadow: 0 1px 12px rgba(0,0,0,0.07), 0 1px 8px rgba(0,0,0,0.13)
+
+        &__item
+            text-decoration: none
+            display: block
+            cursor: pointer
+            height: 36px
+            line-height: 36px
+            transition: all 0.2s
+            border-radius: 4px
+            margin: 0 6px
+            color: #ffffff
+            &:hover
+                background-color: rgba(0, 0, 0, 0.2)
+            &__icon
+                margin: 0 6px
+                display: inline-block
+                text-align: center
+                width: 36px
+                height: 36px
+                line-height: 34px
+                border-radius: 50%
+                vertical-align: middle
+
+                & .material-icons
+                    font-size: 20px
+                    vertical-align: middle
+
+            &__text
+                vertical-align: middle
+                margin-right: 24px
+
+                &__extension
+                    font-family: $font-code
+                    float: right
+                    margin-right: 12px
+
+@media screen and ( min-width: 1400px )
+    .project-description
+        &__description
+            padding: 32px 15%
+
+    .content-home .featurecard-row
+        padding: 12px calc(15% - 16px)
+
+@media screen and ( max-width: 1000px )
+    .content-home .featurecard__imagewrapper__image
+        height: 240px
+
+@media screen and ( max-width: 800px )
+    .project-description
+        &__description
+            padding: 32px 32px
+
+    .content-home .featurecard
+        &-row
+            flex-direction: column
+
+        &-column
+            padding-right: 0
+            padding-bottom: 24px
+            &:last-child
+                padding-bottom: 0
+
+@media screen and ( max-width: 700px )
+    .content-home .download__cards__card
+        display: block
+        margin-bottom: 16px
+        margin-left: 0
+        &:last-child
+            margin-bottom: 0
+
+@media screen and ( max-width: 680px )
+    .project-description
+        padding-top: 64px
+        &__title
+            padding-top: 0
+            font-size: 54px
+
+        &__description
+            font-size: 16px
+            margin-top: 64px

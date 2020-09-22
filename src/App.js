@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
+import '@quentinguidee/react-jade-ui/dist/index.css'
 import './sass/omega.library.sass'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Toolbar from './components/Toolbar';
-import Footer from './components/Footer';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import Home from './pages/Home';
 import Simulator from './pages/Simulator';
+import FullSimulator from './pages/simulator/FullSimulator';
 import Releases from './pages/Releases';
 import Policy from './pages/Policy';
 import Install from './pages/Install';
-import Projects from './pages/Projects';
-import Editor from './pages/Editor';
-import EditorRun from './pages/EditorRun';
-import EditorRunPython from './pages/EditorRunPython'
+import IDEMain from './pages/IDE.js';
+import IDEEditor from './pages/omega-ide/src/ide/Editor';
+import IDESimulator from './pages/omega-ide/src/ide/Simulator';
 import NotFound from './pages/NotFound';
+import GithubConnector from './GithubConnector';
+import { CookiesConsent } from '@quentinguidee/react-jade-ui'
 
 import { IntlProvider } from "react-intl";
 import translations from './i18n/locales'
+import Wiki from './pages/Wiki';
+import Beta from './pages/Beta';
 
 class App extends Component {
   constructor(props) {
@@ -53,23 +58,28 @@ class App extends Component {
     return (
       <IntlProvider locale={this.state.locale} messages={this.state.messages}>
         <Router>
-          <div className="body" style={window.location.pathname.includes("/editor") ? { overflow: "hidden", height: "100vh" } : {}}>
-            {!window.location.pathname.includes("/editor") && <Toolbar />}
+          <div className="body">
+            {!window.location.pathname.includes("/simulator/run") && <React.Fragment>
+              {/* <CookiesConsent toPolicy="/policy" /> */}
+              <CookiesConsent toPolicy="/policy" text="Oui" learnMore="Test" gotIt="GotIt" />
+              <Header />
+            </React.Fragment>}
             <Switch>
               <Route path="/simulator" component={Simulator} exact />
+              <Route path="/simulator/run/full" component={FullSimulator} exact />
               <Route path="/releases" component={Releases} exact />
+              {/* <Route path="/beta" component={Beta} exact /> */}
               <Route path="/install" component={Install} exact />
               <Route path="/install/:version" component={Install} />
               <Route path="/policy" component={Policy} exact />
-              <Route path="/projects" component={Projects} exact />
-              <Route path="/editor/run/python/:id" component={EditorRunPython} exact />
-              <Route path="/editor/run/python" component={EditorRunPython} exact />
-              <Route path="/editor/run" component={EditorRun} exact />
-              <Route path="/editor/:id" component={Editor} exact />
+              <Route path="/ide/" component={IDEMain} exact />
+              <Route path="/ide/editor" component={() => <IDEEditor base="/ide/" connector={GithubConnector} />} exact />
+              <Route path="/ide/simulator" component={IDESimulator} exact />
+              {/* <Route path="/wiki" component={Wiki} exact /> */}
               <Route path="/" component={Home} exact />
               <Route component={NotFound} />
             </Switch>
-            {!window.location.pathname.includes("/editor") && <Footer onChangeLanguage={this.onChangeLanguage} locale={this.state.locale} />}
+            {!window.location.pathname.includes("/simulator/run") && <Footer onChangeLanguage={this.onChangeLanguage} locale={this.state.locale} />}
           </div>
         </Router>
       </IntlProvider>

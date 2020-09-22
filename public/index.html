@@ -26,7 +26,6 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
     <title>Omega</title>
   </head>
   <body>
@@ -42,61 +41,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-    <script>
-    window.cookieconsent.initialise({
-      "palette": {
-        "popup": {
-          "background": "#000"
-        },
-        "button": {
-          "background": "#c53431"
-        }
-      },
-      "theme": "edgeless",
-      "position": "bottom",
-      "static": true,
-      "type": "opt-out",
-      "content": {
-        "href": "/policy"
-      },
-      "onInitialise": function (status) {
-        var type = this.options.type;
-        var didConsent = this.hasConsented();
-        if (type == 'opt-in' && didConsent) {
-        // enable cookies
-        window['ga-disable-G-P9YFFF08LN'] = false;
-        }
-        if (type == 'opt-out' && !didConsent) {
-        // disable cookies
-        window['ga-disable-G-P9YFFF08LN'] = true;
-        }
-      },
-      "onStatusChange": function(status, chosenBefore) {
-        var type = this.options.type;
-        var didConsent = this.hasConsented();
-        if (type == 'opt-in' && didConsent) {
-        // enable cookies
-        window['ga-disable-G-P9YFFF08LN'] = false;
-        }
-        if (type == 'opt-out' && !didConsent) {
-        // disable cookies
-        window['ga-disable-G-P9YFFF08LN'] = true;
-        }
-      },
-      "onRevokeChoice": function() {
-        var type = this.options.type;
-        if (type == 'opt-in') {
-        // disable cookies
-        window['ga-disable-G-P9YFFF08LN'] = true;
-        }
-        if (type == 'opt-out') {
-        // enable cookies
-        window['ga-disable-G-P9YFFF08LN'] = false;
-        }
-      }
-    });
-    </script>
   </body>
   <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
@@ -116,7 +60,10 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
+    if (window.location.hostname != "localhost") {
+      firebase.analytics();
+    } else {
+      console.log("GA Disabled with localhost");
+    }
   </script>
-  
 </html>

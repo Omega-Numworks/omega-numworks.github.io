@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
+import { Button } from '@quentinguidee/react-jade-ui'
 import firebase, { messaging } from "../firebase"
 import ImgCalculatorBody from '../img/calculator-body.png'
 import ImgCalculatorBodyOmega from '../img/calculator-body-omega.png'
@@ -8,6 +9,7 @@ import ImgCalculatorCable from '../img/calculator-cable.png'
 import ImgExternal from '../img/external_icon.png'
 import ImgNotifications from '../img/notification_icon.png'
 import Installer from '../dfu/installer'
+import './sass/installer.sass'
 
 const LANG_TO_FLAGS = {
     "en": "🇺🇸",
@@ -262,9 +264,13 @@ export default class Install extends Component {
                         <div className={"installer__content__progress__message " +  (this.state.install ? "installer__content__progress__message-active" : "")}><FormattedMessage id="installer.installing" defaultMessage="Installing Omega {version}. Please do not unplug your Numworks." values={{version: this.state.installerInstance.toInstall}} /></div>
                         <div className={"installer__content__error " +  (this.state.error ? "installer__content__error-active" : "")}>{this.state.errorMessage}</div>
                         <div className="installer__content__buttons">
-                            <button onClick={() => this.detectCalculator()} className={"installer__content__buttons__button " +  (!this.state.calculatorDetected ? "installer__content__buttons__button-active" : "")}><FormattedMessage id="installer.detect" defaultMessage="DETECT CALCULATOR" /></button>
-                            <button onClick={this.install} className={"installer__content__buttons__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__button-active" : "") + (this.state.showPopup ? " installer__content__buttons__button-disabled" : "")}><FormattedMessage id="installer.install" defaultMessage="INSTALL OMEGA" /></button>
-                            <div  className={"installer__content__buttons__language " + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__language-active" : "")}>
+                            <Button onClick={this.detectCalculator} className={"installer__content__buttons__button " +  (!this.state.calculatorDetected ? "installer__content__buttons__button-active" : "")} blue>
+                                <FormattedMessage id="installer.detect" defaultMessage="DETECT CALCULATOR" />
+                            </Button>
+                            <Button onClick={this.install} className={"installer__content__buttons__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__button-active" : "")} disabled={this.state.showPopup} blue>
+                                <FormattedMessage id="installer.install" defaultMessage="INSTALL OMEGA" />
+                            </Button>
+                            <div className={"installer__content__buttons__language " + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__language-active" : "")}>
                                 {langs_list_html}
                             </div>
                         </div>
@@ -273,7 +279,7 @@ export default class Install extends Component {
 
                 <div className={"popup " + (this.state.showPopup ? "popup-active" : "")}>
                     <FormattedMessage id="installer.disclaimer" defaultMessage="Omega is a redistribution of Epsilon that adds various features to it. We spend a lot of time trying to comply with exam guidelines from different countries. The software is therefore theoretically authorized for examination; however, Omega has not applied for certification by any organization. By clicking on I agree, you accept that neither Omega nor NumWorks can be held responsible in the event of a problem with this software." />
-                    <button onClick={this.install} className="popup__button popup__button-active"><FormattedMessage id="installer.agree" defaultMessage="I AGREE" /></button>
+                    <Button onClick={this.install} className="popup__button popup__button-active"><FormattedMessage id="installer.agree" defaultMessage="I AGREE" /></Button>
                 </div>
 
                 <div className={"installer-thanks " + (this.state.installationFinished ? "installer-thanks-active" : "")}>
@@ -293,9 +299,9 @@ export default class Install extends Component {
                     <div className="installer-external__description">
                         <FormattedMessage id="installer.external.description" defaultMessage="Installez des applications pour votre Numworks." />
                     </div>
-                    <a className="installer-external__button" href="https://m4xi1m3.github.io/nw-external-apps/" rel="noopener noreferrer">
+                    <Button className="installer-external__button" href="https://m4xi1m3.github.io/nw-external-apps/">
                         <FormattedMessage id="installer.external.open" defaultMessage="OUVRIR" />
-                    </a>
+                    </Button>
                 </div>
 
                 <div className={"installer-external " + ((this.state.installerNotCompatibleWithThisBrowser || !firebase.messaging.isSupported() || this.state.hideEnableNotificationPopup || this.state.install === true) ? "" : "installer-external-active")}>
@@ -306,9 +312,9 @@ export default class Install extends Component {
                     <div className="installer-external__description">
                         <FormattedMessage id="installer.notifications.description" defaultMessage="Get notifications for updates." />
                     </div>
-                    <div className="installer-external__button" onClick={this.enableNotifications} target="_blank" rel="noopener noreferrer">
+                    <Button className="installer-external__button" onClick={this.enableNotifications}>
                         <FormattedMessage id="installer.notifications.open" defaultMessage="ENABLE" />
-                    </div>
+                    </Button>
                 </div>
             </div>
         )

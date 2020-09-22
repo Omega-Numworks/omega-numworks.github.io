@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
+import ImgBanner from '../img/banner.png'
 import ImgSymbolicCalculation from '../img/symbolic-calculation.png'
 import ImgAtom from '../img/atom.png'
 import ImgRpn from '../img/rpn.png'
 import Img3ds from '../img/3ds.png'
 import { releases } from '../firmware/firmwares'
-import { Link } from 'react-router-dom'
+import { Button } from '@quentinguidee/react-jade-ui'
 import { FormattedMessage } from 'react-intl'
+import Fade from "react-reveal";
+import { FeatureCard, FeatureCardTitle, FeatureCardRow, FeatureCardColumn, FeatureCardDescription, FeatureCardImage } from '../components/featurecard/FeatureCard'
+import { Link } from 'react-router-dom'
+import './sass/home.sass'
 
 export default class Home extends Component {
     constructor(props) {
@@ -23,7 +28,6 @@ export default class Home extends Component {
     }
 
     render() {
-        
         var latest_id = 0
         for(var i = 0; i < releases.firmwares.length; i++) {
             if (releases.firmwares[i].name === releases.latest) {
@@ -35,170 +39,177 @@ export default class Home extends Component {
         var latest_version = releases.firmwares[latest_id];
         
         return (
-            <div className="content">
+            <div className="content content-home">
                 {/* Parallax */}
                 {/*<div className="parallax"></div>*/}
 
                 {/* Project description */}
-                <div className="project-description">
+                <div className="project-description" style={{backgroundImage: `url(${ImgBanner})`}}>
+                    {/* Photo by https://unsplash.com/@eberhardgross?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText eberhard grossgasteiger on https://unsplash.com/s/photos/abstract?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText Unsplash */}
                     <h1 className="project-description__title">
                         <FormattedMessage id="home.head.title" defaultMessage="Omega" />
                     </h1>
                     <h2 className="project-description__subtitle">
                         <FormattedMessage id="home.head.subtitle" defaultMessage="The next evolution of Epsilon." />
                     </h2>
-                    <Link to="/simulator" className="project-description__button">
-                        <div className="project-description__button__text">
-                            <FormattedMessage id="home.head.tryit" defaultMessage="TRY IT ONLINE" /> <i className="project-description__button__icon material-icons md-16">play_arrow</i>
-                        </div>
-                    </Link>
+                    <Button to="/simulator" className="project-description__button" rightIcon='play_arrow' outline big>
+                        <FormattedMessage id="home.head.tryit" defaultMessage="TRY IT ONLINE" />
+                    </Button>
                     <p className="project-description__description">
                         <FormattedMessage id="home.head.description" defaultMessage="Omega is a fork of Numworks' Epsilon, the OS that runs on their calculator, which brings many features to it. Omega is for the people who want to add features to the calculator, but cannot because they have been rejected by Numworks (for reasons that are 100% understandable!)." />
                     </p>
                     {/* <h2 className="mb-3">A whole new set of features</h2> */}
                 </div>
 
-                {/* Symbolic computation */}
-                <div className="feature feature-white">
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.symbolic.name" defaultMessage="Symbolic computation" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.symbolic.description" defaultMessage="Symbolic computation was removed from Epsilon in version 11.2. Omega reintroduces that feature." />
-                        </p>
-                    </div>
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="Symbolic Calculation" src={ImgSymbolicCalculation} />
-                    </div>
-                </div>
+                <div style={ { height: "16px" } }></div>
 
-                {/* Periodic table */}
-                <div className="feature feature-gray feature-desktop">
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="Atom" src={ImgAtom} />
-                    </div>
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.atom.name" defaultMessage="Periodic table" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.atom.description" defaultMessage="Inspired by the TI83PCE's periodic table app, Omega's periodic table is clean and simple to use." />
-                        </p>
-                    </div>
-                </div>
+                <Fade>
+                <FeatureCardRow>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                <FormattedMessage defaultMessage="Theme engine" id="home.features.theme-engine"/>
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <ul>
+                                    <li><FormattedMessage defaultMessage="Omega light theme" id="home.features.theme-engine-omega-light"/></li>
+                                    <li><FormattedMessage defaultMessage="Omega dark theme" id="home.features.theme-engine-omega-dark"/></li>
+                                    <li><FormattedMessage defaultMessage="Epsilon light theme" id="home.features.theme-engine-epsilon-light"/></li>
+                                    <li><FormattedMessage defaultMessage="Epsilon dark theme" id="home.features.theme-engine-epsilon-dark"/></li>
+                                    <li><FormattedMessage defaultMessage="Community themes" id="home.features.theme-engine-community-themes"/></li>
+                                </ul>
+                            </FeatureCardDescription>
+                        </FeatureCard>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                <FormattedMessage defaultMessage="External apps" description="" id="home.features.external-apps"/>
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <FormattedMessage defaultMessage="Install community apps on the fly with External. Also includes KhiCAS and various emulators." description="" id="home.features.external-apps-community"/>
+                            </FeatureCardDescription>
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                <FormattedMessage id="home.features.symbolic.name" defaultMessage="Symbolic computation" />
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <FormattedMessage id="home.features.symbolic.description" defaultMessage="Symbolic computation was removed from Epsilon in version 11.2. Omega reintroduces that feature." />
+                            </FeatureCardDescription>
+                            <FeatureCardImage src={ImgSymbolicCalculation} alt="Symbolic Calculation" />
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                </FeatureCardRow>
+                </Fade>
 
-                {/* Periodic table */}
-                <div className="feature feature-gray feature-mobile">
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.atom.name" defaultMessage="Periodic table" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.atom.description" defaultMessage="Inspired by the TI83PCE's periodic table app, Omega's periodic table is clean and simple to use." />
-                        </p>
-                    </div>
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="Atom" src={ImgAtom} />
-                    </div>
-                </div>
+                {/* <Fade bottom> */}
+                <Fade>
+                <FeatureCardRow>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                <FormattedMessage id="home.features.atom.name" defaultMessage="Periodic table" />
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <FormattedMessage id="home.features.atom.description" defaultMessage="Inspired by the TI83PCE's periodic table app, Omega's periodic table is clean and simple to use." />
+                            </FeatureCardDescription>
+                            <FeatureCardImage src={ImgAtom} alt="Atom" />
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                <FormattedMessage id="home.features.rpn.name" defaultMessage="RPN" />
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <FormattedMessage id="home.features.rpn.description" defaultMessage="Omega supports using Reverse Polish Notation to do calculations." />
+                            </FeatureCardDescription>
+                            <FeatureCardImage src={ImgRpn} alt="RPN" />
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                </FeatureCardRow>
+                </Fade>
 
-                {/* KhiCAS */}
-                {/* <div className="feature feature-white">
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">Support of KhiCAS and external apps</h3>
-                        <p className="feature__content__description">
-                            Delta, another forked firmware which supports external apps, is fully integrated into Omega. This mean you can run KhiCAS or Nofrendo on your Numworks calculator.
-                        </p>
-                        <p className="feature__content__small">Due to hardware limitations, this is only possible on n0110.</p>
-                    </div>
-                    <div className="feature__images">
-                        <img className="feature__images__image" src="img/giac.png"/>
-                    </div>
-                </div> */}
-                
-                {/* RPN */}
-                <div className="feature feature-white">
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.rpn.name" defaultMessage="RPN" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.rpn.description" defaultMessage="Omega supports using Reverse Polish Notation to do calculations." />
-                        </p>
-                    </div>
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="RPN" src={ImgRpn} />
-                    </div>
-                </div>
+                <Fade>
+                <FeatureCardRow>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available on the Nintendo 3DS" />
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <FormattedMessage id="home.features.3ds.description" defaultMessage="Omega is avaliable and fully usable on the Nintendo 3DS." />
+                            </FeatureCardDescription>
+                            <FeatureCardImage src={Img3ds} alt="3ds" />
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                    <FeatureCardColumn>
+                        <FeatureCard>
+                            <FeatureCardTitle>
+                                <FormattedMessage defaultMessage="And more!" description="" id="home.features.and-more"/>
+                            </FeatureCardTitle>
+                            <FeatureCardDescription>
+                                <ul>
+                                    <li><FormattedMessage defaultMessage="Physical and chemical constants" id="home.features.and-more.constants"/></li>
+                                    <li><FormattedMessage defaultMessage="Open method and os module" id="home.features.and-more.os"/></li>
+                                    <li><FormattedMessage defaultMessage="Android simulator with script backup" id="home.features.and-more.android"/></li>
+                                    <li><FormattedMessage defaultMessage="Hungarian support" id="home.features.and-more.hungarian"/></li>
+                                    <li><FormattedMessage defaultMessage="Accessibility settings" id="home.features.and-more.accessibility"/></li>
+                                    <li><FormattedMessage defaultMessage="Choice of multiplication symbol" id="home.features.and-more.mult-symbol"/></li>
+                                    <li>…</li>
+                                </ul>
+                            </FeatureCardDescription>
+                        </FeatureCard>
+                    </FeatureCardColumn>
+                </FeatureCardRow>
+                </Fade>
 
-                {/* 3DS */}
-                <div className="feature feature-gray feature-desktop">
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="Atom" src={Img3ds} />
-                    </div>
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available on the Nintendo 3DS" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.3ds.description" defaultMessage="Omega is avaliable and fully usable on the Nintendo 3DS." />
-                        </p>
-                    </div>
-                </div>
+                <div style={ { height: "16px" } }></div>
 
-                {/* 3DS */}
-                <div className="feature feature-gray feature-mobile">
-                    <div className="feature__content">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.3ds.name" defaultMessage="Now available on the Nintendo 3DS" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.3ds.description" defaultMessage="Omega is avaliable and fully usable on the Nintendo 3DS." />
-                        </p>
-                    </div>
-                    <div className="feature__images">
-                        <img className="feature__images__image" alt="Atom" src={Img3ds} />
-                    </div>
-                </div>
-                
-                {/* And more */}
-                <div className="feature feature-darkgray">
-                    <div className="feature__content feature__content-full">
-                        <h3 className="feature__content__title">
-                            <FormattedMessage id="home.features.more.name" defaultMessage="And more!" />
-                        </h3>
-                        <p className="feature__content__description">
-                            <FormattedMessage id="home.features.more.description" defaultMessage="A theming engine, accessibility settings, support for KhiCAS, loadable applications, different multiplication signs, more brightness steps, physics & chemistry constants, usernames..." />
-                        </p>
-                        <div style={ {height: "24"} }></div>
-                    </div>
-                </div>
-
-                {/* Download */}
-                <div className="download">
-                    <div className="download__title"><FormattedMessage id="home.download.title" defaultMessage="Download" /></div>
-                    <div className="download__version"><FormattedMessage id="home.download.subtitle" defaultMessage="Omega {version}" values={{version: this.getReleaseVersion(latest_version.name)}}/></div>
-                    <div className="releases__cards__card__actions">
-                        <a className="releases__cards__card__actions__subbutton" href={"https://github.com/Omega-Numworks/Omega/releases/tag/" + latest_version.name}>
-                            <i className="releases__cards__card__actions__subbutton__icon material-icons md-16">code</i>
-                            <div className="releases__cards__card__actions__subbutton__text"><FormattedMessage id="home.download.github" defaultMessage="GITHUB" /></div>
-                        </a>
-                        <Link className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (latest_version.available && (latest_version.compatibility.N0110 || latest_version.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton-disabled")} to={"/install/" + latest_version.name}>
-                            <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (latest_version.available && (latest_version.compatibility.N0110 || latest_version.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>system_update_alt</i>
-                            <div className={"releases__cards__card__actions__subbutton__text" + (latest_version.available && (latest_version.compatibility.N0110 || latest_version.compatibility.N0100) ? "" : " releases__cards__card__actions__subbutton__text-disabled")}><FormattedMessage id="home.download.install" defaultMessage="INSTALL" /></div>
+                <div className="download" style={{backgroundImage: `url(${ImgBanner})`}}>
+                    <h2 className="download__title"><FormattedMessage defaultMessage="Installation d'Omega" description="" id="home.install"/> {this.getReleaseVersion(latest_version.name)}</h2>
+                    <div className="download__cards">
+                        <Link to="/install" className="download__cards__card">
+                            <span className="download__cards__card__icon">
+                                <i className="material-icons">system_update_alt</i>
+                            </span>
+                            <div className="download__cards__card__content">
+                                <span className="download__cards__card__content__text"><FormattedMessage defaultMessage="Installation automatique" id="home.install.auto"/></span>
+                                <span className="download__cards__card__content__description"><FormattedMessage defaultMessage="For Numworks, via USB" id="home.install.auto.fornumworks"/></span>
+                            </div>
                         </Link>
-                        <a className={"releases__cards__card__actions__subbutton" + (latest_version.compatibility.android && latest_version.available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.apk") : "#"}>
-                            <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (latest_version.compatibility.android && latest_version.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>android</i>
-                            <div className={"releases__cards__card__actions__subbutton__text" + (latest_version.compatibility.android && latest_version.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}><FormattedMessage id="home.download.android" defaultMessage="ANDROID" /></div>
+                        <a href="https://play.google.com/store/apps/details?id=io.github.omega.simulator" target="_blank" rel="noopener noreferrer" className="download__cards__card">
+                            <span className="download__cards__card__icon">
+                                <i className="material-icons">android</i>
+                            </span>
+                            <div className="download__cards__card__content">
+                                <span className="download__cards__card__content__text"><FormattedMessage defaultMessage="Android simulator" id="home.install.android"/></span>
+                                <span className="download__cards__card__content__description"><FormattedMessage defaultMessage="From Google Play" id="home.install.android.from-google-play"/></span>
+                            </div>
                         </a>
-                        <a className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (latest_version.compatibility.web && latest_version.available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={latest_version.compatibility.web && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.zip") : "#"}>
-                            <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (latest_version.compatibility.web && latest_version.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>web</i>
-                            <div className={"releases__cards__card__actions__subbutton__text" + (latest_version.compatibility.web && latest_version.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}><FormattedMessage id="home.download.web" defaultMessage="WEB" /></div>
+                    </div>
+                    <div className="download__title"><FormattedMessage defaultMessage="Other downloads" description="" id="home.install.dl.others"/></div>
+                    <div className="download__list">
+                        <a href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/binpack-n0100.tgz") : "#"} className="download__list__item">
+                            <span className="download__list__item__icon"><i className="material-icons">get_app</i></span>
+                            <span className="download__list__item__text"><FormattedMessage defaultMessage="Binpack n0100" id="home.install.dl.binpack-n0100"/> <span className="download__list__item__text__extension">.tgz</span></span>
                         </a>
-                        <a className={"releases__cards__card__actions__subbutton releases__cards__card__actions__subbutton-hide-on-mobile" + (latest_version.compatibility["3ds"] && latest_version.available ? "" : " releases__cards__card__actions__subbutton-disabled")} href={latest_version.compatibility["3ds"] && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.3dsx") : "#"}>
-                            <i className={"releases__cards__card__actions__subbutton__icon material-icons md-16" + (latest_version.compatibility["3ds"] && latest_version.available ? "" : " releases__cards__card__actions__subbutton__icon-disabled")}>gamepad</i>
-                            <div className={"releases__cards__card__actions__subbutton__text" + (latest_version.compatibility["3ds"] && latest_version.available ? "" : " releases__cards__card__actions__subbutton__text-disabled")}><FormattedMessage id="home.download.3ds" defaultMessage="3DS" /></div>
+                        <a href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/binpack-n0110.tgz") : "#"} className="download__list__item">
+                            <span className="download__list__item__icon"><i className="material-icons">get_app</i></span>
+                            <span className="download__list__item__text"><FormattedMessage defaultMessage="Binpack n0110" id="home.install.dl.binpack-n0110"/> <span className="download__list__item__text__extension">.tgz</span></span>
+                        </a>
+                        <a href={latest_version.compatibility.android && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.apk") : "#"} className="download__list__item">
+                            <span className="download__list__item__icon"><i className="material-icons">android</i></span>
+                            <span className="download__list__item__text"><FormattedMessage defaultMessage="Android simulator" id="home.install.dl.android"/> <span className="download__list__item__text__extension">.apk</span></span>
+                        </a>
+                        <a href={latest_version.compatibility.web && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.zip") : "#"} className="download__list__item">
+                            <span className="download__list__item__icon"><i className="material-icons">web</i></span>
+                            <span className="download__list__item__text"><FormattedMessage defaultMessage="Web simulator" id="home.install.dl.web"/> <span className="download__list__item__text__extension">.zip</span></span>
+                        </a>
+                        <a href={latest_version.compatibility["3ds"] && latest_version.available ? ("https://github.com/Omega-Numworks/Omega/releases/download/" + latest_version.name + "/simulator.3dsx") : "#"} className="download__list__item">
+                            <span className="download__list__item__icon"><i className="material-icons">gamepad</i></span>
+                            <span className="download__list__item__text"><FormattedMessage defaultMessage="3DS simulator" id="home.install.dl.3ds"/> <span className="download__list__item__text__extension">.3dsx</span></span>
                         </a>
                     </div>
                 </div>
