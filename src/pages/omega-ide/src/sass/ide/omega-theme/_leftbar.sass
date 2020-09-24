@@ -1,0 +1,40 @@
+&__leftbar
+    margin-left: 12px
+    margin-top: 12px
+    border-radius: 6px
+    height: calc(100vh - 32px - 24px)
+    background-color: #333333
+    width: 56px
+    flex-basis: 56px
+
+    &__container
+        &-top
+        &-bottom
+
+    &__icon
+        border-radius: 4px
+        width: 44px
+        height: 44px
+        margin: 6px
+        transition: all 0.1s
+
+        &:hover
+
+        &__image
+            width: 30px
+            height: 30px
+            border-radius: 15px
+            box-shadow: 0 1px 12px rgba(0,0,0,0.03), 0 1px 8px rgba(0,0,0,0.05)
+
+        &__icon
+            font-size: 24px
+            text-shadow: 0 1px 12px rgba(0,0,0,0.1), 0 1px 8px rgba(0,0,0,0.15)
+        
+        &:hover
+            background-color: #292929
+
+        &-selected
+            border: none
+            background-color: #1f1f1f
+            color: white
+            width: 44px
