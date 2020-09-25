@@ -15,6 +15,7 @@ import IDEEditor from './pages/omega-ide/src/ide/Editor';
 import IDESimulator from './pages/omega-ide/src/ide/Simulator';
 import NotFound from './pages/NotFound';
 import GithubConnector from './GithubConnector';
+import TiPlanetConnector from './TiPlanetConnector';
 import { CookiesConsent } from '@quentinguidee/react-jade-ui'
 
 import { IntlProvider } from "react-intl";
@@ -74,6 +75,7 @@ class App extends Component {
               <Route path="/policy" component={Policy} exact />
               <Route path="/ide/" component={IDEMain} exact />
               <Route path="/ide/editor" component={() => <IDEEditor base="/ide/" connector={GithubConnector} />} exact />
+              <Route path="/ide/tiplanet" component={() => <IDEEditor base="/ide/" connector={TiPlanetConnector} />} exact />
               <Route path="/ide/simulator" component={IDESimulator} exact />
               {/* <Route path="/wiki" component={Wiki} exact /> */}
               <Route path="/" component={Home} exact />
