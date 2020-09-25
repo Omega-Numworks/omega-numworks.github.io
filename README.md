@@ -19,4 +19,4 @@ NumWorks SAS and Nintendo of America Inc aren't associated in any shape or form 
 
 ## Sponsor
 
-<a href="https://vercel.com/?utm_source=getomegaweb&utm_campaign=oss" ><img src="https://raw.githubusercontent.com/quentinguidee/Omega-Design/master/powered-by-vercel.svg"></img></a>
+<a href="https://vercel.com/?utm_source=getomega&utm_campaign=oss" ><img src="https://raw.githubusercontent.com/quentinguidee/Omega-Design/master/powered-by-vercel.svg"></img></a>
