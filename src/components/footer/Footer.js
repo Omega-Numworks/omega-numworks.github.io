@@ -86,7 +86,7 @@ export default class Footer extends Component {
                     <iframe title="Discord" src="https://discordapp.com/widget?id=663420259851567114&theme=dark" width="300" height="300" allowtransparency="true" frameborder="0"></iframe>
                 </div>
                 <div className="footer__separator" style={{borderColor: "transparent", marginBottom: "0"}} />
-                <a href="https://vercel.com/?utm_source=getomegaweb&utm_campaign=oss" target="_blank" rel="noopener noreferrer">
+                <a href="https://vercel.com/?utm_source=getomega&utm_campaign=oss" target="_blank" rel="noopener noreferrer">
                     <img style={{display: "block", borderRadius: "8px", border: "1px solid #333333"}} src={Vercel} alt="Vercel" />
                 </a>
                 <div className="footer__separator" />
