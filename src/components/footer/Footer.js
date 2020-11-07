@@ -76,7 +76,7 @@ export default class Footer extends Component {
                             <i className="material-icons material-icons-round">dns</i>
                             <FormattedMessage id="footer.projects.omega-design" defaultMessage="Omega Design" />
                         </a>
-                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/M4xi1m3/nw-external-apps/">
+                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://omega-numworks.github.io/Omega-External/">
                             <i className="material-icons material-icons-round">alt_route</i>
                             <FormattedMessage id="footer.projects.external-apps" defaultMessage="External Apps" />
                         </a>
