@@ -299,7 +299,7 @@ export default class Install extends Component {
                     <div className="installer-external__description">
                         <FormattedMessage id="installer.external.description" defaultMessage="Installez des applications pour votre Numworks." />
                     </div>
-                    <Button className="installer-external__button" href="https://m4xi1m3.github.io/nw-external-apps/">
+                    <Button className="installer-external__button" href="https://omega-numworks.github.io/Omega-External/">
                         <FormattedMessage id="installer.external.open" defaultMessage="OUVRIR" />
                     </Button>
                 </div>
