@@ -69,7 +69,7 @@ class App extends Component {
               <Route path="/simulator" component={Simulator} exact />
               <Route path="/simulator/run/full" component={FullSimulator} exact />
               <Route path="/releases" component={Releases} exact />
-              {/* <Route path="/beta" component={Beta} exact /> */}
+              <Route path="/beta" component={Beta} exact />
               <Route path="/install" component={Install} exact />
               <Route path="/install/:version" component={Install} />
               <Route path="/policy" component={Policy} exact />
