@@ -130,8 +130,8 @@
     "filepath": "src/pages/Beta.js"
   },
   {
-    "id": "beta.report.discord",
-    "defaultMessage": "REPORT A BUG ON DISCORD",
+    "id": "beta.report.github",
+    "defaultMessage": "REPORT A BUG ON GITHUB",
     "filepath": "src/pages/Beta.js"
   },
   {

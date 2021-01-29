@@ -2,7 +2,11 @@
 import Downloader from "../dfu/downloader"
 import Numworks from "numworks.js"
 
-import {releases} from '../firmware/firmwares'
+import { releases as finalReleases } from '../firmware/firmwares'
+import { releases as betaReleases } from '../pages/Beta'
+
+var releases = finalReleases;
+releases["firmwares"] = releases.firmwares.concat(betaReleases.firmwares);
 
 // Used for debugging. When true, skips downloading and flashing.
 const DO_DRY_RUN = false;

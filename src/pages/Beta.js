@@ -3,6 +3,35 @@ import ReleaseCard from '../components/releasecard/ReleaseCard'
 import { Button, ButtonsGroup } from '@quentinguidee/react-jade-ui'
 import { FormattedMessage } from 'react-intl'
 
+export const releases = {
+	"firmwares": [{
+	    "name": "O1.21.β1-E15",
+	    "commit": "76db361cdeb2997a4aa0af41378d420265cde372",
+	    "changelog": [
+			"Update: Updated to Epsilon 15.3.1!",
+			"New: Real-time clock in the toolbar",
+			"Change: Chrome Popup: change URL from workshop.numworks.com to getomega.dev",
+			"Change: Doxygen with an Omega theme",
+			"Change: Merge omega-themes submodule in the main repository",
+			"Fix: Better Spanish translations",
+			"Fix: Fixed append implementation"
+	    ],
+		"compatibility": {
+			"N0110": true,
+			"N0100": true,
+			"web": true,
+			"android": false,
+			"3ds": false
+		},
+		"available": true,
+		"langages": {
+		    "0100": [
+		        "en", "fr"
+		    ]
+		}
+	}]
+}
+
 export default class Beta extends Component {
     render() {
         return (
@@ -13,8 +42,8 @@ export default class Beta extends Component {
 						<FormattedMessage defaultMessage="Welcome to the Omega beta program." id="beta.welcome" />
 					</div>
                     <ButtonsGroup style={{ display: "inline-block" }}>
+                        <Button href="https://github.com/Omega-Numworks/Omega/issues/new?assignees=&labels=Status%3A+Triage%2C+Type%3A+Bug&template=omega-beta-only---bug-report.md&title=%5BBETA-1.21%5D+…" leftIcon="web"><FormattedMessage defaultMessage="REPORT A BUG ON GITHUB" id="beta.report.github"/></Button>
                         <Button href="mailto:getomega.pro@gmail.com" leftIcon="mail"><FormattedMessage defaultMessage="REPORT A BUG BY MAIL" id="beta.report.mail"/></Button>
-                        <Button href="https://discord.gg/X2TWhh9" leftIcon="web"><FormattedMessage defaultMessage="REPORT A BUG ON DISCORD" id="beta.report.discord"/></Button>
                     </ButtonsGroup>
                 </div>
                 <div style={ { height: "16px" } }></div>
@@ -26,49 +55,4 @@ export default class Beta extends Component {
             </div>
         )
     }
-}
-
-const releases = {
-	"latest": "O1.21.β1-E14",
-	"firmwares": [{
-	    "name": "O1.21.β1-E14",
-	    "commit": "0235de80101785c6dedf0b7f4651584cfd56cbad",
-	    "changelog": [
-			"Update: Updated to Epsilon 14.4.1!",
-			"New: Added 67 constants",
-			"New: New units",
-			"New: 3DS Simulator",
-			"New: External apps are now displayed on the home screen",
-			"New: Python: open function (and derivatives)",
-			"New: Physics constants are now using the Epsilon units",
-			"New: Added message when the compilation starts",
-			"New: Undef is hidden during symbolic calculation",
-			"New: Display the scripts size",
-			"New: Community themes: Download a community theme with THEME_REPO=git-url and THEME_NAME=theme_name.",
-			"New: Shift + Home is now a shortcut to go to calculation (or the first app)",
-			"New: Support for RGB files without alpha channel.",
-			"New: Add root and log settings",
-			"New: \\ shortcut (with ALPHA+x10^x)",
-			"New: @ shortcut (with ALPHA+ANS)",
-			"New: µ shortcut (with SHIFT+7)",
-			"New: Ω shortcut (with SHIFT+9)",
-			"New: Docker!",
-			"New: Web simulator background",
-			"Change: Simulators are renamed (Epsilon -> Omega)",
-			"Fix: ALPHA lock+arrow",
-	    ],
-		"compatibility": {
-			"N0110": true,
-			"N0100": true,
-			"web": true,
-			"android": true,
-			"3ds": true
-		},
-		"available": true,
-		"langages": {
-		    "0100": [
-		        "en", "fr", "nl", "pt", "it", "de", "es", "hu"
-		    ]
-		}
-	}]
 }
