@@ -73,7 +73,7 @@ class App extends Component {
               <Route path="/install/:version" component={Install} />
               <Route path="/policy" component={Policy} exact />
               <Route path="/ide/" component={IDEMain} exact />
-              <Route path="/ide/editor" component={() => <IDEEditor base="/ide/" connector={GithubConnector} />} exact />
+              <Route path="/ide/editor" component={() => <IDEEditor base="/ide/" connector={GithubConnector} vercel={true} />} exact />
               <Route path="/ide/simulator" component={IDESimulator} exact />
               {/* <Route path="/wiki" component={Wiki} exact /> */}
               <Route path="/" component={Home} exact />
