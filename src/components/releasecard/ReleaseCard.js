@@ -75,7 +75,7 @@ export default class ReleaseCard extends Component {
         const version = this.props.version;
 
         return (
-            <div className="card">
+            <div className="card" style={{ display: (this.props.hidden ? "none" : "block") }}>
                 <div className="card__title">{this.getVersionName()}</div>
                 <div className="card__subtitle">Epsilon {this.getEpsilonVersion(version.name)}</div>
                 

@@ -33,6 +33,29 @@ export const releases = {
 }
 
 export default class Beta extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			input: "",
+			fieldCompleted: false,
+		};
+
+		this.onChange = this.onChange.bind(this);
+	}
+
+	onChange(e) {
+		const value = e.target.value
+		this.setState({ input: value });
+		if (value.toLowerCase() === "je suis d'accord et ne me rendrai jamais en examen avec une beta" ||
+			value.toLowerCase() === "je suis d'accord et ne me rendrai jamais en examen avec une bêta" ||
+			value.toLowerCase() === "i agree and will never go to exam with a beta") {
+			this.setState({ fieldCompleted: true });
+		} else {
+			this.setState({ fieldCompleted: false });
+		}
+	}
+
     render() {
         return (
             <div className="content">
@@ -48,8 +71,10 @@ export default class Beta extends Component {
                 </div>
                 <div style={ { height: "16px" } }></div>
                 <div className="releases__cards">
-                    <div className="releases__warning"><FormattedMessage defaultMessage="Please note: Betas do not have Omega exam mode." id="beta.report.exammode"/></div>
-                    <ReleaseCard version={releases.firmwares[0]} name="Beta 1" />
+                    <div className="releases__warning"><FormattedMessage defaultMessage="Warning: Omega betas are NOT made for exam and do not have Omega exam mode. By going with for exams, you put yourself in danger and risk several years of prohibition of exams. May be even more serious depending on the applicable legislation in your country. By installing an Omega beta, you agree that neither NumWorks nor Omega can be held responsible for any issues with exam mode. If you agree to this, type this sentence in the following field: I agree and will never go to exam with a beta" id="beta.report.exammode"/>
+					</div>
+					<input className="releases__warning__field" type="text" value={this.state.input} onChange={this.onChange}></input>
+                    <ReleaseCard version={releases.firmwares[0]} name="Beta 1" hidden={!this.state.fieldCompleted} />
                 </div>
                 <div style={ { height: "16px" } }></div>
             </div>

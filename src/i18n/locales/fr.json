@@ -1,6 +1,6 @@
 {
   "beta.report.github": "REPORTER UN BUG SUR GITHUB",
-  "beta.report.exammode": "Attention: Les bêtas ne disposent pas du mode examen Omega.",
+  "beta.report.exammode": "Attention: Les bêtas d'Omega ne sont PAS faites pour se rendre en examen et ne disposent pas du mode examen Omega. En se rendant avec en examen, vous vous mettez en danger et risquez plusieurs années d'interdiction d'examen. Les conséquences peuvent être encore plus grave selon les législations en vigueur dans votre pays. En installant une bêta d'Omega, vous acceptez que ni NumWorks ni Omega ne peut être tenu responsable en cas de problème avec le mode examen. Si vous acceptez ceci, tapez cette phrase dans le champ suivant : je suis d'accord et ne me rendrai jamais en examen avec une bêta",
   "beta.report.mail": "REPORTER UN BUG PAR MAIL",
   "beta.welcome": "Bienvenue dans le programme bêta Omega.",
   "footer.contact": "Nous contacter",
