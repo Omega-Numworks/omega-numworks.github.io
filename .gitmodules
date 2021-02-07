@@ -1,3 +1,3 @@
 [submodule "src/pages/omega-ide"]
 	path = src/pages/omega-ide
-	url = git@github.com:Omega-Numworks/Omega-IDE.git
+	url = https://github.com/Omega-Numworks/Omega-IDE.git
