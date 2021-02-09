@@ -3,10 +3,11 @@ import Downloader from "../dfu/downloader"
 import Numworks from "numworks.js"
 
 import { releases as finalReleases } from '../firmware/firmwares'
-import { releases as betaReleases } from '../pages/Beta'
+import { betas as betaReleases } from '../firmware/betas'
 
-var releases = finalReleases;
-releases["firmwares"] = releases.firmwares.concat(betaReleases.firmwares);
+// use JSON.parse(JSON.stringify()) to do a deep copy to avoid problems
+var releases_list = JSON.parse(JSON.stringify(finalReleases));
+releases_list["firmwares"] = releases_list.firmwares.concat(JSON.parse(JSON.stringify(betaReleases.firmwares)));
 
 // Used for debugging. When true, skips downloading and flashing.
 const DO_DRY_RUN = false;
@@ -34,13 +35,13 @@ export default class Installer {
     init(versionToInstall) {
         this.toInstall = versionToInstall;
         if (this.toInstall === "latest") {
-            this.toInstall = releases.latest;
+            this.toInstall = releases_list.latest;
         }
         
         
-        for (var firm in releases.firmwares) {
-            if (releases.firmwares[firm].name === this.toInstall) {
-                this.firmwareInfos = releases.firmwares[firm];
+        for (var firm in releases_list.firmwares) {
+            if (releases_list.firmwares[firm].name === this.toInstall) {
+                this.firmwareInfos = releases_list.firmwares[firm];
                 break;
             }
         }
