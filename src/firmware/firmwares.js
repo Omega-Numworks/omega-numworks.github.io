@@ -1,6 +1,34 @@
 export const releases = {
-	"latest": "O1.20.3-E14",
+	"latest": "O1.21.0-E15",
 	"firmwares": [{
+	    "name": "O1.21.0-E15",
+	    "commit": "9eff895a95e17a0d5ad2e4894b37a6ccd4a72301",
+	    "changelog": [
+			"Update: Epsilon updated to Epsilon 15.3.1!",
+			"New: Real-time clock",
+			"New: Icon for the Windows and macOS simulators",
+			"New: Throw an error when the user is missing apps",
+			"Change: Chrome Popup: change URL from workshop.numworks.com to getomega.dev",
+			"Change: Doxygen with an Omega theme",
+			"Change: Merge omega-themes submodule in the main repository",
+			"Change: Improved Spanish translations",
+			"Fix: Fixed append implementation",
+			"Fix: homescreen selection with uncompleted row",
+	    ],
+		"compatibility": {
+			"N0110": true,
+			"N0100": true,
+			"web": true,
+			"android": true,
+			"3ds": true
+		},
+		"available": true,
+		"langages": {
+		    "0100": [
+		        "en", "fr", "nl", "pt", "it", "de", "es", "hu"
+		    ]
+		}
+	}, {
 	    "name": "O1.20.3-E14",
 	    "commit": "46658f7077045b28906e257f544414e41f62381a",
 	    "changelog": [

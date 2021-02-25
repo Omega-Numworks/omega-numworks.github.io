@@ -19,7 +19,7 @@ import { CookiesConsent } from '@quentinguidee/react-jade-ui'
 
 import { IntlProvider } from "react-intl";
 import translations from './i18n/locales'
-import Beta from './pages/Beta';
+// import Beta from './pages/Beta';
 
 class App extends Component {
   constructor(props) {
@@ -67,7 +67,7 @@ class App extends Component {
               <Route path="/simulator" component={Simulator} exact />
               <Route path="/simulator/run/full" component={FullSimulator} exact />
               <Route path="/releases" component={Releases} exact />
-              <Route path="/beta" component={Beta} exact />
+              {/* <Route path="/beta" component={Beta} exact /> */}
               <Route path="/install" component={Install} exact />
               <Route path="/install/:version" component={Install} />
               <Route path="/policy" component={Policy} exact />
