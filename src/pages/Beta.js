@@ -2,35 +2,7 @@ import React, { Component } from 'react'
 import ReleaseCard from '../components/releasecard/ReleaseCard'
 import { Button, ButtonsGroup } from '@quentinguidee/react-jade-ui'
 import { FormattedMessage } from 'react-intl'
-
-export const releases = {
-	"firmwares": [{
-	    "name": "O1.21.β1-E15",
-	    "commit": "76db361cdeb2997a4aa0af41378d420265cde372",
-	    "changelog": [
-			"Update: Updated to Epsilon 15.3.1!",
-			"New: Real-time clock in the toolbar",
-			"Change: Chrome Popup: change URL from workshop.numworks.com to getomega.dev",
-			"Change: Doxygen with an Omega theme",
-			"Change: Merge omega-themes submodule in the main repository",
-			"Fix: Better Spanish translations",
-			"Fix: Fixed append implementation"
-	    ],
-		"compatibility": {
-			"N0110": true,
-			"N0100": true,
-			"web": true,
-			"android": false,
-			"3ds": false
-		},
-		"available": true,
-		"langages": {
-		    "0100": [
-		        "en", "fr"
-		    ]
-		}
-	}]
-}
+import { betas } from '../firmware/betas'
 
 export default class Beta extends Component {
 	constructor(props) {
@@ -74,7 +46,7 @@ export default class Beta extends Component {
                     <div className="releases__warning"><FormattedMessage defaultMessage="Warning: Omega betas are NOT made for exam and do not have Omega exam mode. By going with for exams, you put yourself in danger and risk several years of prohibition of exams. May be even more serious depending on the applicable legislation in your country. By installing an Omega beta, you agree that neither NumWorks nor Omega can be held responsible for any issues with exam mode. If you agree to this, type this sentence in the following field: I agree and will never go to exam with a beta" id="beta.report.exammode"/>
 					</div>
 					<input className="releases__warning__field" type="text" value={this.state.input} onChange={this.onChange}></input>
-                    <ReleaseCard version={releases.firmwares[0]} name="Beta 1" hidden={!this.state.fieldCompleted} />
+                    <ReleaseCard version={betas.firmwares[0]} name="Beta 1" hidden={!this.state.fieldCompleted} />
                 </div>
                 <div style={ { height: "16px" } }></div>
             </div>
