@@ -39,6 +39,8 @@ export default class Install extends Component {
             progressPercentage: 0,
             installationFinished: false,
             error: false,
+            getname: false,
+            customname: "",
             errorMessage: "",
             installerInstance: new Installer(this),
             showPopup: false,
@@ -88,6 +90,23 @@ export default class Install extends Component {
 
         // Notifications
         this.enableNotifications = this.enableNotifications.bind(this);
+        
+        // Get name for version
+        this.enableName = this.enableName.bind(this);
+        this.disableName = this.disableName.bind(this);
+        this.nameChanged = this.nameChanged.bind(this);
+    }
+    
+    nameChanged(e) {
+        this.setState({customname: e.target.value});
+    }
+    
+    enableName() {
+        this.setState({getname: true});
+    }
+    
+    disableName() {
+        this.setState({getname: false});
     }
     
     disableLanguage() {
@@ -267,6 +286,7 @@ export default class Install extends Component {
                             <Button onClick={this.detectCalculator} className={"installer__content__buttons__button " +  (!this.state.calculatorDetected ? "installer__content__buttons__button-active" : "")} blue>
                                 <FormattedMessage id="installer.detect" defaultMessage="DETECT CALCULATOR" />
                             </Button>
+                            <input type="text" className={"installer__content__buttons__name" + ((this.state.getname && this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__name-active" : "")} onChange={this.nameChanged} value={this.state.customname}></input>
                             <Button onClick={this.install} className={"installer__content__buttons__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__button-active" : "")} disabled={this.state.showPopup} blue>
                                 <FormattedMessage id="installer.install" defaultMessage="INSTALL OMEGA" />
                             </Button>

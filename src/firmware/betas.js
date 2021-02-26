@@ -19,6 +19,7 @@ export const betas = {
 			"3ds": false
 		},
 		"available": true,
+		"setname": false,
 		"langages": {
 		    "0100": [
 		        "en", "fr"

@@ -92,6 +92,14 @@ export default class Installer {
             this.installInstance.disableLanguage();
         }
         
+        if (this.firmwareInfos.setname) {
+            // Custom name support enabled
+            
+            this.installInstance.enableName();
+        } else {
+            this.installInstance.disableName();
+        }
+        
         this.installInstance.calculatorDetected(pinfo.omega.installed ? "omega" : "epsilon");
         
     }
@@ -166,8 +174,24 @@ export default class Installer {
             }
             
             this.ignore_disconnect = true;
+
+            let internal_fw = await internal_blob.arrayBuffer();
             
-            await _this.calculator.flashInternal(await internal_blob.arrayBuffer());
+            // Add username to the binary.
+            if (_this.installInstance.state.getname) {
+                let internal_buf = new Uint8Array(internal_fw);
+                let username = _this.installInstance.state.customname;
+                
+                let enc = new TextEncoder();
+                let encoded = enc.encode(username + "\0");
+                if (encoded.length > 16) {
+                    encoded[15] = 0;
+                    encoded = encoded.slice(0, 16);
+                }
+                internal_buf.set(encoded, 0x1F8);
+            }
+            
+            await _this.calculator.flashInternal(internal_fw);
             
             await callback();
         });
@@ -197,7 +221,27 @@ export default class Installer {
                 
                 this.ignore_disconnect = true;
                 
-                await _this.calculator.flashInternal(await internal_blob.arrayBuffer());
+                
+                let internal_fw = await internal_blob.arrayBuffer();
+                
+                // Add username to the binary.
+                if (_this.installInstance.state.getname) {
+                    let internal_buf = new Uint8Array(internal_fw);
+                    let username = _this.installInstance.state.customname;
+                    
+                    let enc = new TextEncoder();
+                    let encoded = enc.encode(username + "\0");
+                    if (encoded.length > 16) {
+                        encoded[15] = 0;
+                        encoded = encoded.slice(0, 16);
+                    }
+                    internal_buf.set(encoded, 0x1F8);
+                }
+                
+                await _this.calculator.flashInternal(internal_fw);
+                
+                
+                // await _this.calculator.flashInternal(await internal_blob.arrayBuffer());
             
                 await callback();
             });
