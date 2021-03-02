@@ -277,6 +277,7 @@ export default class Install extends Component {
                         <div className={"installer__content__tag installer__content__tag-gray " + (this.state.showTags ? "installer__content__tag-active" : "")}>{this.state.model}</div>
                         <div className={"installer__content__tag installer__content__tag-red " + (this.state.showTags && !this.state.install ? "installer__content__tag-active" : "")}>‎Ω {this.state.omegaVersion}</div>
                         <div className={"installer__content__tag installer__content__tag-yellow " + (this.state.showTags && !this.state.install ? "installer__content__tag-active" : "")}>‎E {this.state.epsilonVersion}</div>
+                        <input type="text" placeholder="Username" className={"installer__content__tag__name" + ((this.state.getname && this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__tag__name-active" : "")} onChange={this.nameChanged} value={this.state.customname} />
                         <div className={"installer__content__progress " + (this.state.install ? "installer__content__progress-active" : "")}>
                             <div className="installer__content__progress__bar" style={{ width: this.state.progressPercentage + "%" }}></div>
                         </div>
@@ -286,7 +287,6 @@ export default class Install extends Component {
                             <Button onClick={this.detectCalculator} className={"installer__content__buttons__button " +  (!this.state.calculatorDetected ? "installer__content__buttons__button-active" : "")} blue>
                                 <FormattedMessage id="installer.detect" defaultMessage="DETECT CALCULATOR" />
                             </Button>
-                            <input type="text" className={"installer__content__buttons__name" + ((this.state.getname && this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__name-active" : "")} onChange={this.nameChanged} value={this.state.customname}></input>
                             <Button onClick={this.install} className={"installer__content__buttons__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__button-active" : "")} disabled={this.state.showPopup} blue>
                                 <FormattedMessage id="installer.install" defaultMessage="INSTALL OMEGA" />
                             </Button>
