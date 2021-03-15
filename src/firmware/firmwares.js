@@ -1,6 +1,39 @@
 export const releases = {
-	"latest": "O1.21.0-E15",
+	"latest": "O1.22.0-E15",
 	"firmwares": [{
+	    "name": "O1.22.0-E15",
+	    "commit": "58ff19858fad1d86e53fd6162307ee74a438d603",
+	    "changelog": [
+            "New: Atomic: the periodic table app has been completely rewritten.",
+            "Update: Colors of the periodic table app has been reworked",
+            "New: kmat(x,y,z) function, generates a constant matrix of size x*y containing z",
+            "New: Support of ' for derivatives. Writing f(x)' replaces it with diff(f(x), x, x)",
+            "New: Key list in the ion module's toolbox have been replaced by a key selector",
+            "New: Apps shortcuts, press Shift+7 to go to calculation, Shift+8 to go to RPN, etc",
+            "Fix: Rendering issues with external icons",
+            "New: Pressing x10^ key adds ans before it on empty text cells",
+            "New: Added font size choice in kandinsky.draw_string",
+            "Fix: Python now works when building with DEBUG=1",
+            "Update: Credits have been updated to include new contributors and new beta testers",
+            "Fix: Simulator now transforms CRLF to CR when pasting",
+            "Fix: Android JNI Crash is now fixed in the source code",
+            "Fix: Fixed simulator argument detection"
+	    ],
+		"compatibility": {
+			"N0110": true,
+			"N0100": true,
+			"web": true,
+			"android": true,
+			"3ds": true
+		},
+		"available": true,
+		"setname": false,
+		"langages": {
+		    "0100": [
+		        "en", "fr", "nl", "pt", "it", "de", "es", "hu"
+		    ]
+		}
+	}, {
 	    "name": "O1.21.0-E15",
 	    "commit": "9eff895a95e17a0d5ad2e4894b37a6ccd4a72301",
 	    "changelog": [
@@ -23,7 +56,7 @@ export const releases = {
 			"3ds": true
 		},
 		"available": true,
-		"setname": true,
+		"setname": false,
 		"langages": {
 		    "0100": [
 		        "en", "fr", "nl", "pt", "it", "de", "es", "hu"
