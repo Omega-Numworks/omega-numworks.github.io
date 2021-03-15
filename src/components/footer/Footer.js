@@ -65,9 +65,9 @@ export default class Footer extends Component {
                                 <FormattedMessage id="app" defaultMessage="APP" />
                             </span> */}
                         </a>
-                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Atom">
+                        <a className="footer__list__item" target="_blank" rel="noopener noreferrer" href="https://github.com/Omega-Numworks/Omega-Atomic">
                             <i className="material-icons material-icons-round">apps</i>
-                            <FormattedMessage id="footer.projects.omega-atom" defaultMessage="Omega Atom" />
+                            <FormattedMessage id="footer.projects.omega-atom" defaultMessage="Omega Atomic" />
                             {/* <span className="footer__list__item__tag">
                                 <FormattedMessage id="app" defaultMessage="APP" />
                             </span> */}
