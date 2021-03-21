@@ -1,10 +1,31 @@
 export const releases = {
-	"latest": "O1.22.0-E15",
+	"latest": "O1.22.1-E15",
 	"firmwares": [{
+	    "name": "O1.22.1-E15",
+	    "commit": "6f797833b2195a1aeaa9298dcd60dd4cbd006a96",
+	    "changelog": [
+            "Fix: Setting username in installer now works",
+            "Fix: Atomic: Fixed copying data, exceptions in EC and copper and iron in french translation"
+	    ],
+		"compatibility": {
+			"N0110": true,
+			"N0100": true,
+			"web": true,
+			"android": true,
+			"3ds": true
+		},
+		"available": true,
+		"setname": true,
+		"langages": {
+		    "0100": [
+		        "en", "fr", "nl", "pt", "it", "de", "es", "hu"
+		    ]
+		}
+	}, {
 	    "name": "O1.22.0-E15",
 	    "commit": "58ff19858fad1d86e53fd6162307ee74a438d603",
 	    "changelog": [
-            "New: Atomic: the periodic table app has been completely rewritten.",
+            "New: Atomic: the periodic table app has been completely rewritten",
             "Update: Colors of the periodic table app has been reworked",
             "New: kmat(x,y,z) function, generates a constant matrix of size x*y containing z",
             "New: Support of ' for derivatives. Writing f(x)' replaces it with diff(f(x), x, x)",
