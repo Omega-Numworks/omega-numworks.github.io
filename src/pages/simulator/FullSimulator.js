@@ -12,6 +12,10 @@ export default class Simulator extends Component {
             loaded: false,
             scripts: null
         };
+        
+        document.addEventListener("keydown", function(e) {
+            e.preventDefault();
+        }.bind(this), false);
 
         this.state["loaded"] = true;
     }
