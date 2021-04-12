@@ -9,7 +9,7 @@ import FullSimulator from './pages/simulator/FullSimulator';
 import Releases from './pages/Releases';
 import Policy from './pages/Policy';
 import Install from './pages/Install';
-import IDEMain from './pages/IDE.js';
+import IDEMain from './pages/IDE';
 import IDEEditor from './pages/omega-ide/src/ide/Editor';
 import IDESimulator from './pages/omega-ide/src/ide/Simulator';
 import NotFound from './pages/NotFound';
@@ -58,8 +58,7 @@ class App extends Component {
         <Router>
           <div className="body">
             {!window.location.pathname.includes("/simulator/run") && <React.Fragment>
-              <CookiesConsent toPolicy="/policy" />
-              {/* <CookiesConsent toPolicy="/policy" text="Oui" learnMore="Test" gotIt="GotIt" /> */}
+              <CookiesConsent linkToPolicy="/policy" />
               <Header />
             </React.Fragment>}
             <Switch>
