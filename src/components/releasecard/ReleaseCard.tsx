@@ -115,8 +115,8 @@ function DownloadButtons(props: { firmware: Firmware }) {
 
     const buttonsComponents = buttons.map((el) => (
         <Button
-            to={el.enabled && el.to}
-            href={el.enabled && el.href}
+            to={el.enabled ? el.to : undefined}
+            href={el.enabled ? el.href : undefined}
             leftIcon={el.icon}
             isExternalLink={el.externalLink}
             disabled={!el.enabled}
