@@ -1,0 +1,182 @@
+@import './../../../sass/variables.omega.library'
+
+.header
+    display: flex
+    align-items: center
+    height: 64px
+    padding-left: 24px
+    padding-right: 16px
+    background-color: #ffffff
+    border-bottom: 1px solid #ececec
+    user-select: none
+    font-size: 15px
+
+.logo
+    font-family: $font-righteous
+    font-size: 32px
+    margin-top: -2px
+    color: #c53431
+    font-weight: 400
+    text-decoration: none
+
+    &:hover
+        animation: hover-feedback 0.2s
+        color: #9c312f
+
+.header__hidden
+    display: none
+
+
+.links
+    line-height: 64px
+
+.link
+    display: inline-block
+    height: 26px
+    color: #484848
+    text-decoration: none
+    margin: 0 3px
+    padding: 2px 10px
+    border-radius: 6px
+    line-height: 26px
+    cursor: pointer
+    font-weight: 500
+    transition: all 0.1s
+    vertical-align: middle
+
+    &Hidden
+        display: none
+
+    &Active
+        color: #181818
+        background-color: rgba(0, 0, 0, 0.05)
+        font-weight: 900
+
+    &:hover
+        color: #181818
+        animation: hover-feedback 0.2s
+        background-color: rgba(0, 0, 0, 0.1)
+
+    &Red
+        color: #c53431
+
+        &:hover
+            color: #ffffff
+            background-color: #c53431
+
+    &__icon
+        font-size: 16px
+        vertical-align: middle
+        margin-left: 4px
+        margin-top: -2.5px
+
+.separator
+    display: inline-block
+    width: 1px
+    height: 24px
+    margin: 8px
+    vertical-align: middle
+    background-color: rgba(0, 0, 0, 0.3)
+
+.spacer
+    flex-grow: 2
+
+.account
+    display: inline-block
+    line-height: 42px
+    padding: 0 8px
+    margin-left: 4px
+    border-radius: 6px
+    transition: 0.2s all
+
+    &Hidden
+        display: none
+
+    &__username
+        vertical-align: middle
+        color: #484848
+        font-weight: 500
+        display: inline-block
+        margin-right: 12px
+
+    &__image
+        vertical-align: middle
+        background-color: #AAAAAA
+        height: 32px
+        width: 32px
+        display: inline-block
+        border-radius: 50%
+
+.hamburger
+    display: none
+    font-size: 24px
+    line-height: 64px
+    margin-top: -1px
+    margin-right: 8px
+    transition: all 0.2s
+    color: #1d1d1d
+    cursor: pointer
+    vertical-align: middle
+
+    &__icon
+        line-height: 64px
+        vertical-align: middle
+
+@media screen and ( max-width: 1000px )
+    .header
+        z-index: 100
+        width: 100%
+        box-sizing: border-box
+
+    .links
+        position: fixed
+        top: 64px
+        bottom: 0
+        left: 0
+        right: 0
+        margin: 0
+        padding: 0
+        z-index: 100000000
+        height: 100vh
+        max-height: 0
+        overflow: hidden
+        border-top: 1px solid transparent
+        transition: all 0.2s ease-in-out
+
+    .headerOpened
+        position: fixed
+        z-index: 10000001
+        & .links
+            border-top-color: #e4e4e4
+            background-color: #ffffff
+            padding: 12px 0
+            max-height: 100vh
+
+    .link
+        margin: 8px 26px
+        display: block
+        &Hidden
+            display: none
+        &:hover
+            animation: inherit
+
+    .separator
+        margin: 24px 26px
+        height: 24px
+        width: calc(100% - 52px)
+        height: 1px
+        display: block
+        background-color: #ebebeb
+
+    .account
+        display: block
+        padding: 0 8px
+        margin: 8px 26px
+        margin-top: 16px
+        transition: 0.2s all
+
+        &Hidden
+            display: none
+
+    .hamburger
+        display: inline-block

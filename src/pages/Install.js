@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Button } from '@quentinguidee/react-jade-ui'
+import Button from '../components/button/Button'
 import firebase, { messaging } from "../firebase"
 import ImgCalculatorBody from '../img/calculator-body.png'
 import ImgCalculatorBodyOmega from '../img/calculator-body-omega.png'

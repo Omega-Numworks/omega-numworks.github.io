@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReleaseCard from '../components/releasecard/ReleaseCard'
-import { Button, ButtonsGroup } from '@quentinguidee/react-jade-ui'
+import Button from "./../components/button/Button"
+import ButtonsGroup from "./../components/button/ButtonsGroup"
 import { FormattedMessage } from 'react-intl'
 import { betas } from '../firmware/betas'
 

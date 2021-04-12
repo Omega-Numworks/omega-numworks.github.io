@@ -5,7 +5,7 @@ import ImgAtom from '../img/atom.png'
 import ImgRpn from '../img/rpn.png'
 import Img3ds from '../img/3ds.png'
 import { releases } from '../firmware/firmwares'
-import { Button } from '@quentinguidee/react-jade-ui'
+import Button from '../components/button/Button'
 import { FormattedMessage } from 'react-intl'
 import Fade from "react-reveal";
 import { FeatureCard, FeatureCardTitle, FeatureCardRow, FeatureCardColumn, FeatureCardDescription, FeatureCardImage } from '../components/featurecard/FeatureCard'

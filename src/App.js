@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '@quentinguidee/react-jade-ui/dist/index.css'
 import './sass/omega.library.sass'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/header/Header';
@@ -15,7 +14,7 @@ import IDEEditor from './pages/omega-ide/src/ide/Editor';
 import IDESimulator from './pages/omega-ide/src/ide/Simulator';
 import NotFound from './pages/NotFound';
 import GithubConnector from './GithubConnector';
-import { CookiesConsent } from '@quentinguidee/react-jade-ui'
+import CookiesConsent from "./components/cookiesconsent/CookiesConsent"
 
 import { IntlProvider } from "react-intl";
 import translations from './i18n/locales'
