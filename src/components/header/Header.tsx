@@ -1,25 +1,33 @@
-import React, { Component } from 'react'
-import { FormattedMessage as Message } from 'react-intl'
-import GithubConnector from '../../GithubConnector'
-import classNames from 'classnames'
+import React, { Component } from "react";
 
-import styles from './sass/header.module.sass'
+import { FormattedMessage as Message } from "react-intl";
+import GithubConnector from "../../GithubConnector";
+import classNames from "classnames";
 
-import HeaderLogo from './HeaderLogo'
-import HeaderAccount from './HeaderAccount'
-import HeaderHamburger from './HeaderHamburger'
-import HeaderLink from './HeaderLink'
-import HeaderLinks from './HeaderLinks'
-import HeaderSeparator from './HeaderSeparator'
-import HeaderSpacer from './HeaderSpacer'
+import HeaderLogo from "./HeaderLogo";
+import HeaderAccount from "./HeaderAccount";
+import HeaderHamburger from "./HeaderHamburger";
+import HeaderLink from "./HeaderLink";
+import HeaderLinks from "./HeaderLinks";
+import HeaderSeparator from "./HeaderSeparator";
+import HeaderSpacer from "./HeaderSpacer";
 
-export default class Header extends Component {
-    constructor(props) {
+import styles from "./sass/Header.module.sass";
+
+type HeaderProps = React.HTMLProps<HTMLHeadElement>;
+
+type HeaderState = {
+    isOpened: boolean;
+    connector: GithubConnector;
+};
+
+export default class Header extends Component<HeaderProps, HeaderState> {
+    constructor(props: HeaderProps) {
         super(props);
-        
+
         this.state = {
             isOpened: false,
-            connector: GithubConnector.getInstance()
+            connector: GithubConnector.getInstance(),
         };
 
         this.login = this.login.bind(this);
@@ -29,19 +37,19 @@ export default class Header extends Component {
         this.closeHamburger = this.closeHamburger.bind(this);
 
         this.onAuthStateChanged = this.onAuthStateChanged.bind(this);
-        
+
         this.componentDidMount = this.componentDidMount.bind(this);
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
     }
-    
+
     componentDidMount() {
         this.state.connector.onAuthStateChanged(this.onAuthStateChanged);
     }
-    
+
     componentWillUnmount() {
         this.state.connector.removeAuthStateChanged(this.onAuthStateChanged);
     }
-    
+
     onAuthStateChanged() {
         this.forceUpdate();
     }
@@ -55,7 +63,7 @@ export default class Header extends Component {
     }
 
     toggleHamburger() {
-        this.setState({ isOpened: !this.state.isOpened }); 
+        this.setState({ isOpened: !this.state.isOpened });
     }
 
     closeHamburger() {
@@ -66,26 +74,36 @@ export default class Header extends Component {
         let isLogged = this.state.connector.isLogged();
 
         let messages = {
-            omega: <Message id='toolbar.omega' defaultMessage='Omega' />,
-            install: <Message id='toolbar.install' defaultMessage='Install' />,
-            releases: <Message id='toolbar.releases' defaultMessage='Releases' />,
-            simulator: <Message id='toolbar.simulator' defaultMessage='Simulator' />,
-            wiki: <Message id='toolbar.wiki' defaultMessage='Wiki' />,
-            IDE: <Message id='toolbar.ide' defaultMessage='Python IDE' />,
-            gitHub: <Message id='toolbar.github' defaultMessage='GitHub' />,
-            login: <Message id='toolbar.login' defaultMessage='Login with Github' />,
-            logout: <Message id='toolbar.logout' defaultMessage='Logout' />,
-        }
+            omega: <Message id="toolbar.omega" defaultMessage="Omega" />,
+            install: <Message id="toolbar.install" defaultMessage="Install" />,
+            releases: (
+                <Message id="toolbar.releases" defaultMessage="Releases" />
+            ),
+            simulator: (
+                <Message id="toolbar.simulator" defaultMessage="Simulator" />
+            ),
+            wiki: <Message id="toolbar.wiki" defaultMessage="Wiki" />,
+            IDE: <Message id="toolbar.ide" defaultMessage="Python IDE" />,
+            gitHub: <Message id="toolbar.github" defaultMessage="GitHub" />,
+            login: (
+                <Message
+                    id="toolbar.login"
+                    defaultMessage="Login with Github"
+                />
+            ),
+            logout: <Message id="toolbar.logout" defaultMessage="Logout" />,
+        };
 
         return (
             <header
+                {...this.props}
                 className={classNames({
                     [styles.header]: true,
                     [styles.headerOpened]: this.state.isOpened,
-                    [this.props.className]: true,
+                    header: true, // For Omega-IDE
                 })}
             >
-                <HeaderLogo onClick={this.closeHamburger} className="logo">
+                <HeaderLogo onClick={this.closeHamburger} to="/">
                     {messages.omega}
                 </HeaderLogo>
                 <HeaderSpacer />
