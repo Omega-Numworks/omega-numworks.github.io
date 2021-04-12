@@ -13,14 +13,14 @@ import { Link } from 'react-router-dom'
 import './sass/home.sass'
 
 export default class Home extends Component {
-    constructor(props) {
+    constructor(props: {}) {
         super(props);
-        
+
         this.getReleaseVersion = this.getReleaseVersion.bind(this);
         document.title = "Omega"
     }
 
-    getReleaseVersion(tag) {
+    getReleaseVersion(tag: string) {
         return tag.substring(
             tag.lastIndexOf("O") + 1, 
             tag.lastIndexOf("-")
@@ -35,9 +35,9 @@ export default class Home extends Component {
                 break;
             }
         }
-        
+
         var latest_version = releases.firmwares[latest_id];
-        
+
         return (
             <div className="content content-home">
                 {/* Parallax */}

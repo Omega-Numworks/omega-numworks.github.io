@@ -11,7 +11,7 @@ import ImgNotifications from '../img/notification_icon.png'
 import Installer from '../dfu/installer'
 import './sass/installer.sass'
 
-const LANG_TO_FLAGS = {
+const LANG_TO_FLAGS: any = {
     "en": "🇺🇸",
     "fr": "🇫🇷",
     "nl": "🇳🇱",
@@ -22,8 +22,43 @@ const LANG_TO_FLAGS = {
     "hu": "🇭🇺"
 };
 
-export default class Install extends Component {
-    constructor(props) {
+interface InstallProps {
+    match: Match
+}
+
+interface Match {
+    params: {
+        version: string
+    }
+}
+
+type InstallState = {
+    calculatorDetected: boolean,
+    showTags: boolean,
+    installerNotCompatibleWithThisBrowser: boolean,
+    model: string,
+    username: any,
+    omegaVersion: string,
+    epsilonVersion: string,
+    installVersion: string,
+    install: boolean,
+    progressPercentage: number,
+    installationFinished: boolean,
+    error: boolean,
+    getname: boolean,
+    customname: string,
+    errorMessage: string,
+    installerInstance: Installer,
+    showPopup: boolean,
+    multiLangSupport: boolean,
+    langsList: any,
+    selectedLang: string,
+    hideEnableNotificationPopup: boolean,
+    osDetected?: string
+}
+
+export default class Install extends Component<InstallProps, InstallState> {
+    constructor(props: InstallProps) {
         super(props);
 
         this.state = {
@@ -59,7 +94,7 @@ export default class Install extends Component {
         // Detection
         this.calculatorDetected = this.calculatorDetected.bind(this);
         this.calculatorConnectionLost = this.calculatorConnectionLost.bind(this);
-        
+
         // Errors
         this.calculatorError = this.calculatorError.bind(this);
         this.firmwareNotFound = this.firmwareNotFound.bind(this);
@@ -73,12 +108,12 @@ export default class Install extends Component {
         this.setLangsList = this.setLangsList.bind(this);
         this.setProgressPercentage = this.setProgressPercentage.bind(this);
         this.installationFinished = this.installationFinished.bind(this);
-        
+
         // Tags
         this.showTags = this.showTags.bind(this);
         this.hideTags = this.hideTags.bind(this);
         this.toggleTags = this.toggleTags.bind(this);
-        
+
         // Set tags
         this.setUsername = this.setUsername.bind(this);
         this.setModel = this.setModel.bind(this);
@@ -90,62 +125,62 @@ export default class Install extends Component {
 
         // Notifications
         this.enableNotifications = this.enableNotifications.bind(this);
-        
+
         // Get name for version
         this.enableName = this.enableName.bind(this);
         this.disableName = this.disableName.bind(this);
         this.nameChanged = this.nameChanged.bind(this);
     }
-    
-    nameChanged(e) {
+
+    nameChanged(e: any) {
         this.setState({customname: e.target.value});
     }
-    
+
     enableName() {
         this.setState({getname: true});
     }
-    
+
     disableName() {
         this.setState({getname: false});
     }
-    
+
     disableLanguage() {
         this.setState({langsList: [], multiLangSupport: false, selectedLang: ''});
     }
-    
-    setLangsList(list) {
+
+    setLangsList(list: any) {
         this.setState({langsList: list, multiLangSupport: true, selectedLang: list[0]});
     }
-    
+
     componentDidMount() {
         this.state.installerInstance.init(this.props.match.params.version);
     }
-    
+
     componentDidUpdate() {
         if (this.props.match.params.version !== this.state.installVersion) {
             this.setState({
                 installVersion: this.props.match.params.version,
                 installerInstance: new Installer(this)
             });
-            
+
             this.state.installerInstance.init(this.props.match.params.version);
         }
     }
-    
+
     componentWillUnmount() {
         this.state.installerInstance.calculator.stopAutoConnect();
     }
-    
-    firmwareNotFound(version) {
+
+    firmwareNotFound(version: string) {
         this.calculatorError(true, <FormattedMessage id="installer.unknown-version" defaultMessage="Firmware version {version} doesn't exist!" values={{version: version}} />);
     }
-    
+
     detectCalculator() {
         this.state.installerInstance.detect();
     }
 
     // Detection
-    calculatorDetected(osDetected) {
+    calculatorDetected(osDetected: string) {
         this.setState({
             calculatorDetected: true,
             osDetected: osDetected,
@@ -164,7 +199,7 @@ export default class Install extends Component {
         this.hideTags();
     }
     
-    calculatorError(state, message) {
+    calculatorError(state: any, message: any) {
         /*global USBConnectionEvent*/
         if (typeof USBConnectionEvent !== "undefined") {
             if (message instanceof USBConnectionEvent) {
@@ -208,11 +243,11 @@ export default class Install extends Component {
         }
     }
 
-    setFirmwareLanguage(language) {
+    setFirmwareLanguage(language: any) {
         this.setState({ selectedLang: language });
     }
 
-    setProgressPercentage(percentage) {
+    setProgressPercentage(percentage: number) {
         this.setState({ progressPercentage: percentage });
     }
 
@@ -225,9 +260,9 @@ export default class Install extends Component {
     }
 
     enableNotifications() {
-        messaging.requestPermission().then(() => {
+        messaging?.requestPermission().then(() => {
             console.log("Notifications permission: OK");
-            return messaging.getToken();
+            return messaging?.getToken();
         }).then((token) => {
             console.log(token);
         }).catch((error) => {
@@ -244,10 +279,10 @@ export default class Install extends Component {
     toggleTags() { this.setState({ showTags: !this.state.showTags }) }
 
     // Set tags
-    setUsername(username) { this.setState({ username: username }) }
-    setModel(model) { this.setState({ model: model }) }
-    setOmegaVersion(version) { this.setState({ omegaVersion: version }) }
-    setEpsilonVersion(version) { this.setState({ epsilonVersion: version }) }
+    setUsername(username: string) { this.setState({ username: username }) }
+    setModel(model: string) { this.setState({ model: model }) }
+    setOmegaVersion(version: string) { this.setState({ omegaVersion: version }) }
+    setEpsilonVersion(version: string) { this.setState({ epsilonVersion: version }) }
 
     // Browser not compatible
     installerNotCompatibleWithThisBrowser() { this.setState({ installerNotCompatibleWithThisBrowser: true }) }
