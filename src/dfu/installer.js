@@ -80,11 +80,11 @@ export default class Installer {
             }
         }
         
-        if ("langages" in this.firmwareInfos) {
+        if ("languages" in this.firmwareInfos) {
             // Multilang support
             
-            if (this.calculator.getModel() in this.firmwareInfos.langages) {
-                this.installInstance.setLangsList(this.firmwareInfos.langages[this.calculator.getModel()]);
+            if (this.calculator.getModel() in this.firmwareInfos.languages) {
+                this.installInstance.setLangsList(this.firmwareInfos.languages[this.calculator.getModel()]);
             } else {
                 this.installInstance.disableLanguage();
             }
@@ -116,7 +116,7 @@ export default class Installer {
             this.calculator.installStorage(this.storage_content, this.__reinstallStorageCallback.bind(this));
     }
     
-    async install(langage) {
+    async install(language) {
         console.log("install version" + this.toInstall + "/" + this.installInstance.state.model);
         
         var _this = this;
@@ -145,9 +145,9 @@ export default class Installer {
         
         if (!DO_DRY_RUN) {
             if (this.installInstance.state.model === "N0100") {
-                await this.__installN0100(callback, langage);
+                await this.__installN0100(callback, language);
             } else {
-                await this.__installN0110(callback, langage);
+                await this.__installN0110(callback, language);
             }
         } else {
             callback();
@@ -160,12 +160,12 @@ export default class Installer {
 
     }
     
-    async __installN0100(callback, langage) {
+    async __installN0100(callback, language) {
         var _this = this;
         var file_name = "epsilon.onboarding.internal.bin";
         
-        if (langage !== null) {
-            file_name = "epsilon.onboarding.internal." + langage + ".bin";
+        if (language !== null) {
+            file_name = "epsilon.onboarding.internal." + language + ".bin";
         }
         
         _this.downloader.downloadFirmwareCheck(_this.installInstance.state.model, _this.toInstall, file_name, async (internal_check, internal_blob) => {
@@ -197,14 +197,14 @@ export default class Installer {
         });
     }
     
-    async __installN0110(callback, langage) {
+    async __installN0110(callback, language) {
         var _this = this;
         var file_name_internal = "epsilon.onboarding.internal.bin";
         var file_name_external = "epsilon.onboarding.external.bin";
         
-        if (langage !== null) {
-            file_name_internal = "epsilon.onboarding.internal." + langage + ".bin";
-            file_name_external = "epsilon.onboarding.external." + langage + ".bin";
+        if (language !== null) {
+            file_name_internal = "epsilon.onboarding.internal." + language + ".bin";
+            file_name_external = "epsilon.onboarding.external." + language + ".bin";
         }
         
         this.downloader.downloadFirmwareCheck(this.installInstance.state.model, this.toInstall, file_name_external, async (external_check, external_blob) => {
