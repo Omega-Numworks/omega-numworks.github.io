@@ -64,7 +64,7 @@ export default class Home extends Component {
                 <div style={ { height: "16px" } }></div>
 
                 <Fade>
-                <FeatureCardRow>
+                <FeatureCardRow className="featureCardRow">
                     <FeatureCardColumn>
                         <FeatureCard>
                             <FeatureCardTitle>
@@ -105,7 +105,7 @@ export default class Home extends Component {
 
                 {/* <Fade bottom> */}
                 <Fade>
-                <FeatureCardRow>
+                <FeatureCardRow className="featureCardRow">
                     <FeatureCardColumn>
                         <FeatureCard>
                             <FeatureCardTitle>
@@ -132,7 +132,7 @@ export default class Home extends Component {
                 </Fade>
 
                 <Fade>
-                <FeatureCardRow>
+                <FeatureCardRow className="featureCardRow">
                     <FeatureCardColumn>
                         <FeatureCard>
                             <FeatureCardTitle>
