@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import translations from "../../i18n/locales/index";
@@ -177,7 +178,7 @@ export default class Footer extends Component<FooterProps, FooterState> {
         }
 
         return (
-            <footer className={styles.footer}>
+            <footer className={classNames("footer", styles.footer)}>
                 <div
                     className={
                         styles.overlay +
