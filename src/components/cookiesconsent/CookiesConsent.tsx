@@ -1,12 +1,23 @@
 import React, { Component } from "react";
-import Button from "./../button/Button";
+import Button from "../button/Button";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
-import styles from "./sass/cookiesconsent.module.sass";
+import styles from "./sass/CookiesConsent.module.sass";
 
-export default class CookiesConsent extends Component {
-    constructor(props) {
+type CookiesConsentProps = {
+    message?: string
+    messageLearnMore?: string
+    messageGotIt?: string
+    linkToPolicy: string
+}
+
+type CookiesConsentState = {
+    show: boolean
+}
+
+export default class CookiesConsent extends Component<CookiesConsentProps, CookiesConsentState> {
+    constructor(props: CookiesConsentProps) {
         super(props);
 
         let show = false;
@@ -23,7 +34,7 @@ export default class CookiesConsent extends Component {
         this.agree = this.agree.bind(this);
     }
 
-    setCookie(cookie, value) {
+    setCookie(cookie: string, value: string) {
         // Source: https://www.w3schools.com/js/js_cookies.asp
         var d = new Date();
         const EXPIRATION_IN_DAYS = 7;
@@ -32,7 +43,7 @@ export default class CookiesConsent extends Component {
         document.cookie = cookie + "=" + value + ";" + expires + ";path=/";
     }
 
-    getCookie(cookie) {
+    getCookie(cookie: string): string {
         // Source: https://www.w3schools.com/js/js_cookies.asp
         var name = cookie + "=";
         var ca = document.cookie.split(";");
@@ -55,23 +66,19 @@ export default class CookiesConsent extends Component {
 
     render() {
         const messages = {
-            text: this.props.text
-                ? this.props.text
-                : "This website uses cookies to ensure you get the best experience on our website.",
-            learnMore: this.props.learnMore
-                ? this.props.learnMore
-                : "Learn more",
-            gotIt: this.props.gotIt ? this.props.gotIt : "Got it!",
+            text: this.props.message || "This website uses cookies to ensure you get the best experience on our website.",
+            learnMore: this.props.messageLearnMore || "Learn more",
+            gotIt: this.props.messageGotIt || "Got it!",
         };
 
         return (
             <div
-                className={classNames(styles.cookiesconsent, "cookiesconsent")}
+                className={classNames(styles.cookiesConsent, "cookiesconsent")}
                 style={{ display: this.state.show ? "" : "none" }}
             >
                 <div className={styles.text}>
                     {messages.text}
-                    <Link to={this.props.toPolicy} className={styles.link}>
+                    <Link to={this.props.linkToPolicy} className={styles.link}>
                         {messages.learnMore}
                     </Link>
                 </div>
