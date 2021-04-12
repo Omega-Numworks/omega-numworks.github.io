@@ -1,10 +1,22 @@
 import React, { Component } from "react";
-import styles from "./sass/button.module.sass";
+import styles from "./sass/Button.module.sass";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
-export default class Button extends Component {
-    constructor(props) {
+type ButtonProps = React.HTMLProps<HTMLLinkElement> & {
+    blue?: boolean
+    outline?: boolean
+    disabled?: boolean
+    loading?: boolean
+    big?: boolean
+    leftIcon?: string
+    rightIcon?: string
+    to?: string
+    isExternalLink?: boolean
+}
+
+export default class Button extends Component<ButtonProps> {
+    constructor(props: ButtonProps) {
         super(props);
 
         this.renderLeftIcon = this.renderLeftIcon.bind(this);
@@ -13,7 +25,7 @@ export default class Button extends Component {
         this.renderContent = this.renderContent.bind(this);
     }
 
-    renderLeftIcon(icon) {
+    renderLeftIcon(icon?: string) {
         if (icon) {
             return (
                 <i
@@ -27,7 +39,7 @@ export default class Button extends Component {
         }
     }
 
-    renderRightIcon(icon) {
+    renderRightIcon(icon?: string) {
         if (icon) {
             return (
                 <i
@@ -60,9 +72,8 @@ export default class Button extends Component {
                 [styles.disabled]: this.props.disabled,
                 [styles.loading]: this.props.loading,
                 [styles.big]: this.props.big,
-                [this.props.className]: true,
+                [this.props.className || ""]: true,
             }),
-            onClick: this.props.onClick,
         };
 
         let component;
