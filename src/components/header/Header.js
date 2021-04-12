@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import { FormattedMessage as Message } from 'react-intl'
 import GithubConnector from '../../GithubConnector'
-import { Header as JHeader, HeaderLinks, HeaderLink, HeaderLogo, HeaderSeparator, HeaderSpacer, HeaderHamburger, HeaderAccount } from '@quentinguidee/react-jade-ui'
-import './sass/header.sass'
+import classNames from 'classnames'
+
+import styles from './sass/header.module.sass'
+
+import HeaderLogo from './HeaderLogo'
+import HeaderAccount from './HeaderAccount'
+import HeaderHamburger from './HeaderHamburger'
+import HeaderLink from './HeaderLink'
+import HeaderLinks from './HeaderLinks'
+import HeaderSeparator from './HeaderSeparator'
+import HeaderSpacer from './HeaderSpacer'
 
 export default class Header extends Component {
     constructor(props) {
@@ -69,26 +78,64 @@ export default class Header extends Component {
         }
 
         return (
-            <JHeader isOpened={this.state.isOpened} className='header'>
-                <HeaderLogo onClick={this.closeHamburger} className='logo'>{messages.omega}</HeaderLogo>
-                <HeaderSpacer/>
+            <header
+                className={classNames({
+                    [styles.header]: true,
+                    [styles.headerOpened]: this.state.isOpened,
+                    [this.props.className]: true,
+                })}
+            >
+                <HeaderLogo onClick={this.closeHamburger} className="logo">
+                    {messages.omega}
+                </HeaderLogo>
+                <HeaderSpacer />
                 <HeaderLinks>
-                    <HeaderLink onClick={this.closeHamburger} to='/install/latest'>{messages.install}</HeaderLink>
-                    <HeaderLink onClick={this.closeHamburger} to='/releases'>{messages.releases}</HeaderLink>
-                    <HeaderLink onClick={this.closeHamburger} to='/simulator'>{messages.simulator}</HeaderLink>
+                    <HeaderLink
+                        onClick={this.closeHamburger}
+                        to="/install/latest"
+                    >
+                        {messages.install}
+                    </HeaderLink>
+                    <HeaderLink onClick={this.closeHamburger} to="/releases">
+                        {messages.releases}
+                    </HeaderLink>
+                    <HeaderLink onClick={this.closeHamburger} to="/simulator">
+                        {messages.simulator}
+                    </HeaderLink>
                     {/* <HeaderLink onClick={this.closeHamburger}  to='/wiki'>{messages.wiki}</HeaderLink> */}
-                    <HeaderLink onClick={this.closeHamburger} to='/ide'>{messages.IDE}</HeaderLink>
-                    <HeaderLink href='https://github.com/Omega-Numworks/Omega' icon='open_in_new' isExternalLink>{messages.gitHub}</HeaderLink>
+                    <HeaderLink onClick={this.closeHamburger} to="/ide">
+                        {messages.IDE}
+                    </HeaderLink>
+                    <HeaderLink
+                        href="https://github.com/Omega-Numworks/Omega"
+                        icon="open_in_new"
+                        isExternalLink
+                    >
+                        {messages.gitHub}
+                    </HeaderLink>
                     <HeaderSeparator />
-                    <HeaderLink onClick={this.login} hide={isLogged}>{messages.login}</HeaderLink>
-                    <HeaderLink onClick={this.logout} hide={!isLogged} red>{messages.logout}</HeaderLink>
-                    <HeaderAccount 
-                        username={(!isLogged ? undefined : this.state.connector.getUserName())}
-                        image={(!isLogged ? '' : this.state.connector.getUserPhotoURL())}
-                        hide={!isLogged} />
+                    <HeaderLink onClick={this.login} hide={isLogged}>
+                        {messages.login}
+                    </HeaderLink>
+                    <HeaderLink onClick={this.logout} hide={!isLogged} red>
+                        {messages.logout}
+                    </HeaderLink>
+                    <HeaderAccount
+                        username={
+                            !isLogged
+                                ? undefined
+                                : this.state.connector.getUserName()
+                        }
+                        image={
+                            !isLogged
+                                ? ""
+                                : this.state.connector.getUserPhotoURL()
+                        }
+                        hide={!isLogged}
+                    />
                 </HeaderLinks>
                 <HeaderHamburger onClick={this.toggleHamburger} />
-            </JHeader>
+            </header>
         );
     }
 }

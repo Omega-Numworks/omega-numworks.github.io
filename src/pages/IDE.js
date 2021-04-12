@@ -3,7 +3,7 @@ import GithubConnector from "../GithubConnector";
 import ImgBanner from '../img/banner.png';
 import ImgIDE from '../img/ide.png';
 import ImgIDESimu from '../img/ide-simu.png';
-import { Button } from '@quentinguidee/react-jade-ui';
+import Button from '../components/button/Button';
 import { Fade } from 'react-reveal';
 import { FeatureCardRow, FeatureCardColumn, FeatureCard, FeatureCardTitle, FeatureCardDescription, FeatureCardImage } from '../components/featurecard/FeatureCard';
 import { FormattedMessage } from 'react-intl';

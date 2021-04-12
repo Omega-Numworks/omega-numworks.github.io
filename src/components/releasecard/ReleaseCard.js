@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl';
-import { ButtonsGroup, Button } from '@quentinguidee/react-jade-ui';
+import ButtonsGroup from "./../button/ButtonsGroup"
+import Button from './../button/Button';
 import './sass/releasecard.sass'
 
 export default class ReleaseCard extends Component {
