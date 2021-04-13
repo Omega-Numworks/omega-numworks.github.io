@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
 import Button from '../components/button/Button'
-import firebase, { messaging } from "../firebase"
+import firebase from "../firebase"
 import ImgCalculatorBody from '../img/calculator-body.png'
 import ImgCalculatorBodyOmega from '../img/calculator-body-omega.png'
 import ImgCalculatorBodyEpsilon from '../img/calculator-body-epsilon.png'
 import ImgCalculatorCable from '../img/calculator-cable.png'
 import ImgExternal from '../img/external_icon.png'
-import ImgNotifications from '../img/notification_icon.png'
 import Installer from '../dfu/installer'
 import './sass/installer.sass'
 
@@ -122,9 +121,6 @@ export default class Install extends Component<InstallProps, InstallState> {
 
         // Browser compatibility
         this.installerNotCompatibleWithThisBrowser = this.installerNotCompatibleWithThisBrowser.bind(this);
-
-        // Notifications
-        this.enableNotifications = this.enableNotifications.bind(this);
 
         // Get name for version
         this.enableName = this.enableName.bind(this);
@@ -259,18 +255,6 @@ export default class Install extends Component<InstallProps, InstallState> {
         });
     }
 
-    enableNotifications() {
-        messaging?.requestPermission().then(() => {
-            console.log("Notifications permission: OK");
-            return messaging?.getToken();
-        }).then((token) => {
-            console.log(token);
-        }).catch((error) => {
-            console.error(error);
-        });
-        this.setState({ hideEnableNotificationPopup: true });
-    }
-
     // Tags
     showPopup() { this.setState({ showPopup: true }) }
     hidePopup() { this.setState({ showPopup: false }) }
@@ -356,19 +340,6 @@ export default class Install extends Component<InstallProps, InstallState> {
                     </div>
                     <Button className="installer-external__button" href="https://omega-numworks.github.io/Omega-External/">
                         <FormattedMessage id="installer.external.open" defaultMessage="OUVRIR" />
-                    </Button>
-                </div>
-
-                <div className={"installer-external " + ((this.state.installerNotCompatibleWithThisBrowser || !firebase.messaging.isSupported() || this.state.hideEnableNotificationPopup || this.state.install === true) ? "" : "installer-external-active")}>
-                    <img className="installer-external__icon" src={ImgNotifications} alt="Notifications" />
-                    <div className="installer-external__title">
-                        <FormattedMessage id="installer.notifications" defaultMessage="Notifications" />
-                    </div>
-                    <div className="installer-external__description">
-                        <FormattedMessage id="installer.notifications.description" defaultMessage="Get notifications for updates." />
-                    </div>
-                    <Button className="installer-external__button" onClick={this.enableNotifications}>
-                        <FormattedMessage id="installer.notifications.open" defaultMessage="ENABLE" />
                     </Button>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Downloads } from "../components/downloads/Downloads";
 import "./sass/simulator.sass";
 
 export default class Simulator extends Component {
@@ -29,6 +30,7 @@ export default class Simulator extends Component {
                         title="Simulator"
                     />
                 </div>
+                <Downloads />
             </div>
         );
     }
