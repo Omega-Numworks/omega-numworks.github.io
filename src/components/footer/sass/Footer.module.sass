@@ -1,10 +1,7 @@
 @import './../../../sass/variables.omega.library'
 
 .footer
-    border-top: 4px solid #2b2b2b
-    background-color: #181818
-    color: #dbdbdb
-    padding: 32px 15%
+    padding: 32px 48px
 
 .hidden
     display: none
@@ -15,18 +12,21 @@
     margin-bottom: 24px
 
 .list
-    display: inline-block
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    column-gap: 12px
+    row-gap: 12px
 
     &Item
         line-height: 26px
         list-style-type: none
-        border-radius: 6px
+        border-radius: 12px
         transition: all 0.1s
-        padding: 3px 10px
+        padding: 12px 16px
         cursor: pointer
         text-decoration: none
-        color: #cccccc
-        display: block
+        color: #272727
+        background-color: #f3f3f3
 
         & .material-icons, & .materialIcons
             margin-top: -2px
@@ -40,32 +40,45 @@
             padding: 2px 8px
             font-size: 13px
             margin-left: 6px
-            color: #cccccc
+
+        &Title
+            font-size: 16px
+            font-weight: 500
+
+        &Stats
+
+            &Item
+                display: inline-block
+                margin-right: 12px
+
+                &Icon
+                    vertical-align: middle
+
+                &Label
+                    vertical-align: middle
 
         &:hover
-            background-color: #2b2b2b
+            background-color: #e9e9e9
             animation: hover-feedback 0.3s
-            color: #ffffff
 
 .discord
+    display: none
     float: right
 
 .links
-    display: inline-block
 
 .separator
     display: inline-block
     width: 100%
     margin: 24px 0
     height: 0
-    border-top: 1px solid #2b2b2b
+    border-top: 1px solid #e4e4e4
 
 .locale
     white-space: nowrap
     margin-top: 0px
     z-index: 3000
     font-size: 15px
-    color: #ffffff
     float: right
     font-weight: 500
     border: none
@@ -77,14 +90,14 @@
     border: 1px solid rgba(255, 255, 255, 0.0)
     transition: all 0.2s
     user-select: none
+
     &:hover, &Active
-        border: 1px solid #3d3d3f
-        background-color: rgba(255, 255, 255, 0.06)
+        border: 1px solid #cdcdd1
+        background-color: rgba(0, 0, 0, 0.06)
 
     &Dropdown
         border-radius: 6px
-        background-color: #2d2d2e
-        border: 0px solid #3d3d3f
+        background-color: #e6e6e6
         overflow: hidden
         position: absolute
         bottom: 40px
@@ -112,21 +125,23 @@
             cursor: pointer
             user-select: none
             &:hover
-                background-color: #1d5a83
+                background-color: #cacdcf
 
 .aboutNw
     font-size: 14px
     float: left
     margin-top: 8px
     margin-bottom: 4px
-    line-height: 1.3
+    line-height: 1.5
     color: #858585
 
     &Contact
-        color: #858585
+        color: #5b9eeb
         display: inline-block
+        border-radius: 4px
+        padding: 2px 4px
         &:hover
-            background-color: #2b2b2b
+            background-color: #ecebeb
 
 .overlay
     position: fixed
@@ -139,9 +154,13 @@
     &Show
         display: inherit
 
-@media screen and ( max-width: 1400px )
-    .footer
-        padding: 32px 64px
+.vercel
+    display: block
+    margin-bottom: 12px
+
+    &Icon
+        display: inline-block
+        borderRadius: 8px
 
 @media screen and ( max-width: 600px )
     .list

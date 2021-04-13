@@ -44,8 +44,7 @@ export default class Home extends Component {
                 {/*<div className="parallax"></div>*/}
 
                 {/* Project description */}
-                <div className="project-description" style={{backgroundImage: `url(${ImgBanner})`}}>
-                    {/* Photo by https://unsplash.com/@eberhardgross?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText eberhard grossgasteiger on https://unsplash.com/s/photos/abstract?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText Unsplash */}
+                <div className="project-description" style={{backgroundImage: `url(https://unsplash.com/photos/TOmVNJZN1AA/download?force=true&w=1920)`}}>
                     <h1 className="project-description__title">
                         <FormattedMessage id="home.head.title" defaultMessage="Omega" />
                     </h1>
@@ -167,7 +166,8 @@ export default class Home extends Component {
 
                 <div style={ { height: "16px" } }></div>
 
-                <div className="download" style={{backgroundImage: `url(${ImgBanner})`}}>
+                <Fade>
+                <div className="download" style={{backgroundImage: `url(https://unsplash.com/photos/Ceuh97A6OYM/download?force=true&w=1920)`}}>
                     <h2 className="download__title"><FormattedMessage defaultMessage="Installation d'Omega" description="" id="home.install"/> {this.getReleaseVersion(latest_version.name)}</h2>
                     <div className="download__cards">
                         <Link to="/install" className="download__cards__card">
@@ -213,6 +213,7 @@ export default class Home extends Component {
                         </a>
                     </div>
                 </div>
+                </Fade>
             </div>
         )
     }
