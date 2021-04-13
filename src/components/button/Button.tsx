@@ -3,7 +3,7 @@ import styles from "./sass/Button.module.sass";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
-type ButtonProps = React.HTMLProps<HTMLLinkElement> & {
+type ButtonProps = React.HTMLProps<HTMLDivElement> & {
     blue?: boolean
     outline?: boolean
     disabled?: boolean
@@ -99,7 +99,7 @@ export default class Button extends Component<ButtonProps> {
                 </a>
             );
         } else {
-            component = <div {...props}>{this.renderContent()}</div>;
+            component = <div {...props} onClick={this.props.onClick}>{this.renderContent()}</div>;
         }
 
         return component;
