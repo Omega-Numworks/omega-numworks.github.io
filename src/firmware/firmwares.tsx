@@ -88,6 +88,7 @@ export const releases: Releases = {
                 "New: Real-time clock",
                 "New: Icon for the Windows and macOS simulators",
                 "New: Throw an error when the user is missing apps",
+                "New: 100 KB Python heap instead of a 32 KB",
                 "Change: Chrome Popup: change URL from workshop.numworks.com to getomega.dev",
                 "Change: Doxygen with an Omega theme",
                 "Change: Merge omega-themes submodule in the main repository",
