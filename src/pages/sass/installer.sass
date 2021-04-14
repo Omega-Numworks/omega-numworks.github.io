@@ -1,10 +1,9 @@
 @import './../../sass/variables.omega.library'
 
 .installer
-    background-color: #E8E8E8
-    width: 50%
-    margin: 32px 25%
-    border-radius: 6px
+    background-color: #f3f3f3
+    margin-bottom: 24px
+    border-radius: 16px
     height: 160px
     overflow: hidden
     display: none
@@ -12,22 +11,21 @@
     transition: all 0.2s ease-in-out
 
     &-active
-        display: inline-block
+        display: block
 
     &-notcompatible
-        margin: 32px 25%
+        margin: 32px 48px
         display: none
-        background-color: #EFEFEF
-        border-radius: 6px
+        background-color: #f3f3f3
+        border-radius: 16px
         overflow: hidden
         font-weight: 400
         padding: 18px 24px
         line-height: 1.4
         text-align: center
-        border: 1px solid #dddddd
 
         &-active
-            display: inline-block
+            display: block
 
         &__emoji
             font-size: 48px
@@ -91,19 +89,16 @@
 
             &-red
                 background-color: #C03535
-                border: 1px solid #af2c2c
                 color: #ffffff
 
             &-yellow
                 background-color: #EFCB16
-                border: 1px solid #d6b612
                 color: #404040
 
             &-gray
                 background-color: #D8D8D8
-                border: 1px solid #c2c2c2
                 color: #404040
-            
+
             &__name
                 display: none
                 border-radius: 6px
@@ -163,7 +158,7 @@
             left: 140px
             right: 24px
             height: 30px
-            
+
             &__name
                 display: none
 
@@ -235,8 +230,8 @@
         text-align: center
         overflow: hidden
         background-color: #3585C0
-        margin: 0 25%
-        border-radius: 6px
+        margin: 0 48px
+        border-radius: 16px
         color: #ffffff
         box-sizing: border-box
         max-height: 0
@@ -251,12 +246,11 @@
             opacity: 1
 
     &-external
-        background-color: #ffffff
-        border: 0 solid #ebebeb
-        margin: 0 25%
+        background-color: #f3f3f3
+        margin: 0 48px
         position: relative
         padding: 0 16px
-        border-radius: 6px
+        border-radius: 16px
         height: 64px
         max-height: 0
         overflow: hidden
@@ -346,33 +340,3 @@
 
         &:hover
             box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
-
-@media screen and ( max-width: 1450px )
-    .installer
-        margin: 32px 15%
-        width: 70%
-
-        &-thanks,
-        &-notcompatible,
-        &-external
-            margin: 0 15%
-            &-active
-                margin-bottom: 32px
-
-        &-notcompatible-active
-            margin-bottom: 32px
-
-@media screen and ( max-width: 1050px )
-    .installer
-        margin: 32px 32px
-        width: calc(100% - 64px)
-
-        &-thanks,
-        &-notcompatible,
-        &-external
-            margin: 0 32px
-            &-active
-                margin-bottom: 32px
-
-        &-notcompatible-active
-            margin-bottom: 32px

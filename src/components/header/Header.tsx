@@ -9,7 +9,6 @@ import HeaderAccount from "./HeaderAccount";
 import HeaderHamburger from "./HeaderHamburger";
 import HeaderLink from "./HeaderLink";
 import HeaderLinks from "./HeaderLinks";
-import HeaderSeparator from "./HeaderSeparator";
 import HeaderSpacer from "./HeaderSpacer";
 
 import styles from "./sass/Header.module.sass";
@@ -106,7 +105,6 @@ export default class Header extends Component<HeaderProps, HeaderState> {
                 <HeaderLogo onClick={this.closeHamburger} to="/">
                     {messages.omega}
                 </HeaderLogo>
-                <HeaderSpacer />
                 <HeaderLinks>
                     <HeaderLink
                         onClick={this.closeHamburger}
@@ -131,7 +129,7 @@ export default class Header extends Component<HeaderProps, HeaderState> {
                     >
                         {messages.gitHub}
                     </HeaderLink>
-                    <HeaderSeparator />
+                    <HeaderSpacer />
                     <HeaderLink onClick={this.login} hide={isLogged}>
                         {messages.login}
                     </HeaderLink>

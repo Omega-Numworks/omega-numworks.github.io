@@ -16,7 +16,7 @@ export default class Releases extends Component {
     render() {
         return (
             <div className="content">
-                <div className={styles.banner}>
+                <div className={styles.banner} style={{backgroundImage: `url(https://unsplash.com/photos/mTCCRtWbFHk/download?force=true&w=1920)`}}>
                     <div className={styles.title}>
                         <FormattedMessage
                             id="releases.title"
@@ -24,7 +24,6 @@ export default class Releases extends Component {
                         />
                     </div>
                 </div>
-                <div style={{ height: "16px" }}></div>
                 <div className={styles.cards}>
                     {releases.firmwares.map((version) => {
                         return <ReleaseCard version={version} />;
