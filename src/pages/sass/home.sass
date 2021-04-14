@@ -7,7 +7,6 @@
     background-position: center
     overflow: hidden
     position: relative
-    margin: 0 48px
     padding: 80px 64px
     border-radius: 16px
 
@@ -45,7 +44,6 @@
         line-height: 22px
 
 .download
-    margin: 0 48px
     margin-bottom: 48px
     padding: 32px
     padding-top: 8px
@@ -155,11 +153,6 @@
                     float: right
                     margin-right: 12px
 
-@media screen and ( min-width: 1400px )
-    .project-description,
-    .download
-        margin: 0 calc(15% - 16px)
-
 @media screen and ( max-width: 800px )
     .content-home .download__cards__card
         display: block
@@ -167,3 +160,16 @@
         margin-left: 0
         &:last-child
             margin-bottom: 0
+
+@media screen and ( max-width: 700px )
+    .project-description
+        padding: 40px 32px
+
+        &__title
+            font-size: 40px
+
+        &__subtitle
+            font-size: 16px
+
+        &__button
+            display: none

@@ -27,10 +27,13 @@
     display: none
 
 .links
+    display: flex
+    flex-grow: 2
+    flex-wrap: nowrap
     line-height: 64px
 
 .link
-    display: inline-block
+    align-self: center
     height: 26px
     color: #484848
     text-decoration: none
@@ -126,12 +129,12 @@
 @media screen and ( max-width: 1000px )
     .header
         z-index: 100
-        width: 100%
         box-sizing: border-box
 
     .links
         position: fixed
-        top: 64px
+        flex-direction: column
+        top: 80px
         bottom: 0
         left: 0
         right: 0
@@ -146,7 +149,9 @@
 
     .headerOpened
         position: fixed
+        width: calc(100vw - 32px)
         z-index: 10000001
+
         & .links
             border-top-color: #e4e4e4
             background-color: #ffffff
@@ -154,25 +159,29 @@
             max-height: 100vh
 
     .link
-        margin: 8px 26px
+        margin: 8px 40px
         display: block
+        align-self: flex-start
         &Hidden
             display: none
         &:hover
             animation: inherit
 
-    .separator
+    .spacer
+        display: none
         margin: 24px 26px
         height: 24px
         width: calc(100% - 52px)
-        height: 1px
+        max-height: 1px
         display: block
         background-color: #ebebeb
+
+    .separator
 
     .account
         display: block
         padding: 0 8px
-        margin: 8px 26px
+        margin: 8px 40px
         margin-top: 16px
         transition: 0.2s all
 
@@ -185,3 +194,14 @@
 @media screen and ( min-width: 1400px )
     .header
         margin: 0 calc(15% - 16px)
+
+@media screen and ( max-width: 700px )
+    .header
+        margin: 0 24px
+        height: 72px
+
+    .links
+        top: 72px
+
+    .link, .account
+        margin: 8px 16px

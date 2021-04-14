@@ -162,15 +162,12 @@
         display: inline-block
         borderRadius: 8px
 
+@media screen and ( min-width: 1400px )
+    .footer
+        margin: 32px calc(15% - 16px)
+        margin-top: 48px
+
 @media screen and ( max-width: 600px )
-    .list
-        display: block
-
-    .discord
-        display: block
-        float: inherit
-        margin-top: 32px
-
     .aboutNw
         display: block
         margin-bottom: 24px
@@ -181,7 +178,9 @@
         display: block
         text-align: center
 
-@media screen and ( min-width: 1400px )
+@media screen and ( max-width: 700px )
     .footer
-        margin: 32px calc(15% - 16px)
-        margin-top: 48px
+        margin: 0 24px
+
+    .list
+        grid-template-columns: repeat(2, 1fr)

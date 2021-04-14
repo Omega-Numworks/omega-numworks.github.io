@@ -129,9 +129,7 @@ export default class Header extends Component<HeaderProps, HeaderState> {
                     >
                         {messages.gitHub}
                     </HeaderLink>
-                </HeaderLinks>
-                <HeaderSpacer />
-                <HeaderLinks>
+                    <HeaderSpacer />
                     <HeaderLink onClick={this.login} hide={isLogged}>
                         {messages.login}
                     </HeaderLink>
