@@ -155,6 +155,7 @@ export default class Home extends Component {
                                     <li><FormattedMessage defaultMessage="Open method and os module" id="home.features.and-more.os"/></li>
                                     <li><FormattedMessage defaultMessage="Android simulator with script backup" id="home.features.and-more.android"/></li>
                                     <li><FormattedMessage defaultMessage="Hungarian support" id="home.features.and-more.hungarian"/></li>
+                                    <li><FormattedMessage defaultMessage="100 KB Python heap (instead of a 32 KB)" id="home.features.and-more.python"/></li>
                                     <li><FormattedMessage defaultMessage="Accessibility settings" id="home.features.and-more.accessibility"/></li>
                                     <li><FormattedMessage defaultMessage="Choice of multiplication symbol" id="home.features.and-more.mult-symbol"/></li>
                                     <li>…</li>
