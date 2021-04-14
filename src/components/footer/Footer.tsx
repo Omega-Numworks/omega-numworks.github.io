@@ -1,3 +1,5 @@
+import { Octokit } from "@octokit/core";
+import { render } from "@testing-library/react";
 import classNames from "classnames";
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
@@ -9,69 +11,122 @@ import styles from "./sass/Footer.module.sass";
 var languages: any = translations;
 
 type Project = {
+    name?: string;
     href: string;
     messageID: string;
     messageDefault: string;
-    icon: string;
 };
 
 const projects: Project[] = [
     {
+        name: "Omega",
         href: "https://github.com/Omega-Numworks/Omega",
         messageID: "footer.projects.omega",
         messageDefault: "Omega",
-        icon: "alt_route",
     },
     {
-        href: "https://github.com/Omega-Numworks/Omega-Themes",
-        messageID: "footer.projects.omega-themes",
-        messageDefault: "Omega Themes",
-        icon: "dns",
-    },
-    {
+        name: "omega-numworks.github.io",
         href: "https://github.com/Omega-Numworks/Omega-Website",
         messageID: "footer.projects.omega-website",
         messageDefault: "Omega Website",
-        icon: "dns",
     },
     {
+        name: "Omega-RPN",
         href: "https://github.com/Omega-Numworks/Omega-RPN",
         messageID: "footer.projects.omega-rpn",
         messageDefault: "Omega RPN",
-        icon: "apps",
     },
     {
+        name: "Omega-Atomic",
         href: "https://github.com/Omega-Numworks/Omega-Atomic",
         messageID: "footer.projects.omega-atom",
         messageDefault: "Omega Atomic",
-        icon: "apps",
     },
     {
+        name: "Omega-Design",
         href: "https://github.com/Omega-Numworks/Omega-Design",
         messageID: "footer.projects.omega-design",
         messageDefault: "Omega Design",
-        icon: "dns",
     },
     {
+        name: "Omega-External",
         href: "https://omega-numworks.github.io/Omega-External/",
         messageID: "footer.projects.external-apps",
         messageDefault: "External Apps",
-        icon: "alt_route",
     },
 ];
 
-function Projects() {
-    return (
-        <>
-            {projects.map((project) => (
-                <Project project={project} />
-            ))}
-        </>
-    );
+console.table(projects);
+
+const octokit = new Octokit();
+
+type ProjectStats = { stars: number; forks: number };
+type ProjectsStats = {
+    [name: string]: ProjectStats;
+};
+
+type ProjectsProps = {};
+type ProjectsState = {
+    projectsStats?: ProjectsStats;
+};
+
+class Projects extends Component<ProjectsProps, ProjectsState> {
+    constructor(props: ProjectsProps) {
+        super(props);
+
+        this.state = {
+            projectsStats: undefined,
+        };
+
+        this.loadStats();
+    }
+
+    async loadStats() {
+        await octokit
+            .request("GET /orgs/{org}/repos", {
+                org: "Omega-Numworks",
+            })
+            .then((res: any) => {
+                console.dir(res.data);
+
+                let projectsStats: ProjectsStats = {};
+
+                res.data.forEach((repo: any) => {
+                    const forksCount = repo?.forks_count;
+                    const starsCount = repo?.stargazers_count;
+
+                    projectsStats[repo.name] = {
+                        forks: forksCount,
+                        stars: starsCount,
+                    };
+                });
+
+                this.setState({
+                    projectsStats: projectsStats,
+                });
+            });
+    }
+
+    render() {
+        return (
+            <>
+                {projects.map((project: Project) => (
+                    <Project
+                        project={project}
+                        stats={
+                            this.state.projectsStats &&
+                            this.state.projectsStats[project.name || ""]
+                        }
+                    />
+                ))}
+            </>
+        );
+    }
 }
 
-function Project(props: { project: Project }) {
-    const { href, icon, messageID, messageDefault } = props.project;
+function Project(props: { project: Project; stats?: ProjectStats }) {
+    const { href, messageID, messageDefault } = props.project;
+
     return (
         <a
             className={styles.listItem}
@@ -79,36 +134,55 @@ function Project(props: { project: Project }) {
             rel="noopener noreferrer"
             href={href}
         >
-            <i
-                className={
-                    "material-icons material-icons-round " +
-                    styles.materialIcons
-                }
-            >
-                {icon}
-            </i>
-            <FormattedMessage id={messageID} defaultMessage={messageDefault} />
+            <span className={styles.listItemTitle}>
+                <FormattedMessage
+                    id={messageID}
+                    defaultMessage={messageDefault}
+                />
+            </span>
+            <div className={styles.listItemStats}>
+                <ProjectStat icon="star" number={props.stats?.stars} />
+                <ProjectStat icon="alt_route" number={props.stats?.forks} />
+            </div>
         </a>
+    );
+}
+
+function ProjectStat(props: { icon: string; number?: number }) {
+    if (!props.number && props.number !== 0) return <></>;
+
+    return (
+        <div className={styles.listItemStatsItem}>
+            <i
+                className={classNames(
+                    styles.listItemStatsItemIcon,
+                    "material-icons-round"
+                )}
+            >
+                {props.icon}
+            </i>
+            <span className={styles.listItemStatsItemLabel}>
+                {props.number}
+            </span>
+        </div>
     );
 }
 
 function Vercel() {
     return (
-        <a
-            href="https://vercel.com/?utm_source=getomega&utm_campaign=oss"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            <img
-                style={{
-                    display: "inline-block",
-                    borderRadius: "8px",
-                    border: "1px solid #333333",
-                }}
-                src={VercelIcon}
-                alt="Vercel"
-            />
-        </a>
+        <div className={styles.vercel}>
+            <a
+                href="https://vercel.com/?utm_source=getomega&utm_campaign=oss"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    className={styles.vercelIcon}
+                    src={VercelIcon}
+                    alt="Vercel"
+                />
+            </a>
+        </div>
     );
 }
 
@@ -125,6 +199,10 @@ function Discord() {
             ></iframe>
         </div>
     );
+}
+
+function Separator() {
+    return <div className={styles.separator} />;
 }
 
 type FooterProps = {
@@ -201,10 +279,13 @@ export default class Footer extends Component<FooterProps, FooterState> {
                 <Discord />
                 <div
                     className={styles.separator}
-                    style={{ borderColor: "transparent", marginBottom: "0" }}
+                    style={{
+                        borderColor: "transparent",
+                        marginBottom: "0",
+                    }}
                 />
+                <Separator />
                 <Vercel />
-                <div className={styles.separator} />
                 <div className={styles.aboutNw}>
                     <FormattedMessage
                         id="footer.trademark"
