@@ -248,6 +248,12 @@ export default class Home extends Component {
                                         </li>
                                         <li>
                                             <FormattedMessage
+                                                defaultMessage="100 KB Python heap (instead of a 32 KB)"
+                                                id="home.features.and-more.python"
+                                            />
+                                        </li>
+                                        <li>
+                                            <FormattedMessage
                                                 defaultMessage="Accessibility settings"
                                                 id="home.features.and-more.accessibility"
                                             />

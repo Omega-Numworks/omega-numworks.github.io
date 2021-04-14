@@ -22,6 +22,7 @@
   "home.features.and-more.android": "Simulateur Android avec sauvegarde des scripts",
   "home.features.and-more.constants": "Constantes physiques et chimiques",
   "home.features.and-more.hungarian": "Support du hongrois",
+  "home.features.and-more.python": "100 KB de heap Python (au lieu de 32 KB)",
   "home.features.and-more.mult-symbol": "Choix du symbole de multiplication",
   "home.features.and-more.os": "Méthode open et module os",
   "home.features.atom.description": "Inspiré par le tableau périodique de la TI83PCE, le tableau périodique d'Omega est propre et simple à utiliser.",
