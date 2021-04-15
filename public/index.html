@@ -44,7 +44,6 @@
   </body>
   <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-messaging.js"></script>
 
   <script>
     // Your web app's Firebase configuration
@@ -63,7 +62,7 @@
     if (window.location.hostname != "localhost") {
       firebase.analytics();
     } else {
-      console.log("GA Disabled with localhost");
+      console.log("%c FIREBASE %c GA Disabled with localhost", "background-color: #F57C00; color: #ffffff;", "");
     }
   </script>
 </html>

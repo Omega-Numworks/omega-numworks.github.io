@@ -1,5 +1,4 @@
 import { Octokit } from "@octokit/core";
-import { render } from "@testing-library/react";
 import classNames from "classnames";
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
@@ -82,14 +81,28 @@ class Projects extends Component<ProjectsProps, ProjectsState> {
     }
 
     async loadStats() {
+        console.log(
+            "%c GITHUB %c Fetching GitHub API (omega-numworks/repos)",
+            "background-color: #000000; color: #ffffff;",
+            ""
+        );
+
+        const TIMER_LABEL = "GitHub API Response delay";
+        console.time(TIMER_LABEL);
         await octokit
             .request("GET /orgs/{org}/repos", {
                 org: "Omega-Numworks",
             })
             .then((res: any) => {
-                console.dir(res.data);
+                console.timeEnd(TIMER_LABEL);
 
                 let projectsStats: ProjectsStats = {};
+
+                console.table(res.data, [
+                    "name",
+                    "forks_count",
+                    "stargazers_count",
+                ]);
 
                 res.data.forEach((repo: any) => {
                     const forksCount = repo?.forks_count;
@@ -112,6 +125,7 @@ class Projects extends Component<ProjectsProps, ProjectsState> {
             <>
                 {projects.map((project: Project) => (
                     <Project
+                        key={project.name}
                         project={project}
                         stats={
                             this.state.projectsStats &&
@@ -186,21 +200,6 @@ function Vercel() {
     );
 }
 
-function Discord() {
-    return (
-        <div className={styles.discord}>
-            <iframe
-                title="Discord"
-                src="https://discordapp.com/widget?id=663420259851567114&theme=dark"
-                width="300"
-                height="300"
-                allowTransparency={true}
-                frameBorder="0"
-            ></iframe>
-        </div>
-    );
-}
-
 function Separator() {
     return <div className={styles.separator} />;
 }
@@ -246,6 +245,7 @@ export default class Footer extends Component<FooterProps, FooterState> {
         for (let lang in languages) {
             langs_list.push(
                 <div
+                    key={lang}
                     onClick={() => this.setLanguage(lang)}
                     className={styles.localeDropdownItem}
                 >
@@ -276,7 +276,6 @@ export default class Footer extends Component<FooterProps, FooterState> {
                         <Projects />
                     </div>
                 </div>
-                <Discord />
                 <div
                     className={styles.separator}
                     style={{

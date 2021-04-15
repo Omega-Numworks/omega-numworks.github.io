@@ -38,7 +38,6 @@ const tags = {
 function ChangelogElement(props: { change: string }) {
     const separatorIndex = props.change.indexOf(":");
     const tag = props.change.substring(0, separatorIndex) as Tag;
-    console.log(tag);
 
     const text = props.change.substring(separatorIndex + 1);
 
@@ -113,8 +112,9 @@ function DownloadButtons(props: { firmware: Firmware }) {
         },
     ];
 
-    const buttonsComponents = buttons.map((el) => (
+    const buttonsComponents = buttons.map((el, i) => (
         <Button
+            key={i}
             to={el.enabled ? el.to : undefined}
             href={el.enabled ? el.href : undefined}
             leftIcon={el.icon}
@@ -175,8 +175,8 @@ export default class ReleaseCard extends Component<ReleaseCardProps> {
                 <DownloadButtons firmware={version} />
                 <div className={styles.changelog}>
                     <ul className={styles.changelogList}>
-                        {version.changelog.map((change) => {
-                            return <ChangelogElement change={change} />;
+                        {version.changelog.map((change, i) => {
+                            return <ChangelogElement key={i} change={change} />;
                         })}
                     </ul>
                 </div>
