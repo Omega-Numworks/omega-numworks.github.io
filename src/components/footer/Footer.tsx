@@ -81,14 +81,22 @@ class Projects extends Component<ProjectsProps, ProjectsState> {
     }
 
     async loadStats() {
+        const TIMER_LABEL = "GitHub API Response delay";
+        console.time(TIMER_LABEL);
         await octokit
             .request("GET /orgs/{org}/repos", {
                 org: "Omega-Numworks",
             })
             .then((res: any) => {
-                console.dir(res.data);
+                console.timeEnd(TIMER_LABEL);
 
                 let projectsStats: ProjectsStats = {};
+
+                console.table(res.data, [
+                    "name",
+                    "forks_count",
+                    "stargazers_count",
+                ]);
 
                 res.data.forEach((repo: any) => {
                     const forksCount = repo?.forks_count;
