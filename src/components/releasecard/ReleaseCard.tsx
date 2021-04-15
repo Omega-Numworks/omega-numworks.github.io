@@ -38,7 +38,6 @@ const tags = {
 function ChangelogElement(props: { change: string }) {
     const separatorIndex = props.change.indexOf(":");
     const tag = props.change.substring(0, separatorIndex) as Tag;
-    console.log(tag);
 
     const text = props.change.substring(separatorIndex + 1);
 
