@@ -34,7 +34,12 @@ export default class HeaderLink extends Component<HeaderLinkProps> {
     renderIcon(icon?: string) {
         if (icon) {
             return (
-                <i className={"material-icons-round " + styles.link__icon}>
+                <i
+                    className={classNames(
+                        "material-icons-round",
+                        styles.link__icon
+                    )}
+                >
                     {icon}
                 </i>
             );

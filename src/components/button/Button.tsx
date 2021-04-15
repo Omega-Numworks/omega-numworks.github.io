@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 
 type ButtonProps = React.HTMLProps<HTMLDivElement> & {
-    blue?: boolean
-    outline?: boolean
-    disabled?: boolean
-    loading?: boolean
-    big?: boolean
-    leftIcon?: string
-    rightIcon?: string
-    to?: string
-    isExternalLink?: boolean
-}
+    blue?: boolean;
+    outline?: boolean;
+    disabled?: boolean;
+    loading?: boolean;
+    big?: boolean;
+    leftIcon?: string;
+    rightIcon?: string;
+    to?: string;
+    isExternalLink?: boolean;
+};
 
 export default class Button extends Component<ButtonProps> {
     constructor(props: ButtonProps) {
@@ -29,9 +29,11 @@ export default class Button extends Component<ButtonProps> {
         if (icon) {
             return (
                 <i
-                    className={`${styles.icon} ${
-                        styles.iconLeft
-                    } ${"material-icons"}`}
+                    className={classNames(
+                        styles.icon,
+                        styles.iconLeft,
+                        "material-icons"
+                    )}
                 >
                     {icon}
                 </i>
@@ -43,9 +45,11 @@ export default class Button extends Component<ButtonProps> {
         if (icon) {
             return (
                 <i
-                    className={`${styles.icon} ${
-                        styles.iconRight
-                    } ${"material-icons"}`}
+                    className={classNames(
+                        styles.icon,
+                        styles.iconRight,
+                        "material-icons"
+                    )}
                 >
                     {icon}
                 </i>
@@ -99,7 +103,11 @@ export default class Button extends Component<ButtonProps> {
                 </a>
             );
         } else {
-            component = <div {...props} onClick={this.props.onClick}>{this.renderContent()}</div>;
+            component = (
+                <div {...props} onClick={this.props.onClick}>
+                    {this.renderContent()}
+                </div>
+            );
         }
 
         return component;
