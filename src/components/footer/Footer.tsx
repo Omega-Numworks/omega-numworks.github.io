@@ -81,6 +81,12 @@ class Projects extends Component<ProjectsProps, ProjectsState> {
     }
 
     async loadStats() {
+        console.log(
+            "%c GITHUB %c Fetching GitHub API (omega-numworks/repos)",
+            "background-color: #000000; color: #ffffff;",
+            ""
+        );
+
         const TIMER_LABEL = "GitHub API Response delay";
         console.time(TIMER_LABEL);
         await octokit
