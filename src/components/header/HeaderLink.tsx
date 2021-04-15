@@ -50,7 +50,6 @@ export default class HeaderLink extends Component<HeaderLinkProps> {
                 [styles.linkRed]: this.props.red,
                 [styles.linkHidden]: this.props.hide,
             }),
-            exact: true,
         };
 
         if (this.props.to) {
