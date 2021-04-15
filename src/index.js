@@ -2,12 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import firebase, { messaging } from './firebase';
 // import * as serviceWorker from './serviceWorker';
-
-if (firebase.messaging.isSupported()) {
-  messaging.usePublicVapidKey("BIUahBDHm8uSYVl3WGvEl4BS2v8X0yU8bkNjQiid_5x5RzlzDR2JY0uJeBzgBey1b1AvdI_Z2Bk5gwYOZpiup4g");
-}
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 
