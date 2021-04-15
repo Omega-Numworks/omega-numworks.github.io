@@ -1,5 +1,4 @@
 import { Octokit } from "@octokit/core";
-import { render } from "@testing-library/react";
 import classNames from "classnames";
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
