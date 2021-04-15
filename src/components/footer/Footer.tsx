@@ -111,6 +111,7 @@ class Projects extends Component<ProjectsProps, ProjectsState> {
             <>
                 {projects.map((project: Project) => (
                     <Project
+                        key={project.name}
                         project={project}
                         stats={
                             this.state.projectsStats &&
@@ -185,21 +186,6 @@ function Vercel() {
     );
 }
 
-function Discord() {
-    return (
-        <div className={styles.discord}>
-            <iframe
-                title="Discord"
-                src="https://discordapp.com/widget?id=663420259851567114&theme=dark"
-                width="300"
-                height="300"
-                allowTransparency={true}
-                frameBorder="0"
-            ></iframe>
-        </div>
-    );
-}
-
 function Separator() {
     return <div className={styles.separator} />;
 }
@@ -245,6 +231,7 @@ export default class Footer extends Component<FooterProps, FooterState> {
         for (let lang in languages) {
             langs_list.push(
                 <div
+                    key={lang}
                     onClick={() => this.setLanguage(lang)}
                     className={styles.localeDropdownItem}
                 >
@@ -275,7 +262,6 @@ export default class Footer extends Component<FooterProps, FooterState> {
                         <Projects />
                     </div>
                 </div>
-                <Discord />
                 <div
                     className={styles.separator}
                     style={{
