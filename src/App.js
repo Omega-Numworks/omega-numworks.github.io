@@ -18,6 +18,7 @@ import CookiesConsent from "./components/cookiesconsent/CookiesConsent"
 
 import { IntlProvider } from "react-intl";
 import translations from './i18n/locales'
+import classNames from 'classnames';
 // import Beta from './pages/Beta';
 
 class App extends Component {
@@ -34,10 +35,12 @@ class App extends Component {
     
     this.state = {
       locale: initLang,
-      messages: translations[initLang]
+      messages: translations[initLang],
+      theme: 'light'
     };
     
     this.onChangeLanguage = this.onChangeLanguage.bind(this);
+    this.toggleTheme = this.toggleTheme.bind(this);
   }
   
   getLang() {
@@ -52,14 +55,22 @@ class App extends Component {
     this.setState({locale: lang, messages: translations[lang]});
   }
 
+  toggleTheme() {
+    if (this.state.theme === "dark") {
+      this.setState({ theme: "light" })
+    } else {
+      this.setState({ theme: "dark" })
+    }
+  }
+
   render() {
     return (
       <IntlProvider locale={this.state.locale} messages={this.state.messages}>
         <Router>
-          <div className="body">
+          <div className={classNames("body", this.state.theme)}>
             {!window.location.pathname.includes("/simulator/run") && <React.Fragment>
               <CookiesConsent linkToPolicy="/policy" />
-              <Header />
+              <Header theme={this.state.theme} toggleTheme={this.toggleTheme} />
             </React.Fragment>}
             <Switch>
               <Route path="/simulator" component={Simulator} exact />
