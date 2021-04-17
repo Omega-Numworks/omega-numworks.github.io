@@ -1,7 +1,8 @@
 @import './../../sass/variables.omega.library'
 
 .installer
-    background-color: #f3f3f3
+    background-color: $color-secondary-background
+    color: $color-primary-text
     margin-bottom: 24px
     border-radius: 16px
     height: 160px
@@ -14,15 +15,15 @@
         display: block
 
     &-notcompatible
-        margin: 32px 48px
         display: none
-        background-color: #f3f3f3
+        background-color: $color-secondary-background
         border-radius: 16px
         overflow: hidden
         font-weight: 400
         padding: 18px 24px
         line-height: 1.4
         text-align: center
+        color: $color-primary-text
 
         &-active
             display: block
@@ -63,7 +64,7 @@
 
         &__name
             font-family: $font-righteous
-            color: #292929
+            color: $color-secondary-text
             font-size: 20px
             display: block
             vertical-align: top
@@ -102,9 +103,9 @@
             &__name
                 display: none
                 border-radius: 6px
-                background-color: #cccccc
+                background-color: $color-secondary-text
                 outline: none
-                border: 1px solid #c0c0c0
+                border: 1px solid $color-third-background
                 padding: 7px 14px
                 font-family: $font-fira-sans
                 font-weight: 500
@@ -125,7 +126,7 @@
         &__progress
             height: 3px
             border-radius: 1.5px
-            background-color: #D8D8D8
+            background-color: $color-third-background
             margin-right: 32px
             margin-top: 14px
             opacity: 0
@@ -137,7 +138,7 @@
             &__bar
                 height: 3px
                 border-radius: 1.5px
-                background-color: #C03535
+                background-color: $color-red
                 // transition: all 0.3s ease-in-out
 
             &__message
@@ -178,13 +179,13 @@
                 font-weight: 700
                 font-size: 13px
                 position: relative
-                border: 1px solid #cccccc
-                color: #4B4B4B
+                border: 1px solid $color-third-background
+                color: $color-secondary-text
                 display: none
                 border-radius: 6px
                 user-select: none
                 &:hover
-                    background-color: #e2e2e2
+                    background-color: $color-secondary-background
 
                 &-active
                     display: inline-block
@@ -199,16 +200,16 @@
                     cursor: pointer
 
                     &-active
-                        background-color: #c4c4c4
+                        background-color: $color-third-background
 
                     &:hover
-                        background-color: #cccccc
+                        background-color: $color-third-background
 
                 &__select
                     padding: 8px 18px
                     border-radius: 6px
-                    background-color: #bdbdbd
-                    color: #000000
+                    background-color: $color-third-background
+                    color: $color-primary-text
                     cursor: pointer
                     transition: all 0.2s
                     box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
@@ -246,7 +247,7 @@
             opacity: 1
 
     &-external
-        background-color: #f3f3f3
+        background-color: $color-secondary-background
         margin: 0 48px
         position: relative
         padding: 0 16px

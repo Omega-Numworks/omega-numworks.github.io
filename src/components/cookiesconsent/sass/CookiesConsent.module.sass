@@ -1,9 +1,12 @@
+@import '../../../sass/variables.omega.library'
+
 .cookiesConsent
     z-index: 10000000
     width: 100%
     box-sizing: border-box
-    background-color: #f1f1f1
-    padding: 12px 24px
+    background-color: $color-third-background
+    color: $color-primary-text
+    padding: 12px 48px
     vertical-align: middle
     font-size: 14px
     overflow: hidden
@@ -22,11 +25,19 @@
     margin: 0 4px
     transition: all 0.2s
     border-radius: 4px
-    color: #000000
+    color: $color-secondary-text
     &:hover
-        background-color: rgba(0, 0, 0, 0.1)
+        background-color: $color-hover-transparency
 
 .button
     margin-top: 2px
     float: right
     vertical-align: middle
+
+@media screen and ( min-width: 1400px )
+    .cookiesConsent
+        padding: 12px calc(15% - 16px)
+
+@media screen and ( max-width: 700px )
+    .cookiesConsent
+        padding: 12px 24px

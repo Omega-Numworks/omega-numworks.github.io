@@ -6,7 +6,8 @@
     height: 80px
     margin-left: 48px
     margin-right: 40px
-    background-color: #ffffff
+    background-color: $color-primary-background
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out
     user-select: none
     font-size: 15px
 
@@ -15,7 +16,7 @@
     font-size: 26px
     margin-top: -2px
     margin-right: 32px
-    color: #c53431
+    color: $color-red
     font-weight: 400
     text-decoration: none
 
@@ -35,7 +36,7 @@
 .link
     align-self: center
     height: 26px
-    color: #484848
+    color: $color-secondary-text
     text-decoration: none
     margin: 0 3px
     padding: 2px 10px
@@ -51,17 +52,17 @@
         display: none
 
     &Active
-        color: #181818
-        background-color: rgba(0, 0, 0, 0.05)
+        color: $color-primary-text
+        background-color: $color-hover-transparency
         font-weight: 900
 
     &:hover
-        color: #181818
+        color: $color-primary-text
         animation: hover-feedback 0.2s
-        background-color: rgba(0, 0, 0, 0.1)
+        background-color: $color-hover-transparency
 
     &Red
-        color: #c53431
+        color: $color-red
 
         &:hover
             color: #ffffff
@@ -97,7 +98,7 @@
 
     &Username
         vertical-align: middle
-        color: #484848
+        color: $color-secondary-text
         font-weight: 500
         display: inline-block
         margin-right: 12px
@@ -118,7 +119,7 @@
     margin-top: -1px
     margin-right: 8px
     transition: all 0.2s
-    color: #1d1d1d
+    color: $color-secondary-text
     cursor: pointer
     vertical-align: middle
 
@@ -153,8 +154,8 @@
         z-index: 10000001
 
         & .links
-            border-top-color: #e4e4e4
-            background-color: #ffffff
+            border-top-color: $color-third-background
+            background-color: $color-primary-background
             padding: 12px 0
             max-height: 100vh
 
@@ -174,7 +175,7 @@
         width: calc(100% - 52px)
         max-height: 1px
         display: block
-        background-color: #ebebeb
+        background-color: $color-third-background
 
     .separator
 

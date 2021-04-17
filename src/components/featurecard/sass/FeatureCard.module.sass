@@ -3,10 +3,11 @@
 .featureCard
     display: flex
     flex-direction: column
-    background-color: #f3f3f3
+    background-color: $color-secondary-background
     border-radius: 16px
     flex-grow: 1
     margin-bottom: 24px
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out
 
     &:last-child
         margin-bottom: 0
@@ -34,15 +35,14 @@
         margin-left: 8px
 
 .title
-    color: #464646
-    color: rgb(73, 98, 114)
+    color: $color-accent
     font-family: $font-righteous
     font-size: 26px
     margin: 32px
     margin-bottom: 0
 
 .description
-    color: #575757
+    color: $color-secondary-text
     font-size: 16px
     line-height: 1.5
     margin: 32px

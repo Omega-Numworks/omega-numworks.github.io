@@ -13,7 +13,10 @@ import HeaderSpacer from "./HeaderSpacer";
 
 import styles from "./sass/Header.module.sass";
 
-type HeaderProps = React.HTMLProps<HTMLHeadElement>;
+type HeaderProps = React.HTMLProps<HTMLHeadElement> & {
+    theme: string;
+    toggleTheme: () => void;
+};
 
 type HeaderState = {
     isOpened: boolean;
@@ -130,6 +133,25 @@ export default class Header extends Component<HeaderProps, HeaderState> {
                         {messages.gitHub}
                     </HeaderLink>
                     <HeaderSpacer />
+                    <HeaderLink onClick={this.props.toggleTheme}>
+                        <span role="img" aria-label="moon">
+                            {this.props.theme === "dark" ? (
+                                <span
+                                    style={{ verticalAlign: "middle" }}
+                                    className="material-icons-round"
+                                >
+                                    dark_mode
+                                </span>
+                            ) : (
+                                <span
+                                    style={{ verticalAlign: "middle" }}
+                                    className="material-icons-round"
+                                >
+                                    light_mode
+                                </span>
+                            )}
+                        </span>
+                    </HeaderLink>
                     <HeaderLink onClick={this.login} hide={isLogged}>
                         {messages.login}
                     </HeaderLink>

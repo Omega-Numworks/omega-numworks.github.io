@@ -1,4 +1,4 @@
-@import '../../../sass/_animations'
+@import '../../../sass/variables.omega.library'
 
 .button
     background-color: #e0e0e0
@@ -77,14 +77,14 @@
     font-weight: 700
     display: flex
     margin-top: 8px
-    border: 1px solid #DEDEDE
+    border: 1px solid $color-secondary-background
     border-radius: 6px
     vertical-align: middle
     color: #4B4B4B
     transition: all 0.15s
 
     &:hover
-        background-color: #f1f1f1
+        background-color: $color-third-background
 
     & .button
         display: inline-block
@@ -93,11 +93,11 @@
         transition: all 0.15s
         text-transform: uppercase
         background-color: transparent
-        color: rgba(1, 1, 1, 0.70)
+        color: $color-secondary-text
 
         &:hover
             cursor: pointer
-            background-color: #d4d4d4
+            background-color: $color-secondary-background
 
     & .disabled
         cursor: not-allowed

@@ -11,6 +11,7 @@ type HeaderLinkProps = {
     red?: boolean;
     hide?: boolean;
     href?: string;
+    style?: {};
 };
 
 export default class HeaderLink extends Component<HeaderLinkProps> {
@@ -55,6 +56,7 @@ export default class HeaderLink extends Component<HeaderLinkProps> {
                 [styles.linkRed]: this.props.red,
                 [styles.linkHidden]: this.props.hide,
             }),
+            style: this.props.style,
         };
 
         if (this.props.to) {

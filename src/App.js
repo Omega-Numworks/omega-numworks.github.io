@@ -18,6 +18,7 @@ import CookiesConsent from "./components/cookiesconsent/CookiesConsent"
 
 import { IntlProvider } from "react-intl";
 import translations from './i18n/locales'
+import classNames from 'classnames';
 // import Beta from './pages/Beta';
 
 class App extends Component {
@@ -31,13 +32,18 @@ class App extends Component {
     if (!(initLang in translations)) {
       initLang = "en";
     }
+
+    var theme = this.getCookie("theme")
+    if (theme === "") theme = "light"
     
     this.state = {
       locale: initLang,
-      messages: translations[initLang]
+      messages: translations[initLang],
+      theme: theme
     };
     
     this.onChangeLanguage = this.onChangeLanguage.bind(this);
+    this.toggleTheme = this.toggleTheme.bind(this);
   }
   
   getLang() {
@@ -52,14 +58,47 @@ class App extends Component {
     this.setState({locale: lang, messages: translations[lang]});
   }
 
+  toggleTheme() {
+    var newTheme = this.state.theme === "light" ? "dark" : "light"
+
+    this.setState({ theme: newTheme })
+    this.setCookie("theme", newTheme)
+  }
+
+  setCookie(cookie, value) {
+    // Source: https://www.w3schools.com/js/js_cookies.asp
+    var d = new Date();
+    const EXPIRATION_IN_DAYS = 7;
+    d.setTime(d.getTime() + EXPIRATION_IN_DAYS * 24 * 60 * 60 * 1000);
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cookie + "=" + value + ";" + expires + ";path=/";
+  }
+
+  getCookie(cookie) {
+    // Source: https://www.w3schools.com/js/js_cookies.asp
+    var name = cookie + "=";
+    var ca = document.cookie.split(";");
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) === " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+
   render() {
     return (
       <IntlProvider locale={this.state.locale} messages={this.state.messages}>
         <Router>
-          <div className="body">
+          <div className={classNames("body", this.state.theme)}>
             {!window.location.pathname.includes("/simulator/run") && <React.Fragment>
               <CookiesConsent linkToPolicy="/policy" />
-              <Header />
+              <Header theme={this.state.theme} toggleTheme={this.toggleTheme} />
             </React.Fragment>}
             <Switch>
               <Route path="/simulator" component={Simulator} exact />
@@ -73,7 +112,7 @@ class App extends Component {
               <Route path="/ide/editor" component={() => <IDEEditor base="/ide/" connector={GithubConnector} vercel={true} />} exact />
               <Route path="/ide/simulator" component={IDESimulator} exact />
               {/* <Route path="/wiki" component={Wiki} exact /> */}
-              <Route path="/" component={Home} exact />
+              <Route path="/" component={() => <Home theme={this.state.theme} />} exact />
               <Route component={NotFound} />
             </Switch>
             {!window.location.pathname.includes("/simulator/run") && <Footer onChangeLanguage={this.onChangeLanguage} locale={this.state.locale} />}
