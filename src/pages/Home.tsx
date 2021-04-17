@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import ImgSymbolicCalculation from "../img/symbolic-calculation.png";
+import ImgSymbolicCalculationDark from "../img/symbolic-calculation-dark.png";
 import ImgAtom from "../img/atom.png";
+import ImgAtomDark from "../img/atom-dark.png";
 import ImgRpn from "../img/rpn.png";
+import ImgRpnDark from "../img/rpn-dark.png";
 import Img3ds from "../img/3ds.png";
+import Img3dsDark from "../img/3ds-dark.png";
 import Button from "../components/button/Button";
 import { FormattedMessage } from "react-intl";
 import Fade from "react-reveal";
@@ -17,8 +21,12 @@ import {
 import "./sass/home.sass";
 import { Downloads } from "../components/downloads/Downloads";
 
-export default class Home extends Component {
-    constructor(props: {}) {
+type HomeProps = {
+    theme: string;
+};
+
+export default class Home extends Component<HomeProps> {
+    constructor(props: HomeProps) {
         super(props);
 
         document.title = "Omega";
@@ -144,7 +152,11 @@ export default class Home extends Component {
                                     />
                                 </FeatureCardDescription>
                                 <FeatureCardImage
-                                    src={ImgSymbolicCalculation}
+                                    src={
+                                        this.props.theme === "light"
+                                            ? ImgSymbolicCalculation
+                                            : ImgSymbolicCalculationDark
+                                    }
                                     alt="Symbolic Calculation"
                                 />
                             </FeatureCard>
@@ -169,7 +181,14 @@ export default class Home extends Component {
                                         defaultMessage="Inspired by the TI83PCE's periodic table app, Omega's periodic table is clean and simple to use."
                                     />
                                 </FeatureCardDescription>
-                                <FeatureCardImage src={ImgAtom} alt="Atom" />
+                                <FeatureCardImage
+                                    src={
+                                        this.props.theme === "light"
+                                            ? ImgAtom
+                                            : ImgAtomDark
+                                    }
+                                    alt="Atom"
+                                />
                             </FeatureCard>
                         </FeatureCardColumn>
                         <FeatureCardColumn>
@@ -186,7 +205,14 @@ export default class Home extends Component {
                                         defaultMessage="Omega supports using Reverse Polish Notation to do calculations."
                                     />
                                 </FeatureCardDescription>
-                                <FeatureCardImage src={ImgRpn} alt="RPN" />
+                                <FeatureCardImage
+                                    src={
+                                        this.props.theme === "light"
+                                            ? ImgRpn
+                                            : ImgRpnDark
+                                    }
+                                    alt="RPN"
+                                />
                             </FeatureCard>
                         </FeatureCardColumn>
                     </FeatureCardRow>
@@ -208,7 +234,14 @@ export default class Home extends Component {
                                         defaultMessage="Omega is avaliable and fully usable on the Nintendo 3DS."
                                     />
                                 </FeatureCardDescription>
-                                <FeatureCardImage src={Img3ds} alt="3ds" />
+                                <FeatureCardImage
+                                    src={
+                                        this.props.theme === "light"
+                                            ? Img3ds
+                                            : Img3dsDark
+                                    }
+                                    alt="3ds"
+                                />
                             </FeatureCard>
                         </FeatureCardColumn>
                         <FeatureCardColumn>

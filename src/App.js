@@ -84,7 +84,7 @@ class App extends Component {
               <Route path="/ide/editor" component={() => <IDEEditor base="/ide/" connector={GithubConnector} vercel={true} />} exact />
               <Route path="/ide/simulator" component={IDESimulator} exact />
               {/* <Route path="/wiki" component={Wiki} exact /> */}
-              <Route path="/" component={Home} exact />
+              <Route path="/" component={() => <Home theme={this.state.theme} />} exact />
               <Route component={NotFound} />
             </Switch>
             {!window.location.pathname.includes("/simulator/run") && <Footer onChangeLanguage={this.onChangeLanguage} locale={this.state.locale} />}
