@@ -32,11 +32,14 @@ class App extends Component {
     if (!(initLang in translations)) {
       initLang = "en";
     }
+
+    var theme = this.getCookie("theme")
+    if (theme === "") theme = "light"
     
     this.state = {
       locale: initLang,
       messages: translations[initLang],
-      theme: 'light'
+      theme: theme
     };
     
     this.onChangeLanguage = this.onChangeLanguage.bind(this);
@@ -56,12 +59,37 @@ class App extends Component {
   }
 
   toggleTheme() {
-    if (this.state.theme === "dark") {
-      this.setState({ theme: "light" })
-    } else {
-      this.setState({ theme: "dark" })
-    }
+    var newTheme = this.state.theme === "light" ? "dark" : "light"
+
+    this.setState({ theme: newTheme })
+    this.setCookie("theme", newTheme)
   }
+
+  setCookie(cookie, value) {
+    // Source: https://www.w3schools.com/js/js_cookies.asp
+    var d = new Date();
+    const EXPIRATION_IN_DAYS = 7;
+    d.setTime(d.getTime() + EXPIRATION_IN_DAYS * 24 * 60 * 60 * 1000);
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cookie + "=" + value + ";" + expires + ";path=/";
+  }
+
+  getCookie(cookie) {
+    // Source: https://www.w3schools.com/js/js_cookies.asp
+    var name = cookie + "=";
+    var ca = document.cookie.split(";");
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) === " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
 
   render() {
     return (
