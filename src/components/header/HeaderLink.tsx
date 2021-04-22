@@ -1,9 +1,11 @@
-import React, { Component, MouseEventHandler } from "react";
-import styles from "./sass/Header.module.sass";
+import React, { MouseEventHandler } from "react";
+
 import { NavLink } from "react-router-dom";
 import classNames from "classnames";
 
-type HeaderLinkProps = {
+import styles from "./sass/Header.module.sass";
+
+type HeaderLinkProps = React.HTMLProps<any> & {
     onClick?: MouseEventHandler;
     to?: string;
     icon?: string;
@@ -14,79 +16,62 @@ type HeaderLinkProps = {
     style?: {};
 };
 
-export default class HeaderLink extends Component<HeaderLinkProps> {
-    constructor(props: HeaderLinkProps) {
-        super(props);
-
-        this.renderIcon = this.renderIcon.bind(this);
-
-        this.renderContent = this.renderContent.bind(this);
-    }
-
-    renderContent() {
-        return (
-            <React.Fragment>
-                {this.props.children}
-                {this.renderIcon(this.props.icon)}
-            </React.Fragment>
+export default function HeaderLink(props: HeaderLinkProps) {
+    let icon = undefined;
+    if (props.icon) {
+        icon = (
+            <i
+                className={classNames(
+                    "material-icons-round",
+                    styles.link__icon
+                )}
+            >
+                {props.icon}
+            </i>
         );
     }
 
-    renderIcon(icon?: string) {
-        if (icon) {
-            return (
-                <i
-                    className={classNames(
-                        "material-icons-round",
-                        styles.link__icon
-                    )}
-                >
-                    {icon}
-                </i>
-            );
-        }
-    }
+    const content = (
+        <React.Fragment>
+            {props.children}
+            {icon}
+        </React.Fragment>
+    );
 
-    render() {
-        var component;
-        var props = {
-            onClick: this.props.onClick,
-            className: classNames({
-                [styles.link]: true,
-                [styles.linkRed]: this.props.red,
-                [styles.linkHidden]: this.props.hide,
-            }),
-            style: this.props.style,
-        };
+    const additionalProps = {
+        onClick: props.onClick,
+        className: classNames({
+            [styles.link]: true,
+            [styles.linkRed]: props.red,
+            [styles.linkHidden]: props.hide,
+        }),
+        style: props.style,
+    };
 
-        if (this.props.to) {
-            component = (
-                <NavLink
-                    to={this.props.to}
-                    activeClassName={styles.linkActive}
-                    {...props}
-                    exact
-                >
-                    {this.renderContent()}
-                </NavLink>
-            );
-        } else {
-            var external = {};
-
-            if (this.props.isExternalLink) {
-                external = {
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                };
-            }
-
-            component = (
-                <a href={this.props.href} {...props} {...external}>
-                    {this.renderContent()}
-                </a>
-            );
+    if (props.to) {
+        return (
+            <NavLink
+                to={props.to}
+                activeClassName={styles.linkActive}
+                {...additionalProps}
+                exact
+            >
+                {content}
+            </NavLink>
+        );
+    } else {
+        let external = {};
+        if (props.isExternalLink) {
+            external = {
+                target: "_blank",
+                rel: "noopener noreferrer",
+            };
         }
 
-        return component;
+        return (
+            <a href={props.href} {...additionalProps} {...external}>
+                {content}
+            </a>
+        );
     }
 }

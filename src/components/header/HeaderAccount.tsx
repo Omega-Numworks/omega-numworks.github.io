@@ -1,6 +1,8 @@
 import React from "react";
-import styles from "./sass/Header.module.sass";
+
 import classNames from "classnames";
+
+import styles from "./sass/Header.module.sass";
 
 type HeaderAccountProps = {
     username?: string | null;

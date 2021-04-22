@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from "./sass/Header.module.sass";
 
 type HeaderLinksProps = React.HTMLProps<HTMLDivElement>;
