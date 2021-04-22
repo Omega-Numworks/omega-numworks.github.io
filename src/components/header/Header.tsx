@@ -57,6 +57,7 @@ export default function Header(props: HeaderProps) {
             <Message id="toolbar.login" defaultMessage="Login with Github" />
         ),
         logout: <Message id="toolbar.logout" defaultMessage="Logout" />,
+        apps: "Apps",
     };
 
     return (
@@ -73,6 +74,9 @@ export default function Header(props: HeaderProps) {
             <HeaderLinks>
                 <HeaderLink onClick={closeHamburger} to="/install/latest">
                     {messages.install}
+                </HeaderLink>
+                <HeaderLink onClick={closeHamburger} to="/apps">
+                    {messages.apps}
                 </HeaderLink>
                 <HeaderLink onClick={closeHamburger} to="/releases">
                     {messages.releases}

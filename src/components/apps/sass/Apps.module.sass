@@ -1,0 +1,84 @@
+@import './../../../sass/variables.omega.library'
+
+$transition: all 0.15s ease-in-out
+
+.app
+    background-color: $color-secondary-background
+    border-radius: 12px
+    transition: all 0.1s ease-in-out
+    overflow: hidden
+    cursor: pointer
+    user-select: none
+    padding: 18px
+    display: flex
+    flex-direction: column
+    position: relative
+
+    &:hover
+        background-color: $color-third-background
+        & .up
+            top: 0
+            transform: translateY(0)
+
+        & .down
+            bottom: 0
+
+        & .select
+            background-color: $color-accent-secondary
+            color: #fff
+
+.checkbox
+    position: absolute
+    right: 18px
+    top: 18px
+    width: 116px
+    height: 30px
+    display: flex
+    justify-content: center
+    border-radius: 6px
+    display: flex
+    color: $color-primary-text
+    border: 1px solid rgba(0, 0, 0, 0.06)
+    transition: $transition
+
+    &Text
+        font-size: 13px
+        text-transform: uppercase
+        font-weight: 600
+        align-self: center
+        margin-right: 6px
+
+    &Icon
+        display: none
+        font-size: 18px
+        align-self: center
+
+    &Selected
+        color: #fff
+        background-color: #5db655
+        //background-color: $color-accent-secondary
+
+    &Selected &Icon
+        display: block
+
+.image
+    width: 55px
+    height: 56px
+    border-radius: 8px
+    transition: $transition
+
+.content
+    display: inline-block
+    margin-top: 14px
+
+.name
+    display: block
+    color: $color-primary-text
+    font-weight: 600
+    margin-bottom: 6px
+    transition: $transition
+
+.description
+    display: block
+    color: $color-secondary-text
+    transition: $transition

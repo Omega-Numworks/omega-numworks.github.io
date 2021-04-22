@@ -1,6 +1,7 @@
 import { Octokit } from "@octokit/core";
 import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
+import Title from "../title/Title";
 import FooterProject from "./FooterProject";
 import { ProjectStats } from "./FooterProjectStat";
 
@@ -120,12 +121,12 @@ export default function FooterProjects() {
 
     return (
         <div className={styles.links}>
-            <h3 className={styles.title}>
+            <Title>
                 <FormattedMessage
                     id="footer.projects"
                     defaultMessage="Projects"
                 />
-            </h3>
+            </Title>
             <div className={styles.list}>{cards}</div>
         </div>
     );
