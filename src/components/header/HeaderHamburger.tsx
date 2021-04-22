@@ -1,5 +1,7 @@
-import classNames from "classnames";
 import React, { MouseEventHandler } from "react";
+
+import classNames from "classnames";
+
 import styles from "./sass/Header.module.sass";
 
 type HeaderHamburgerProps = {
