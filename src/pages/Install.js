@@ -95,6 +95,13 @@ export default class Install extends Component {
         this.enableName = this.enableName.bind(this);
         this.disableName = this.disableName.bind(this);
         this.nameChanged = this.nameChanged.bind(this);
+        
+        // Recovery
+        this.recoveryCalculator = this.recoveryCalculator.bind(this);
+    }
+    
+    recoveryCalculator(e) {
+        this.state.installerInstance.recovery();
     }
     
     nameChanged(e) {
@@ -286,6 +293,9 @@ export default class Install extends Component {
                         <div className="installer__content__buttons">
                             <Button onClick={this.detectCalculator} className={"installer__content__buttons__button " +  (!this.state.calculatorDetected ? "installer__content__buttons__button-active" : "")} blue>
                                 <FormattedMessage id="installer.detect" defaultMessage="DETECT CALCULATOR" />
+                            </Button>
+                            <Button onClick={this.recoveryCalculator} className={"installer__content__buttons__button " +  (!this.state.calculatorDetected ? "installer__content__buttons__button-active" : "")} blue>
+                                <FormattedMessage id="installer.recovery" defaultMessage="RECOVERY" />
                             </Button>
                             <Button onClick={this.install} className={"installer__content__buttons__button" + ((this.state.calculatorDetected && !this.state.install && !this.state.installationFinished) ? " installer__content__buttons__button-active" : "")} disabled={this.state.showPopup} blue>
                                 <FormattedMessage id="installer.install" defaultMessage="INSTALL OMEGA" />
