@@ -29,6 +29,7 @@ export default class Installer {
         
         this.calculator = new Numworks();
         this.storage_content = new Numworks.Storage();
+        this.calculator_recovery = new Numworks.Recovery();
         this.downloader = new Downloader();
     }
     
@@ -248,6 +249,23 @@ export default class Installer {
         });
     }
     
+    async __installRecovery(callback) {
+        var _this = this;
+        var file_name = "flasher.verbose.bin";
+        
+        _this.downloader.downloadFirmwareCheck(_this.installInstance.state.model, "flasher", file_name, async (flasher_check, flasher_blob) => {
+            if (!flasher_check) {
+                _this.installInstance.calculatorError(true, "Download of flasher seems corrupted, please retry.");
+            }
+
+            let flasher = await flasher_blob.arrayBuffer();
+            
+            await _this.calculator_recovery.flashRecovery(flasher);
+            
+            await callback();
+        });
+    }
+    
     async __detectCallback() {
         await this.__setCalculatorInfos();
     }
@@ -259,6 +277,18 @@ export default class Installer {
     detect() {
         this.installInstance.calculatorError(false, null);
         this.calculator.detect(this.__detectCallback.bind(this), this.__detectErrorCallback.bind(this));
+    }
+    
+    async __recoveryDetectCallback() {
+        this.installInstance.setModel("N" + this.calculator_recovery.getModel());
+        await this.__installRecovery(async function() {
+        
+        });
+    }
+    
+    recovery() {
+        this.installInstance.calculatorError(false, null);
+        this.calculator_recovery.detect(this.__recoveryDetectCallback.bind(this), this.__detectErrorCallback.bind(this));
     }
     
     __onUnexpectedDisconnectCallback(event) {
