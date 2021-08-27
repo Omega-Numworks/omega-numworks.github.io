@@ -1,0 +1,110 @@
+@import '../../../sass/variables.omega.library'
+
+.button
+    background-color: #e0e0e0
+    color: #303030
+    font-size: 13px
+    cursor: pointer
+    font-weight: 700
+    padding: 9px 12px
+    padding-top: 10px
+    border-radius: 6px
+    transition: all 0.2s ease-in-out
+    display: inline-block
+    border: 0
+    text-decoration: none
+    outline: none
+    user-select: none
+    white-space: nowrap
+
+    &:hover
+        background-color: #c0c0c0
+        animation: hover-feedback 0.2s
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.08)
+
+.blue
+    background-color: #3585C0
+    color: #ffffff
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
+
+    &:hover
+        background-color: #2872a7
+        box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.30)
+
+.disabled
+    cursor: not-allowed
+    box-shadow: none
+    background-color: rgba(0, 0, 0, 0.07)
+    color: #9b9b9b
+
+    &:hover
+        cursor: not-allowed
+        background-color: rgba(0, 0, 0, 0.07)
+        box-shadow: none
+
+.loading
+    cursor: progress
+    box-shadow: none
+    background-color: rgba(0, 0, 0, 0.07)
+    color: #9b9b9b
+
+    &:hover
+        background-color: rgba(0, 0, 0, 0.07)
+        box-shadow: none
+
+.outline
+    border: 1px solid #ffffff
+    background-color: transparent
+
+    &:hover
+        animation: hover-feedback 0.2s
+        background-color: rgba(1, 1, 1, 0.2)
+
+.big
+    padding: 11px 18px
+
+.icon
+    font-size: 16px !important
+    display: inline-block
+    margin-top: -3px
+    vertical-align: middle
+    &Left
+        margin-right: 8px
+    &Right
+        margin-left: 8px
+
+.buttonGroup
+    font-weight: 700
+    display: flex
+    margin-top: 8px
+    border: 1px solid $color-secondary-background
+    border-radius: 6px
+    vertical-align: middle
+    color: #4B4B4B
+    transition: all 0.15s
+
+    &:hover
+        background-color: $color-third-background
+
+    & .button
+        display: inline-block
+        border-radius: 5px
+        font-size: 13px
+        transition: all 0.15s
+        text-transform: uppercase
+        background-color: transparent
+        color: $color-secondary-text
+
+        &:hover
+            cursor: pointer
+            background-color: $color-secondary-background
+
+    & .disabled
+        cursor: not-allowed
+        box-shadow: none
+        color: #9b9b9b
+
+        &:hover
+            cursor: not-allowed
+            background-color: rgba(0, 0, 0, 0.07)
+            box-shadow: none

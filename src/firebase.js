@@ -1,4 +1,7 @@
-import firebase from 'firebase';
+import 'firebase/analytics';
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDVGEyNqgLCCerqbqGmUQ3mMxu8M4sYZvo",
@@ -8,11 +11,9 @@ const firebaseConfig = {
     storageBucket: "omega-numworks.appspot.com",
     messagingSenderId: "172338146789",
     appId: "1:172338146789:web:3000e6cb87d21249c8530c",
-    measurementId: "G-P9YFFF08LN"
+    measurementId: "G-P9YFFF08LN",
 };
 
 firebase.initializeApp(firebaseConfig);
-
-export var messaging = firebase.messaging.isSupported() ? firebase.messaging() : null;
 
 export default firebase;

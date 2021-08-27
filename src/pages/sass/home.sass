@@ -1,13 +1,14 @@
 @import './../../sass/variables.omega.library'
 
 .project-description
+    background-color: #194949
     background-size: cover
     background-repeat: no-repeat
     background-position: center
-    padding-top: 64px
-    text-align: center
     overflow: hidden
     position: relative
+    padding: 80px 64px
+    border-radius: 16px
 
     // PARALLAX
     // background-attachment: fixed
@@ -19,13 +20,12 @@
         left: 0
 
     &__title
-        padding-top: 48px
-        font-size: 64px
+        font-size: 56px
         font-family: $font-righteous
         color: #fff
 
     &__subtitle
-        font-size: 20px
+        font-size: 18px
         font-weight: 500
         margin-top: 24px
         color: #fafafa
@@ -35,22 +35,26 @@
         color: #ffffff
 
     &__description
+        display: none
         font-size: 16px
         color: #656565
         background-color: #F4F4F4
         text-align: justify
         padding: 32px 64px
-        margin-top: 96px
         line-height: 22px
 
 .download
+    margin-bottom: 48px
+    padding: 32px
+    padding-top: 8px
+    padding-bottom: 64px
+    border-radius: 16px
+
     background-size: cover
     background-repeat: no-repeat
     background-position: center
     background-color: rgb(73, 98, 114)
-    padding: 32px
-    padding-top: 8px
-    padding-bottom: 64px
+
     text-align: center
     color: #ffffff
 
@@ -149,34 +153,7 @@
                     float: right
                     margin-right: 12px
 
-@media screen and ( min-width: 1400px )
-    .project-description
-        &__description
-            padding: 32px 15%
-
-    .content-home .featurecard-row
-        padding: 12px calc(15% - 16px)
-
-@media screen and ( max-width: 1000px )
-    .content-home .featurecard__imagewrapper__image
-        height: 240px
-
 @media screen and ( max-width: 800px )
-    .project-description
-        &__description
-            padding: 32px 32px
-
-    .content-home .featurecard
-        &-row
-            flex-direction: column
-
-        &-column
-            padding-right: 0
-            padding-bottom: 24px
-            &:last-child
-                padding-bottom: 0
-
-@media screen and ( max-width: 700px )
     .content-home .download__cards__card
         display: block
         margin-bottom: 16px
@@ -184,13 +161,15 @@
         &:last-child
             margin-bottom: 0
 
-@media screen and ( max-width: 680px )
+@media screen and ( max-width: 700px )
     .project-description
-        padding-top: 64px
-        &__title
-            padding-top: 0
-            font-size: 54px
+        padding: 40px 32px
 
-        &__description
+        &__title
+            font-size: 40px
+
+        &__subtitle
             font-size: 16px
-            margin-top: 64px
+
+        &__button
+            display: none

@@ -1,0 +1,115 @@
+@import './../../../sass/variables.omega.library'
+
+.card
+    text-decoration: none
+    background-color: $color-secondary-background
+    border-radius: 16px
+    padding: 16px 32px
+    display: block
+    vertical-align: middle
+    border: 1px solid transparent
+    margin: 24px 0
+    color: $color-secondary-text
+    position: relative
+    transition: all 0.2s
+
+    &:hover
+        background-color: $color-third-background
+
+        & .subtitle
+            opacity: 1
+            padding: 0 12px
+
+.title
+    font-family: $font-righteous
+    font-size: 20px
+    color: $color-primary-text
+    display: inline-block
+    line-height: 48px
+
+.subtitle
+    position: absolute
+    display: inline-block
+    font-size: 16px
+    line-height: 32px
+    padding: 0 2px
+    border-radius: 6px
+    font-weight: 700
+    margin-left: 12px
+    opacity: 0
+    top: 25px
+    transition: all 0.2s
+    color: $color-secondary-text
+    background-color: $color-secondary-background
+
+.actions
+    float: right
+
+.changelog
+
+    &List
+        margin: 20px 0
+
+        &Element
+            line-height: 1.2
+            margin: 8px
+
+            &Tag
+                width: 40px
+                text-align: center
+                font-size: 14px
+                line-height: 26px
+                font-weight: 600
+                display: inline-block
+                color: #ffffff
+                border-radius: 6px
+                padding: 0 4px
+                background-color: #333333
+
+                &Fix
+                    background-color: #b83037
+                &Change
+                    background-color: #df7030
+                &New
+                    background-color: #3082b8
+                &Update
+                    background-color: #dfa730
+
+            &Content
+                width: calc(100% - 100px)
+                display: inline-block
+                margin-left: 12px
+                vertical-align: top
+                margin-top: 3px
+
+@media screen and ( max-width: 900px )
+    .card
+        margin: 16px 0
+
+@media screen and ( max-width: 820px )
+    .title
+        display: block
+    .subtitle
+        right: 24px
+        opacity: 1
+        padding: 0 12px
+    .actions
+        // Comment this line to get a scrollable row:
+        display: table
+        float: inherit
+        max-width: max-content
+        &__ul
+            &__li
+                margin: 16px 8px
+
+@media screen and ( max-width: 600px )
+    .actions
+        font-size: 13px
+    .changelog
+        font-size: 15px
+
+@media screen and ( max-width: 400px )
+    .actions
+        font-size: 13px
+    .changelog
+        font-size: 13px

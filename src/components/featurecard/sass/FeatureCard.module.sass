@@ -1,0 +1,78 @@
+@import './../../../sass/variables.omega.library'
+
+.featureCard
+    display: flex
+    flex-direction: column
+    background-color: $color-secondary-background
+    border-radius: 16px
+    flex-grow: 1
+    margin-bottom: 24px
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out
+
+    &:last-child
+        margin-bottom: 0
+
+    &Row
+        display: flex
+        flex-direction: row
+        flex-wrap: nowrap
+        align-items: stretch
+        padding-top: 12px
+        padding-bottom: 12px
+
+    &Column
+        display: flex
+        flex-direction: column
+        flex-grow: 1
+        padding-right: 32px
+        flex: 1 1 0
+        &:last-child
+            padding-right: 0
+
+    & ul
+        list-style-type: disc
+        list-style-position: inside
+        margin-left: 8px
+
+.title
+    color: $color-accent
+    font-family: $font-righteous
+    font-size: 26px
+    margin: 32px
+    margin-bottom: 0
+
+.description
+    color: $color-secondary-text
+    font-size: 16px
+    line-height: 1.5
+    margin: 32px
+    margin-top: 24px
+
+.imageWrapper
+    display: flex
+    flex-direction: row
+    flex-grow: 2
+
+    &Image
+        align-self: flex-end
+        position: relative
+        bottom: 0
+        left: 50%
+        transform: translateX(-50%)
+        height: 300px
+        vertical-align: middle
+
+@media screen and ( max-width: 1000px )
+    .imageWrapperImage
+        height: 240px
+
+@media screen and ( max-width: 800px )
+    .featureCard
+        &Row
+            flex-direction: column
+
+        &Column
+            padding-right: 0
+            padding-bottom: 24px
+            &:last-child
+                padding-bottom: 0

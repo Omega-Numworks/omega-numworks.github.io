@@ -7,15 +7,33 @@
 @import 'variables.omega.library'
 
 body, .body
+    background-color: $color-primary-background
     display: flex
     font-family: $font-fira-sans
     flex-direction: column
     min-height: 100vh
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out
 
 .content
     flex: 1
+    padding: 0 48px
 
 @media screen and ( max-width: 1000px )
     .content
         // TODO: Remove @media from omega-ide
         margin-top: 0 !important
+
+// For omega-ide
+.header__hidden
+    display: none !important
+
+.footer__hidden
+    display: none !important
+
+@media screen and ( min-width: 1400px )
+    .content
+        padding: 0 calc(15% - 16px)
+
+@media screen and ( max-width: 700px )
+    .content
+        padding: 0 24px

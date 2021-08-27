@@ -1,0 +1,188 @@
+@import './../../../sass/variables.omega.library'
+
+.footer
+    margin: 32px 48px
+
+.hidden
+    display: none
+
+.title
+    font-weight: 600
+    font-size: 20px
+    margin-bottom: 24px
+    color: $color-secondary-text
+
+.list
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    column-gap: 12px
+    row-gap: 12px
+
+    &Item
+        line-height: 26px
+        list-style-type: none
+        border-radius: 12px
+        transition: all 0.1s
+        padding: 12px 16px
+        cursor: pointer
+        text-decoration: none
+        color: $color-secondary-text
+        background-color: $color-secondary-background
+
+        & .material-icons, & .materialIcons
+            margin-top: -2px
+            margin-right: 12px
+            vertical-align: middle
+            font-size: 15px
+
+        &Tag
+            background-color: #2e2e2e
+            border-radius: 6px
+            padding: 2px 8px
+            font-size: 13px
+            margin-left: 6px
+
+        &Title
+            font-size: 16px
+            font-weight: 500
+
+        &Stats
+
+            &Item
+                display: inline-block
+                margin-right: 12px
+
+                &Icon
+                    vertical-align: middle
+
+                &Label
+                    vertical-align: middle
+
+        &:hover
+            background-color: $color-third-background
+            animation: hover-feedback 0.3s
+
+.discord
+    display: none
+    float: right
+
+.links
+
+.separator
+    display: inline-block
+    width: 100%
+    margin: 24px 0
+    height: 0
+    border-top: 1px solid $color-third-background
+
+.locale
+    white-space: nowrap
+    margin-top: 0px
+    z-index: 3000
+    font-size: 15px
+    float: right
+    font-weight: 500
+    border: none
+    direction: rtl
+    position: relative
+    border-radius: 6px
+    padding: 8px 12px
+    cursor: pointer
+    border: 1px solid rgba(255, 255, 255, 0.0)
+    transition: all 0.2s
+    user-select: none
+    color: $color-primary-text
+
+    &:hover, &Active
+        border: 1px solid $color-third-background
+        background-color: $color-hover-transparency
+
+    &Dropdown
+        border-radius: 6px
+        background-color: $color-secondary-background
+        overflow: hidden
+        position: absolute
+        bottom: 40px
+        right: 0px
+        text-align: left
+        box-sizing: border-box
+        transition: all 0.2s ease-in-out
+        max-height: 0px
+        padding: 0 6px
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12)
+
+        &Show
+            border-width: 1px
+            padding: 6px
+            max-height: 140px
+
+        &Item
+            width: 100%
+            border-radius: 4px
+            white-space: nowrap
+            text-align: left
+            padding: 8px 10px
+            box-sizing: border-box
+            font-size: 15px
+            cursor: pointer
+            user-select: none
+            &:hover
+                background-color: $color-third-background
+
+.aboutNw
+    font-size: 14px
+    float: left
+    margin-top: 8px
+    margin-bottom: 4px
+    line-height: 1.5
+    color: #858585
+
+    &Contact
+        color: #5b9eeb
+        display: inline-block
+        border-radius: 4px
+        padding: 2px 4px
+        &:hover
+            background-color: $color-hover-transparency
+
+.overlay
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 2000
+    display: none
+    &Show
+        display: inherit
+
+.vercel
+    display: block
+    margin-bottom: 12px
+
+    &Icon
+        display: inline-block
+        borderRadius: 8px
+
+@media screen and ( min-width: 1400px )
+    .footer
+        margin: 32px calc(15% - 16px)
+        margin-top: 48px
+
+@media screen and ( max-width: 600px )
+    .aboutNw
+        display: block
+        margin-bottom: 24px
+
+    .logo
+        line-height: 64px
+        float: inherit
+        display: block
+        text-align: center
+
+@media screen and ( max-width: 700px )
+    .footer
+        margin: 0 24px
+
+    .list
+        grid-template-columns: repeat(2, 1fr)

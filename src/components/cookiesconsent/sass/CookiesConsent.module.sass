@@ -1,0 +1,43 @@
+@import '../../../sass/variables.omega.library'
+
+.cookiesConsent
+    z-index: 10000000
+    width: 100%
+    box-sizing: border-box
+    background-color: $color-third-background
+    color: $color-primary-text
+    padding: 12px 48px
+    vertical-align: middle
+    font-size: 14px
+    overflow: hidden
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.08)
+
+.text
+    display: inline-block
+    line-height: 20px
+    margin-top: 8px
+    display: inline-block
+    vertical-align: middle
+    margin-right: 100px
+
+.link
+    padding: 2px 4px
+    margin: 0 4px
+    transition: all 0.2s
+    border-radius: 4px
+    color: $color-secondary-text
+    &:hover
+        background-color: $color-hover-transparency
+
+.button
+    margin-top: 2px
+    float: right
+    vertical-align: middle
+
+@media screen and ( min-width: 1400px )
+    .cookiesConsent
+        padding: 12px calc(15% - 16px)
+
+@media screen and ( max-width: 700px )
+    .cookiesConsent
+        padding: 12px 24px
