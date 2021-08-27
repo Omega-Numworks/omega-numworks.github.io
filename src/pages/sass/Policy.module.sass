@@ -1,13 +1,12 @@
 @import './../../sass/variables.omega.library'
 
 .legal
-    margin: 32px 25%
-    background-color: #fff
+    margin: 32px 10%
 
 .title
     font-size: 32px
     font-weight: 700
-    color: #4D4D4D
+    color: $color-secondary-text
     margin-top: 16px
     margin-bottom: 24px
 
@@ -16,12 +15,16 @@
     margin-bottom: 24px
     font-size: 22px
     font-weight: 700
-    color: #747474
+    color: $color-secondary-text
 
 .paragraph
     line-height: 22px
     margin: 16px 0
+    text-align: justify
+    color: $color-primary-text
+    & a
+        color: #5b9eeb
 
 @media screen and ( max-width: 900px )
     .legal
-        margin: 32px 32px
+        margin: 32px 0px
