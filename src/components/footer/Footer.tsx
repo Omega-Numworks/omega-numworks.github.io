@@ -5,8 +5,8 @@ import translations from "../../i18n/locales/index";
 import FooterProjects from "./FooterProjects";
 import FooterSeparator from "./FooterSeparator";
 import FooterVercel from "./FooterVercel";
-
 import styles from "./sass/Footer.module.sass";
+
 
 var languages: any = translations;
 
@@ -65,7 +65,14 @@ export default function Footer(props: FooterProps) {
             ></div>
             <FooterProjects />
             <FooterSeparator />
-            <FooterVercel />
+
+            <div style={{height: 316}}>
+                <FooterVercel />
+                <div className={styles.discord}>
+                    <iframe title="Discord" src="https://discordapp.com/widget?id=663420259851567114&theme=dark" width="300" height="300" allowTransparency={true} frameBorder={0}></iframe>
+                </div>
+            </div>
+
             <div className={styles.aboutNw}>
                 <FormattedMessage
                     id="footer.trademark"
