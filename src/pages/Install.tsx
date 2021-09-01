@@ -340,6 +340,15 @@ export default class Install extends Component<InstallProps, InstallState> {
                     <FormattedMessage id="installer.incompatible" defaultMessage="Our installer is not compatible with your browser. Please use a browser like Chromium/Google Chrome or Edge." />
                 </div>
 
+                <div className={"installer-e16 " + (this.state.model === "N????" ? "installer-e16-active" : "")}>
+                    <div className="installer-e16__title">Important</div>
+                    It seems that this calculator has once been updated on Epsilon 16.
+                    <ul>
+                        <li>If you have the n0100 model (see the back of the calculator), you can continue and install Omega.</li>
+                        <li>However, if you have the n0110 model : in this new version, Numworks installs a kernel that cannot be removed, and which prevents any third-party installation such as Omega. You can therefore no longer install Omega on this calculator.</li>
+                    </ul>
+                </div>
+
                 <div className={"installer-external " + ((this.state.installerNotCompatibleWithThisBrowser || this.state.model !== 'N0110' || this.state.install === true) ? "" : "installer-external-active")}>
                     <img className="installer-external__icon" src={ImgExternal} alt="External" />
                     <div className="installer-external__title">
