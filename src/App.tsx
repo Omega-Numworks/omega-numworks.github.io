@@ -22,6 +22,7 @@ import classNames from "classnames";
 import { getCookie, setCookie } from "./cookies";
 
 import "./sass/omega.library.sass";
+import Archiving from "./pages/Archiving";
 
 function App() {
     const getLang = () => {
@@ -76,6 +77,7 @@ function App() {
                         <Route path="/install" component={Install} exact />
                         <Route path="/install/:version" component={Install} />
                         <Route path="/policy" component={Policy} exact />
+                        <Route path="/archiving" component={Archiving} exact />
                         <Route path="/ide/" component={IDEMain} exact />
                         <Route
                             path="/ide/editor"
