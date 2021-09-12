@@ -1,28 +1,29 @@
+import classNames from "classnames";
 import React, { useState } from "react";
-
+import { IntlProvider } from "react-intl";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Header from "./components/header/Header";
+import CookiesConsent from "./components/cookiesconsent/CookiesConsent";
 import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
+import { getCookie, setCookie } from "./cookies";
+import GithubConnector from "./GithubConnector";
+import translations from "./i18n/locales";
+import Archiving from "./pages/Archiving";
 import Home from "./pages/Home";
-import Simulator from "./pages/Simulator";
-import FullSimulator from "./pages/simulator/FullSimulator";
-import Releases from "./pages/Releases";
-import Policy from "./pages/Policy";
-import Install from "./pages/Install";
 import IDEMain from "./pages/IDE";
+import Install from "./pages/Install";
+import NotFound from "./pages/NotFound";
 import IDEEditor from "./pages/omega-ide/src/ide/Editor";
 import IDESimulator from "./pages/omega-ide/src/ide/Simulator";
-import NotFound from "./pages/NotFound";
-import GithubConnector from "./GithubConnector";
-import CookiesConsent from "./components/cookiesconsent/CookiesConsent";
-
-import { IntlProvider } from "react-intl";
-import translations from "./i18n/locales";
-import classNames from "classnames";
-import { getCookie, setCookie } from "./cookies";
-
+import Policy from "./pages/Policy";
+import Releases from "./pages/Releases";
+import Simulator from "./pages/Simulator";
+import FullSimulator from "./pages/simulator/FullSimulator";
 import "./sass/omega.library.sass";
-import Archiving from "./pages/Archiving";
+import TiPlanetConnector from "./TiPlanetConnector";
+
+
+
 
 function App() {
     const getLang = () => {
@@ -85,6 +86,17 @@ function App() {
                                 <IDEEditor
                                     base="/ide/"
                                     connector={GithubConnector}
+                                    vercel={true}
+                                />
+                            )}
+                            exact
+                        />
+                        <Route
+                            path="/ide/tiplanet"
+                            component={() => (
+                                <IDEEditor
+                                    base="/ide/"
+                                    connector={TiPlanetConnector}
                                     vercel={true}
                                 />
                             )}
