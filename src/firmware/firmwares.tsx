@@ -26,8 +26,32 @@ export interface Compatibility {
 export type Language = "en" | "fr" | "nl" | "pt" | "it" | "de" | "es" | "hu";
 
 export const releases: Releases = {
-    latest: "O1.22.1-E15",
+    latest: "O1.23.0-E15",
     firmwares: [
+        {
+            name: "O1.23.0-E15",
+            commit: "b93c9187b93d76fbe206b576208ec24ea146b7e3",
+            changelog: [
+                "Update: Epsilon updated to Epsilon 15.5.0",
+                "New: Support for wallpapers on N0110",
+                "New: Added a way to get the username in python",
+                "Fix: Fixed apps/localization theme palette",
+                "Fix: Fix issue with toolboxIonKeys in unit tests",
+                "Fix: Fixed the German translations",
+            ],
+            compatibility: {
+                N0110: true,
+                N0100: true,
+                web: true,
+                android: true,
+                "3ds": true,
+            },
+            available: true,
+            setname: true,
+            languages: {
+                "0100": ["en", "fr", "nl", "pt", "it", "de", "es", "hu"],
+            },
+        },
         {
             name: "O1.22.1-E15",
             commit: "6f797833b2195a1aeaa9298dcd60dd4cbd006a96",
