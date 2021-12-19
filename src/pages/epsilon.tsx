@@ -16,7 +16,7 @@ export default class Beta extends Component<{}> {
                 }}
                 >
                     <div className={styles.title}>Epsilon</div>
-                    <div className={styles.description}>
+                    <div className="project-description__subtitle">
                         <FormattedMessage
                             defaultMessage="Install epsilon 15."
                             id="epsilon15"
