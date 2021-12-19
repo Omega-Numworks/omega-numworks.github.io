@@ -53,7 +53,6 @@ export default function Header(props: HeaderProps) {
         wiki: <Message id="toolbar.wiki" defaultMessage="Wiki" />,
         IDE: <Message id="toolbar.ide" defaultMessage="Python IDE" />,
         gitHub: <Message id="toolbar.github" defaultMessage="GitHub" />,
-        epsilon: <Message id="toolbar.epsilon" defaultMessage="Epsilon" />,
         login: (
             <Message id="toolbar.login" defaultMessage="Login with Github" />
         ),
@@ -83,9 +82,6 @@ export default function Header(props: HeaderProps) {
                 </HeaderLink>
                 <HeaderLink onClick={closeHamburger} to="/ide">
                     {messages.IDE}
-                </HeaderLink>
-                <HeaderLink onClick={closeHamburger} to="/epsilon">
-                    {messages.epsilon}
                 </HeaderLink>
                 <HeaderLink
                     href="https://github.com/Omega-Numworks/Omega"
