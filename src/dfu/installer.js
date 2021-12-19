@@ -4,10 +4,12 @@ import Numworks from "numworks.js"
 
 import { releases as finalReleases } from '../firmware/firmwares'
 import { betas as betaReleases } from '../firmware/betas'
+import { epsilon as epsilonReleases } from "../firmware/epsilon"
 
 // use JSON.parse(JSON.stringify()) to do a deep copy to avoid problems
 var releases_list = JSON.parse(JSON.stringify(finalReleases));
 releases_list["firmwares"] = releases_list.firmwares.concat(JSON.parse(JSON.stringify(betaReleases.firmwares)));
+releases_list["firmwares"] = releases_list.firmwares.concat(JSON.parse(JSON.stringify(betaReleases.firmwares))).concat(JSON.parse(JSON.stringify(epsilonReleases.firmwares)));
 
 // Used for debugging. When true, skips downloading and flashing.
 const DO_DRY_RUN = false;
