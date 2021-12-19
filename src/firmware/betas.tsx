@@ -21,6 +21,7 @@ export const betas: Releases = {
                 web: true,
                 android: false,
                 "3ds": false,
+                github: true,
             },
             available: true,
             setname: false,

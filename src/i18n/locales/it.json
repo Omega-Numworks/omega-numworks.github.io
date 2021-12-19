@@ -90,5 +90,7 @@
   "toolbar.myscripts": "I miei scripts",
   "toolbar.omega": "Omega",
   "toolbar.releases": "Versioni",
-  "toolbar.simulator": "Simulatore"
+  "toolbar.simulator": "Simulatore",
+  "epsilon15":"Reinstalla il software originale della tua calcolatrice senza bloccarla.",
+  "toolbar.epsilon": "Reinstallare Epsilon"
 }

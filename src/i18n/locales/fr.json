@@ -109,5 +109,7 @@
   "toolbar.omega": "Omega",
   "toolbar.releases": "Versions",
   "toolbar.simulator": "Simulateur",
-  "toolbar.wiki": "Wiki"
+  "toolbar.wiki": "Wiki",
+  "epsilon15": "Réinstallez le logiciel de base de votre calculatrice sans la verrouiller.",
+  "toolbar.epsilon": "Réinstaller Epsilon"
 }
