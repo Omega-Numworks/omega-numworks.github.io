@@ -110,6 +110,5 @@
   "toolbar.releases": "Releases",
   "toolbar.simulator": "Simulator",
   "toolbar.wiki": "Wiki",
-  "epsilon15": "Reinstall your calculator's original software without locking it.",
-  "toolbar.epsilon": "Reinstall Epsilon"
+  "e15": "Install Epsilon 15"
 }
