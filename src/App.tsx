@@ -21,6 +21,7 @@ import Simulator from "./pages/Simulator";
 import FullSimulator from "./pages/simulator/FullSimulator";
 import "./sass/omega.library.sass";
 import TiPlanetConnector from "./TiPlanetConnector";
+import epsilon from "./pages/epsilon";
 
 
 
@@ -80,6 +81,7 @@ function App() {
                         <Route path="/policy" component={Policy} exact />
                         <Route path="/archiving" component={Archiving} exact />
                         <Route path="/ide/" component={IDEMain} exact />
+                        <Route path="/epsilon" component={epsilon} exact />
                         <Route
                             path="/ide/editor"
                             component={() => (

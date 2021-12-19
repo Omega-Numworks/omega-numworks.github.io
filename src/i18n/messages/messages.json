@@ -551,5 +551,10 @@
     "id": "soon",
     "defaultMessage": "Will be avaliable soon! 😄",
     "filepath": "src/pages/Soon.js"
+  },
+  {
+    "id": "e15",
+    "defaultMessage": "Install Epsilon 15",
+    "filepath" : "src/pages/e15.js"
   }
 ]
