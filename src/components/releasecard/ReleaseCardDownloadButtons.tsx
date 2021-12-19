@@ -18,7 +18,7 @@ export default function DownloadButtons(props: DownloadButtonsProps) {
         {
             href: `https://github.com/Omega-Numworks/Omega/releases/tag/${name}`,
             icon: "code",
-            enabled: true,
+            enabled: compatibility.github,
             externalLink: true,
             messageID: "releases.github",
             messageDefault: "GITHUB",

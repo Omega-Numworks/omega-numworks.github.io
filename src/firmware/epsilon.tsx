@@ -14,6 +14,7 @@ export const epsilon: Releases = {
                 web: false,
                 android: false,
                 "3ds": false,
+                github:false,
             },
             available: true,
             setname: false,
