@@ -210,7 +210,7 @@ export default class Installer {
                 // Add username to the binary.
                 if (this.installInstance.state.getname) {
                     let internalBuffer = new Uint8Array(internalFirmware);
-                    let username = this.installInstance.state.customname;
+                    const username = this.installInstance.state.customname;
 
                     let encoder = new TextEncoder();
                     let encoded = encoder.encode(username + "\0");
@@ -218,6 +218,7 @@ export default class Installer {
                         encoded[15] = 0;
                         encoded = encoded.slice(0, 16);
                     }
+
                     internalBuffer.set(encoded, 0x1f8);
                 }
 
@@ -282,7 +283,13 @@ export default class Installer {
                                 encoded[15] = 0;
                                 encoded = encoded.slice(0, 16);
                             }
-                            internalBuffer.set(encoded, 0x1f8);
+
+                            if (this.firmwareInfos?.headerVersion === 2) {
+                                internalBuffer.set(encoded, 0x1003c);
+                                internalBuffer.set(encoded, 0x41003c);
+                            } else {
+                                internalBuffer.set(encoded, 0x1f8);
+                            }
                         }
 
                         await this.calculator.flashInternal(internalFirmware);
