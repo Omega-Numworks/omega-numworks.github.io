@@ -627,19 +627,25 @@ export default class Install extends Component<InstallProps, InstallState> {
                     }
                 >
                     <div className="installer-e16__title">Important</div>
-                    It seems that this calculator has once been updated on
-                    Epsilon 16.
+                    It seems that this calculator has been updated to Epsilon
+                    16.
                     <ul>
                         <li>
-                            If you have the n0100 model (see the back of the
-                            calculator), you can continue and install Omega.
+                            If you have the n0100 model, press RESET+6, connect
+                            your calculator and click on the Recovery button.
+                            Then, install Omega.
                         </li>
                         <li>
-                            However, if you have the n0110 model : in this new
-                            version, Numworks installs a kernel that cannot be
-                            removed, and which prevents any third-party
-                            installation such as Omega. You can therefore no
-                            longer install Omega on this calculator.
+                            If you have the n0110 model, Numworks installed a
+                            kernel that cannot be remove, and which prevents any
+                            third-party installation such as Omega. Luckily, the{" "}
+                            <a
+                                className="phi-link"
+                                href="https://phi.getomega.dev"
+                            >
+                                Phi installer
+                            </a>{" "}
+                            allows you to uninstall this kernel.
                         </li>
                     </ul>
                 </div>
