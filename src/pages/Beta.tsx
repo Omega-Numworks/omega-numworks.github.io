@@ -88,7 +88,7 @@ export default class Beta extends Component<{}, BetaState> {
                         onChange={this.onChange}
                     ></input>
                     <ReleaseCard
-                        version={betas.firmwares[0]}
+                        firmware={betas.firmwares[0]}
                         name="Beta 1"
                         hidden={!this.state.fieldCompleted}
                     />

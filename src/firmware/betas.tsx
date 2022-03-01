@@ -5,6 +5,12 @@ export const betas: Releases = {
     firmwares: [
         {
             name: "O1.21.β1-E15",
+            omegaVersion: {
+                major: 1,
+                minor: 21,
+                patch: 0,
+                beta: true,
+            },
             commit: "76db361cdeb2997a4aa0af41378d420265cde372",
             changelog: [
                 "Update: Updated to Epsilon 15.3.1!",

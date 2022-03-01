@@ -8,12 +8,12 @@ import styles from "./sass/ReleaseCard.module.sass";
 
 type ReleaseCardProps = {
     name?: string;
-    version: Firmware;
+    firmware: Firmware;
     hidden?: boolean;
 };
 
 export default function ReleaseCard(props: ReleaseCardProps) {
-    const version = props.version;
+    const firmware = props.firmware;
 
     const getReleaseVersion = (tag: string) => {
         return tag.substring(tag.lastIndexOf("O") + 1, tag.lastIndexOf("-"));
@@ -27,7 +27,7 @@ export default function ReleaseCard(props: ReleaseCardProps) {
         if (props.name) {
             return props.name;
         } else {
-            return "Omega " + getReleaseVersion(version.name);
+            return "Omega " + getReleaseVersion(firmware.name);
         }
     };
 
@@ -38,12 +38,12 @@ export default function ReleaseCard(props: ReleaseCardProps) {
         >
             <div className={styles.title}>{getVersionName()}</div>
             <div className={styles.subtitle}>
-                Epsilon {getEpsilonVersion(version.name)}
+                Epsilon {getEpsilonVersion(firmware.name)}
             </div>
-            <DownloadButtons firmware={version} />
+            <DownloadButtons firmware={firmware} />
             <div className={styles.changelog}>
                 <ul className={styles.changelogList}>
-                    {version.changelog.map((change, i) => {
+                    {firmware.changelog.map((change, i) => {
                         return <ChangelogElement key={i} change={change} />;
                     })}
                 </ul>

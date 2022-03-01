@@ -543,8 +543,13 @@
     "filepath": "src/pages/Policy.js"
   },
   {
-    "id": "releases.title",
-    "defaultMessage": "Omega version history",
+    "id": "releases.title.omega1",
+    "defaultMessage": "Omega 1.× version history",
+    "filepath": "src/pages/Releases.js"
+  },
+  {
+    "id": "releases.title.omega2",
+    "defaultMessage": "Omega 2.× version history",
     "filepath": "src/pages/Releases.js"
   },
   {
