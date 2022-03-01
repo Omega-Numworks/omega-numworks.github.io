@@ -41,7 +41,7 @@
   "home.features.symbolic.description": "Die symbolische Berechnung wurde in Version 11.2 aus Epsilon entfernt. Omega führt diese Funktion wieder ein.",
   "home.features.symbolic.name": "Symbolische Berechnung",
   "home.head.description": "Omega ist eine Abzweigung von Numworks 'Epsilon, dem Betriebssystem, das auf dem Taschenrechner ausgeführt wird und viele Funktionen bietet. Omega ist für Personen gedacht, die Funktionen zum Taschenrechner hinzufügen möchten, dies jedoch nicht können, da sie von Numworks abgelehnt wurden (aus Gründen, die zu 100% verständlich sind!).",
-  "home.head.subtitle": "Die nächste Entwicklung von Epsilon.",
+  "home.head.subtitle": "Kompatibel mit ",
   "home.head.title": "Omega",
   "home.head.tryit": "VERSUCHEN SIE ES ONLINE",
   "installer.agree": "GENAU",

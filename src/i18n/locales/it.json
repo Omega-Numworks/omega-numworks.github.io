@@ -41,7 +41,7 @@
   "home.features.symbolic.description": "Il calcolo simbolico è stato rimosso da Epsilon alla versione 11.2. Omega ripropone questa funzione.",
   "home.features.symbolic.name": "Calcolo simbolico",
   "home.head.description": "Omega è un fork d'Epsilon, l'OS usato sulle calcolatrici Numworks, aggiungendo numerose funzioni. Omega è destinata alle persone che desiderano aggiungere delle funzioni alla calcolatrice, ma non possono perché queste sono state  rifiutate da Numworks (per delle ragioni totalmente comprensibili!).",
-  "home.head.subtitle": "La prossima evoluzione di Epsilon.",
+  "home.head.subtitle": "Compatibile con ",
   "home.head.title": "Omega",
   "home.head.tryit": "PROVARE ONLINE",
   "installer.agree": "ACCETTO",

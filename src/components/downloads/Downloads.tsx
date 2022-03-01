@@ -29,7 +29,7 @@ export class Downloads extends Component {
             <div
                 className="download"
                 style={{
-                    backgroundImage: `url(https://unsplash.com/photos/Ceuh97A6OYM/download?force=true&w=1920)`,
+                    backgroundImage: `url(https://unsplash.com/photos/bMkRxaVMvj4/download?ixid=MnwxMjA3fDB8MXx0b3BpY3x8Ym84alFLVGFFMFl8fHx8fDJ8fDE2NDYwNzYyMjg&force=true&w=1920)`,
                 }}
             >
                 <h2 className="download__title">

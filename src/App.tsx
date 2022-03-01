@@ -37,7 +37,7 @@ function App() {
         initLang = "en";
     }
 
-    const [theme, setTheme] = useState(getCookie("theme") || "light");
+    const [theme, setTheme] = useState(getCookie("theme") || "dark");
     const [lang, setLang] = useState(initLang);
     // @ts-ignore
     const [messages, setMessages] = useState(translations[initLang]);

@@ -269,7 +269,7 @@
   },
   {
     "id": "home.features.and-more.python",
-    "defaultMessage": "100 KB Python heap (instead of a 32 KB)",
+    "defaultMessage": "99 KB Python heap (instead of a 32 KB)",
     "filepath": "src/pages/Home.js"
   },
   {

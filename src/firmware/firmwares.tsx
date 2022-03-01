@@ -29,6 +29,31 @@ export const releases: Releases = {
     latest: "O1.23.0-E15",
     firmwares: [
         {
+            name: "O2.0.0-E15",
+            commit: "",
+            changelog: [
+                "New: Bootloader !",
+                "New: For the bootloader, press Reset+4 to boot the DFU stack and see the installed OSes",
+                "New: For the bootloader, press Reset+1 to boot Slot A and Reset+2 to boot Slot B",
+                "New: For the bootloader, save last booted slot in flash",
+                "New: Numworks Workshop compatibility",
+                "Change: Reduced python and external heap from 100k to 99k",
+                "Fix: Web simulator builds again",
+            ],
+            compatibility: {
+                N0110: true,
+                N0100: true,
+                web: true,
+                android: true,
+                "3ds": false,
+            },
+            available: true,
+            setname: true,
+            languages: {
+                "0100": ["en", "fr", "nl", "pt", "it", "de", "es", "hu"],
+            }
+        },
+        {
             name: "O1.23.0-E15",
             commit: "b93c9187b93d76fbe206b576208ec24ea146b7e3",
             changelog: [
