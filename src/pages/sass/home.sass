@@ -1,5 +1,10 @@
 @import './../../sass/variables.omega.library'
 
+.phi-link
+    color: inherit
+    text-decoration: none
+    border-bottom: 1px solid $color-secondary-text
+
 .project-description
     background-color: #341F27
     background-size: cover
@@ -31,6 +36,9 @@
         margin-top: 24px
         color: #fafafa
 
+        & a
+            border-color: #fafafa
+
     &__button
         margin-top: 32px
         color: #ffffff
@@ -43,12 +51,6 @@
         text-align: justify
         padding: 32px 64px
         line-height: 22px
-
-
-.phi-link
-    color: inherit
-    text-decoration: none
-    border-bottom: 1px solid #fafafa
 
 .download
     margin-bottom: 48px
@@ -63,7 +65,7 @@
     background-color: #341F27
 
     text-align: center
-    color: #ffffff
+    color: #f0f0f0
 
     &__title
         font-family: $font-righteous
@@ -76,26 +78,26 @@
         display: inline-block
         &__card
             text-decoration: none
-            color: #ffffff
+            color: #f0f0f0
             margin-left: 16px
             display: inline-block
             cursor: pointer
             padding: 12px 24px
             border-radius: 6px
-            border: 1px solid #ffffff
+            border: 1px solid #b9b9b9
             transition: all 0.2s
             line-height: 32px
             text-shadow: 0 1px 12px rgba(0,0,0,0.13), 0 1px 8px rgba(0,0,0,0.2)
             text-align: left
             &:hover
-                background-color: rgba(0, 0, 0, 0.2)
+                background-color: rgba(0, 0, 0, 0.5)
             &__icon
                 display: inline-block
                 text-align: center
                 width: 40px
                 height: 40px
                 border-radius: 50%
-                background-color: rgba(255, 255, 255, 0.2)
+                background-color: rgba(255, 255, 255, 0.13)
                 vertical-align: middle
                 box-shadow: 0 1px 12px rgba(0,0,0,0.05), 0 1px 8px rgba(0,0,0,0.07)
 
@@ -121,7 +123,7 @@
         text-align: left
         display: inline-block
         border-radius: 6px
-        border: 1px solid #ffffff
+        border: 1px solid #b9b9b9
         margin: 0 16px
         padding: 6px 0
         text-shadow: 0 1px 12px rgba(0,0,0,0.07), 0 1px 8px rgba(0,0,0,0.13)
@@ -135,10 +137,10 @@
             transition: all 0.2s
             border-radius: 4px
             margin: 0 6px
-            color: #ffffff
+            color: #f0f0f0
             font-size: 15px
             &:hover
-                background-color: rgba(0, 0, 0, 0.3)
+                background-color: rgba(0, 0, 0, 0.5)
             &__icon
                 margin: 0 6px
                 display: inline-block
@@ -154,8 +156,9 @@
                     vertical-align: middle
 
             &__text
+                font-weight: 500
                 vertical-align: middle
-                margin-right: 24px
+                margin-right: 40px
 
                 &__extension
                     font-family: $font-code
