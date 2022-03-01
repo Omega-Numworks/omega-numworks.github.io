@@ -98,20 +98,16 @@ export default class Home extends Component<HomeProps> {
                         <FeatureCardColumn>
                             <FeatureCard>
                                 <FeatureCardTitle>
-                                    {/* <FormattedMessage
-                                        id="home.features.symbolic.name"
-                                        defaultMessage="Symbolic computation"
-                                    /> */}
-                                    Dual boot
+                                    <FormattedMessage
+                                        id="home.features.dualboot.name"
+                                        defaultMessage="Dual boot"
+                                    />
                                 </FeatureCardTitle>
                                 <FeatureCardDescription>
-                                    Omega integrates a new Bootloader. It allows
-                                    you to boot multiple OS from different
-                                    slots.
-                                    {/* <FormattedMessage
-                                        id="home.features.symbolic.description"
-                                        defaultMessage="Symbolic computation was removed from Epsilon in version 11.2. Omega reintroduces that feature."
-                                    /> */}
+                                    <FormattedMessage
+                                        id="home.features.dualboot.description"
+                                        defaultMessage="Omega integrates a new Bootloader. It allows you to boot multiple OS from different slots."
+                                    />
                                 </FeatureCardDescription>
                                 <FeatureCardImage
                                     src={
@@ -126,19 +122,17 @@ export default class Home extends Component<HomeProps> {
                         <FeatureCardColumn>
                             <FeatureCard>
                                 <FeatureCardTitle>
-                                    {/* <FormattedMessage
-                                        id="home.features.symbolic.name"
-                                        defaultMessage="Symbolic computation"
-                                    /> */}
-                                    Compatible with Phi
+                                    <FormattedMessage
+                                        id="home.features.phi.name"
+                                        defaultMessage="Compatible with Phi"
+                                    />
                                 </FeatureCardTitle>
                                 <FeatureCardDescription>
-                                    {/* <FormattedMessage
-                                        id="home.features.symbolic.description"
-                                        defaultMessage="Symbolic computation was removed from Epsilon in version 11.2. Omega reintroduces that feature."
-                                    /> */}
-                                    <PhiURL /> is a tool that unlocks your
-                                    calculator after an Epsilon 16+ update.
+                                    <PhiURL />{" "}
+                                    <FormattedMessage
+                                        id="home.features.phi.description"
+                                        defaultMessage="is a tool that unlocks your calculator after an Epsilon 16+ update."
+                                    />
                                 </FeatureCardDescription>
                                 <FeatureCardImage
                                     src={ImgPhi}
