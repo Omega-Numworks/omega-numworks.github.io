@@ -58,7 +58,7 @@ export const releases: Releases = {
                 N0110: true,
                 N0100: true,
                 web: true,
-                android: true,
+                android: false,
                 "3ds": false,
             },
             available: true,
