@@ -81,7 +81,7 @@ export default function Footer(props: FooterProps) {
             <div className={styles.aboutNw}>
                 <FormattedMessage
                     id="footer.trademark"
-                    defaultMessage="NumWorks is a registered trademark. Omega is not affiliated with Numworks. "
+                    defaultMessage="NumWorks is a registered trademark of NumWorks SAS, 24 Rue Godot de Mauroy, 75009 Paris, France.{br}Nintendo and Nintendo 3DS are registered trademarks of Nintendo of America Inc, 4600 150th Ave NE, Redmond, WA 98052, USA.{br}Omega is not affiliated with Numworks, Phi or Nintendo."
                     values={{ br: <br /> }}
                 />
 
