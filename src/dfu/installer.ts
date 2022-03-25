@@ -286,7 +286,6 @@ export default class Installer {
 
                             if (this.firmwareInfos?.headerVersion === 2) {
                                 internalBuffer.set(encoded, 0x1003c);
-                                internalBuffer.set(encoded, 0x41003c);
                             } else {
                                 internalBuffer.set(encoded, 0x1f8);
                             }
