@@ -30,7 +30,7 @@
     "home.features.dualboot.name": "Dual boot",
     "home.features.dualboot.description": "Omega integrates a new Bootloader. It allows you to boot multiple OS from different slots.",
     "home.features.phi.name": "Compatible with Phi",
-    "home.features.phi.description": "is a tool that unlocks your calculator after an Epsilon 16+ update.",
+    "home.features.phi.description": "{phi} is a tool developed by {maxime} that unlocks your calculator after an Epsilon 16+ update.",
     "home.features.external-apps": "External apps",
     "home.features.external-apps-community": "Install community apps on the fly with External. Also includes KhiCAS and various emulators.",
     "home.features.rpn.description": "Omega supports using Reverse Polish Notation to do calculations.",

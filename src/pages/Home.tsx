@@ -32,8 +32,16 @@ type HomeProps = {
 
 function PhiURL() {
     return (
-        <a className="phi-link" href="https://phi.getomega.dev">
+        <a className="link" href="https://phi.getomega.dev">
             Phi
+        </a>
+    );
+}
+
+function MaximeURL() {
+    return (
+        <a className="link" href="https://github.com/M4xi1m3">
+            M4xi1m3
         </a>
     );
 }
@@ -128,10 +136,13 @@ export default class Home extends Component<HomeProps> {
                                     />
                                 </FeatureCardTitle>
                                 <FeatureCardDescription>
-                                    <PhiURL />{" "}
                                     <FormattedMessage
                                         id="home.features.phi.description"
-                                        defaultMessage="is a tool that unlocks your calculator after an Epsilon 16+ update."
+                                        defaultMessage="{phi} is a tool developed by {maxime} that unlocks your calculator after an Epsilon 16+ update."
+                                        values={{
+                                            phi: <PhiURL />,
+                                            maxime: <MaximeURL />,
+                                        }}
                                     />
                                 </FeatureCardDescription>
                                 <FeatureCardImage
