@@ -3,11 +3,10 @@ import { betas as betaReleases } from "../firmware/betas";
 import {
     Firmware,
     releases as finalReleases,
-    Releases
+    Releases,
 } from "../firmware/firmwares";
 import Install from "../pages/Install";
 import Downloader from "./downloader";
-
 
 // use JSON.parse(JSON.stringify()) to do a deep copy to avoid problems
 var releasesList: Releases = JSON.parse(JSON.stringify(finalReleases));

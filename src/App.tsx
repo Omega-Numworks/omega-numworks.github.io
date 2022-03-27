@@ -1,7 +1,12 @@
 import classNames from "classnames";
 import React, { useState } from "react";
 import { IntlProvider } from "react-intl";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Redirect,
+    Route,
+    Switch,
+} from "react-router-dom";
 import CookiesConsent from "./components/cookiesconsent/CookiesConsent";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
@@ -21,9 +26,6 @@ import Simulator from "./pages/Simulator";
 import FullSimulator from "./pages/simulator/FullSimulator";
 import "./sass/omega.library.sass";
 import TiPlanetConnector from "./TiPlanetConnector";
-
-
-
 
 function App() {
     const getLang = () => {
@@ -75,7 +77,7 @@ function App() {
                         />
                         <Route path="/releases" component={Releases} exact />
                         {/* <Route path="/beta" component={Beta} exact /> */}
-                        <Route path="/install" component={Install} exact />
+                        <Redirect path="/install" to="/install/latest" exact />
                         <Route path="/install/:version" component={Install} />
                         <Route path="/policy" component={Policy} exact />
                         <Route path="/archiving" component={Archiving} exact />

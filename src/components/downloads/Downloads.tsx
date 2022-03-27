@@ -41,7 +41,10 @@ export class Downloads extends Component {
                     {this.getReleaseVersion(latest_version.name)}
                 </h2>
                 <div className="download__cards">
-                    <Link to="/install" className="download__cards__card">
+                    <Link
+                        to="/install/latest"
+                        className="download__cards__card"
+                    >
                         <span className="download__cards__card__icon">
                             <i className="material-icons">system_update_alt</i>
                         </span>
