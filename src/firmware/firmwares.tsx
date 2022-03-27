@@ -44,7 +44,7 @@ export const releases: Releases = {
                 minor: 0,
                 patch: 0,
             },
-            commit: "",
+            commit: "bdfae184e9291c240e6e3409a033d04ebfb66d20",
             changelog: [
                 "New: Bootloader !",
                 "New: For the bootloader, press Reset+4 to boot the DFU stack and see the installed OSes",
