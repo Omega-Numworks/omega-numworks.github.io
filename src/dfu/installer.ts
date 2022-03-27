@@ -1,13 +1,13 @@
-import Downloader from "./downloader";
 import Numworks from "numworks.js";
-
+import { betas as betaReleases } from "../firmware/betas";
 import {
     Firmware,
     releases as finalReleases,
-    Releases,
+    Releases
 } from "../firmware/firmwares";
-import { betas as betaReleases } from "../firmware/betas";
 import Install from "../pages/Install";
+import Downloader from "./downloader";
+
 
 // use JSON.parse(JSON.stringify()) to do a deep copy to avoid problems
 var releasesList: Releases = JSON.parse(JSON.stringify(finalReleases));
@@ -261,6 +261,29 @@ export default class Installer {
                             );
                         }
 
+                        let externalFirmware = await externalBlob.arrayBuffer();
+
+                        // FIXME: Username ain't working
+                        if (this.firmwareInfos?.headerVersion === 2) {
+                            // Add username to the binary.
+                            if (this.installInstance.state.getname) {
+                                let externalBuffer = new Uint8Array(
+                                    externalFirmware
+                                );
+                                const username =
+                                    this.installInstance.state.customname;
+
+                                let encoder = new TextEncoder();
+                                let encoded = encoder.encode(username + "\0");
+                                if (encoded.length > 16) {
+                                    encoded[15] = 0;
+                                    encoded = encoded.slice(0, 16);
+                                }
+
+                                externalBuffer.set(encoded, 0x1003c);
+                            }
+                        }
+
                         await this.calculator.flashExternal(
                             await externalBlob.arrayBuffer()
                         );
@@ -269,24 +292,22 @@ export default class Installer {
 
                         let internalFirmware = await internalBlob.arrayBuffer();
 
-                        // Add username to the binary.
-                        if (this.installInstance.state.getname) {
-                            let internalBuffer = new Uint8Array(
-                                internalFirmware
-                            );
-                            const username =
-                                this.installInstance.state.customname;
+                        if (this.firmwareInfos?.headerVersion !== 2) {
+                            // Add username to the binary.
+                            if (this.installInstance.state.getname) {
+                                let internalBuffer = new Uint8Array(
+                                    internalFirmware
+                                );
+                                const username =
+                                    this.installInstance.state.customname;
 
-                            let encoder = new TextEncoder();
-                            let encoded = encoder.encode(username + "\0");
-                            if (encoded.length > 16) {
-                                encoded[15] = 0;
-                                encoded = encoded.slice(0, 16);
-                            }
+                                let encoder = new TextEncoder();
+                                let encoded = encoder.encode(username + "\0");
+                                if (encoded.length > 16) {
+                                    encoded[15] = 0;
+                                    encoded = encoded.slice(0, 16);
+                                }
 
-                            if (this.firmwareInfos?.headerVersion === 2) {
-                                internalBuffer.set(encoded, 0x1003c);
-                            } else {
                                 internalBuffer.set(encoded, 0x1f8);
                             }
                         }
