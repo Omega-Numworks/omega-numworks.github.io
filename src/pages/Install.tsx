@@ -618,7 +618,7 @@ export default class Install extends Component<InstallProps, InstallState> {
                     />
                 </div>
 
-                <div
+                {/* <div
                     className={
                         "installer-e16 " +
                         (this.state.model === "N????"
@@ -648,7 +648,7 @@ export default class Install extends Component<InstallProps, InstallState> {
                             allows you to uninstall this kernel.
                         </li>
                     </ul>
-                </div>
+                </div> */}
 
                 <div
                     className={
