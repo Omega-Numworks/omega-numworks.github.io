@@ -58,6 +58,14 @@ function App() {
         setCookie("theme", newTheme);
     };
 
+    if (getCookie("cookieconsent_status") === "accepted") {
+        // @ts-ignore
+        window["ga-disable-G-P9YFFF08LN"] = false;
+    } else {
+        // @ts-ignore
+        window["ga-disable-G-P9YFFF08LN"] = true;
+    }
+
     return (
         <IntlProvider locale={lang} messages={messages}>
             <Router>

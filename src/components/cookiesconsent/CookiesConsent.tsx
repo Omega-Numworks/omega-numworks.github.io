@@ -16,15 +16,24 @@ type CookiesConsentProps = {
 export default function CookiesConsent(props: CookiesConsentProps) {
     let _show = false;
     const cookie = getCookie("cookieconsent_status");
-    if (cookie !== "dismiss" && cookie !== "allow") {
+    if (cookie !== "refused" && cookie !== "accepted") {
         _show = true;
     }
 
     const [show, setShow] = useState(_show);
 
     const agree = () => {
-        setCookie("cookieconsent_status", "dismiss");
+        setCookie("cookieconsent_status", "accepted");
         setShow(false);
+        // @ts-ignore
+        window["ga-disable-G-P9YFFF08LN"] = false;
+    };
+
+    const refuse = () => {
+        setCookie("cookieconsent_status", "refused");
+        setShow(false);
+        // @ts-ignore
+        window["ga-disable-G-P9YFFF08LN"] = true;
     };
 
     const messages = {
@@ -32,7 +41,8 @@ export default function CookiesConsent(props: CookiesConsentProps) {
             props.message ||
             "This website uses cookies to ensure you get the best experience on our website.",
         learnMore: props.messageLearnMore || "Learn more",
-        gotIt: props.messageGotIt || "Got it!",
+        accept: "Accept",
+        refuse: "Refuse",
     };
 
     return (
@@ -46,9 +56,27 @@ export default function CookiesConsent(props: CookiesConsentProps) {
                     {messages.learnMore}
                 </Link>
             </div>
-            <Button onClick={agree} className={styles.button} blue>
-                {messages.gotIt}
-            </Button>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row-reverse",
+                    gap: "16px",
+                    width: "100%",
+                }}
+            >
+                <Button
+                    rightIcon="sentiment_very_satisfied"
+                    onClick={agree}
+                    className={styles.button}
+                    blue
+                    big
+                >
+                    {messages.accept.toUpperCase()}
+                </Button>
+                <Button onClick={refuse} className={styles.button} big>
+                    {messages.refuse.toUpperCase()}
+                </Button>
+            </div>
         </div>
     );
 }
