@@ -35,8 +35,33 @@ export interface Compatibility {
 export type Language = "en" | "fr" | "nl" | "pt" | "it" | "de" | "es" | "hu";
 
 export const releases: Releases = {
-    latest: "O2.0.0-E15",
+    latest: "O2.0.2-E15",
     firmwares: [
+        {
+            name: "O2.0.2-E15",
+            omegaVersion: {
+                major: 2,
+                minor: 0,
+                patch: 2,
+            },
+            commit: "707f9190f63d1e57ca4e291292266dc2e8aedc08",
+            changelog: [
+                "Fix: Don't boot other slot if a slot is in exam mode",
+            ],
+            compatibility: {
+                N0110: true,
+                N0100: true,
+                web: false,
+                android: false,
+                "3ds": false,
+            },
+            available: true,
+            setname: true,
+            languages: {
+                "0100": ["en", "fr", "nl", "pt", "it", "de", "es", "hu"],
+            },
+            headerVersion: 2,
+        },
         {
             name: "O2.0.0-E15",
             omegaVersion: {
@@ -55,8 +80,8 @@ export const releases: Releases = {
                 "Fix: Web simulator builds again",
             ],
             compatibility: {
-                N0110: true,
-                N0100: true,
+                N0110: false,
+                N0100: false,
                 web: true,
                 android: false,
                 "3ds": false,
