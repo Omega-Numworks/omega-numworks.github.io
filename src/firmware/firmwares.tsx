@@ -35,8 +35,33 @@ export interface Compatibility {
 export type Language = "en" | "fr" | "nl" | "pt" | "it" | "de" | "es" | "hu";
 
 export const releases: Releases = {
-    latest: "O2.0.2-E15",
+    latest: "O2.0.3-E15",
     firmwares: [
+        {
+            name: "O2.0.3-E15",
+            omegaVersion: {
+                major: 2,
+                minor: 0,
+                patch: 3,
+            },
+            commit: "7563e7390f28275381d6d9ebe5926c4e7f29660d",
+            changelog: [
+                "Fix: Bootloader can now boot Epsilon 19",
+            ],
+            compatibility: {
+                N0110: true,
+                N0100: true,
+                web: false,
+                android: false,
+                "3ds": false,
+            },
+            available: true,
+            setname: true,
+            languages: {
+                "0100": ["en", "fr", "nl", "pt", "it", "de", "es", "hu"],
+            },
+            headerVersion: 2,
+        },
         {
             name: "O2.0.2-E15",
             omegaVersion: {
