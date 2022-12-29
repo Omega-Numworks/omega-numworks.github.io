@@ -35,8 +35,37 @@ export interface Compatibility {
 export type Language = "en" | "fr" | "nl" | "pt" | "it" | "de" | "es" | "hu";
 
 export const releases: Releases = {
-    latest: "O2.0.3-E15",
+    latest: "O2.0.4-E15",
     firmwares: [
+        {
+            name: "O2.0.4-E15",
+            omegaVersion: {
+                major: 2,
+                minor: 0,
+                patch: 4,
+            },
+            commit: "a96f28b8d8cc0c203d0b4a8ccd347734b41f531d",
+            changelog: [
+                "New: Protection against Epsilon 20 Bootloader update",
+                "New: Bootloader menu, allowing to switch slots while in the bootloader",
+                "Fix: Fixed exam mode with Epsilon 16/19/20",
+                "Fix: Epsilon 16: Userland are now displayed in bootloader menu",
+                "Fix: Epsilon 20: Userland is properly displayed with the new memory layout",
+            ],
+            compatibility: {
+                N0110: true,
+                N0100: true,
+                web: false,
+                android: false,
+                "3ds": false,
+            },
+            available: true,
+            setname: true,
+            languages: {
+                "0100": ["en", "fr", "nl", "pt", "it", "de", "es", "hu"],
+            },
+            headerVersion: 2,
+        },
         {
             name: "O2.0.3-E15",
             omegaVersion: {
@@ -45,9 +74,7 @@ export const releases: Releases = {
                 patch: 3,
             },
             commit: "7563e7390f28275381d6d9ebe5926c4e7f29660d",
-            changelog: [
-                "Fix: Bootloader can now boot Epsilon 19",
-            ],
+            changelog: ["Fix: Bootloader can now boot Epsilon 19"],
             compatibility: {
                 N0110: true,
                 N0100: true,
@@ -70,9 +97,7 @@ export const releases: Releases = {
                 patch: 2,
             },
             commit: "707f9190f63d1e57ca4e291292266dc2e8aedc08",
-            changelog: [
-                "Fix: Don't boot other slot if a slot is in exam mode",
-            ],
+            changelog: ["Fix: Don't boot other slot if a slot is in exam mode"],
             compatibility: {
                 N0110: true,
                 N0100: true,
