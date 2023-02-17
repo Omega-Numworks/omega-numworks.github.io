@@ -38,6 +38,31 @@ export const releases: Releases = {
     latest: "O2.0.4-E15",
     firmwares: [
         {
+            name: "O2.0.5-E15",
+            omegaVersion: {
+                major: 2,
+                minor: 0,
+                patch: 5,
+            },
+            commit: "c9c563bb141b65e92f4592ae4c17136f848da572",
+            changelog: [
+                "Fix: Fixed bootloader with Epsilon 20",
+            ],
+            compatibility: {
+                N0110: true,
+                N0100: true,
+                web: false,
+                android: false,
+                "3ds": false,
+            },
+            available: true,
+            setname: true,
+            languages: {
+                "0100": ["en", "fr", "nl", "pt", "it", "de", "es", "hu"],
+            },
+            headerVersion: 2,
+        },
+        {
             name: "O2.0.4-E15",
             omegaVersion: {
                 major: 2,
