@@ -35,7 +35,7 @@ export interface Compatibility {
 export type Language = "en" | "fr" | "nl" | "pt" | "it" | "de" | "es" | "hu";
 
 export const releases: Releases = {
-    latest: "O2.0.4-E15",
+    latest: "O2.0.5-E15",
     firmwares: [
         {
             name: "O2.0.5-E15",
