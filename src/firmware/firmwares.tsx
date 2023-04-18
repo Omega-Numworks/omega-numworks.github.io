@@ -35,8 +35,35 @@ export interface Compatibility {
 export type Language = "en" | "fr" | "nl" | "pt" | "it" | "de" | "es" | "hu";
 
 export const releases: Releases = {
-    latest: "O2.0.5-E15",
+    latest: "O2.0.6-E15",
     firmwares: [
+        {
+            name: "O2.0.6-E15",
+            omegaVersion: {
+                major: 2,
+                minor: 0,
+                patch: 6,
+            },
+            commit: "9629acf91d15fc8f67a78e640a885e17f62c89eb",
+            changelog: [
+                "New: Added versionning to the bootloader",
+                "New: Added single-slot flashing",
+                "Fix: Enhanced bootloader stability",
+            ],
+            compatibility: {
+                N0110: true,
+                N0100: true,
+                web: false,
+                android: false,
+                "3ds": false,
+            },
+            available: true,
+            setname: true,
+            languages: {
+                "0100": ["en", "fr", "nl", "pt", "it", "de", "es", "hu"],
+            },
+            headerVersion: 2,
+        },
         {
             name: "O2.0.5-E15",
             omegaVersion: {
